@@ -33,7 +33,9 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 1rem;
+      margin-top: 2.5rem;
     }
+    .section-label:first-of-type { margin-top: 0; }
     .project {
       border: 1px solid #21262d;
       border-radius: 6px;
@@ -51,18 +53,12 @@
       font-size: 0.8125rem;
       margin-top: 0.25rem;
     }
-    .project-install {
-      margin-top: 0.5rem;
-      font-size: 0.75rem;
-      color: #484f58;
+    .compact .project {
+      padding: 0.625rem 1rem;
+      margin-bottom: 0.5rem;
     }
-    .project-install code {
-      background: #161b22;
-      padding: 0.2rem 0.4rem;
-      border-radius: 3px;
-      color: #7ee787;
-      font-size: 0.75rem;
-    }
+    .compact .project-name { font-size: 0.8125rem; }
+    .compact .project-desc { font-size: 0.75rem; }
     .links {
       margin-top: 2.5rem;
       font-size: 0.8125rem;
@@ -75,23 +71,21 @@
   <h1>Ian Zepp</h1>
   <div class="subtitle">open source tools &middot; mostly rust &middot; mostly cli</div>
 
-  <div class="section-label">Projects</div>
-
-  <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/cassio">cassio</a></div>
-    <div class="project-desc">Turn AI coding session logs into searchable transcripts</div>
-    <div class="project-install"><code>curl -fsSL https://ianzepp.dev/cassio/install.sh | bash</code></div>
-  </div>
-
-  <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/abbot">abbot</a></div>
-    <div class="project-desc">Persistent AI background daemon</div>
-    <div class="project-install"><code>curl -fsSL https://ianzepp.dev/abbot/install.sh | bash</code></div>
-  </div>
+  <div class="section-label">Featured Work</div>
 
   <div class="project">
     <div class="project-name"><a href="https://github.com/ianzepp/faber">faber</a></div>
-    <div class="project-desc">LLM-oriented intermediate representation that compiles to Zig, Rust, C++, TypeScript, or Python</div>
+    <div class="project-desc">A Latin programming language compiler &mdash; The Roman Craftsman</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-api">monk-api</a></div>
+    <div class="project-desc">Multi-tenant Platform-as-a-Service API</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-os-kernel">monk-os-kernel</a></div>
+    <div class="project-desc">Monk OS kernel</div>
   </div>
 
   <div class="project">
@@ -100,23 +94,114 @@
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/dig-json">dig-json</a></div>
-    <div class="project-desc">DNS lookup with JSON output</div>
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-cli">monk-cli</a></div>
+    <div class="project-desc">Command line interface for the Monk API</div>
+  </div>
+
+  <div class="section-label">Previous Projects</div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-api-rust">monk-api-rust</a></div>
+    <div class="project-desc">Rust rewrite of the Monk API</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/corewlan-json">corewlan-json</a></div>
-    <div class="project-desc">macOS WiFi status via CoreWLAN, output as JSON</div>
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-irc">monk-irc</a></div>
+    <div class="project-desc">IRC protocol server for Monk API integration</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/coreutils-json">coreutils-json</a></div>
-    <div class="project-desc">JSONL-streaming versions of common Unix coreutils commands</div>
+    <div class="project-name"><a href="https://github.com/ianzepp/claude-workers">claude-workers</a></div>
+    <div class="project-desc">Orchestration system for running multiple autonomous Claude Code agents</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/opencode-sync">opencode-sync</a></div>
-    <div class="project-desc">Sync OpenCode conversations between machines</div>
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-ftp">monk-ftp</a></div>
+    <div class="project-desc">FTP server interface for Monk API data</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/agents">agents</a></div>
+    <div class="project-desc">Agent orchestration CLI for spawning isolated Claude/OpenCode runs</div>
+  </div>
+
+  <div class="section-label">Other</div>
+
+  <div class="compact">
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/monk-cli-anarchy">monk-cli-anarchy</a></div>
+      <div class="project-desc">Fallout-inspired UI for the Monk API</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/opencode-sync">opencode-sync</a></div>
+      <div class="project-desc">Sync OpenCode conversations between machines</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/ai-transcripts">ai-transcripts</a></div>
+      <div class="project-desc">Extract Claude Code session logs to readable transcripts</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/qr-static-stream">qr-static-stream</a></div>
+      <div class="project-desc">Steganographic QR codes hidden in XOR'd noise frames</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/faber-www">faber-www</a></div>
+      <div class="project-desc">Faber programming language documentation</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/holdover">holdover</a></div>
+      <div class="project-desc">holdover</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/monk-uix">monk-uix</a></div>
+      <div class="project-desc">Web UI for Monk API</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/claude-agents">claude-agents</a></div>
+      <div class="project-desc">claude-agents</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/tree-sitter-faber">tree-sitter-faber</a></div>
+      <div class="project-desc">Tree-sitter grammar for Faber</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/monk-bot">monk-bot</a></div>
+      <div class="project-desc">AI agent daemon for Monk API</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/claude-skills">claude-skills</a></div>
+      <div class="project-desc">claude-skills</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/cassio">cassio</a></div>
+      <div class="project-desc">AI transcript AST processor for Claude Code, Codex, and OpenCode session logs</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/monk-api-bindings-ts">monk-api-bindings-ts</a></div>
+      <div class="project-desc">TypeScript bindings for Monk API</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/faber-trials">faber-trials</a></div>
+      <div class="project-desc">LLM learnability research harness for Faber</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/claude-mailer">claude-mailer</a></div>
+      <div class="project-desc">CLI tool for sending HTML emails via Proton Bridge SMTP/IMAP</div>
+    </div>
   </div>
 
   <div class="links">
