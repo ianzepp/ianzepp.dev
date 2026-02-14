@@ -67,6 +67,21 @@
       color: #8b949e;
     }
     .links a { margin-right: 1.5rem; }
+    .search {
+      width: 100%;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      color: #c9d1d9;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      margin-bottom: 2rem;
+      outline: none;
+    }
+    .search:focus { border-color: #58a6ff; }
+    .search::placeholder { color: #484f58; }
+    .section-hidden { display: none; }
     .badge-commits {
       margin-left: auto;
       font-size: 0.625rem;
@@ -91,6 +106,8 @@
 <body>
   <h1>Ian Zepp</h1>
   <div class="subtitle">open source tools &middot; mostly rust &middot; mostly cli</div>
+
+  <input type="text" class="search" placeholder="Filter projects..." autofocus>
 
   <div class="section-label">Featured Work</div>
 
@@ -228,5 +245,27 @@
   <div class="links">
     <a href="https://github.com/ianzepp">github</a>
   </div>
+  <script>
+    document.querySelector('.search').addEventListener('input', function(e) {
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('.project').forEach(function(p) {
+        const name = p.querySelector('.project-name').textContent.toLowerCase();
+        const desc = p.querySelector('.project-desc').textContent.toLowerCase();
+        p.style.display = (!q || name.includes(q) || desc.includes(q)) ? '' : 'none';
+      });
+      document.querySelectorAll('.section-label').forEach(function(label) {
+        var next = label.nextElementSibling;
+        var hasVisible = false;
+        while (next && !next.classList.contains('section-label') && !next.classList.contains('links')) {
+          var projects = next.classList.contains('project') ? [next] : next.querySelectorAll('.project');
+          for (var i = 0; i < projects.length; i++) {
+            if (projects[i].style.display !== 'none') hasVisible = true;
+          }
+          next = next.nextElementSibling;
+        }
+        label.classList.toggle('section-hidden', !hasVisible);
+      });
+    });
+  </script>
 </body>
 </html>
