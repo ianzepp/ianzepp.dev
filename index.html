@@ -47,6 +47,8 @@
       color: #f0f6fc;
       font-weight: 600;
       font-size: 0.9375rem;
+      display: flex;
+      align-items: center;
     }
     .project-desc {
       color: #8b949e;
@@ -65,6 +67,15 @@
       color: #8b949e;
     }
     .links a { margin-right: 1.5rem; }
+    .badge-commits {
+      margin-left: auto;
+      font-size: 0.625rem;
+      font-weight: 400;
+      color: #8b949e;
+      border: 1px solid #30363d;
+      border-radius: 3px;
+      padding: 0.05rem 0.35rem;
+    }
     .badge-private {
       display: inline-block;
       font-size: 0.625rem;
@@ -84,54 +95,54 @@
   <div class="section-label">Featured Work</div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/faber">faber</a></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/faber">faber</a> <span class="badge-commits">1510 commits</span></div>
     <div class="project-desc">A Latin programming language compiler &mdash; The Roman Craftsman</div>
   </div>
 
   <div class="project">
-    <div class="project-name">monk-api <span class="badge-private">private</span></div>
+    <div class="project-name">monk-api <span class="badge-private">private</span> <span class="badge-commits">1020 commits</span></div>
     <div class="project-desc">Multi-tenant Platform-as-a-Service API</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/monk-os-kernel">monk-os-kernel</a></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-os-kernel">monk-os-kernel</a> <span class="badge-commits">538 commits</span></div>
     <div class="project-desc">Monk OS kernel</div>
   </div>
 
   <div class="project">
-    <div class="project-name">prior <span class="badge-private">private</span></div>
+    <div class="project-name">prior <span class="badge-private">private</span> <span class="badge-commits">198 commits</span></div>
     <div class="project-desc">Agentic runtime where every subsystem speaks the same frame protocol</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/monk-cli">monk-cli</a></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-cli">monk-cli</a> <span class="badge-commits">198 commits</span></div>
     <div class="project-desc">Command line interface for the Monk API</div>
   </div>
 
   <div class="section-label">Previous Projects</div>
 
   <div class="project">
-    <div class="project-name">monk-api-rust <span class="badge-private">private</span></div>
+    <div class="project-name">monk-api-rust <span class="badge-private">private</span> <span class="badge-commits">68 commits</span></div>
     <div class="project-desc">Rust rewrite of the Monk API</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/monk-irc">monk-irc</a></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-irc">monk-irc</a> <span class="badge-commits">58 commits</span></div>
     <div class="project-desc">IRC protocol server for Monk API integration</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/claude-workers">claude-workers</a></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/claude-workers">claude-workers</a> <span class="badge-commits">42 commits</span></div>
     <div class="project-desc">Orchestration system for running multiple autonomous Claude Code agents</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/monk-ftp">monk-ftp</a></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-ftp">monk-ftp</a> <span class="badge-commits">27 commits</span></div>
     <div class="project-desc">FTP server interface for Monk API data</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/agents">agents</a></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/agents">agents</a> <span class="badge-commits">23 commits</span></div>
     <div class="project-desc">Agent orchestration CLI for spawning isolated Claude/OpenCode runs</div>
   </div>
 
@@ -139,77 +150,77 @@
 
   <div class="compact">
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/monk-cli-anarchy">monk-cli-anarchy</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/monk-cli-anarchy">monk-cli-anarchy</a> <span class="badge-commits">16</span></div>
       <div class="project-desc">Fallout-inspired UI for the Monk API</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/opencode-sync">opencode-sync</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/opencode-sync">opencode-sync</a> <span class="badge-commits">15</span></div>
       <div class="project-desc">Sync OpenCode conversations between machines</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/ai-transcripts">ai-transcripts</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/ai-transcripts">ai-transcripts</a> <span class="badge-commits">14</span></div>
       <div class="project-desc">Extract Claude Code session logs to readable transcripts</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/qr-static-stream">qr-static-stream</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/qr-static-stream">qr-static-stream</a> <span class="badge-commits">13</span></div>
       <div class="project-desc">Steganographic QR codes hidden in XOR'd noise frames</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/faber-www">faber-www</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/faber-www">faber-www</a> <span class="badge-commits">13</span></div>
       <div class="project-desc">Faber programming language documentation</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/holdover">holdover</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/holdover">holdover</a> <span class="badge-commits">11</span></div>
       <div class="project-desc">holdover</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/monk-uix">monk-uix</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/monk-uix">monk-uix</a> <span class="badge-commits">10</span></div>
       <div class="project-desc">Web UI for Monk API</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/claude-agents">claude-agents</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/claude-agents">claude-agents</a> <span class="badge-commits">10</span></div>
       <div class="project-desc">claude-agents</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/tree-sitter-faber">tree-sitter-faber</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/tree-sitter-faber">tree-sitter-faber</a> <span class="badge-commits">9</span></div>
       <div class="project-desc">Tree-sitter grammar for Faber</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/monk-bot">monk-bot</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/monk-bot">monk-bot</a> <span class="badge-commits">8</span></div>
       <div class="project-desc">AI agent daemon for Monk API</div>
     </div>
 
     <div class="project">
-      <div class="project-name">claude-skills <span class="badge-private">private</span></div>
+      <div class="project-name">claude-skills <span class="badge-private">private</span> <span class="badge-commits">8</span></div>
       <div class="project-desc">claude-skills</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/cassio">cassio</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/cassio">cassio</a> <span class="badge-commits">8</span></div>
       <div class="project-desc">AI transcript AST processor for Claude Code, Codex, and OpenCode session logs</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/monk-api-bindings-ts">monk-api-bindings-ts</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/monk-api-bindings-ts">monk-api-bindings-ts</a> <span class="badge-commits">6</span></div>
       <div class="project-desc">TypeScript bindings for Monk API</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/faber-trials">faber-trials</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/faber-trials">faber-trials</a> <span class="badge-commits">6</span></div>
       <div class="project-desc">LLM learnability research harness for Faber</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/claude-mailer">claude-mailer</a></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/claude-mailer">claude-mailer</a> <span class="badge-commits">5</span></div>
       <div class="project-desc">CLI tool for sending HTML emails via Proton Bridge SMTP/IMAP</div>
     </div>
   </div>
