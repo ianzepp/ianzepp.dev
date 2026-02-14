@@ -26,17 +26,20 @@ done
 # Count commits and collect descriptions
 declare -A counts
 declare -A descs
+declare -A visibility
 
-desc_json=$(gh repo list "$OWNER" --limit 200 --json name,description)
+repo_json=$(gh repo list "$OWNER" --limit 200 --json name,description,isPrivate)
 
 for dir in "$BASE_DIR"/*/; do
   [ -d "$dir/.git" ] || continue
   name=$(basename "$dir")
   echo "$SKIP" | grep -qw "$name" && continue
   count=$(git -C "$dir" rev-list --count HEAD 2>/dev/null || echo 0)
-  desc=$(echo "$desc_json" | jq -r --arg n "$name" '.[] | select(.name == $n) | .description // ""')
+  desc=$(echo "$repo_json" | jq -r --arg n "$name" '.[] | select(.name == $n) | .description // ""')
+  is_private=$(echo "$repo_json" | jq -r --arg n "$name" '.[] | select(.name == $n) | .isPrivate')
   counts[$name]=$count
   descs[$name]=${desc:-$name}
+  visibility[$name]=$( [ "$is_private" = "true" ] && echo "private" || echo "public" )
 done
 
 # Sort by commit count descending
@@ -53,7 +56,8 @@ rank=0
 while read -r count name; do
   [ "$count" -lt 5 ] && continue
   rank=$((rank + 1))
-  entry="$name ($count commits) - ${descs[$name]}"
+  label=$( [ "${visibility[$name]}" = "private" ] && echo "[private] " || echo "" )
+  entry="${label}$name ($count commits) - ${descs[$name]}"
   if [ "$rank" -le 5 ]; then
     featured+=("$entry")
   elif [ "$count" -gt 20 ]; then
