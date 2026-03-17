@@ -2,44 +2,35 @@
 set -euo pipefail
 
 OWNER="ianzepp"
-BASE_DIR="${1:-$(pwd)/repos}"
 SKIP="archived-projects personal ianzepp.dev dotfiles homebrew-tap 0-prework-assignment"
 
-# Clone or update all repos
-echo "Fetching repo list from GitHub..."
-repos=$(gh repo list "$OWNER" --limit 200 --json name --jq '.[].name' | sort)
+echo "Fetching repo data from GitHub API..."
+repo_json=$(gh repo list "$OWNER" --limit 200 --json name,description,isPrivate,isFork)
 
-mkdir -p "$BASE_DIR"
-
-for repo in $repos; do
-  if echo "$SKIP" | grep -qw "$repo"; then
-    continue
-  fi
-  if [ -d "$BASE_DIR/$repo/.git" ]; then
-    git -C "$BASE_DIR/$repo" fetch --quiet 2>/dev/null || true
-  else
-    echo "Cloning $repo..."
-    gh repo clone "$OWNER/$repo" "$BASE_DIR/$repo" -- --quiet 2>/dev/null || true
-  fi
-done
-
-# Count commits and collect descriptions
+# Count commits via API (no cloning needed)
 declare -A counts
 declare -A descs
 declare -A visibility
 
-repo_json=$(gh repo list "$OWNER" --limit 200 --json name,description,isPrivate)
-
-for dir in "$BASE_DIR"/*/; do
-  [ -d "$dir/.git" ] || continue
-  name=$(basename "$dir")
+for name in $(echo "$repo_json" | jq -r '.[].name' | sort); do
   echo "$SKIP" | grep -qw "$name" && continue
-  count=$(git -C "$dir" rev-list --count HEAD 2>/dev/null || echo 0)
+
+  is_fork=$(echo "$repo_json" | jq -r --arg n "$name" '.[] | select(.name == $n) | .isFork')
+  [ "$is_fork" = "true" ] && continue
+
+  # Get commit count from the default branch via API
+  count=$(gh api "repos/$OWNER/$name/commits?per_page=1" -i 2>/dev/null \
+    | grep -i '^link:' \
+    | sed 's/.*page=\([0-9]*\)>.*/\1/' || echo "1")
+  [ -z "$count" ] && count=1
+
   desc=$(echo "$repo_json" | jq -r --arg n "$name" '.[] | select(.name == $n) | .description // ""')
   is_private=$(echo "$repo_json" | jq -r --arg n "$name" '.[] | select(.name == $n) | .isPrivate')
+
   counts[$name]=$count
   descs[$name]=${desc:-$name}
   visibility[$name]=$( [ "$is_private" = "true" ] && echo "private" || echo "public" )
+  echo "  $name: $count commits"
 done
 
 # Sort by commit count descending
