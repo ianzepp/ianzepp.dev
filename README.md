@@ -81,7 +81,7 @@ So today the correct mental model is:
 `ranking.sh` expects:
 
 - `gh` authenticated against GitHub
-- `jq`
+- `python3`
 
 ## Known Limitation
 

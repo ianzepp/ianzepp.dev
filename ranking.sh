@@ -1,86 +1,131 @@
-#!/bin/bash
-set -euo pipefail
+#!/usr/bin/env python3
+import json
+import subprocess
+import sys
 
-OWNER="ianzepp"
-SKIP="archived-projects personal ianzepp.dev dotfiles homebrew-tap 0-prework-assignment"
 
-echo "Fetching repo data from GitHub API..."
-repo_json=$(gh repo list "$OWNER" --limit 200 --json name,description,isPrivate,isFork)
+OWNER = "ianzepp"
+SKIP = {
+    "archived-projects",
+    "personal",
+    "ianzepp.dev",
+    "dotfiles",
+    "homebrew-tap",
+    "0-prework-assignment",
+}
 
-# Count commits via API (no cloning needed)
-declare -A counts
-declare -A descs
-declare -A visibility
 
-for name in $(echo "$repo_json" | jq -r '.[].name' | sort); do
-  echo "$SKIP" | grep -qw "$name" && continue
+def run(*args: str) -> str:
+    return subprocess.check_output(args, text=True)
 
-  is_fork=$(echo "$repo_json" | jq -r --arg n "$name" '.[] | select(.name == $n) | .isFork')
-  [ "$is_fork" = "true" ] && continue
 
-  # Get commit count from the default branch via API
-  count=$(gh api "repos/$OWNER/$name/commits?per_page=1" -i 2>/dev/null \
-    | grep -i '^link:' \
-    | sed 's/.*page=\([0-9]*\)>.*/\1/' || echo "1")
-  [ -z "$count" ] && count=1
+def fetch_repos() -> list[dict]:
+    cursor = None
+    repos: list[dict] = []
 
-  desc=$(echo "$repo_json" | jq -r --arg n "$name" '.[] | select(.name == $n) | .description // ""')
-  is_private=$(echo "$repo_json" | jq -r --arg n "$name" '.[] | select(.name == $n) | .isPrivate')
+    while True:
+        after = "null" if cursor is None else json.dumps(cursor)
+        query = f"""
+        query {{
+          repositoryOwner(login: {json.dumps(OWNER)}) {{
+            repositories(first: 100, after: {after}, orderBy: {{field: NAME, direction: ASC}}, isFork: false) {{
+              pageInfo {{ hasNextPage endCursor }}
+              nodes {{
+                name
+                description
+                isPrivate
+                defaultBranchRef {{
+                  target {{
+                    ... on Commit {{
+                      history(first: 1) {{ totalCount }}
+                    }}
+                  }}
+                }}
+              }}
+            }}
+          }}
+        }}
+        """
+        payload = json.loads(run("gh", "api", "graphql", "-f", f"query={query}"))
+        repositories = payload["data"]["repositoryOwner"]["repositories"]
+        repos.extend(repositories["nodes"])
+        if not repositories["pageInfo"]["hasNextPage"]:
+            return repos
+        cursor = repositories["pageInfo"]["endCursor"]
 
-  counts[$name]=$count
-  descs[$name]=${desc:-$name}
-  visibility[$name]=$( [ "$is_private" = "true" ] && echo "private" || echo "public" )
-  echo "  $name: $count commits"
-done
 
-# Sort by commit count descending
-sorted=$(for name in "${!counts[@]}"; do
-  echo "${counts[$name]} $name"
-done | sort -rn)
+def main() -> int:
+    print("Fetching repo data from GitHub API...")
 
-# Split into tiers
-featured=()
-previous=()
-other=()
-rank=0
+    rows: list[dict] = []
+    for repo in fetch_repos():
+        name = repo["name"]
+        if name in SKIP:
+            continue
 
-while read -r count name; do
-  [ "$count" -lt 5 ] && continue
-  rank=$((rank + 1))
-  label=$( [ "${visibility[$name]}" = "private" ] && echo "[private] " || echo "" )
-  entry="${label}$name ($count commits) - ${descs[$name]}"
-  if [ "$rank" -le 5 ]; then
-    featured+=("$entry")
-  elif [ "$count" -gt 20 ]; then
-    previous+=("$entry")
-  else
-    other+=("$entry")
-  fi
-done <<< "$sorted"
+        branch = repo.get("defaultBranchRef") or {}
+        target = branch.get("target") or {}
+        history = target.get("history") or {}
+        count = history.get("totalCount") or 0
+        desc = repo.get("description") or name
+        private = bool(repo["isPrivate"])
 
-# Report
-echo ""
-echo "=== Featured Work (top 5) ==="
-for e in "${featured[@]}"; do echo "  $e"; done
+        rows.append(
+            {
+                "name": name,
+                "count": count,
+                "desc": desc,
+                "private": private,
+            }
+        )
+        print(f"  {name}: {count} commits")
 
-echo ""
-echo "=== Previous Projects (>20 commits) ==="
-if [ ${#previous[@]} -gt 0 ]; then
-  for e in "${previous[@]}"; do echo "  $e"; done
-else
-  echo "  (none)"
-fi
+    rows.sort(key=lambda row: (-row["count"], row["name"].lower()))
 
-echo ""
-echo "=== Other (5+ commits) ==="
-if [ ${#other[@]} -gt 0 ]; then
-  for e in "${other[@]}"; do echo "  $e"; done
-else
-  echo "  (none)"
-fi
+    featured: list[str] = []
+    previous: list[str] = []
+    other: list[str] = []
+    listed = 0
 
-# Summary
-total=${#counts[@]}
-included=$((${#featured[@]} + ${#previous[@]} + ${#other[@]}))
-echo ""
-echo "Total repos: $total | Listed: $included | Skipped (<5 commits): $((total - included))"
+    for row in rows:
+        if row["count"] < 5:
+            continue
+
+        listed += 1
+        prefix = "[private] " if row["private"] else ""
+        entry = f"{prefix}{row['name']} ({row['count']} commits) - {row['desc']}"
+
+        if listed <= 5:
+            featured.append(entry)
+        elif row["count"] > 20:
+            previous.append(entry)
+        else:
+            other.append(entry)
+
+    print("\n=== Featured Work (top 5) ===")
+    for entry in featured:
+        print(f"  {entry}")
+
+    print("\n=== Previous Projects (>20 commits) ===")
+    if previous:
+        for entry in previous:
+            print(f"  {entry}")
+    else:
+        print("  (none)")
+
+    print("\n=== Other (5+ commits) ===")
+    if other:
+        for entry in other:
+            print(f"  {entry}")
+    else:
+        print("  (none)")
+
+    print(
+        f"\nTotal repos: {len(rows)} | Listed: {listed} | "
+        f"Skipped (<5 commits): {len(rows) - listed}"
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
