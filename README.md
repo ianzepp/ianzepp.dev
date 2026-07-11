@@ -9,56 +9,62 @@ This repo serves two purposes:
 
 ## Repository Layout
 
-- `index.html`: the entire website, including markup, styles, project listings, and client-side search
-- `ranking.sh`: fetches live repository metadata from GitHub and prints a ranked report
+- `index.html`: the hand-authored website shell, styles, generated project region, and client-side search
+- `ranking.sh`: the documented, non-interactive regeneration command
+- `sitegen.py`: GitHub discovery, ranking policy, escaping, and generated-region renderer
 - `cassio/install.sh`: static install script served from the site
 - `CNAME`: GitHub Pages custom domain configuration
+- `tests/test_sitegen.py`: deterministic renderer and seam validation
 
 ## How The Site Works
 
 The site is intentionally simple:
 
-- There is no framework, build step, or data pipeline
-- The project list is hardcoded directly in `index.html`
+- There is no framework or dependency-heavy build step
+- The project list is generated inside the marked region in `index.html`
 - The search bar is plain client-side JavaScript in `index.html`
 - GitHub Pages serves the repo as static files
 
-That means the page itself is not generated automatically today. The ranking data is generated separately, then applied manually to `index.html`.
+The HTML outside `BEGIN GENERATED PROJECTS` and `END GENERATED PROJECTS` is hand-authored and is never rewritten by the generator. The generator fails instead of guessing if either marker is missing, duplicated, out of order, or embedded in another line.
 
 ## Live Repo Data Workflow
 
-`ranking.sh` is the live-data discovery script.
+`ranking.sh` fetches live repository data and regenerates the project region.
 
 It currently:
 
-- uses `gh repo list` to fetch repositories for `ianzepp`
+- uses the GitHub GraphQL API through authenticated `gh`
 - skips a small hardcoded set of repos that should not appear on the site
 - ignores forks
-- uses the GitHub API to estimate commit counts from pagination headers
+- reads default-branch commit totals from GitHub
 - reads repo descriptions and privacy status from GitHub
 - sorts repos by commit count descending
-- prints three tiers:
+- renders three tiers:
   - `Featured Work`: top 5 repos
   - `Previous Projects`: remaining repos with more than 20 commits
   - `Other`: remaining repos with at least 5 commits
 
-This script is the source of truth for ranking logic, but not for HTML generation.
+The ranking policy is unchanged: skipped repositories and forks are excluded, repositories with fewer than five commits are not listed, the first five listed repositories are featured, later repositories over twenty commits are previous projects, and the rest are other projects. Ties sort by repository name case-insensitively.
+
+Public repositories are linked to their GitHub page and all generated names and descriptions are HTML-escaped. Private repositories remain in their ranked tier as non-linked text with a `private` badge; no private GitHub URL is generated. Only the existing display fields (name, description, privacy, and commit count) are used.
 
 ## Rebuilding The Website From Live Data
 
-Current rebuild process:
-
-1. Run `./ranking.sh`
-2. Review the ranked output
-3. Update the hardcoded project entries in `index.html`
-4. Commit and push
-5. GitHub Pages serves the updated static site
-
-Example:
+The unattended rebuild command is:
 
 ```bash
 ./ranking.sh
 ```
+
+It requires an authenticated `gh` session and updates only `index.html` when the generated content changes. It uses an atomic replacement and exits nonzero on GitHub/API errors or unsupported HTML seams. Running it again with unchanged GitHub data produces no diff.
+
+The deterministic validation suite is:
+
+```bash
+python3 -m unittest discover -s tests
+```
+
+After a live regeneration, inspect `git diff -- index.html`; the page shell, `CNAME`, and `cassio/install.sh` should remain untouched. This task does not deploy or push changes.
 
 ## Important History
 
@@ -74,7 +80,8 @@ Those transcripts show:
 So today the correct mental model is:
 
 - `ranking.sh` discovers and ranks live repo data
-- `index.html` remains the hand-authored presentation layer
+- `sitegen.py` renders only the explicit generated project region
+- `index.html` remains the hand-authored presentation layer around that region
 
 ## Dependencies
 
@@ -82,15 +89,3 @@ So today the correct mental model is:
 
 - `gh` authenticated against GitHub
 - `python3`
-
-## Known Limitation
-
-There is currently no generator that writes project data back into `index.html`.
-
-If full automation is desired, the next step would be to split:
-
-- repo discovery/data collection
-- a machine-readable data file
-- an HTML template or generator
-
-Until then, the rebuild flow is intentionally manual.
