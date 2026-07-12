@@ -10,6 +10,7 @@ This repo serves two purposes:
 ## Repository Layout
 
 - `index.html`: the hand-authored career narrative, evidence ledger, selected-work folio, generated project archive, styles, and client-side search
+- `content/CAREER-HISTORY.md`: comprehensive factual source material for timelines, project drill-downs, case studies, and future site content
 - `ranking.sh`: the documented, non-interactive regeneration command
 - `sitegen.py`: GitHub discovery, ranking policy, escaping, and generated-region renderer
 - `cassio/install.sh`: static install script served from the site
