@@ -107,7 +107,7 @@ class SitegenTests(unittest.TestCase):
 
         self.assertIn("I retired early.", updated)
         self.assertIn("The evidence ledger.", updated)
-        self.assertIn("Four systems, not forty logos.", updated)
+        self.assertIn("Six main lines of work.", updated)
         self.assertIn("replacement archive", updated)
         self.assertEqual(updated.count(BEGIN_MARKER), 1)
         self.assertEqual(updated.count(END_MARKER), 1)
