@@ -4,12 +4,12 @@ Static GitHub Pages site for `ianzepp.dev`.
 
 This repo serves two purposes:
 
-1. Host the landing page at `https://ianzepp.dev/`
+1. Host the autobiographical portfolio at `https://ianzepp.dev/`
 2. Host static per-project install scripts such as `https://ianzepp.dev/cassio/install.sh`
 
 ## Repository Layout
 
-- `index.html`: the hand-authored website shell, styles, generated project region, and client-side search
+- `index.html`: the hand-authored career narrative, evidence ledger, selected-work folio, generated project archive, styles, and client-side search
 - `ranking.sh`: the documented, non-interactive regeneration command
 - `sitegen.py`: GitHub discovery, ranking policy, escaping, and generated-region renderer
 - `cassio/install.sh`: static install script served from the site
@@ -25,7 +25,7 @@ The site is intentionally simple:
 - The search bar is plain client-side JavaScript in `index.html`
 - GitHub Pages serves the repo as static files
 
-The HTML outside `BEGIN GENERATED PROJECTS` and `END GENERATED PROJECTS` is hand-authored and is never rewritten by the generator. The generator fails instead of guessing if either marker is missing, duplicated, out of order, or embedded in another line.
+The HTML outside `BEGIN GENERATED PROJECTS` and `END GENERATED PROJECTS` is hand-authored and is never rewritten by the generator. The generated region lives inside the collapsed repository archive, so repository refreshes cannot reorder or redefine the autobiographical narrative. The generator fails instead of guessing if either marker is missing, duplicated, out of order, or embedded in another line.
 
 ## Live Repo Data Workflow
 

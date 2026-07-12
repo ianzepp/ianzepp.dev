@@ -100,6 +100,18 @@ class SitegenTests(unittest.TestCase):
             self.assertFalse(update_index(index, "new"))
             self.assertEqual(asset.read_bytes(), asset_before)
 
+    def test_real_page_preserves_autobiography_around_generated_archive(self):
+        document = (ROOT / "index.html").read_text(encoding="utf-8")
+
+        updated = replace_generated_region(document, "  <div>replacement archive</div>")
+
+        self.assertIn("I retired early.", updated)
+        self.assertIn("The evidence ledger.", updated)
+        self.assertIn("Four systems, not forty logos.", updated)
+        self.assertIn("replacement archive", updated)
+        self.assertEqual(updated.count(BEGIN_MARKER), 1)
+        self.assertEqual(updated.count(END_MARKER), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
