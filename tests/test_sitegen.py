@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT))
 from sitegen import (  # noqa: E402
     BEGIN_MARKER,
     END_MARKER,
+    render_project,
     render_projects,
     replace_generated_region,
     rank_repos,
@@ -45,8 +46,8 @@ class SitegenTests(unittest.TestCase):
         self.assertEqual([row["name"] for row in rows], ["alpha", "zeta"])
         self.assertEqual([row["name"] for row in sections["Featured Work"]], ["alpha", "zeta"])
 
-    def test_rendering_escapes_public_data_and_never_links_private_repos(self):
-        _, sections = rank_repos(
+    def test_rendering_escapes_public_data_and_excludes_private_repos(self):
+        rows, sections = rank_repos(
             [
                 {
                     "name": "public&name",
@@ -65,10 +66,32 @@ class SitegenTests(unittest.TestCase):
 
         rendered = render_projects(sections)
 
+        self.assertEqual([row["name"] for row in rows], ["public&name"])
         self.assertIn('href="https://github.com/ianzepp/public&amp;name"', rendered)
         self.assertIn("&lt;script&gt;alert(&quot;x&quot;)&lt;/script&gt;", rendered)
-        self.assertIn('secret <span class="badge-private">private</span>', rendered)
+        self.assertNotIn("secret", rendered)
+        self.assertNotIn('class="badge-private"', rendered)
         self.assertNotIn("https://github.com/ianzepp/secret", rendered)
+
+    def test_missing_privacy_metadata_is_excluded_fail_closed(self):
+        rows, _ = rank_repos(
+            [
+                {
+                    "name": "unknown-visibility",
+                    "description": "must not publish",
+                    "defaultBranchRef": {"target": {"history": {"totalCount": 99}}},
+                }
+            ]
+        )
+
+        self.assertEqual(rows, [])
+
+    def test_renderer_rejects_private_rows_even_if_called_directly(self):
+        with self.assertRaisesRegex(ValueError, "private repository metadata"):
+            render_project(
+                {"name": "secret", "count": 1, "desc": "secret", "private": True},
+                compact=False,
+            )
 
     def test_generated_region_is_idempotent_and_rejects_bad_seams(self):
         document = f"<header>stable</header>\n{BEGIN_MARKER}\nold\n{END_MARKER}\n<footer>stable</footer>\n"

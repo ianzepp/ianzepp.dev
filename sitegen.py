@@ -94,6 +94,12 @@ def rank_repos(repos: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[
 
     rows: list[dict[str, Any]] = []
     for repo in repos:
+        # GitHub metadata is a publication boundary: missing or non-boolean
+        # visibility is not safe to publish, so only an explicit public value
+        # may enter the rendered dataset.
+        if repo.get("isPrivate") is not False:
+            continue
+
         name = repo.get("name")
         if not isinstance(name, str) or not name:
             raise ValueError("repository metadata is missing a name")
@@ -116,7 +122,7 @@ def rank_repos(repos: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[
                 "name": name,
                 "count": count,
                 "desc": description,
-                "private": bool(repo.get("isPrivate")),
+                "private": False,
             }
         )
 
@@ -144,14 +150,14 @@ def rank_repos(repos: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[
 
 
 def render_project(row: dict[str, Any], compact: bool) -> str:
-    """Render one project without ever linking a private repository."""
+    """Render one explicitly public project."""
+
+    if row.get("private") is not False:
+        raise ValueError("private repository metadata cannot be rendered")
 
     name = html.escape(row["name"])
-    if row["private"]:
-        project_name = f'{name} <span class="badge-private">private</span>'
-    else:
-        url = html.escape(f"https://github.com/{OWNER}/{row['name']}", quote=True)
-        project_name = f'<a href="{url}">{name}</a>'
+    url = html.escape(f"https://github.com/{OWNER}/{row['name']}", quote=True)
+    project_name = f'<a href="{url}">{name}</a>'
 
     count = str(row["count"]) if compact else f'{row["count"]} commits'
     indent = "    " if compact else "  "
@@ -184,7 +190,11 @@ def render_projects(sections: dict[str, list[dict[str, Any]]]) -> str:
         render_section("Previous Projects", sections["Previous Projects"]),
         render_section("Other", sections["Other"], compact=True),
     ]
-    return "\n\n".join(parts)
+    rendered = "\n\n".join(parts)
+    local_path_markers = ("/" + "Users/", "/" + "private/")
+    if "badge-private" in rendered or any(marker in rendered for marker in local_path_markers):
+        raise ValueError("generated project data failed the public-only publication gate")
+    return rendered
 
 
 def _marker_positions(document: str, marker: str) -> list[int]:

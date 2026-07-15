@@ -2,18 +2,17 @@
 
 Static GitHub Pages site for `ianzepp.dev`.
 
-This repo serves two purposes:
+This repo hosts the autobiographical portfolio at `https://ianzepp.dev/`.
 
-1. Host the autobiographical portfolio at `https://ianzepp.dev/`
-2. Host static per-project install scripts such as `https://ianzepp.dev/cassio/install.sh`
+Private source material and executable installers are intentionally kept out of
+this publication repository unless a separate review proves they are safe to
+publish.
 
 ## Repository Layout
 
 - `index.html`: the hand-authored career narrative, evidence ledger, selected-work folio, generated project archive, styles, and client-side search
-- `content/CAREER-HISTORY.md`: comprehensive factual source material for timelines, project drill-downs, case studies, and future site content
 - `ranking.sh`: the documented, non-interactive regeneration command
 - `sitegen.py`: GitHub discovery, ranking policy, escaping, and generated-region renderer
-- `cassio/install.sh`: static install script served from the site
 - `CNAME`: GitHub Pages custom domain configuration
 - `tests/test_sitegen.py`: deterministic renderer and seam validation
 
@@ -47,7 +46,7 @@ It currently:
 
 The ranking policy is unchanged: skipped repositories and forks are excluded, repositories with fewer than five commits are not listed, the first five listed repositories are featured, later repositories over twenty commits are previous projects, and the rest are other projects. Ties sort by repository name case-insensitively.
 
-Public repositories are linked to their GitHub page and all generated names and descriptions are HTML-escaped. Private repositories remain in their ranked tier as non-linked text with a `private` badge; no private GitHub URL is generated. Only the existing display fields (name, description, privacy, and commit count) are used.
+Only repositories with explicit public visibility metadata are published. Public repositories are linked to their GitHub page and all generated names and descriptions are HTML-escaped. Missing or private visibility metadata is excluded fail-closed. Only the existing public display fields (name, description, and commit count) are used.
 
 ## Rebuilding The Website From Live Data
 
@@ -65,15 +64,15 @@ The deterministic validation suite is:
 python3 -m unittest discover -s tests
 ```
 
-After a live regeneration, inspect `git diff -- index.html`; the page shell, `CNAME`, and `cassio/install.sh` should remain untouched. This task does not deploy or push changes.
+After a live regeneration, inspect `git diff -- index.html`; the page shell and `CNAME` should remain untouched. Run the publication-safety tests before committing. This task does not deploy or push changes.
 
 ## Important History
 
-The intended workflow was reconstructed from archived transcripts in `~/github/ianzepp/personal/transcripts/`.
+The intended workflow was reconstructed from archived transcripts.
 
 Those transcripts show:
 
-- the repo was originally created as a GitHub Pages site for both the landing page and install-script hosting
+- the repo was originally created as a GitHub Pages site for the landing page and later accumulated an install-script surface
 - `ranking.sh` originally used local cloning to count commits
 - that clone-based approach was later replaced with GitHub API calls because cloning every repo wasted local disk space
 - the site content remained manual even after the ranking script was improved
