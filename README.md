@@ -11,6 +11,7 @@ publish.
 ## Repository Layout
 
 - `index.html`: the hand-authored career narrative, evidence ledger, selected-work folio, generated project archive, styles, and client-side search
+- `fonts/`: self-hosted woff2 faces (Cinzel, IBM Plex Mono; both SIL OFL). They are vendored because the publication policy bans third-party font fetches from the served page.
 - `ranking.sh`: the documented, non-interactive regeneration command
 - `sitegen.py`: GitHub discovery, ranking policy, escaping, and generated-region renderer
 - `CNAME`: GitHub Pages custom domain configuration
