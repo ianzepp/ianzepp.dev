@@ -1,0 +1,324 @@
+# Ian Zepp — A life in systems
+
+Full text of https://ianzepp.dev/ as Markdown, for agent readers.
+The HTML page is canonical; this file mirrors its content. Measurements are
+dated July 12, 2026.
+
+## I retired early. Then AI made me curious again.
+
+I'm Ian Zepp: a software founder, former engineering executive, and lifelong
+systems builder. This is the long version — the work, the pivots, the evidence,
+and what happened when a career in enterprise software collided with a year of
+nearly uninterrupted AI-assisted R&D.
+
+The last year, measured: 218 local repositories, 17,710 deduplicated commits,
+6,638 recorded agent sessions, and one 117-day unbroken streak. Every number on
+the page keeps its measurement date. Currently building in Rust.
+
+## A one-person lab, run at industrial pace (Sept 2025 — present)
+
+For the last ten months I have done research and development full time with AI
+agents: a programming language and its compiler, two agent runtimes, a
+multi-tenant platform, MCP security tooling, and the evaluation harnesses that
+keep all of it honest.
+
+The claim worth examining is not the volume — it is the method. I have been
+working out a repeatable way to direct, constrain, test, and audit AI-assisted
+engineering: goals and invariants written down before code, work split into
+bounded phases, commits used as checkpoints, and completion audited separately
+from implementation.
+
+### Measurements (July 12, 2026)
+
+- 17,710 unique commits, Aug 2025 — Jul 2026
+- 218 local Git repositories
+- 6,638 recorded agent sessions
+- 117 days, longest unbroken active streak
+- 6,087 test definitions across six systems
+- 17,681 LLM trial executions recorded
+
+Commits are deduplicated by SHA across every local repository and filtered to
+my exact author identity. They measure directed, reviewed, and integrated
+engineering — not a claim that I typed every line.
+
+Unique commits per month: Aug 589 · Sep 138 · Oct 2 · Nov 940 · Dec 1,113 ·
+Jan 1,028 · Feb 1,286 · Mar 591 · Apr 1,505 · May 3,196 · Jun 4,008 ·
+Jul 3,314 (first twelve days). October is real, too: two commits. The pace was
+sustained, not retrofitted.
+
+## The research programs
+
+Every program below is a running system with its own tests, documents, and Git
+history. Four satellites follow, and the repository archive on the page holds
+the rest.
+
+### Faber / Radix — language / compiler (active, private)
+
+A Latin-inspired programming language and Radix, its Rust compiler. Shared
+parsing and typechecking feed two lanes — one lowers to reviewable Rust and
+native binaries, the other to runtime artifacts — with emission targets across
+Go, TypeScript, WebAssembly, LLVM, Metal, and WGSL. Built through 219
+documented factory initiatives, each with its own goals, ledgers, and
+acceptance audits.
+
+5,512 commits · 2,918 test definitions · 219 factory initiatives
+Site: https://www.faberlang.dev · Org: https://github.com/faberlang ·
+Grammar: https://github.com/ianzepp/tree-sitter-faber
+
+### Minted Geek Swarm — agent runtime (active, private)
+
+A Rust runtime monorepo built around one daemon, swarmd: fifteen domain
+crates — kernel, filesystem, MCP, messaging, payments — behind a single public
+HTTP boundary. Internal work moves over kernel frames, and black-box suites
+drive the built binary through the same routes users hit.
+
+1,928 commits since May · 1,262 test definitions · ~97% Rust
+Site: https://www.mintedgeek.com · the GitHub org is private
+
+### Field Board — seven-day build (open source)
+
+A real-time collaborative whiteboard with AI board manipulation, written in
+Rust end to end: Axum and PostgreSQL behind, Leptos and WebAssembly in front,
+binary protobuf frames between. Seven crates in seven days, February 2026.
+
+511 commits · 1,077 test definitions · 7 crates / 7 days
+Source: https://github.com/ianzepp/gauntlet-week-1
+
+### The Trials — evaluation science (open + private)
+
+Harnesses for asking whether models can actually learn Faber — grammar-only
+versus worked examples, n-shot matrices, three-level executable grading, judged
+drafter-and-reviewer pipelines — plus local-inference tuning, ethics-scenario
+designs, and blind design judging. One January study ran four models through
+672 trials each.
+
+17,681 result rows · 26 models · 266 task definitions
+Harness: https://github.com/ianzepp/faber-trials
+
+### Monk — programmable platform (open source)
+
+A multi-tenant backend where the schema is data: model-first APIs, per-tenant
+isolation, observer rings, packages, cron — and protocol adapters that expose
+the same records over FUSE, FTP, and IRC. The clearest bridge between my
+enterprise-platform years and the current work.
+
+1,122 commits · 15+ ecosystem repos
+Source: https://github.com/ianzepp/monk-api
+
+### The kernel lineage — agent kernels (mixed)
+
+A line of experiments in how agents should execute: Abbot's persistent daemon,
+Prior's typed frames and kernel routing, Muninn's polyglot protocol family,
+Fleet's Mind/Head/Hand orchestration — plus Cassio for transcript processing
+and Vivarium for email as a durable agent data surface.
+
+6 related systems · Rust / TS / Go cores
+Abbot: https://github.com/ianzepp/abbot · Cassio: https://github.com/ianzepp/cassio
+
+### Satellites
+
+- **Cephalopodic** (MCP security, collaborative): a Go control plane and
+  inline security gateway for MCP: registration, catalogs, user-scoped taps,
+  and Fortress inspecting JSON-RPC with quarantine and policy enforcement.
+- **Gofolio** (applied product): a Ghostfolio-compatible portfolio backend in
+  Go, a Rust terminal client, and a live evaluation TUI running 73 defined
+  cases across models with executable grading.
+  https://github.com/ianzepp/gofolio-cli
+- **LegacyLens** (applied AI): retrieval-augmented analysis of legacy COBOL:
+  custom parsing and chunking, vector indexing, hybrid retrieval, and
+  natural-language answers over a real mainframe codebase.
+  https://github.com/ianzepp/legacylens
+- **QRStatic** (research crate): zero-dependency Rust steganography hiding QR
+  codes in temporal noise correlation, with empirical codec, quantization, and
+  recovery sweeps behind the defaults. https://github.com/ianzepp/qrstatic
+
+## The operating method: how the factory runs
+
+Reconstructed from 9,588 archived session transcripts, this is the loop on most
+days, across most systems. The agents supply throughput. The judgment stays
+human.
+
+1. **Write the goal first.** The intended end state and its invariants go into
+   a document that outlives the conversation. So far: 216 goal documents, 43
+   campaign plans, 91 ledgers.
+2. **Split into bounded phases.** Parallel agents get non-overlapping scopes.
+   Read-only scouts go ahead of architecture changes; worktrees isolate
+   anything that might collide.
+3. **Implement one coherent slice.** Format, lint, test, inspect the diff — in
+   that order, every time. Weak tests and policy evasion get rejected, not
+   merged.
+4. **Commit as punctuation.** A commit is a cognitive checkpoint between design
+   and the next phase, not an end-of-day dump.
+5. **Audit separately.** Correctness, security, performance, and documentation
+   each get their own pass — and goal completion is judged apart from
+   implementation completion.
+
+The division of labor:
+
+- **My job:** pick the problem and the invariant. Challenge the architecture
+  and the naming. Decide clean-break versus compatibility. Partition the
+  parallel work, test outcomes independently, and decide when the evidence is
+  sufficient.
+- **The agents' job:** reconnaissance, implementation throughput, review
+  passes, documentation, and the repetitive transformations nobody should do by
+  hand.
+
+In May 2026, one goal produced seven committed phases and separate acceptance
+proofs — and an audit that *refused to call the goal complete* while recovery
+requirements remained open. That refusal is the point.
+
+Document counts: 216 goals · 43 campaigns · 1,396 delivery docs · 91 ledgers.
+
+## The skill library
+
+Over the last six months, these repo-owned skills have grown into a cohesive
+layer of systems-engineering automation with one design goal: make the LLM's
+job easier. Nearly every session on this page ran through them.
+
+- **/fleet** — the newest, and a favorite: Mind, Head, and Hand roles for
+  multi-agent project loops, with stewardship and dead-man continuation. Built
+  on Vivi mailspaces, so agents coordinate over mail instead of shared memory.
+- **/campaign · /factory · /delivery** — the work-flow spine, used on
+  practically everything. Campaigns and sub-campaigns organize the flow of
+  work; a factory defines the phases for each unit; every phase gets a ledger
+  that tracks it to completion.
+- **/polish** — a per-file improvement loop backed by a deterministic analyzer
+  that moves judgment calls out of the model and into repeatable checks. Polish
+  is what keeps boilerplate LLM code from becoming slop.
+- **/housekeeping** — repository hygiene with ratchets: not all code is
+  perfect, so exceptions are explicit — and get ratcheted up or down per repo
+  as the code earns it. This is how a codebase stays in clean, competent form.
+- **/cassio** — the skill behind the evidence on this page. Converts Claude,
+  Codex, and OpenCode sessions into readable Markdown transcripts — and
+  extracts training data for customized LLM tuning.
+- **/mail + Vivi** — arbitrary local mailspaces for agents and projects. Vivi
+  grew out of the mail skill and became the substrate Fleet coordinates over —
+  private email treated as durable agent infrastructure.
+
+Supporting skills: /warmup, /goal-forge, /goal-check, /correctness,
+/cleanliness, /consequences, /root-cause, /red-green, /bonsai, /clean-break,
+/zombie-docs, /poker-face, /optimization, /caretaker, /dealers-choice,
+/skill-author, /slice, /scrum, /transcripts, /trials, /deploy, /docs, and more.
+
+All of it points one direction. The same principle that shaped these skills is
+the founding premise of Faber: a language designed for LLMs first, because
+humans don't write the code anymore — we just need to be able to understand
+what's going on.
+
+## The backstory: a career in four acts
+
+Four acts, dated from executed agreements, payroll records, and public archives
+where those exist. The evidence ledger below says so when they don't.
+
+### Act I — 1996—2009: Rifles, then a KDE front end for Nmap.
+
+Four years in the Marine Corps — 0351 Assaultman, out as a Corporal with an
+honorable discharge — left me with a bias toward responsibility that never wore
+off. In January 2000 I released KMap, a C++/Qt front end for Nmap. The Nmap
+2.50 release notes mention it by name, which is still my favorite line of
+third-party evidence.
+
+The path from there was not direct: five years selling real estate in Florida
+before joining Beatport's API team in Denver in 2008, where electronic music
+distribution ran on Zend PHP, enterprise Java, Mule, Spring, Hibernate, Squid,
+Akamai, and MySQL.
+
+USMC / 0351 / E-4 · C++ / Qt / KDE · PHP / Java
+
+### Act II — 2009—2017: Salesforce, scale, and the founder turn.
+
+At Red Hat I worked on a multilingual APAC Partner Center built on
+Salesforce — Korea, Japan, and China, twenty-odd sandboxes. roundCorner hired
+me in 2011 as Chief Scientist; by the end I was VP Engineering, and the team
+had grown from four people to twelve, spread across four continents.
+
+In 2014 I founded Minted.IO and spent 2015 self-funding a metadata-driven
+platform and API business. After a year inside Salesforce as a Technical
+Solution Architect, Motivis acquired the Minted.IO assets in February 2017. My
+VP offer was written into the acquisition.
+
+Chief Scientist → VP Eng · Team 4 → 12 · Founder / acquired
+
+### Act III — 2017—2024: Platform leadership, then enough.
+
+At Motivis I ran platform R&D — roughly ten engineers on a TypeScript, Node.js,
+PostgreSQL, and Google Cloud learning platform — then shifted to independent
+architecture and strategy consulting through Minted Geek, my Estonian company,
+from 2019.
+
+By 2021 I stopped taking work. Early retirement was a genuine attempt to be
+finished with the industry, and for about four years, it held.
+
+VP Platform R&D · TS / Node / GCP · Minted Geek OÜ
+
+### Act IV — 2025—NOW: The tools changed. I came back.
+
+In August 2025 I pulled two decades of old source out of storage — KMap, the
+Motivis-era platform, payment systems — and started committing again. In
+October I barely touched a keyboard: two commits. Then November arrived, and
+with it the start of a 117-day unbroken streak.
+
+What it became is the lab described above: a language and its compiler, two
+runtimes, a platform, security tooling, and thousands of recorded trials
+measuring whether any of it actually works. The receipts are in the ledger
+below.
+
+Rust / Go / TypeScript · Compilers / agents / MCP · 17,710 commits
+
+## The evidence ledger
+
+Old résumés are memory. This history has been reconstructed against executed
+agreements, employment records, public archives, source code, Git history, and
+thousands of AI-session transcripts. Sensitive documents remain private; their
+claims do not. Where the record is thin, the grade says so.
+
+Grades: **A** = directly verified (executed records, primary sources) ·
+**B** = corroborated (first-person record plus a credible second source) ·
+**C** = first-person recollection, not yet independently confirmed.
+
+- **1996—2000 · United States Marine Corps — grade A.** A DD-214 records
+  active service from May 1996 to May 2000, an honorable discharge, the rank of
+  Corporal (E-4), and the 0351 Assaultman occupational specialty.
+- **2000 · KMap enters the Nmap ecosystem — grade A.** Nmap's contemporary
+  release announcement names "a KDE front end by Ian Zepp"; the mailing-list
+  archive preserves my KMap 0.7 announcement, Linux and FreeBSD notes included.
+  https://insecure.org/stf/Nmap-2.50-Release.html ·
+  https://seclists.org/nmap-announce/2000/1
+- **2008—09 · Beatport engineering — grade A.** Employer records — payroll,
+  benefits, and a 2008 performance review — establish the software-development
+  role. The detailed stack narrative comes from my own résumé of the period,
+  and is labeled accordingly.
+- **2009 · Red Hat architecture work — grade C.** Two consistent historical
+  résumés describe the APAC Partner Center work, and an RHCE certification fits
+  the period — but no employer-issued record has surfaced yet. So this entry
+  stays a C, and stays labeled.
+- **2011—15 · roundCorner leadership — grade B.** An executed employment
+  agreement, equity records, and separation correspondence establish the
+  relationship and the Chief Scientist start. Public business records
+  corroborate the later VP Engineering title; the exact promotion dates remain
+  unresolved.
+  https://www.gaebler.com/Funded-Company-0F5780A5-FE79-4BE4-B38A-753CAE0641D0-roundCorner
+- **2016—17 · Salesforce employment — grade A.** An executed offer for
+  Technical Solution Architect and a continuous payroll record from February
+  2016 through February 2017 establish employment. The deeper client and
+  architecture narrative comes from contemporaneous career records.
+- **2017 · Minted.IO acquired by Motivis — grade A.** The executed
+  asset-purchase agreement describes the acquired business as software-platform
+  and API development. A linked employment offer — expressly conditioned on the
+  acquisition closing — brought me into Motivis as VP, Platform Research and
+  Development.
+- **2025—26 · Independent AI research at repository scale — grade A.** Local
+  and authenticated GitHub inventories cover 218 repositories. Git histories,
+  structured transcript archives, trial-result stores, and factory documents
+  provide dated, inspectable evidence for individual systems and decisions —
+  measured, most recently, on July 12, 2026. https://github.com/ianzepp
+
+## Colophon
+
+This site is static HTML, CSS, and one search script — no framework, no build
+step. The repository archive on the page is generated from live GitHub data;
+everything around it is hand-authored.
+
+Contact: ian@ianzepp.com · GitHub: https://github.com/ianzepp
+
+The next chapter should be difficult enough to matter.

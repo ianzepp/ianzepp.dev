@@ -7,8 +7,12 @@ PUBLIC_SOURCE_FILES = {
     "CNAME",
     "README.md",
     "index.html",
+    "llms.txt",
+    "llms-full.txt",
     "ranking.sh",
+    "robots.txt",
     "sitegen.py",
+    "sitemap.xml",
 }
 
 

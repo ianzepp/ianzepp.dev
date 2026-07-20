@@ -1,0 +1,44 @@
+# Crawler policy for ianzepp.dev
+#
+# Reading for search indexing and for AI reference/grounding is welcome.
+# Collecting this content to train or fine-tune AI models is not.
+#
+# Content-Signal meanings:
+#   search:   building a search index and providing search results.
+#   ai-input: inputting content into AI models (RAG, grounding, real-time answers).
+#   ai-train: training or fine-tuning AI models.
+#   use:      how AI systems may consume the content (immediate, reference, or full).
+#
+# Restrictions expressed via Content-Signal are express reservations of rights
+# under Article 4 of EU Directive 2019/790 on copyright and related rights.
+
+User-agent: *
+Content-Signal: search=yes,ai-input=yes,ai-train=no,use=reference
+Allow: /
+
+# Training crawlers: no.
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+Sitemap: https://ianzepp.dev/sitemap.xml

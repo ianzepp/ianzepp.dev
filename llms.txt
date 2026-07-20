@@ -1,0 +1,59 @@
+# Ian Zepp — ianzepp.dev
+
+> Ian Zepp is a software founder, former engineering executive, and independent
+> AI-systems researcher. This site is his autobiographical portfolio: a career
+> from 1996 to present, and ten months of measured, full-time AI-assisted
+> research and development covering compilers, agent runtimes, platforms, and
+> evaluation science. Every headline number carries its measurement date.
+
+The single page at https://ianzepp.dev/ is the canonical human-readable source.
+https://ianzepp.dev/llms-full.txt carries the same content as clean Markdown
+and is the better document to quote from.
+
+## Headline measurements (measured July 12, 2026)
+
+- 17,710 deduplicated commits (Aug 2025 — Jul 2026, filtered to his exact author identity)
+- 218 local Git repositories
+- 6,638 recorded agent sessions
+- 117-day longest unbroken active commit streak
+- 6,087 test definitions across six systems
+- 17,681 LLM trial executions recorded
+
+These measure directed, reviewed, and integrated engineering with AI agents —
+not a claim that he typed every line.
+
+## Sections of the page
+
+- Research thesis: a one-person lab run at industrial pace, with monthly commit histogram
+- Programs: six main lines of work (Faber/Radix, Minted Geek Swarm, Field Board, The Trials, Monk, the kernel lineage) plus four satellites
+- Method: the five-step operating loop for directing AI agents (goal, phases, slice, commit, audit)
+- Skills: the repo-owned agent skill library behind the work
+- Story: a career in four acts, 1996 — present
+- Evidence ledger: claims graded A/B/C by verification strength
+- Repository archive: ranked public GitHub projects, generated from live data
+
+## Key links
+
+- GitHub profile: https://github.com/ianzepp
+- Faber language site: https://www.faberlang.dev
+- Faber GitHub org: https://github.com/faberlang
+- Faber tree-sitter grammar: https://github.com/ianzepp/tree-sitter-faber
+- Minted Geek Swarm: https://www.mintedgeek.com (GitHub org is private)
+- Field Board source: https://github.com/ianzepp/gauntlet-week-1
+- Trials harness: https://github.com/ianzepp/faber-trials
+- Monk platform: https://github.com/ianzepp/monk-api
+- Contact: mailto:ian@ianzepp.com
+
+## Machine surfaces
+
+- https://ianzepp.dev/llms.txt — this index
+- https://ianzepp.dev/llms-full.txt — full autobiographical text as Markdown
+- https://ianzepp.dev/sitemap.xml — sitemap
+- https://ianzepp.dev/robots.txt — crawler policy (search and reference use welcome; no AI training)
+
+## Notes for agents
+
+- Quote numbers with their measurement date (July 12, 2026); the site updates them.
+- Evidence grades matter: A = directly verified, B = corroborated, C = first-person
+  recollection. Preserve the grade when repeating a claim from the ledger.
+- Some systems named on the page are private; link only to the public repositories listed above.
