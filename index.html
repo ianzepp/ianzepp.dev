@@ -742,20 +742,28 @@
         </div>
       </div>
       <div class="stratum s-porph">
-        <div><span class="ord">III</span><span class="nm">2017—2024</span></div>
+        <div><span class="ord">III</span><span class="nm">2017—2021</span></div>
         <div class="body">
           <h3>Platform leadership, then enough.</h3>
-          <p>At Motivis I ran platform R&amp;D—roughly ten engineers on a TypeScript, Node.js, PostgreSQL, and Google Cloud learning platform—then shifted to independent architecture and strategy consulting through Minted Geek, my Estonian company, from 2019.</p>
+          <p>At Motivis I ran platform R&amp;D with roughly ten engineers on a TypeScript, Node.js, PostgreSQL, and Google Cloud learning platform until 2020. From 2019 I also did independent architecture and strategy consulting through Minted Geek, my Estonian company.</p>
           <p>By 2021 I stopped taking work. Early retirement was a genuine attempt to be finished with the industry, and for about four years, it held.</p>
           <div class="fact-row"><span class="fact">VP Platform R&amp;D</span><span class="fact">TS / Node / GCP</span><span class="fact">Minted Geek OÜ</span></div>
         </div>
       </div>
+      <div class="stratum s-verde">
+        <div><span class="ord">IV</span><span class="nm">2021—2025</span></div>
+        <div class="body">
+          <h3>Retirement.</h3>
+          <p>Joined Kraken on the financial integrations team in early 2021. Left after three months, burned out from years of startup pace and early retirement work. The industry was quiet for four years. Then the tools changed, and I came back.</p>
+          <div class="fact-row"><span class="fact">Kraken / Rust</span><span class="fact">Financial integrations</span></div>
+        </div>
+      </div>
       <div class="stratum s-night">
-        <div><span class="ord">IV</span><span class="nm">2025—NOW</span></div>
+        <div><span class="ord">V</span><span class="nm">2025—NOW</span></div>
         <div class="body">
           <h3>The tools changed. I came back.</h3>
           <p>In August 2025 I pulled two decades of old source out of storage—KMap, the Motivis-era platform, payment systems—and started committing again. In October I barely touched a keyboard: two commits. Then November arrived, and with it the start of a 117-day unbroken streak.</p>
-          <p>What it became is the lab described above: a language and its compiler, two runtimes, a platform, security tooling, and thousands of recorded trials measuring whether any of it actually works. The receipts are in the ledger below.</p>
+          <p>What it became is the lab described above: a language and its compiler, two agent runtimes, a multi-tenant platform, MCP security tooling, and thousands of recorded trials measuring whether any of it actually works. I also worked briefly with Gauntlet AI on LLM evaluation research, and built Cephalopodic, a centralized MCP control plane, before Anthropic introduced managed MCP and collapsed the market for standalone infrastructure.</p>
           <div class="fact-row"><span class="fact">Rust / Go / TypeScript</span><span class="fact">Compilers / agents / MCP</span><span class="fact">17,710 commits</span></div>
         </div>
       </div>
@@ -788,8 +796,8 @@
             <div class="ledger-body"><p>Employer records—payroll, benefits, and a 2008 performance review—establish the software-development role. The detailed stack narrative comes from my own résumé of the period, and is labeled accordingly.</p></div>
           </details>
           <details>
-            <summary><span class="ledger-date">2009</span><span class="ledger-title">Red Hat architecture work</span><span class="ledger-grade" data-grade="C">C</span></summary>
-            <div class="ledger-body"><p>Two consistent historical résumés describe the APAC Partner Center work, and an RHCE certification fits the period—but no employer-issued record has surfaced yet. So this entry stays a C, and stays labeled.</p></div>
+            <summary><span class="ledger-date">2009</span><span class="ledger-title">Red Hat architecture work</span><span class="ledger-grade" data-grade="B">B</span></summary>
+            <div class="ledger-body"><p>I worked on a multilingual APAC Partner Center built on Salesforce for deployments across Korea, Japan, and China. An RHCE certification fits the period. No employer-issued record has surfaced, but the work is confirmed by consistent historical résumés.</p></div>
           </details>
           <details>
             <summary><span class="ledger-date">2011—15</span><span class="ledger-title">roundCorner leadership</span><span class="ledger-grade" data-grade="B">B</span></summary>
@@ -802,6 +810,18 @@
           <details open>
             <summary><span class="ledger-date">2017</span><span class="ledger-title">Minted.IO acquired by Motivis</span><span class="ledger-grade" data-grade="A">A</span></summary>
             <div class="ledger-body"><p>The executed asset-purchase agreement describes the acquired business as software-platform and API development. A linked employment offer—expressly conditioned on the acquisition closing—brought me into Motivis as VP, Platform Research and Development.</p></div>
+          </details>
+          <details>
+            <summary><span class="ledger-date">2021</span><span class="ledger-title">Kraken financial integrations</span><span class="ledger-grade" data-grade="A">A</span></summary>
+            <div class="ledger-body"><p>Joined the financial integrations team at Kraken as a member of technical staff. Left after three months, burned out from years of startup pace. Retirement resumed.</p></div>
+          </details>
+          <details>
+            <summary><span class="ledger-date">2026</span><span class="ledger-title">Cephalopodic — MCP control plane</span><span class="ledger-grade" data-grade="A">A</span></summary>
+            <div class="ledger-body"><p>Built a centralized MCP control plane and security gateway in Go for agent to tool integration: registration, catalogs, user scoped taps, and policy enforcement with JSON RPC inspection. The startup was shuttered when Anthropic introduced managed MCP into Claude.</p></div>
+          </details>
+          <details>
+            <summary><span class="ledger-date">2026</span><span class="ledger-title">Gauntlet AI — LLM evaluation research</span><span class="ledger-grade" data-grade="A">A</span></summary>
+            <div class="ledger-body"><p>Selected for Cohort 4 of a highly selective AI engineering fellowship in Austin, TX. Worked on applied LLM research and evaluation, including custom model training, trial harness design, and capability measurement across structured benchmarks.</p></div>
           </details>
           <details>
             <summary><span class="ledger-date">2025—26</span><span class="ledger-title">Independent AI research at repository scale</span><span class="ledger-grade" data-grade="A">A</span></summary>
@@ -820,9 +840,175 @@
           <!-- BEGIN GENERATED PROJECTS -->
   <div class="section-label">Featured Work</div>
 
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-api">monk-api</a> <span class="badge-commits">1131 commits</span></div>
+    <div class="project-desc">Multi-tenant Platform-as-a-Service API built with Hono and TypeScript</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/abbot">abbot</a> <span class="badge-commits">608 commits</span></div>
+    <div class="project-desc">Persistent, tool-using AI daemon with SQLite state store and OpenAI-compatible APIs</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-os-kernel">monk-os-kernel</a> <span class="badge-commits">539 commits</span></div>
+    <div class="project-desc">Monk OS</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/gauntlet-week-1">gauntlet-week-1</a> <span class="badge-commits">510 commits</span></div>
+    <div class="project-desc">Collaborative whiteboard where users draw, chat, and let AI rearrange objects</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/vivarium">vivarium</a> <span class="badge-commits">291 commits</span></div>
+    <div class="project-desc">Local-first IMAP email sync for LLMs that pulls email into .eml files on disk</div>
+  </div>
+
+  <div class="section-label">Previous Projects</div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/fleet">fleet</a> <span class="badge-commits">214 commits</span></div>
+    <div class="project-desc">Fleet skill — Mind/Head/Hand multi-agent project loops (Abbot pattern)</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-cli-ts">monk-cli-ts</a> <span class="badge-commits">198 commits</span></div>
+    <div class="project-desc">Command line interface for the Monk API</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/orqa">orqa</a> <span class="badge-commits">185 commits</span></div>
+    <div class="project-desc">Fan out work to background agents</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/gofolio-api">gofolio-api</a> <span class="badge-commits">116 commits</span></div>
+    <div class="project-desc">Go backend for portfolio tracking with Ghostfolio API compatibility</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/cassio">cassio</a> <span class="badge-commits">104 commits</span></div>
+    <div class="project-desc">AI transcript AST processor - converts Claude Code, Codex, and OpenCode session logs into readable transcripts</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/gauntlet">gauntlet</a> <span class="badge-commits">97 commits</span></div>
+    <div class="project-desc">Real-time collaborative whiteboard with AI agent built with Rust, React, and WebSockets</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/gofolio-cli">gofolio-cli</a> <span class="badge-commits">89 commits</span></div>
+    <div class="project-desc">Rust terminal application for portfolio management with chat UI and LLM evals</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/muninn">muninn</a> <span class="badge-commits">84 commits</span></div>
+    <div class="project-desc">Multi-language protocol and runtime family for Muninn frames, kernels, and client integrations.</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/legacylens">legacylens</a> <span class="badge-commits">78 commits</span></div>
+    <div class="project-desc">RAG system for querying legacy COBOL codebases via natural language</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-irc">monk-irc</a> <span class="badge-commits">58 commits</span></div>
+    <div class="project-desc">IRC Protocol Server for Monk API integration - Bridge between IRC protocol and HTTP API</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/gofolio-web">gofolio-web</a> <span class="badge-commits">46 commits</span></div>
+    <div class="project-desc">SvelteKit frontend for portfolio and wealth management</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/qrstatic">qrstatic</a> <span class="badge-commits">46 commits</span></div>
+    <div class="project-desc">Zero-dependency Rust crate for steganographic QR codes in temporal noise correlation</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/claude-workers">claude-workers</a> <span class="badge-commits">42 commits</span></div>
+    <div class="project-desc">Orchestration system for running multiple autonomous Claude Code agents</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-ftp">monk-ftp</a> <span class="badge-commits">27 commits</span></div>
+    <div class="project-desc">FTP server interface for the data in the Monk API</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-cli">monk-cli</a> <span class="badge-commits">23 commits</span></div>
+    <div class="project-desc">Rust CLI for the Monk API</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/agents">agents</a> <span class="badge-commits">22 commits</span></div>
+    <div class="project-desc">Agent orchestration CLI for spawning isolated Claude/OpenCode runs</div>
+  </div>
+
   <div class="section-label">Other</div>
 
   <div class="compact">
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/skyfi-cli">skyfi-cli</a> <span class="badge-commits">18</span></div>
+      <div class="project-desc">Rust CLI wrapper for the SkyFi satellite imagery Platform API</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/monk-cli-anarchy">monk-cli-anarchy</a> <span class="badge-commits">16</span></div>
+      <div class="project-desc">Fallout-inspired UI for the Monk API</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/opencode-sync">opencode-sync</a> <span class="badge-commits">16</span></div>
+      <div class="project-desc">Sync OpenCode conversations between machines using shared directories (USB, cloud storage, network drives, etc.)</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/faber-www">faber-www</a> <span class="badge-commits">14</span></div>
+      <div class="project-desc">Faber programming language documentation</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/ai-transcripts">ai-transcripts</a> <span class="badge-commits">13</span></div>
+      <div class="project-desc">Extract Claude Code session logs to readable transcripts</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/qr-static-stream">qr-static-stream</a> <span class="badge-commits">13</span></div>
+      <div class="project-desc">Steganographic QR codes hidden in XOR&#x27;d noise frames</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/prior-web">prior-web</a> <span class="badge-commits">12</span></div>
+      <div class="project-desc">Leptos web client shell for Prior, deployed separately from the daemon.</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/claude-agents">claude-agents</a> <span class="badge-commits">10</span></div>
+      <div class="project-desc">Specialized diagnostic agents for Claude Code with read-only analyzers and fixers</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/holdover">holdover</a> <span class="badge-commits">10</span></div>
+      <div class="project-desc">Long distance shooting simulation game</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/monk-uix">monk-uix</a> <span class="badge-commits">10</span></div>
+      <div class="project-desc">Web UI for Monk API - Read-optimized interface for exploring and managing tenant data</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/qrstatic-riptide">qrstatic-riptide</a> <span class="badge-commits">10</span></div>
+      <div class="project-desc">qrstatic-riptide</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/upstream-ecommerce">upstream-ecommerce</a> <span class="badge-commits">10</span></div>
+      <div class="project-desc">upstream-ecommerce</div>
+    </div>
 
     <div class="project">
       <div class="project-name"><a href="https://github.com/ianzepp/tree-sitter-faber">tree-sitter-faber</a> <span class="badge-commits">9</span></div>
