@@ -1,4 +1,4 @@
-# Ian Zepp — I build things I have no background to build
+# Ian Zepp — Cold starts, real engineering
 
 Full text mirror of https://ianzepp.dev/ for agent readers.
 The HTML page is canonical. Cost figures are imputed at list prices under
@@ -6,14 +6,13 @@ subscription use unless noted. Commit/repo/session scale measured July 12, 2026.
 
 ---
 
-Ian Zepp — I build things I have no background to build
+Ian Zepp — Cold starts, real engineering
 
  Autobiography / selected works / 1996—present
 
-I build things I have no
-background to build.
+Cold starts. Real engineering.
 
-I’m Ian Zepp — systems engineer, founder, former VP of Engineering. Last year I wrote a Rust compiler with no programming-language-theory background. It works because the engineering process doesn’t live in my head anymore: it lives in agent fleets that I direct and audit. This is the long version.
+I’m Ian Zepp — systems engineer, founder, former VP of Engineering. I learn unfamiliar technical domains from the ground up: asking the questions that surface real constraints, understanding the theory well enough to make design calls, then building engineering process robust enough to sustain AI-assisted development over months. This is the long version.
 
  Scroll to begin ↓
 
