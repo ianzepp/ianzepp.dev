@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ian Zepp — software founder, former engineering executive, and independent AI-systems researcher. Ten months of measured, AI-assisted R&D: compilers, agent runtimes, platforms, and the evidence behind all of it.">
+  <meta name="description" content="Ian Zepp — systems and platform engineer, founder, and former VP of Engineering. Verifiable AI-assisted systems: a Rust compiler, agent fleets with measured cost and audit gates, and two decades of engineering leadership. Evidence dated and graded.">
   <meta name="theme-color" content="#14100f">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
-  <title>Ian Zepp — A life in systems</title>
+  <title>Ian Zepp — Verifiable systems</title>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -14,8 +14,8 @@
       "name": "Ian Zepp",
       "url": "https://ianzepp.dev/",
       "email": "mailto:ian@ianzepp.com",
-      "jobTitle": "Independent AI-systems researcher",
-      "description": "Software founder, former engineering executive, and independent AI-systems researcher. Ten months of measured, AI-assisted R&D: compilers, agent runtimes, platforms, and the evidence behind all of it.",
+      "jobTitle": "Systems and platform engineer",
+      "description": "Systems and platform engineer, founder, and former VP of Engineering. Builds verifiable systems in unfamiliar domains with agent fleets: compilers, multi-agent runtimes, and instrumented engineering process.",
       "sameAs": ["https://github.com/ianzepp"],
       "knowsAbout": ["Rust", "Go", "TypeScript", "compiler construction", "agent runtimes", "multi-tenant platforms", "LLM evaluation", "MCP security"]
     }
@@ -457,15 +457,15 @@
       <div class="porph">
         <div class="inner">
           <span class="label">Autobiography / selected works / 1996—present</span>
-          <h1>I retired early.<br>Then AI made me <em>curious again.</em></h1>
-          <p class="lede">I’m Ian Zepp: a software founder, former engineering executive, and lifelong systems builder. This is the long version—the work, the pivots, the evidence, and what happened when a career in enterprise software collided with a year of nearly uninterrupted AI-assisted R&amp;D.</p>
+          <h1>Unfamiliar domains.<br>Verifiable <em>systems.</em></h1>
+          <p class="lede">I’m Ian Zepp: systems and platform engineer, founder, and former VP of Engineering. I enter technical domains with no prior depth and produce output that can be tested—by moving engineering process out of a single head and into agent fleets that still leave charter and audit with a human. This page is the long version: the lab, the method, the career evidence.</p>
           <div class="scroll-note">Scroll to begin ↓</div>
         </div>
       </div>
       <div class="tablet">
         <div class="inner">
-          <span class="label">The last year, measured</span>
-          <p class="aside">218 local repositories, 17,710 deduplicated commits, 6,638 recorded agent sessions, and one 117-day unbroken streak. Every number on this page keeps its measurement date.</p>
+          <span class="label">What the year proved</span>
+          <p class="aside">A Rust compiler built without prior PL theory. Agent fleets with handle-based coordination, measured cost routing, and a three-pass audit pipeline. Volume exists and is dated below—the claim worth examining is transfer velocity and verification, not commit counts alone.</p>
           <div class="status"><span class="sq" aria-hidden="true"></span>Currently building in Rust</div>
         </div>
       </div>
@@ -474,23 +474,23 @@
     <!-- COURSE — thesis: the lab, measured -->
     <section class="course thesis" id="research" aria-labelledby="research-title">
       <div class="head">
-        <span class="label">The main story · Sept 2025—present</span>
-        <h2 class="ct" id="research-title">A one-person lab, run at industrial pace.</h2>
+        <span class="label">The main story · Aug 2025—present</span>
+        <h2 class="ct" id="research-title">Transfer velocity, then instrumentation.</h2>
       </div>
       <div class="thesis-body">
         <div class="thesis-copy">
-          <p>For the last ten months I have done research and development full time with AI agents: a programming language and its compiler, two agent runtimes, a multi-tenant platform, MCP security tooling, and the evaluation harnesses that keep all of it honest.</p>
-          <p>The claim worth examining is not the volume—it is the method. I have been working out a repeatable way to direct, constrain, test, and audit AI-assisted engineering: goals and invariants written down before code, work split into bounded phases, commits used as checkpoints, and completion audited separately from implementation.</p>
+          <p>Since August 2025 I have worked full time on AI-assisted systems: a programming language and its Rust compiler, a multi-agent runtime and fleet orchestration layer, a multi-tenant platform, MCP security tooling, and the evaluation harnesses that keep the rest honest. I had no programming-language-theory background when the compiler started. I chose a domain where bluffing fails—a type system works or it doesn’t.</p>
+          <p>The order matters. For months I ran the engineering process by hand—goals and invariants before code, work in bounded phases, completion audited apart from implementation—until the coordination load was not worth carrying alone. Then I built tooling to hand coordination and tactical judgment to agent fleets. What I keep is charter and audit: which problem, which invariants, what counts as done. Agents coordinate by durable message handles, not by hauling full context between sessions. Model routing by task shape cut imputed blended cost about 92% from early 2026 peaks and held flat as volume rose. The volume numbers below are real and dated; they are not the product.</p>
         </div>
         <div class="numbers" aria-label="Research period measurements">
-          <div class="number"><strong>17,710</strong><span>unique commits · Aug 2025—Jul 2026</span></div>
-          <div class="number"><strong>218</strong><span>local Git repositories</span></div>
-          <div class="number"><strong>6,638</strong><span>recorded agent sessions</span></div>
-          <div class="number"><strong>117 days</strong><span>longest unbroken active streak</span></div>
-          <div class="number"><strong>6,087</strong><span>test definitions · six systems</span></div>
-          <div class="number"><strong>17,681</strong><span>LLM trial executions recorded</span></div>
+          <div class="number"><strong>281K</strong><span>LOC Rust · Radix compiler · 24 crates</span></div>
+          <div class="number"><strong>3,714</strong><span>compiler test functions · 48% test-to-source</span></div>
+          <div class="number"><strong>59</strong><span>tagged releases · median 1 day apart</span></div>
+          <div class="number"><strong>92%</strong><span>blended model-cost cut · Jan→Apr 2026</span></div>
+          <div class="number"><strong>39</strong><span>audit interventions · one campaign</span></div>
+          <div class="number"><strong>17,710</strong><span>deduped commits · Aug 2025—Jul 2026</span></div>
         </div>
-        <p class="stat-note">Measured July 12, 2026. Commits are deduplicated by SHA across every local repository and filtered to my exact author identity. They measure directed, reviewed, and integrated engineering—not a claim that I typed every line.</p>
+        <p class="stat-note">Compiler and release figures from the Radix/Faber work product as used on the current CV. Cost figures are imputed at public list prices under subscription use—not cash outlay—and travel with that caveat permanently. Commit total measured July 12, 2026: deduplicated by SHA across local repositories, filtered to my author identity; directed, reviewed, integrated engineering—not a claim that I typed every line. Supporting lab scale: 218 local repos, 6,638 recorded agent sessions, 17,681 LLM trial rows (same measurement date).</p>
       </div>
       <div class="histo-wrap">
         <span class="label">Unique commits per month</span>
@@ -523,15 +523,15 @@
         <article class="tile t-porph wide">
           <span class="tag">Language / compiler · Active · private</span>
           <h3>Faber / Radix</h3>
-          <p>A Latin-inspired programming language and Radix, its Rust compiler. Shared parsing and typechecking feed two lanes—one lowers to reviewable Rust and native binaries, the other to runtime artifacts—with emission targets across Go, TypeScript, WebAssembly, LLVM, Metal, and WGSL. Built through 219 documented factory initiatives, each with its own goals, ledgers, and acceptance audits.</p>
-          <div class="stats"><span><strong>5,512</strong> commits</span><span><strong>2,918</strong> test definitions</span><span><strong>219</strong> factory initiatives</span></div>
+          <p>A Latin-derived programming language and Radix, its Rust compiler: one semantic core with multiple locale renderings, HIR/MIR lowering, emission across Rust, Go, TypeScript, WebAssembly, LLVM, Metal, and WGSL. Built without prior PL-theory background—chosen because a compiler cannot bluff. Clippy pedantic at deny across every crate; structured release notes on a daily median cadence.</p>
+          <div class="stats"><span><strong>281K</strong> LOC · 24 crates</span><span><strong>3,714</strong> test functions</span><span><strong>59</strong> releases · median 1 day</span></div>
           <div class="links"><a href="https://www.faberlang.dev">faberlang.dev ↗</a><a href="https://github.com/faberlang">github.com/faberlang ↗</a><a href="https://github.com/ianzepp/tree-sitter-faber">Grammar ↗</a></div>
         </article>
         <article class="tile t-basalt">
           <span class="tag">Agent runtime · Active · private</span>
           <h3>Minted Geek Swarm</h3>
-          <p>A Rust runtime monorepo built around one daemon, swarmd: fifteen domain crates—kernel, filesystem, MCP, messaging, payments—behind a single public HTTP boundary. Internal work moves over kernel frames, and black-box suites drive the built binary through the same routes users hit.</p>
-          <div class="stats"><span><strong>1,928</strong> commits since May</span><span><strong>1,262</strong> test definitions</span><span><strong>~97%</strong> Rust</span></div>
+          <p>A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleets coordinate by passing durable message handles rather than full context—session shape and cost structure moved when that layer landed. Role hierarchy: operator (human) supplies charter and audit; Mind is an agent role that carries coordination.</p>
+          <div class="stats"><span><strong>10.9M→2.5M</strong> tokens/session</span><span><strong>−61%</strong> cost per work-hour</span><span><strong>39</strong> audit interventions · sample campaign</span></div>
           <div class="links"><a href="https://www.mintedgeek.com">mintedgeek.com ↗</a></div>
         </article>
         <article class="tile t-verde">
@@ -568,7 +568,7 @@
         <article class="tile t-basalt">
           <span class="tag">MCP security · collaborative</span>
           <h3>Cephalopodic</h3>
-          <p>A Go control plane and inline security gateway for MCP: registration, catalogs, user-scoped taps, and Fortress inspecting JSON-RPC with quarantine and policy enforcement.</p>
+          <p>Gauntlet AI Cohort 4 capstone with two co-founders: a Go control plane and security gateway for MCP—registration, catalogs, user-scoped taps, policy enforcement, JSON-RPC inspection. Wound down within three months when managed MCP shipped natively and removed the market.</p>
         </article>
         <article class="tile t-basalt">
           <span class="tag">Applied product</span>
@@ -593,7 +593,7 @@
       <div class="head">
         <span class="label">The operating method</span>
         <h2 class="ct" id="method-title">How the factory runs.</h2>
-        <p>Reconstructed from 9,588 archived session transcripts, this is the loop on most days, across most systems. The agents supply throughput. The judgment stays human.</p>
+        <p>Process first, automation second. The loop below ran by hand until coordination load forced tooling. Agents now supply throughput and tactical dispatch; charter and audit stay human.</p>
       </div>
       <div class="stratum s-giallo">
         <div><span class="ord">I</span><span class="nm">Goal</span></div>
@@ -635,15 +635,15 @@
         <div class="body">
           <div class="roles-2col">
             <div class="role">
-              <h4>My job</h4>
-              <p>Pick the problem and the invariant. Challenge the architecture and the naming. Decide clean-break versus compatibility. Partition the parallel work, test outcomes independently, and decide when the evidence is sufficient.</p>
+              <h4>Charter and audit (human)</h4>
+              <p>Which problem, which invariants, what counts as done. Architecture and clean-break calls. Whether the evidence is sufficient. Refusal to ship when the audit fails—even when the agents are green.</p>
             </div>
             <div class="role">
-              <h4>The agents’ job</h4>
-              <p>Reconnaissance, implementation throughput, review passes, documentation, and the repetitive transformations nobody should do by hand.</p>
+              <h4>Coordination and execution (agents)</h4>
+              <p>What to dispatch, to whom, in what order, whether it settled. Reconnaissance, implementation, review passes, documentation. Mind is an agent role—not a synonym for the operator.</p>
             </div>
           </div>
-          <div class="pull">In May 2026, one goal produced seven committed phases and separate acceptance proofs—and an audit that <em>refused to call the goal complete</em> while recovery requirements remained open. That refusal is the point.</div>
+          <div class="pull">In one fleet, 8,452 agent-to-agent coordination events ran against 10 messages that required me. In a separate campaign, a three-pass audit produced 39 documented interventions—including specs that named tests that did not exist, which a naive <em>cargo test</em> filter would have marked green. That refusal path is the point.</div>
           <div class="doc-stats"><span><strong>216</strong> goals</span><span><strong>43</strong> campaigns</span><span><strong>1,396</strong> delivery docs</span><span><strong>91</strong> ledgers</span></div>
         </div>
       </div>
@@ -720,8 +720,8 @@
     <section class="course story" id="story" aria-labelledby="story-title">
       <div class="head">
         <span class="label">The backstory</span>
-        <h2 class="ct" id="story-title">A career in four acts.</h2>
-        <p>Four acts, dated from executed agreements, payroll records, and public archives where those exist. The evidence ledger below says so when they don’t.</p>
+        <h2 class="ct" id="story-title">A career in five acts.</h2>
+        <p>Five acts, dated from executed agreements, payroll records, and public archives where those exist. The evidence ledger below says so when they don’t. Retirement appears once, late—not as the title of the page.</p>
       </div>
       <div class="stratum s-verde">
         <div><span class="ord">I</span><span class="nm">1996—2009</span></div>
@@ -736,35 +736,35 @@
         <div><span class="ord">II</span><span class="nm">2009—2017</span></div>
         <div class="body">
           <h3>Salesforce, scale, and the founder turn.</h3>
-          <p>At Red Hat I worked on a multilingual APAC Partner Center built on Salesforce—Korea, Japan, and China, twenty-odd sandboxes. roundCorner hired me in 2011 as Chief Scientist; by the end I was VP Engineering, and the team had grown from four people to twelve, spread across four continents.</p>
-          <p>In 2014 I founded Minted.IO and spent 2015 self-funding a metadata-driven platform and API business. After a year inside Salesforce as a Technical Solution Architect, Motivis acquired the Minted.IO assets in February 2017. My VP offer was written into the acquisition.</p>
-          <div class="fact-row"><span class="fact">Chief Scientist → VP Eng</span><span class="fact">Team 4 → 12</span><span class="fact">Founder / acquired</span></div>
+          <p>At Red Hat I worked on a multilingual APAC Partner Center built on Salesforce—Korea, Japan, and China, twenty-odd sandboxes. roundCorner hired me in 2011 as Chief Scientist; I later held Head of Engineering for a Salesforce-native nonprofit CRM used by large institutions (including St. Jude, Georgetown, Duke). The product line was later acquired by Salesforce.org.</p>
+          <p>In 2015 I founded Minted.IO and, as a solo founder, built a metadata-driven multi-tenant application platform end to end in six months. After a year at Salesforce as a Technical Solution Architect—forward-deployed with CarMax and Home Depot—Motivis acquired the Minted.IO software/API assets in February 2017. My VP offer was written into the acquisition.</p>
+          <div class="fact-row"><span class="fact">Chief Scientist → Head of Eng</span><span class="fact">Founder / acquired</span><span class="fact">Forward-deployed TSA</span></div>
         </div>
       </div>
       <div class="stratum s-porph">
         <div><span class="ord">III</span><span class="nm">2017—2021</span></div>
         <div class="body">
-          <h3>Platform leadership, then enough.</h3>
-          <p>At Motivis I ran platform R&amp;D with roughly ten engineers on a TypeScript, Node.js, PostgreSQL, and Google Cloud learning platform until 2020. From 2019 I also did independent architecture and strategy consulting through Minted Geek, my Estonian company.</p>
-          <p>By 2021 I stopped taking work. Early retirement was a genuine attempt to be finished with the industry, and for about four years, it held.</p>
-          <div class="fact-row"><span class="fact">VP Platform R&amp;D</span><span class="fact">TS / Node / GCP</span><span class="fact">Minted Geek OÜ</span></div>
+          <h3>Platform leadership at scale.</h3>
+          <p>At Motivis I led platform R&amp;D across a team of roughly ten to twenty engineers in an approximately thirty-person company, on a TypeScript, Node.js, and PostgreSQL competency-based learning platform—with deployment portability across AWS, Google Cloud including Spanner, and local environments, and expansion from higher education into K-12.</p>
+          <p>From 2019 the Motivis relationship shifted toward independent platform and strategy consulting through Minted Geek entities. By 2021 I stepped away from conventional employment. That pause is Act IV; it is not the thesis of this site.</p>
+          <div class="fact-row"><span class="fact">VP Platform R&amp;D</span><span class="fact">10–20 eng</span><span class="fact">Multi-cloud LMS</span></div>
         </div>
       </div>
       <div class="stratum s-verde">
         <div><span class="ord">IV</span><span class="nm">2021—2025</span></div>
         <div class="body">
-          <h3>Retirement.</h3>
-          <p>Joined Kraken on the financial integrations team in early 2021. Left after three months, burned out from years of startup pace and early retirement work. The industry was quiet for four years. Then the tools changed, and I came back.</p>
-          <div class="fact-row"><span class="fact">Kraken / Rust</span><span class="fact">Financial integrations</span></div>
+          <h3>A short return, then a long pause.</h3>
+          <p>In early 2021 I joined Kraken as Member of Technical Staff on money-movement systems (SWIFT and wire verification). I left after a few months. For about four years afterward I did not take conventional work. In August 2025 the tooling had changed enough that full-time building made sense again.</p>
+          <div class="fact-row"><span class="fact">Kraken / core eng</span><span class="fact">2021–2025 pause</span></div>
         </div>
       </div>
       <div class="stratum s-night">
         <div><span class="ord">V</span><span class="nm">2025—NOW</span></div>
         <div class="body">
-          <h3>The tools changed. I came back.</h3>
-          <p>In August 2025 I pulled two decades of old source out of storage—KMap, the Motivis-era platform, payment systems—and started committing again. In October I barely touched a keyboard: two commits. Then November arrived, and with it the start of a 117-day unbroken streak.</p>
-          <p>What it became is the lab described above: a language and its compiler, two agent runtimes, a multi-tenant platform, MCP security tooling, and thousands of recorded trials measuring whether any of it actually works. I also worked briefly with Gauntlet AI on LLM evaluation research, and built Cephalopodic, a centralized MCP control plane, before Anthropic introduced managed MCP and collapsed the market for standalone infrastructure.</p>
-          <div class="fact-row"><span class="fact">Rust / Go / TypeScript</span><span class="fact">Compilers / agents / MCP</span><span class="fact">17,710 commits</span></div>
+          <h3>Full-time lab, measured output.</h3>
+          <p>From August 2025 I returned to full-time independent R&amp;D: Faber/Radix, Minted Geek Swarm, Monk, evaluation harnesses, and the orchestration layer described above. Commit volume and streak data are secondary evidence; the primary proof is falsifiable systems and instrumented process.</p>
+          <p>In early 2026 I completed Gauntlet AI Cohort 4—a ten-week fellowship at 80–100 hours per week with continuous elimination, delivering production systems each week for three to six hiring partners who evaluated work rather than résumés. The cohort capstone became Cephalopodic with two co-founders; we closed it when managed MCP removed the market.</p>
+          <div class="fact-row"><span class="fact">Rust / Go / TypeScript</span><span class="fact">Gauntlet Cohort 4</span><span class="fact">Compiler + fleets</span></div>
         </div>
       </div>
     </section>
@@ -805,27 +805,31 @@
           </details>
           <details>
             <summary><span class="ledger-date">2016—17</span><span class="ledger-title">Salesforce employment</span><span class="ledger-grade" data-grade="A">A</span></summary>
-            <div class="ledger-body"><p>An executed offer for Technical Solution Architect and a continuous payroll record from February 2016 through February 2017 establish employment. The deeper client and architecture narrative comes from contemporaneous career records.</p></div>
+            <div class="ledger-body"><p>An executed offer for Technical Solution Architect and a continuous payroll record from February 2016 through February 2017 establish employment. Client work included forward-deployed engagements at CarMax (sales-agent portal during Lightning transition) and Home Depot (Field Service first-release integration), per contemporaneous career records.</p></div>
           </details>
           <details open>
             <summary><span class="ledger-date">2017</span><span class="ledger-title">Minted.IO acquired by Motivis</span><span class="ledger-grade" data-grade="A">A</span></summary>
             <div class="ledger-body"><p>The executed asset-purchase agreement describes the acquired business as software-platform and API development. A linked employment offer—expressly conditioned on the acquisition closing—brought me into Motivis as VP, Platform Research and Development.</p></div>
           </details>
           <details>
+            <summary><span class="ledger-date">2017—20</span><span class="ledger-title">Motivis VP Platform R&amp;D</span><span class="ledger-grade" data-grade="A">A</span></summary>
+            <div class="ledger-body"><p>Executed offer and employment establish the VP role. Platform R&amp;D leadership covered roughly ten to twenty engineers; the product was a competency-based learning system with multi-cloud deployment and later K-12 expansion. From 2019 a portion of the work continued as independent consulting through Minted Geek entities.</p></div>
+          </details>
+          <details>
             <summary><span class="ledger-date">2021</span><span class="ledger-title">Kraken financial integrations</span><span class="ledger-grade" data-grade="A">A</span></summary>
-            <div class="ledger-body"><p>Joined the financial integrations team at Kraken as a member of technical staff. Left after three months, burned out from years of startup pace. Retirement resumed.</p></div>
+            <div class="ledger-body"><p>Joined as Member of Technical Staff on money-movement systems for a global cryptocurrency exchange, including SWIFT bank transfers and wire verification. Employment was short (early–mid 2021); a multi-year pause from conventional employment followed.</p></div>
           </details>
           <details>
             <summary><span class="ledger-date">2026</span><span class="ledger-title">Cephalopodic — MCP control plane</span><span class="ledger-grade" data-grade="A">A</span></summary>
-            <div class="ledger-body"><p>Built a centralized MCP control plane and security gateway in Go for agent to tool integration: registration, catalogs, user scoped taps, and policy enforcement with JSON RPC inspection. The startup was shuttered when Anthropic introduced managed MCP into Claude.</p></div>
+            <div class="ledger-body"><p>Co-founded with two Gauntlet AI Cohort 4 peers as the program capstone: a Go control plane and security gateway for MCP (registration, catalogs, user-scoped taps, policy enforcement, JSON-RPC inspection). Wound down within three months of founding when managed MCP shipped natively and removed the market.</p></div>
           </details>
           <details>
-            <summary><span class="ledger-date">2026</span><span class="ledger-title">Gauntlet AI — LLM evaluation research</span><span class="ledger-grade" data-grade="A">A</span></summary>
-            <div class="ledger-body"><p>Selected for Cohort 4 of a highly selective AI engineering fellowship in Austin, TX. Worked on applied LLM research and evaluation, including custom model training, trial harness design, and capability measurement across structured benchmarks.</p></div>
+            <summary><span class="ledger-date">2026</span><span class="ledger-title">Gauntlet AI — Cohort 4 fellowship</span><span class="ledger-grade" data-grade="A">A</span></summary>
+            <div class="ledger-body"><p>Selected for Cohort 4 of a ten-week AI engineering fellowship in Austin, TX (high aptitude/coding screens; 80–100 hours per week; continuous elimination). Delivered production systems each week against live specifications from three to six hiring partners who evaluated delivered work rather than résumés; completed all ten weeks. Work spanned applied LLM systems and evaluation harness design. Entered already six months into independent full-time R&amp;D.</p></div>
           </details>
           <details>
             <summary><span class="ledger-date">2025—26</span><span class="ledger-title">Independent AI research at repository scale</span><span class="ledger-grade" data-grade="A">A</span></summary>
-            <div class="ledger-body"><p>Local and authenticated GitHub inventories cover 218 repositories. Git histories, structured transcript archives, trial-result stores, and factory documents provide dated, inspectable evidence for individual systems and decisions—measured, most recently, on July 12, 2026.</p><a href="https://github.com/ianzepp">GitHub profile ↗</a></div>
+            <div class="ledger-body"><p>Full-time independent R&amp;D from August 2025: Faber/Radix compiler work product (hundreds of thousands of lines of Rust, thousands of tests, frequent tagged releases), Minted Geek Swarm multi-agent runtime with measured session economics and audit pipeline, Monk, and related systems. Lab-scale inventories (repos, commits, sessions, trials) measured July 12, 2026 support activity volume; compiler and fleet figures above are the primary technical claims. Git histories, transcript archives, and factory documents remain the inspectable spine.</p><a href="https://github.com/ianzepp">GitHub profile ↗</a></div>
           </details>
         </div>
       </div>

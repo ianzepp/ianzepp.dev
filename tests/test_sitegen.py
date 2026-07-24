@@ -128,9 +128,10 @@ class SitegenTests(unittest.TestCase):
 
         updated = replace_generated_region(document, "  <div>replacement archive</div>")
 
-        self.assertIn("I retired early.", updated)
+        self.assertIn("Unfamiliar domains.", updated)
         self.assertIn("The evidence ledger.", updated)
         self.assertIn("Six main lines of work.", updated)
+        self.assertIn("Transfer velocity, then instrumentation.", updated)
         self.assertIn("replacement archive", updated)
         self.assertEqual(updated.count(BEGIN_MARKER), 1)
         self.assertEqual(updated.count(END_MARKER), 1)
