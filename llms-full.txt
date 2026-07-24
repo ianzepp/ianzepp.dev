@@ -1,4 +1,4 @@
-# Ian Zepp — Verifiable systems
+# Ian Zepp — I build things I have no background to build
 
 Full text mirror of https://ianzepp.dev/ for agent readers.
 The HTML page is canonical. Cost figures are imputed at list prices under
@@ -6,30 +6,32 @@ subscription use unless noted. Commit/repo/session scale measured July 12, 2026.
 
 ---
 
-Ian Zepp — Verifiable systems
+Ian Zepp — I build things I have no background to build
 
  Autobiography / selected works / 1996—present
 
-Unfamiliar domains.
-Verifiable systems.
+I build things I have no
+background to build.
 
-I’m Ian Zepp: systems and platform engineer, founder, and former VP of Engineering. I enter technical domains with no prior depth and produce output that can be tested—by moving engineering process out of a single head and into agent fleets that still leave charter and audit with a human. This page is the long version: the lab, the method, the career evidence.
+I’m Ian Zepp — systems engineer, founder, former VP of Engineering. Last year I wrote a Rust compiler with no programming-language-theory background. It works because the engineering process doesn’t live in my head anymore: it lives in agent fleets that I direct and audit. This is the long version.
 
  Scroll to begin ↓
 
  What the year proved
 
-A Rust compiler built without prior PL theory. Agent fleets with handle-based coordination, measured cost routing, and a three-pass audit pipeline. Volume exists and is dated below—the claim worth examining is transfer velocity and verification, not commit counts alone.
+A Rust compiler built without prior PL theory. Agent fleets with measured cost routing and a three-pass audit pipeline. The numbers are dated below — what matters is whether the output holds up, not how many commits produced it.
 
  Currently building in Rust
 
  The main story · Aug 2025—present
 
-Transfer velocity, then instrumentation.
+Learn the domain. Verify the output.
 
 Since August 2025 I have worked full time on AI-assisted systems: a programming language and its Rust compiler, a multi-agent runtime and fleet orchestration layer, a multi-tenant platform, MCP security tooling, and the evaluation harnesses that keep the rest honest. I had no programming-language-theory background when the compiler started. I chose a domain where bluffing fails—a type system works or it doesn’t.
 
-The order matters. For months I ran the engineering process by hand—goals and invariants before code, work in bounded phases, completion audited apart from implementation—until the coordination load was not worth carrying alone. Then I built tooling to hand coordination and tactical judgment to agent fleets. What I keep is charter and audit: which problem, which invariants, what counts as done. Agents coordinate by durable message handles, not by hauling full context between sessions. Model routing by task shape cut imputed blended cost about 92% from early 2026 peaks and held flat as volume rose. The volume numbers below are real and dated; they are not the product.
+The process came first. For months I ran it by hand — goals and invariants before code, work in bounded phases, completion audited apart from implementation — until the coordination load outgrew one person. Then I built the tooling to hand dispatch and tactical judgment to agent fleets, keeping the problem definition and the audit for myself.
+
+Agents coordinate by passing durable message handles, not by shipping full context between sessions. Routing models by task shape cut blended cost roughly 92% from early-2026 peaks. The volume numbers below are real and dated; they are not the thesis.
 
  281KLOC Rust · Radix compiler · 24 crates
  3,714compiler test functions · 48% test-to-source
@@ -76,7 +78,7 @@ A Latin-derived programming language and Radix, its Rust compiler: one semantic 
 
 Minted Geek Swarm
 
-A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleets coordinate by passing durable message handles rather than full context—session shape and cost structure moved when that layer landed. Role hierarchy: operator (human) supplies charter and audit; Mind is an agent role that carries coordination.
+A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleets coordinate by passing durable message handles rather than full context—session shape and cost structure moved when that layer landed.
 
  10.9M→2.5M tokens/session−61% cost per work-hour39 audit interventions · sample campaign
  mintedgeek.com ↗
@@ -147,7 +149,7 @@ Zero-dependency Rust steganography hiding QR codes in temporal noise correlation
 
 How the factory runs.
 
-Process first, automation second. The loop below ran by hand until coordination load forced tooling. Agents now supply throughput and tactical dispatch; charter and audit stay human.
+The loop below ran by hand for months before any of it was automated. Agents now supply throughput and tactical dispatch; problem definition and audit stay human.
 
  IGoal
 
@@ -187,9 +189,9 @@ Which problem, which invariants, what counts as done. Architecture and clean-bre
 
 Coordination and execution (agents)
 
-What to dispatch, to whom, in what order, whether it settled. Reconnaissance, implementation, review passes, documentation. Mind is an agent role—not a synonym for the operator.
+Dispatch, sequencing, settlement. Reconnaissance, implementation, review passes, documentation.
 
- In one fleet, 8,452 agent-to-agent coordination events ran against 10 messages that required me. In a separate campaign, a three-pass audit produced 39 documented interventions—including specs that named tests that did not exist, which a naive cargo test filter would have marked green. That refusal path is the point.
+ In one fleet, 8,452 coordination events ran against 10 that required me. In a separate campaign, an audit caught specs naming tests that did not exist — a naive cargo test would have passed them. The system's job is to refuse, not just to execute.
  216 goals43 campaigns1,396 delivery docs91 ledgers
 
  The skill library

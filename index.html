@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ian Zepp — systems and platform engineer, founder, and former VP of Engineering. Verifiable AI-assisted systems: a Rust compiler, agent fleets with measured cost and audit gates, and two decades of engineering leadership. Evidence dated and graded.">
+  <meta name="description" content="Ian Zepp — systems engineer, founder, former VP of Engineering. Last year he wrote a Rust compiler with no PL-theory background, built agent fleets with measured cost routing and audit pipelines, and documented all of it. Evidence dated and graded.">
   <meta name="theme-color" content="#14100f">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
-  <title>Ian Zepp — Verifiable systems</title>
+  <title>Ian Zepp — I build things I have no background to build</title>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -15,7 +15,7 @@
       "url": "https://ianzepp.dev/",
       "email": "mailto:ian@ianzepp.com",
       "jobTitle": "Systems and platform engineer",
-      "description": "Systems and platform engineer, founder, and former VP of Engineering. Builds verifiable systems in unfamiliar domains with agent fleets: compilers, multi-agent runtimes, and instrumented engineering process.",
+      "description": "Systems engineer, founder, and former VP of Engineering. Last year he wrote a Rust compiler with no PL-theory background and built agent fleets with measured cost routing and audit pipelines.",
       "sameAs": ["https://github.com/ianzepp"],
       "knowsAbout": ["Rust", "Go", "TypeScript", "compiler construction", "agent runtimes", "multi-tenant platforms", "LLM evaluation", "MCP security"]
     }
@@ -457,15 +457,15 @@
       <div class="porph">
         <div class="inner">
           <span class="label">Autobiography / selected works / 1996—present</span>
-          <h1>Unfamiliar domains.<br>Verifiable <em>systems.</em></h1>
-          <p class="lede">I’m Ian Zepp: systems and platform engineer, founder, and former VP of Engineering. I enter technical domains with no prior depth and produce output that can be tested—by moving engineering process out of a single head and into agent fleets that still leave charter and audit with a human. This page is the long version: the lab, the method, the career evidence.</p>
+          <h1>I build things I have no<br>background to <em>build.</em></h1>
+          <p class="lede">I’m Ian Zepp — systems engineer, founder, former VP of Engineering. Last year I wrote a Rust compiler with no programming-language-theory background. It works because the engineering process doesn’t live in my head anymore: it lives in agent fleets that I direct and audit. This is the long version.</p>
           <div class="scroll-note">Scroll to begin ↓</div>
         </div>
       </div>
       <div class="tablet">
         <div class="inner">
           <span class="label">What the year proved</span>
-          <p class="aside">A Rust compiler built without prior PL theory. Agent fleets with handle-based coordination, measured cost routing, and a three-pass audit pipeline. Volume exists and is dated below—the claim worth examining is transfer velocity and verification, not commit counts alone.</p>
+          <p class="aside">A Rust compiler built without prior PL theory. Agent fleets with measured cost routing and a three-pass audit pipeline. The numbers are dated below — what matters is whether the output holds up, not how many commits produced it.</p>
           <div class="status"><span class="sq" aria-hidden="true"></span>Currently building in Rust</div>
         </div>
       </div>
@@ -475,12 +475,13 @@
     <section class="course thesis" id="research" aria-labelledby="research-title">
       <div class="head">
         <span class="label">The main story · Aug 2025—present</span>
-        <h2 class="ct" id="research-title">Transfer velocity, then instrumentation.</h2>
+        <h2 class="ct" id="research-title">Learn the domain. Verify the output.</h2>
       </div>
       <div class="thesis-body">
         <div class="thesis-copy">
           <p>Since August 2025 I have worked full time on AI-assisted systems: a programming language and its Rust compiler, a multi-agent runtime and fleet orchestration layer, a multi-tenant platform, MCP security tooling, and the evaluation harnesses that keep the rest honest. I had no programming-language-theory background when the compiler started. I chose a domain where bluffing fails—a type system works or it doesn’t.</p>
-          <p>The order matters. For months I ran the engineering process by hand—goals and invariants before code, work in bounded phases, completion audited apart from implementation—until the coordination load was not worth carrying alone. Then I built tooling to hand coordination and tactical judgment to agent fleets. What I keep is charter and audit: which problem, which invariants, what counts as done. Agents coordinate by durable message handles, not by hauling full context between sessions. Model routing by task shape cut imputed blended cost about 92% from early 2026 peaks and held flat as volume rose. The volume numbers below are real and dated; they are not the product.</p>
+          <p>The process came first. For months I ran it by hand — goals and invariants before code, work in bounded phases, completion audited apart from implementation — until the coordination load outgrew one person. Then I built the tooling to hand dispatch and tactical judgment to agent fleets, keeping the problem definition and the audit for myself.</p>
+          <p>Agents coordinate by passing durable message handles, not by shipping full context between sessions. Routing models by task shape cut blended cost roughly 92% from early-2026 peaks. The volume numbers below are real and dated; they are not the thesis.</p>
         </div>
         <div class="numbers" aria-label="Research period measurements">
           <div class="number"><strong>281K</strong><span>LOC Rust · Radix compiler · 24 crates</span></div>
@@ -530,7 +531,7 @@
         <article class="tile t-basalt">
           <span class="tag">Agent runtime · Active · private</span>
           <h3>Minted Geek Swarm</h3>
-          <p>A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleets coordinate by passing durable message handles rather than full context—session shape and cost structure moved when that layer landed. Role hierarchy: operator (human) supplies charter and audit; Mind is an agent role that carries coordination.</p>
+          <p>A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleets coordinate by passing durable message handles rather than full context—session shape and cost structure moved when that layer landed.</p>
           <div class="stats"><span><strong>10.9M→2.5M</strong> tokens/session</span><span><strong>−61%</strong> cost per work-hour</span><span><strong>39</strong> audit interventions · sample campaign</span></div>
           <div class="links"><a href="https://www.mintedgeek.com">mintedgeek.com ↗</a></div>
         </article>
@@ -593,7 +594,7 @@
       <div class="head">
         <span class="label">The operating method</span>
         <h2 class="ct" id="method-title">How the factory runs.</h2>
-        <p>Process first, automation second. The loop below ran by hand until coordination load forced tooling. Agents now supply throughput and tactical dispatch; charter and audit stay human.</p>
+        <p>The loop below ran by hand for months before any of it was automated. Agents now supply throughput and tactical dispatch; problem definition and audit stay human.</p>
       </div>
       <div class="stratum s-giallo">
         <div><span class="ord">I</span><span class="nm">Goal</span></div>
@@ -640,10 +641,10 @@
             </div>
             <div class="role">
               <h4>Coordination and execution (agents)</h4>
-              <p>What to dispatch, to whom, in what order, whether it settled. Reconnaissance, implementation, review passes, documentation. Mind is an agent role—not a synonym for the operator.</p>
+              <p>Dispatch, sequencing, settlement. Reconnaissance, implementation, review passes, documentation.</p>
             </div>
           </div>
-          <div class="pull">In one fleet, 8,452 agent-to-agent coordination events ran against 10 messages that required me. In a separate campaign, a three-pass audit produced 39 documented interventions—including specs that named tests that did not exist, which a naive <em>cargo test</em> filter would have marked green. That refusal path is the point.</div>
+          <div class="pull">In one fleet, 8,452 coordination events ran against 10 that required me. In a separate campaign, an audit caught specs naming tests that did not exist — a naive <em>cargo test</em> would have passed them. The system's job is to refuse, not just to execute.</div>
           <div class="doc-stats"><span><strong>216</strong> goals</span><span><strong>43</strong> campaigns</span><span><strong>1,396</strong> delivery docs</span><span><strong>91</strong> ledgers</span></div>
         </div>
       </div>
