@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case study: Field Board — a real-time collaborative whiteboard built entirely in Rust across 7 crates in 7 days, with a mid-sprint framework rewrite from React to Leptos.">
+  <meta name="theme-color" content="#14100f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
+  <title>Field Board &mdash; Ian Zepp</title>
+  <style>
+    @font-face {
+      font-family: "Cinzel";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("../fonts/cinzel.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Cinzel";
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url("../fonts/cinzel.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/plex-mono-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url("../fonts/plex-mono-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("../fonts/plex-mono-700.woff2") format("woff2");
+    }
+
+    :root {
+      --basalt: #14100f;
+      --basalt-deep: #0d0a09;
+      --porphyry: #6e2b3c;
+      --porphyry-deep: #4f1f2b;
+      --pompeian: #9b3324;
+      --giallo: #a87c34;
+      --giallo-lit: #c49a45;
+      --verde: #31513f;
+      --aegyptus: #25406b;
+      --aegyptus-lit: #3a5a8a;
+      --gilt: #c9a24a;
+      --gilt-deep: #8a6a2f;
+      --marmor: #ece6da;
+      --marmor-dim: #b8ac9a;
+      --inscr: "Cinzel", Georgia, serif;
+      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      --measure: 680px;
+      --era-measure: 760px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--basalt);
+      color: var(--marmor);
+      font-family: var(--mono);
+      font-size: 14.5px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--gilt); text-decoration: none; transition: color .12s; }
+    a:hover { color: var(--marmor); }
+    a:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
+    ::selection { background: var(--porphyry); color: var(--marmor); }
+    code { font-family: var(--mono); font-size: 13px; color: var(--gilt); }
+
+    .label {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gilt);
+    }
+    .ct {
+      font-family: var(--mono); font-size: 26px; line-height: 34px; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; color: var(--marmor);
+    }
+
+    /* architrave */
+    .architrave { background: var(--basalt); border-bottom: 2px solid var(--gilt-deep); }
+    .nav {
+      min-height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      padding: 0 clamp(20px, 4vw, 44px);
+    }
+    .wordmark { font-weight: 700; font-size: 15px; letter-spacing: .32em; color: var(--marmor); }
+    .wordmark:hover { color: var(--marmor); }
+    .wordmark span { color: var(--gilt); }
+    .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .nav-links a { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--marmor-dim); }
+    .nav-links a:hover { color: var(--gilt); }
+
+    /* page header */
+    .page-header {
+      background: var(--aegyptus);
+      color: var(--marmor);
+      padding: clamp(56px, 7vw, 100px) clamp(24px, 4vw, 56px) clamp(46px, 5vw, 76px);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .page-header .back {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: #8eb8e0;
+      display: inline-block; margin-bottom: 24px;
+    }
+    .page-header .back:hover { color: var(--marmor); }
+    .page-header .col { max-width: var(--measure); margin-inline: auto; }
+    .page-header h1 {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 48px); line-height: 1.15;
+      letter-spacing: .04em; color: var(--marmor);
+      margin-bottom: 16px; max-width: 24ch;
+    }
+    .page-header h1 em { color: var(--gilt); font-style: normal; }
+    .page-header .lede {
+      color: #b0c8e0; font-size: 14.5px; line-height: 1.75;
+    }
+
+    /* stats strip */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0;
+      border-bottom: 2px solid var(--gilt-deep);
+      background: var(--basalt-deep);
+    }
+    .stat-cell {
+      padding: 20px 22px;
+      border-right: 1px solid #2a2320;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+      font-size: 22px; font-weight: 700; color: var(--marmor);
+      font-variant-numeric: tabular-nums;
+      display: block; line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #8d8574; margin-top: 6px; display: block;
+    }
+
+    /* prose sections */
+    .prose {
+      padding: clamp(46px, 5vw, 76px) clamp(24px, 4vw, 56px);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .prose.on-basalt { background: var(--basalt); }
+    .prose.on-deep { background: var(--basalt-deep); }
+    .prose > * { max-width: var(--measure); margin-inline: auto; }
+    .prose .section-label { display: block; margin-bottom: 20px; }
+    .prose h2 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(20px, 2.2vw, 28px); line-height: 1.25;
+      letter-spacing: .03em; color: var(--marmor);
+      margin-bottom: 16px;
+    }
+    .prose p {
+      color: var(--marmor-dim); margin-bottom: 14px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose p strong { color: var(--marmor); font-weight: 700; }
+
+    /* timeline eras */
+    .era {
+      padding: clamp(36px, 4vw, 56px) clamp(24px, 4vw, 56px);
+      border-bottom: 1px solid #2a2320;
+      background: var(--basalt);
+    }
+    .era:last-child { border-bottom: 2px solid var(--gilt-deep); }
+    .era-inner {
+      max-width: var(--era-measure);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: clamp(20px, 3vw, 44px);
+      align-items: start;
+    }
+    .era-meta .era-dates {
+      font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
+      color: var(--gilt); display: block;
+    }
+    .era-meta .era-detail {
+      font-size: 10px; color: #8d8574;
+      letter-spacing: .04em; margin-top: 4px; display: block;
+    }
+    .era-content h2 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(18px, 2vw, 24px); line-height: 1.25;
+      letter-spacing: .03em; color: var(--marmor);
+      margin-bottom: 12px;
+    }
+    .era-content p {
+      color: var(--marmor-dim); margin-bottom: 10px;
+    }
+    .era-content p:last-child { margin-bottom: 0; }
+
+    /* callouts */
+    .callout {
+      border-left: 3px solid var(--gilt-deep);
+      padding: 14px 18px;
+      margin-block: 14px;
+      margin-inline: auto;
+      max-width: var(--measure);
+    }
+    .callout.design {
+      background: rgba(37, 64, 107, 0.25);
+      border-left-color: var(--aegyptus);
+    }
+    .callout.pivot {
+      background: rgba(110, 43, 60, 0.25);
+      border-left-color: var(--porphyry);
+    }
+    .callout.insight {
+      background: rgba(49, 81, 63, 0.25);
+      border-left-color: var(--verde);
+    }
+    .callout.velocity {
+      background: rgba(168, 124, 52, 0.15);
+      border-left-color: var(--giallo);
+    }
+    .callout-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .callout.design .callout-label { color: #8eb8e0; }
+    .callout.pivot .callout-label { color: #e8bfc7; }
+    .callout.insight .callout-label { color: #8ecaa0; }
+    .callout.velocity .callout-label { color: var(--giallo-lit); }
+    .callout p { color: var(--marmor-dim); font-size: 13.5px; margin-bottom: 0; }
+    .callout p strong { color: var(--marmor); }
+
+    /* crate map */
+    .crate-grid {
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+    }
+    .crate-row {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      border-bottom: 1px solid #2a2320;
+    }
+    .crate-name {
+      font-size: 12px; font-weight: 700; color: var(--gilt);
+      padding: 10px 14px;
+      border-right: 1px solid #2a2320;
+    }
+    .crate-desc {
+      font-size: 12px; color: var(--marmor-dim);
+      padding: 10px 14px;
+      border-right: 1px solid #2a2320;
+    }
+    .crate-loc {
+      font-size: 11px; font-weight: 600; color: #8d8574;
+      padding: 10px 14px;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+      border-right: 1px solid #2a2320;
+      white-space: nowrap;
+    }
+
+    /* day bar chart */
+    .day-bars {
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: clamp(4px, 1vw, 10px);
+      height: 180px;
+    }
+    .day-col {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 6px;
+      text-align: center;
+      min-width: 0;
+    }
+    .day-val {
+      align-self: end;
+      font-size: 11px; font-weight: 700; color: var(--marmor-dim);
+      font-variant-numeric: tabular-nums;
+    }
+    .day-barwrap { display: flex; align-items: flex-end; }
+    .day-bar {
+      width: 100%;
+      height: max(calc(var(--pct) * 1%), 2%);
+      background: linear-gradient(to top, var(--aegyptus), var(--aegyptus-lit));
+    }
+    .day-bar.peak { background: linear-gradient(to top, var(--aegyptus), var(--gilt)); }
+    .day-label {
+      font-size: 10px; font-weight: 600; letter-spacing: .04em; color: #8d8574;
+    }
+
+    /* pattern grid */
+    .pattern-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0;
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+    }
+    .pattern-cell {
+      padding: 20px 22px;
+      border-right: 1px solid #2a2320;
+      border-bottom: 1px solid #2a2320;
+    }
+    .pattern-cell h3 {
+      font-size: 14px; font-weight: 700; color: var(--marmor);
+      margin-bottom: 8px;
+    }
+    .pattern-cell p {
+      font-size: 12.5px; color: var(--marmor-dim); line-height: 1.75;
+      max-width: 42ch;
+    }
+
+    /* pull quote */
+    .pull {
+      border-left: 2px solid var(--gilt);
+      padding: 4px 0 4px 20px;
+      max-width: var(--measure);
+      font-size: 14px; line-height: 1.7;
+      color: var(--marmor);
+      margin-block: 20px;
+      margin-inline: auto;
+    }
+    .pull em { color: var(--gilt); font-style: normal; }
+
+    /* inscription */
+    .inscription {
+      background: var(--aegyptus); text-align: center;
+      padding: clamp(52px, 6vw, 84px) clamp(24px, 4vw, 56px);
+    }
+    .inscription .txt {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(18px, 2.2vw, 30px); line-height: 1.35; letter-spacing: .1em;
+      color: var(--marmor);
+      max-width: 800px; margin-inline: auto;
+    }
+
+    /* footer */
+    .stylobate {
+      background: var(--basalt); border-top: 2px solid var(--gilt-deep);
+      padding: 22px clamp(20px, 4vw, 44px);
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #6b6153;
+    }
+
+    @media (max-width: 900px) {
+      .era-inner { grid-template-columns: 1fr; gap: 10px; }
+      .stats-strip { grid-template-columns: repeat(3, 1fr); }
+      .crate-row { grid-template-columns: 1fr; }
+      .crate-name { border-right: none; border-bottom: none; padding-bottom: 0; }
+      .crate-desc { border-right: none; }
+      .crate-loc { border-right: none; text-align: left; padding-top: 0; }
+    }
+    @media (max-width: 540px) {
+      body { font-size: 14px; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .day-bars { height: 140px; gap: 3px; }
+      .day-val { font-size: 9px; }
+      .day-label { font-size: 8.5px; letter-spacing: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="architrave">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="wordmark" href="/">IZ<span>/</span>DEV</a>
+      <div class="nav-links">
+        <a href="/#research">Research</a>
+        <a href="/#case-studies">Case Studies</a>
+        <a href="/#programs">Programs</a>
+        <a href="/#evidence">Evidence</a>
+        <a href="/genz.html">Gen Z</a>
+        <a href="/llms.txt" title="Machine-readable site index for agents">LLMS</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <div class="col">
+        <a class="back" href="/#case-studies">&larr; Case Studies</a>
+        <h1>Seven crates. Seven days. <em>Zero JavaScript.</em></h1>
+        <p class="lede">Field Board is a real-time collaborative whiteboard built entirely in Rust &mdash; Axum and PostgreSQL behind, Leptos and WebAssembly in front, binary protobuf between &mdash; delivered as a Gauntlet AI Week 1 sprint. 511 commits, 49,900 lines across seven workspace crates, a full framework rewrite on day three, and a portfolio site that documents every commit.</p>
+      </div>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat-cell"><span class="stat-num">511</span><span class="stat-label">Commits</span></div>
+      <div class="stat-cell"><span class="stat-num">49.9K</span><span class="stat-label">Lines of Rust</span></div>
+      <div class="stat-cell"><span class="stat-num">7</span><span class="stat-label">Workspace crates</span></div>
+      <div class="stat-cell"><span class="stat-num">1,065</span><span class="stat-label">Tests passed</span></div>
+      <div class="stat-cell"><span class="stat-num">7</span><span class="stat-label">Days</span></div>
+      <div class="stat-cell"><span class="stat-num">$2,133</span><span class="stat-label">AI spend</span></div>
+    </div>
+
+    <!-- THE BRIEF -->
+    <section class="prose on-basalt">
+      <span class="label section-label">The brief</span>
+      <h2>One week. One whiteboard. Pure Rust.</h2>
+      <p>Week 1 of the Gauntlet AI fellowship. The assignment: build a collaborative whiteboard with AI integration. The self-imposed constraint: do the entire stack in Rust with no JavaScript runtime. Not because it was easier &mdash; it was harder &mdash; but because the constraint was the point. A pure Rust stack meant Leptos SSR instead of React, protobuf instead of JSON over WebSockets, and a canvas engine that compiled to WASM with zero <code>web-sys</code> test dependencies.</p>
+      <p>The project documented its own constraints before writing code: 5&ndash;20 concurrent users, $100/month budget ceiling, WebSocket-mandatory real-time sync, seven-day window. The constraints doc preceded the design doc, which preceded the code.</p>
+      <div class="callout velocity">
+        <div class="callout-label">Why the speed was possible</div>
+        <p>510 of 511 commits land in a single seven-day burst (February 16&ndash;22, 2026). The 511th is a lone dependency-policy commit from May. This isn't overtime or chaos &mdash; it's <strong>the builder knew the tools, wrote the plan first, and the scope was hard-bounded by a deadline that couldn't move.</strong></p>
+      </div>
+    </section>
+
+    <!-- CRATE ARCHITECTURE -->
+    <section class="prose on-deep">
+      <span class="label section-label">The crate architecture</span>
+      <h2>Seven members, each with one job.</h2>
+      <p>The Cargo workspace holds seven crates plus one utility. Each crate has a defined boundary and a reason to exist separately. The <strong>server</strong> never imports <code>web-sys</code>. The <strong>canvas</strong> never imports the server. The <strong>frames</strong> crate is the shared vocabulary both sides speak.</p>
+      <div class="crate-grid">
+        <div class="crate-row"><span class="crate-name">server</span><span class="crate-desc">Axum HTTP/WS hub with syscall-prefixed dispatch and two-speed persistence</span><span class="crate-loc">18,624</span></div>
+        <div class="crate-row"><span class="crate-name">client</span><span class="crate-desc">Leptos SSR/WASM app with 8 RwSignal contexts and WS lifecycle</span><span class="crate-loc">17,529</span></div>
+        <div class="crate-row"><span class="crate-name">canvas</span><span class="crate-desc">Dependency-free 2D engine: 9 shapes, 7-state gesture machine, rotation-aware hit testing</span><span class="crate-loc">10,241</span></div>
+        <div class="crate-row"><span class="crate-name">frames</span><span class="crate-desc">Shared wire protocol: one Frame type, protobuf codec, Request&rarr;Item*&rarr;Done streaming</span><span class="crate-loc">640</span></div>
+        <div class="crate-row"><span class="crate-name">traces</span><span class="crate-desc">Observability primitives: syscall labeling, span pairing, metrics</span><span class="crate-loc">1,465</span></div>
+        <div class="crate-row"><span class="crate-name">perf</span><span class="crate-desc">Live-server load harness: latency percentiles, 1,000-object stress, 25-client barrier</span><span class="crate-loc">699</span></div>
+        <div class="crate-row"><span class="crate-name">cli</span><span class="crate-desc">Clap-based REST/WS automation client with a stress generator</span><span class="crate-loc">694</span></div>
+      </div>
+      <p>67 total dependencies. The entire workspace compiles, tests, and lints under <code>clippy</code> pedantic with no <code>.unwrap()</code> or panic in production code &mdash; enforced by <code>CLAUDE.md</code> rules that blocked the AI from committing violations.</p>
+    </section>
+
+    <!-- THE DAY 3 REWRITE -->
+    <section class="prose on-basalt">
+      <span class="label section-label">The day 3 rewrite</span>
+      <h2>React worked. It got deleted anyway.</h2>
+      <p>Day 1 stood up the stack on React and Konva. It worked. Cursor sync ran, the AI drew shapes, persistence survived three rewrites in a single day. By the end of Day 2 the frontend had been gutted and rebuilt once already.</p>
+      <p><strong>Day 3 killed React entirely.</strong> The morning built the canvas engine crate with 99 geometry tests and 55 state-machine tests. That afternoon, across eight sequential phased commits, React and Konva were ripped out and replaced by Leptos 0.8 SSR &mdash; a framework most Rust developers haven't touched. The React code had worked. It was deleted because it violated the constraint: a pure-Rust stack doesn't have a JavaScript runtime.</p>
+      <div class="callout pivot">
+        <div class="callout-label">Mid-sprint framework rewrite</div>
+        <p>Replacing your frontend framework on day 3 of a 7-day sprint looks reckless. It wasn't. The canvas engine was already built and tested independently of any framework. <strong>The EngineCore has zero <code>web-sys</code> or <code>wasm-bindgen</code> dependencies</strong> &mdash; the entire geometry, hit-testing, and input state machine test suite runs on native Rust without a browser. The framework was the shell, not the brain.</p>
+      </div>
+    </section>
+
+    <!-- ENGINECORE -->
+    <section class="prose on-deep">
+      <span class="label section-label">The EngineCore split</span>
+      <h2>Test without a browser.</h2>
+      <p>The canvas crate is split in two: <code>EngineCore</code> is pure Rust with no platform dependencies. It handles coordinate math, shape geometry, rotation-aware hit testing, selection state, a 7-state input gesture machine, and 9 shape kinds. A thin WASM wrapper bridges it to <code>web-sys</code> and the browser Canvas API via a <code>CanvasHost</code> trait.</p>
+      <p>This split is what made 1,065 tests possible in seven days. Every geometry calculation, every state transition, every hit-test edge case runs as a normal <code>cargo test</code> &mdash; no headless browser, no DOM simulation, no test harness overhead. The WASM boundary is tested separately. The engine is tested exhaustively.</p>
+      <div class="pull">The canvas engine has <em>10,241 lines of Rust</em> and zero browser dependencies. The framework rewrite on Day 3 didn't touch a single engine test.</div>
+    </section>
+
+    <!-- ARCHITECTURE HIGHLIGHTS -->
+    <section class="prose on-basalt">
+      <span class="label section-label">Architecture</span>
+      <h2>Four decisions worth stealing.</h2>
+      <p><strong>Ticket-based WebSocket auth.</strong> The server issues a one-time ticket on HTTP login. The client connects over WebSocket with that ticket. The server consumes it via <code>DELETE ... RETURNING</code> &mdash; replay-proof by construction. If the delete returns no rows, the ticket was already used or expired. No token store, no race window.</p>
+      <p><strong>Dual-speed persistence.</strong> Board objects flush at 100ms intervals. The frame log &mdash; the full event stream for undo/redo and rewind &mdash; batches at 5ms. Two write speeds, tuned to their traffic patterns, sharing one PostgreSQL instance.</p>
+      <p><strong>AI tool loop with live broadcast.</strong> The AI backend exposes 9 board-mutation tools (create, move, resize, group, style, etc.) to Claude or GPT-4 via a strict quoted-YAML grammar. Each tool call mutates the board and broadcasts the change to all connected clients in real time. The AI draws, and everyone watches.</p>
+      <p><strong>Spatial-bucket viewport culling.</strong> Objects are bucketed spatially. Only objects in or near the viewport are rendered. Combined with RAF-coalesced redraws (Day 6), this keeps the canvas responsive at 1,000+ objects.</p>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="prose on-deep">
+      <span class="label section-label">Timeline</span>
+      <h2>Seven days, commit by commit.</h2>
+      <div class="day-bars" role="img" aria-label="Daily commit counts: Day 1: 40, Day 2: 76, Day 3: 84, Day 4: 102, Day 5: 70, Day 6: 52, Day 7: 86">
+        <div class="day-col"><span class="day-val">40</span><span class="day-barwrap"><span class="day-bar" style="--pct:39"></span></span><span class="day-label">Day 1</span></div>
+        <div class="day-col"><span class="day-val">76</span><span class="day-barwrap"><span class="day-bar" style="--pct:74"></span></span><span class="day-label">Day 2</span></div>
+        <div class="day-col"><span class="day-val">84</span><span class="day-barwrap"><span class="day-bar" style="--pct:82"></span></span><span class="day-label">Day 3</span></div>
+        <div class="day-col"><span class="day-val">102</span><span class="day-barwrap"><span class="day-bar peak" style="--pct:100"></span></span><span class="day-label">Day 4</span></div>
+        <div class="day-col"><span class="day-val">70</span><span class="day-barwrap"><span class="day-bar" style="--pct:69"></span></span><span class="day-label">Day 5</span></div>
+        <div class="day-col"><span class="day-val">52</span><span class="day-barwrap"><span class="day-bar" style="--pct:51"></span></span><span class="day-label">Day 6</span></div>
+        <div class="day-col"><span class="day-val">86</span><span class="day-barwrap"><span class="day-bar" style="--pct:84"></span></span><span class="day-label">Day 7</span></div>
+      </div>
+    </section>
+
+    <article class="era">
+      <div class="era-inner">
+      <div class="era-meta">
+        <span class="era-dates">Day 1 &middot; Feb 16</span>
+        <span class="era-detail">40 commits</span>
+      </div>
+      <div class="era-content">
+        <h2>Vertical slice</h2>
+        <p>Axum and React/Konva scaffold. GitHub OAuth. WebSocket cursor sync across clients. A 9-tool AI loop for board manipulation. Persistence rewritten three times in a single day &mdash; from in-memory, to file-backed, to PostgreSQL. By end of day: a working whiteboard with real-time cursors, AI drawing, and durable state.</p>
+      </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-inner">
+      <div class="era-meta">
+        <span class="era-dates">Day 2 &middot; Feb 17</span>
+        <span class="era-detail">76 commits</span>
+      </div>
+      <div class="era-content">
+        <h2>Gut and rebuild</h2>
+        <p>The canvas was gutted and rebuilt from scratch the same morning. The right-panel UI alone took 12 commits to get right. The deployment pipeline was stood up, then partially reversed when the initial approach didn't fit the hosting model. Fast iteration includes fast reversal.</p>
+      </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-inner">
+      <div class="era-meta">
+        <span class="era-dates">Day 3 &middot; Feb 18</span>
+        <span class="era-detail">84 commits</span>
+      </div>
+      <div class="era-content">
+        <h2>The biggest engineering day</h2>
+        <p>Morning: the canvas engine crate, built from scratch with 99 geometry tests and 55 state-machine tests. Afternoon: React and Konva ripped out entirely and replaced by Leptos 0.8 SSR across eight sequential phased commits. Evening: multiplayer cursor interpolation, frame grouping and rewind, and an embedded YouTube easter egg.</p>
+        <div class="callout insight">
+          <div class="callout-label">Why the rewrite worked</div>
+          <p>The canvas engine was already tested. The wire protocol was already defined. <strong>The framework swap changed the rendering shell, not the computation.</strong> Leptos's reactive signals mapped cleanly to the 8 RwSignal contexts the client needed. The hard part &mdash; geometry, state machines, protocol &mdash; was already done.</p>
+        </div>
+      </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-inner">
+      <div class="era-meta">
+        <span class="era-dates">Day 4 &middot; Feb 19</span>
+        <span class="era-detail">102 commits &middot; peak</span>
+      </div>
+      <div class="era-content">
+        <h2>Five fronts in parallel</h2>
+        <p><strong>Wire migration:</strong> JSON WebSocket messages replaced with binary protobuf via the new <code>frames</code> crate. <strong>Observability:</strong> the <code>traces</code> crate stood up for syscall labeling and span pairing. <strong>Camera:</strong> rotation controls and compass navigation. <strong>AI overhaul:</strong> session memory added, I/O grammar tightened to strict quoted YAML. <strong>Auth and testing:</strong> email-code authentication, board-level ACLs, and the <code>perf</code> crate for load testing. The highest-commit day of the sprint.</p>
+      </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-inner">
+      <div class="era-meta">
+        <span class="era-dates">Day 5 &middot; Feb 20</span>
+        <span class="era-detail">70 commits</span>
+      </div>
+      <div class="era-content">
+        <h2>Pure refactor</h2>
+        <p>No new features. The canvas host and frame client were decomposed into submodules. CSS was split into theme, layout, and component files. Dial-control system for rotation. JSONL import/export for board snapshots. The codebase was restructured to survive the remaining two days without accumulating debt.</p>
+      </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-inner">
+      <div class="era-meta">
+        <span class="era-dates">Day 6 &middot; Feb 21</span>
+        <span class="era-detail">52 commits</span>
+      </div>
+      <div class="era-content">
+        <h2>Performance and safety</h2>
+        <p>Spatial-bucket viewport culling reduced draw calls to visible objects only. RAF-coalesced redraws eliminated redundant paint cycles. The <code>cli</code> crate was stood up for automated REST/WS testing. A full <code>clippy</code>/panic-safety audit ran across all crates. SVG shape tools were added to the AI backend. By evening: 915 tests passing, 41.2% code coverage, 67 dependencies.</p>
+      </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-inner">
+      <div class="era-meta">
+        <span class="era-dates">Day 7 &middot; Feb 22</span>
+        <span class="era-detail">86 commits</span>
+      </div>
+      <div class="era-content">
+        <h2>The field report</h2>
+        <p>The final day built the portfolio site: a "Field Survey Terminal"-themed static page with three tabs &mdash; Architecture (SVG crate dependency map), Timeline (hand-authored day-by-day field notes with per-commit annotations), and Transcripts (254 raw AI session transcripts organized by day). Not auto-generated: hand-curated from git log analysis.</p>
+        <p>Final numbers on the portfolio strip: 48,932 LOC, 1,065 tests passed / 1 failed, 40.4% coverage, 498 commits (the remaining commits landed after the snapshot).</p>
+      </div>
+      </div>
+    </article>
+
+    <!-- COST TRANSPARENCY -->
+    <section class="prose on-basalt">
+      <span class="label section-label">The cost of speed</span>
+      <h2>$2,133 and 347 sessions.</h2>
+      <p>The project logged its own AI spend via Cassio: <strong>347 sessions, 855 million input tokens, 4.5 million output tokens, $2,133 total.</strong> 158 hours of wall time across parallel worktrees. Split roughly 64% Codex (implementation) and 35% Claude Opus (architecture and review).</p>
+      <p>Two custom agents were used: a "Rust Correctness Surgeon" for targeted fixes and a "Technical Writer" for documentation. The project's <code>CLAUDE.md</code> enforced no <code>.unwrap()</code> in production code, mandatory <code>fmt&rarr;clippy&rarr;test&rarr;commit</code> pipelines, and auto-commit with no permission-asking.</p>
+      <p>The project self-reports as ~99% AI-generated code. This is noted transparently, not hidden &mdash; and it's the point. The thesis isn't that a human typed 49,900 lines. The thesis is that a human directed a coherent system of that scale in seven days, and the system works.</p>
+    </section>
+
+    <!-- PATTERNS -->
+    <section class="prose on-deep">
+      <span class="label section-label">Patterns</span>
+      <h2>What the sprint reveals.</h2>
+      <div class="pattern-grid">
+        <div class="pattern-cell">
+          <h3>The rewrite as signal</h3>
+          <p>Replacing React with Leptos on Day 3 of a 7-day sprint. The willingness to delete working code mid-deadline is a process signal, not recklessness &mdash; the architecture made it safe.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Test without the platform</h3>
+          <p>EngineCore compiles and tests without web-sys. 10,241 lines of canvas logic verified by cargo test alone. The framework rewrite didn't touch a single engine test.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Constraint as liberator</h3>
+          <p>Pure Rust, no JS runtime. The constraint forced better architectural decisions: protobuf over JSON, EngineCore/WASM split, Leptos SSR. Escape hatches produce mediocre answers.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Refactor day earns its keep</h3>
+          <p>Day 5 added zero features. It decomposed modules, split CSS, restructured for the endgame. The final two days landed 138 commits without accumulating debt.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Document the receipts</h3>
+          <p>AI spend, session count, token volumes, wall-clock hours, test coverage, dependency count. Every claim is a number. The portfolio site is the proof.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Velocity from bounded scope</h3>
+          <p>Hard deadline, clear brief, constraints doc before code. The plan fit the window because it was shaped to. Speed came from discipline, not luck.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="prose on-basalt">
+      <p><strong>Field Board is not a side project.</strong> It's a stress test for a way of working &mdash; a seven-day proof that AI-assisted engineering can produce a real system with interconnected crates, a dependency-free engine, a mid-sprint framework rewrite, spatial rendering, real-time collaboration, and documented cost transparency. The velocity is the thesis, and the velocity is inspectable: every commit, every session transcript, every dollar is on record.</p>
+      <p>The portfolio site built on Day 7 isn't marketing. It's evidence &mdash; hand-curated from the actual git log, with raw transcripts attached, authored by the person who directed the sprint and can explain every architectural call. The speed came from the constraints being tight, the tools being ready, and the builder knowing when to cut.</p>
+    </section>
+
+    <div class="inscription">
+      <div class="txt">Velocity is not chaos. It is what happens when the constraints are tight and the tools are ready.</div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="stylobate">
+      <span>Ian Zepp &middot; ianzepp.dev</span>
+      <span><a href="/">Back to main &uarr;</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
