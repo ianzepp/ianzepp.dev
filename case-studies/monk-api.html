@@ -60,6 +60,8 @@
       --marmor-dim: #b8ac9a;
       --inscr: "Cinzel", Georgia, serif;
       --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      --measure: 680px;
+      --era-measure: 760px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -117,6 +119,7 @@
       display: inline-block; margin-bottom: 24px;
     }
     .page-header .back:hover { color: var(--basalt); }
+    .page-header .col { max-width: var(--measure); margin-inline: auto; }
     .page-header h1 {
       font-family: var(--inscr); font-weight: 900;
       font-size: clamp(28px, 3.5vw, 48px); line-height: 1.15;
@@ -125,7 +128,7 @@
     }
     .page-header h1 em { color: var(--porphyry-deep); font-style: normal; }
     .page-header .lede {
-      color: #3a2810; max-width: 62ch; font-size: 14.5px; line-height: 1.75;
+      color: #3a2810; font-size: 14.5px; line-height: 1.75;
     }
 
     /* stats strip */
@@ -159,6 +162,7 @@
     }
     .prose.on-basalt { background: var(--basalt); }
     .prose.on-deep { background: var(--basalt-deep); }
+    .prose > * { max-width: var(--measure); margin-inline: auto; }
     .prose .section-label { display: block; margin-bottom: 20px; }
     .prose h2 {
       font-family: var(--inscr); font-weight: 700;
@@ -167,7 +171,7 @@
       margin-bottom: 16px;
     }
     .prose p {
-      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 14px;
+      color: var(--marmor-dim); margin-bottom: 14px;
     }
     .prose p:last-child { margin-bottom: 0; }
     .prose p strong { color: var(--marmor); font-weight: 700; }
@@ -176,13 +180,17 @@
     .era {
       padding: clamp(36px, 4vw, 56px) clamp(24px, 4vw, 56px);
       border-bottom: 1px solid #2a2320;
+      background: var(--basalt);
+    }
+    .era:last-child { border-bottom: 2px solid var(--gilt-deep); }
+    .era-inner {
+      max-width: var(--era-measure);
+      margin-inline: auto;
       display: grid;
       grid-template-columns: 180px 1fr;
       gap: clamp(20px, 3vw, 44px);
       align-items: start;
-      background: var(--basalt);
     }
-    .era:last-child { border-bottom: 2px solid var(--gilt-deep); }
     .era-meta .era-dates {
       font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
       color: var(--gilt); display: block;
@@ -198,7 +206,7 @@
       margin-bottom: 12px;
     }
     .era-content p {
-      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 10px;
+      color: var(--marmor-dim); margin-bottom: 10px;
     }
     .era-content p:last-child { margin-bottom: 0; }
 
@@ -206,8 +214,9 @@
     .callout {
       border-left: 3px solid var(--gilt-deep);
       padding: 14px 18px;
-      margin: 14px 0;
-      max-width: 68ch;
+      margin-block: 14px;
+      margin-inline: auto;
+      max-width: var(--measure);
     }
     .callout.design {
       background: rgba(49, 81, 63, 0.25);
@@ -239,8 +248,9 @@
 
     /* ring diagram */
     .ring-strip {
-      margin: 20px 0;
-      max-width: 680px;
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
       display: grid;
       grid-template-columns: 32px 1fr;
       gap: 0;
@@ -263,8 +273,9 @@
 
     /* API route table */
     .route-grid {
-      margin: 20px 0;
-      max-width: 620px;
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
       border-top: 1px solid #2a2320;
       border-left: 1px solid #2a2320;
     }
@@ -287,9 +298,10 @@
 
     /* operator list */
     .op-grid {
-      margin: 14px 0;
+      margin-block: 14px;
+      margin-inline: auto;
       display: flex; flex-wrap: wrap; gap: 6px;
-      max-width: 68ch;
+      max-width: var(--measure);
     }
     .op {
       font-size: 11px; font-weight: 600;
@@ -326,10 +338,11 @@
     .pull {
       border-left: 2px solid var(--gilt);
       padding: 4px 0 4px 20px;
-      max-width: 68ch;
+      max-width: var(--measure);
       font-size: 14px; line-height: 1.7;
       color: var(--marmor);
-      margin: 20px 0;
+      margin-block: 20px;
+      margin-inline: auto;
     }
     .pull em { color: var(--gilt); font-style: normal; }
 
@@ -340,8 +353,9 @@
       gap: 0;
       border-top: 1px solid #2a2320;
       border-left: 1px solid #2a2320;
-      margin: 20px 0;
-      max-width: 680px;
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
     }
     .lineage-cell {
       padding: 16px 18px;
@@ -382,7 +396,7 @@
     }
 
     @media (max-width: 900px) {
-      .era { grid-template-columns: 1fr; gap: 10px; }
+      .era-inner { grid-template-columns: 1fr; gap: 10px; }
       .stats-strip { grid-template-columns: repeat(3, 1fr); }
       .lineage-strip { grid-template-columns: repeat(2, 1fr); }
     }
@@ -405,15 +419,18 @@
         <a href="/#case-studies">Case Studies</a>
         <a href="/#programs">Programs</a>
         <a href="/#evidence">Evidence</a>
+        <a href="/genz.html">Gen Z</a>
       </div>
     </nav>
   </header>
 
   <main>
     <div class="page-header">
-      <a class="back" href="/#case-studies">&larr; Case Studies</a>
-      <h1>The same platform, <em>three times.</em></h1>
-      <p class="lede">Monk API is the third clean-room implementation of a multi-tenant, model-first platform &mdash; the same architectural vision rebuilt from memory after Minted.IO (2015) and Motivis (2017&ndash;2020). No code was carried forward. What survived is the design: describe your schema, query your data, and let the observer rings handle everything in between.</p>
+      <div class="col">
+        <a class="back" href="/#case-studies">&larr; Case Studies</a>
+        <h1>The same platform, <em>three times.</em></h1>
+        <p class="lede">Monk API is the third clean-room implementation of a multi-tenant, model-first platform &mdash; the same architectural vision rebuilt from memory after Minted.IO (2015) and Motivis (2017&ndash;2020). No code was carried forward. What survived is the design: describe your schema, query your data, and let the observer rings handle everything in between.</p>
+      </div>
     </div>
 
     <div class="stats-strip">
@@ -558,6 +575,7 @@
     </section>
 
     <article class="era">
+      <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">Aug 19 &ndash; 30, 2025</span>
         <span class="era-detail">331 commits</span>
@@ -571,9 +589,11 @@
           <p>331 commits in 12 days isn't just fast iteration. This is the third time the platform was built. The architecture was already proven &mdash; the speed comes from <strong>not needing to discover the design.</strong> The ORM removal on day 3 is the tell: the builder already knew raw SQL was the right call, tried the ORM anyway, confirmed it was wrong, and moved on in 24 hours.</p>
         </div>
       </div>
+      </div>
     </article>
 
     <article class="era">
+      <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">Sep 1 &ndash; 10</span>
         <span class="era-detail">64 commits &middot; then silence</span>
@@ -582,9 +602,11 @@
         <h2>RC hardening, then a two-month pause</h2>
         <p>The release candidate was polished: ACL API, error-handling centralization, v2.0.0 through rc4. Then the project went quiet from September 10 to November 9. Other work took priority &mdash; the pause wasn't abandonment, it was deprioritization.</p>
       </div>
+      </div>
     </article>
 
     <article class="era">
+      <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">Nov 9 &ndash; 29, 2025</span>
         <span class="era-detail">624 commits &middot; v2.1 &rarr; v6.2</span>
@@ -596,9 +618,11 @@
         <p><strong>MCP server (Nov 22):</strong> A Model Context Protocol server was added for Claude Code integration, initially as 11 tools, then refactored to 4 with TOON format. Later extracted to its own package.</p>
         <p><strong>Agent/TTY subsystem (Nov 28&ndash;29):</strong> 79 commits built an in-process terminal shell with STM/LTM memory, jq parser, xargs, base64, bc &mdash; essentially a self-hosted agent interface inside the platform. This entire subsystem would later be explicitly removed.</p>
       </div>
+      </div>
     </article>
 
     <article class="era">
+      <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">Apr 9 &ndash; 14, 2026</span>
         <span class="era-detail">110 commits &middot; 5 days</span>
@@ -612,6 +636,7 @@
           <div class="callout-label">Build then cut</div>
           <p>The agent/TTY subsystem &mdash; 79 commits of work &mdash; was built in November and removed in April. This is the same pruning discipline visible in the Radix compiler retrospective: <strong>when something isn't earning its complexity, cut it.</strong> The willingness to delete working code is a process signal, not a waste signal.</p>
         </div>
+      </div>
       </div>
     </article>
 

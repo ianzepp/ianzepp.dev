@@ -60,6 +60,8 @@
       --marmor-dim: #b8ac9a;
       --inscr: "Cinzel", Georgia, serif;
       --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      --measure: 680px;
+      --era-measure: 760px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -116,6 +118,7 @@
       display: inline-block; margin-bottom: 24px;
     }
     .page-header .back:hover { color: var(--marmor); }
+    .page-header .col { max-width: var(--measure); margin-inline: auto; }
     .page-header h1 {
       font-family: var(--inscr); font-weight: 900;
       font-size: clamp(28px, 3.5vw, 48px); line-height: 1.15;
@@ -124,7 +127,7 @@
     }
     .page-header h1 em { color: var(--gilt); font-style: normal; }
     .page-header .lede {
-      color: #c8e0d0; max-width: 62ch; font-size: 14.5px; line-height: 1.75;
+      color: #c8e0d0; font-size: 14.5px; line-height: 1.75;
     }
 
     /* stats strip */
@@ -158,6 +161,7 @@
     }
     .prose.on-basalt { background: var(--basalt); }
     .prose.on-deep { background: var(--basalt-deep); }
+    .prose > * { max-width: var(--measure); margin-inline: auto; }
     .prose .section-label {
       display: block; margin-bottom: 20px;
     }
@@ -168,7 +172,7 @@
       margin-bottom: 16px;
     }
     .prose p {
-      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 14px;
+      color: var(--marmor-dim); margin-bottom: 14px;
     }
     .prose p:last-child { margin-bottom: 0; }
     .prose p strong { color: var(--marmor); font-weight: 700; }
@@ -177,13 +181,17 @@
     .era {
       padding: clamp(36px, 4vw, 56px) clamp(24px, 4vw, 56px);
       border-bottom: 1px solid #2a2320;
+      background: var(--basalt);
+    }
+    .era:last-child { border-bottom: 2px solid var(--gilt-deep); }
+    .era-inner {
+      max-width: var(--era-measure);
+      margin-inline: auto;
       display: grid;
       grid-template-columns: 180px 1fr;
       gap: clamp(20px, 3vw, 44px);
       align-items: start;
-      background: var(--basalt);
     }
-    .era:last-child { border-bottom: 2px solid var(--gilt-deep); }
     .era-meta .era-dates {
       font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
       color: var(--gilt); display: block;
@@ -199,7 +207,7 @@
       margin-bottom: 12px;
     }
     .era-content p {
-      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 10px;
+      color: var(--marmor-dim); margin-bottom: 10px;
     }
     .era-content p:last-child { margin-bottom: 0; }
 
@@ -207,8 +215,9 @@
     .callout {
       border-left: 3px solid var(--gilt-deep);
       padding: 14px 18px;
-      margin: 14px 0;
-      max-width: 68ch;
+      margin-block: 14px;
+      margin-inline: auto;
+      max-width: var(--measure);
     }
     .callout.design {
       background: rgba(49, 81, 63, 0.25);
@@ -237,8 +246,9 @@
 
     /* layer diagram */
     .layer-stack {
-      margin: 20px 0;
-      max-width: 580px;
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
     }
     .layer {
       display: flex; align-items: center; gap: 16px;
@@ -290,10 +300,11 @@
     .pull {
       border-left: 2px solid var(--gilt);
       padding: 4px 0 4px 20px;
-      max-width: 68ch;
+      max-width: var(--measure);
       font-size: 14px; line-height: 1.7;
       color: var(--marmor);
-      margin: 20px 0;
+      margin-block: 20px;
+      margin-inline: auto;
     }
     .pull em { color: var(--gilt); font-style: normal; }
 
@@ -318,7 +329,7 @@
     }
 
     @media (max-width: 900px) {
-      .era { grid-template-columns: 1fr; gap: 10px; }
+      .era-inner { grid-template-columns: 1fr; gap: 10px; }
       .stats-strip { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 540px) {
@@ -339,15 +350,18 @@
         <a href="/#case-studies">Case Studies</a>
         <a href="/#programs">Programs</a>
         <a href="/#evidence">Evidence</a>
+        <a href="/genz.html">Gen Z</a>
       </div>
     </nav>
   </header>
 
   <main>
     <div class="page-header">
-      <a class="back" href="/#case-studies">&larr; Case Studies</a>
-      <h1>The agent needed an <em>operating system.</em></h1>
-      <p class="lede">In November 2025, months before the industry shipped agent runtimes with filesystem access, process management, and tool dispatch, Monk OS built the architecture they converged on &mdash; and built it more purely. A Plan 9/BeOS-inspired operating system simulated in TypeScript on Bun, where everything is a file and a database record, the init process is an AI agent, and the agent doesn't use the OS &mdash; it <em>is</em> the OS. Two runtime dependencies. Three weeks. Built from an architecture already proven across a decade.</p>
+      <div class="col">
+        <a class="back" href="/#case-studies">&larr; Case Studies</a>
+        <h1>The agent needed an <em>operating system.</em></h1>
+        <p class="lede">In November 2025, months before the industry shipped agent runtimes with filesystem access, process management, and tool dispatch, Monk OS built the architecture they converged on &mdash; and built it more purely. A Plan 9/BeOS-inspired operating system simulated in TypeScript on Bun, where everything is a file and a database record, the init process is an AI agent, and the agent doesn't use the OS &mdash; it <em>is</em> the OS. Two runtime dependencies. Three weeks. Built from an architecture already proven across a decade.</p>
+      </div>
     </div>
 
     <div class="stats-strip">
@@ -412,6 +426,7 @@
     </section>
 
     <article class="era">
+      <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">November 30</span>
         <span class="era-detail">82 commits &middot; Day one</span>
@@ -425,9 +440,11 @@
           <p>82 commits on day one isn't just fast typing. The architecture was already in the builder's head &mdash; this is the same layered stack that ran Minted.IO and Motivis. The speed comes from knowing what you're building because you've built it before.</p>
         </div>
       </div>
+      </div>
     </article>
 
     <article class="era">
+      <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">December 1 &ndash; 4</span>
         <span class="era-detail">194 commits</span>
@@ -437,9 +454,11 @@
         <p>The Entity Management System was built and immediately wired into the 8-ring observer pipeline. PostgreSQL was added alongside SQLite as a backend. The boot sequence was formalized: HAL&rarr;EMS&rarr;VFS&rarr;Kernel, with a <code>createOsStack()</code> factory producing the full system from a single call.</p>
         <p>By December 4 the kernel was decomposed into 60+ small files, syscalls were normalized to <code>domain:verb</code> naming, and v0.3.0 was tagged.</p>
       </div>
+      </div>
     </article>
 
     <article class="era">
+      <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">December 5 &ndash; 10</span>
         <span class="era-detail">196 commits &middot; v0.4.0 &ndash; v0.9.0</span>
@@ -449,9 +468,11 @@
         <p>The system grew a display server (<code>displayd</code> &mdash; browser as terminal), a gateway daemon for external access over Unix sockets, and a shell with pipes, redirects, and glob expansion. Worker pools with LRU reaping and message pipes with backpressure gave the kernel real concurrent-systems behavior.</p>
         <p>Six versions shipped in five days. The MIR-like pattern from Radix appears here too: once the foundational layers (HAL, EMS, VFS) were solid, features dropped in fast because they had clean surfaces to land on.</p>
       </div>
+      </div>
     </article>
 
     <article class="era">
+      <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">December 10 &ndash; 14</span>
         <span class="era-detail">ROM / userspace</span>
@@ -465,9 +486,11 @@
           <p>ROM commands are TypeScript source files stored in the virtual filesystem. The loader reads source from VFS, transpiles it via <code>Bun.Transpiler</code>, rewrites imports to <code>__require()</code>, bundles the result into a Blob URL, and spawns it as a Worker. <strong>Hot-swappable code execution with no host disk touch.</strong></p>
         </div>
       </div>
+      </div>
     </article>
 
     <article class="era">
+      <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">December 14 &ndash; 20</span>
         <span class="era-detail">65 commits &middot; v0.9.0 &ndash; v0.11.0</span>
@@ -476,6 +499,7 @@
         <h2>The polish tail</h2>
         <p>The final week was cleanup, not features. Typed POSIX-style error classes replaced generic <code>Error</code> across HAL and EMS. A <code>KERNEL_ID</code> constant eliminated magic strings. SQLite and PostgreSQL got separate dialect-specific schema files. Debug logging was consolidated through a single module. Documentation was sorted into self-graded directories: <code>docs/complete/</code>, <code>docs/partial/</code>, <code>docs/bugs/</code>, <code>docs/skip/</code>.</p>
         <p>This is velocity discipline applied in reverse &mdash; a deliberate second pass to harden what the first three weeks built.</p>
+      </div>
       </div>
     </article>
 

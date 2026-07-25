@@ -60,6 +60,8 @@
       --marmor-dim: #b8ac9a;
       --inscr: "Cinzel", Georgia, serif;
       --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      --measure: 680px;
+      --era-measure: 760px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -115,6 +117,7 @@
       display: inline-block; margin-bottom: 24px;
     }
     .page-header .back:hover { color: var(--marmor); }
+    .page-header .col { max-width: var(--measure); margin-inline: auto; }
     .page-header h1 {
       font-family: var(--inscr); font-weight: 900;
       font-size: clamp(28px, 3.5vw, 48px); line-height: 1.15;
@@ -123,7 +126,7 @@
     }
     .page-header h1 em { color: var(--gilt); font-style: normal; }
     .page-header .lede {
-      color: #e3c9cf; max-width: 62ch; font-size: 14.5px; line-height: 1.75;
+      color: #e3c9cf; font-size: 14.5px; line-height: 1.75;
     }
 
     /* stats strip */
@@ -156,8 +159,9 @@
       background: var(--basalt);
       border-bottom: 2px solid var(--gilt-deep);
     }
+    .thesis-section > * { max-width: var(--measure); margin-inline: auto; }
     .thesis-section p {
-      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 14px;
+      color: var(--marmor-dim); margin-bottom: 14px;
     }
     .thesis-section p:first-child { color: var(--marmor); font-size: 15.5px; }
     .thesis-section p:last-child { margin-bottom: 0; }
@@ -168,6 +172,7 @@
       background: var(--basalt);
       border-bottom: 2px solid var(--gilt-deep);
     }
+    .chart-section > * { max-width: var(--measure); margin-inline: auto; }
     .chart-section .label { display: block; margin-bottom: 22px; }
     .histo {
       display: grid; grid-template-columns: repeat(8, 1fr);
@@ -197,12 +202,16 @@
     .era {
       padding: clamp(36px, 4vw, 56px) clamp(24px, 4vw, 56px);
       border-bottom: 1px solid #2a2320;
+    }
+    .era:last-child { border-bottom: 2px solid var(--gilt-deep); }
+    .era-inner {
+      max-width: var(--era-measure);
+      margin-inline: auto;
       display: grid;
       grid-template-columns: 180px 1fr;
       gap: clamp(20px, 3vw, 44px);
       align-items: start;
     }
-    .era:last-child { border-bottom: 2px solid var(--gilt-deep); }
 
     .era-meta .era-dates {
       font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
@@ -220,7 +229,7 @@
       margin-bottom: 12px;
     }
     .era-content p {
-      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 10px;
+      color: var(--marmor-dim); margin-bottom: 10px;
     }
     .era-content p:last-child { margin-bottom: 0; }
 
@@ -229,8 +238,9 @@
       background: rgba(110, 43, 60, 0.25);
       border-left: 3px solid var(--porphyry);
       padding: 14px 18px;
-      margin: 14px 0;
-      max-width: 68ch;
+      margin-block: 14px;
+      margin-inline: auto;
+      max-width: var(--measure);
     }
     .pivot-label {
       font-size: 10px; font-weight: 600;
@@ -246,8 +256,9 @@
       background: rgba(49, 81, 63, 0.25);
       border-left: 3px solid var(--verde);
       padding: 14px 18px;
-      margin: 14px 0;
-      max-width: 68ch;
+      margin-block: 14px;
+      margin-inline: auto;
+      max-width: var(--measure);
     }
     .obs-label {
       font-size: 10px; font-weight: 600;
@@ -264,6 +275,7 @@
       background: var(--basalt);
       border-bottom: 2px solid var(--gilt-deep);
     }
+    .patterns-section > * { max-width: var(--measure); margin-inline: auto; }
     .patterns-section .ct { display: block; margin-bottom: 28px; }
     .pattern-grid {
       display: grid;
@@ -292,8 +304,9 @@
       background: var(--basalt-deep);
       border-bottom: 2px solid var(--gilt-deep);
     }
+    .closing-section > * { max-width: var(--measure); margin-inline: auto; }
     .closing-section p {
-      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 14px;
+      color: var(--marmor-dim); margin-bottom: 14px;
       font-size: 15px; line-height: 1.75;
     }
     .closing-section p:first-child { color: var(--marmor); }
@@ -320,7 +333,7 @@
     }
 
     @media (max-width: 900px) {
-      .era { grid-template-columns: 1fr; gap: 10px; }
+      .era-inner { grid-template-columns: 1fr; gap: 10px; }
       .stats-strip { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 540px) {
@@ -342,15 +355,18 @@
         <a href="/#case-studies">Case Studies</a>
         <a href="/#programs">Programs</a>
         <a href="/#evidence">Evidence</a>
+        <a href="/genz.html">Gen Z</a>
       </div>
     </nav>
   </header>
 
   <main>
     <div class="page-header">
-      <a class="back" href="/#case-studies">&larr; Case Studies</a>
-      <h1>Seven months from first commit to <em>release candidate.</em></h1>
-      <p class="lede">How a programming language compiler went from a TypeScript prototype to a modularized Rust system with GPU codegen, autograd, and multi-locale diagnostics &mdash; and the five pivots that shaped the path.</p>
+      <div class="col">
+        <a class="back" href="/#case-studies">&larr; Case Studies</a>
+        <h1>Seven months from first commit to <em>release candidate.</em></h1>
+        <p class="lede">How a programming language compiler went from a TypeScript prototype to a modularized Rust system with GPU codegen, autograd, and multi-locale diagnostics &mdash; and the five pivots that shaped the path.</p>
+      </div>
     </div>
 
     <div class="stats-strip">
@@ -384,6 +400,7 @@
 
     <div class="timeline">
       <article class="era">
+        <div class="era-inner">
         <div class="era-meta">
           <span class="era-dates">Dec 22 &ndash; Dec 30, 2025</span>
           <span class="era-versions">v0.3.0 &ndash; v0.6.0</span>
@@ -393,9 +410,11 @@
           <p>Faber launched as a TypeScript compiler targeting everything at once: TypeScript, Python, Zig, Rust, C++, and WASM backends, all in the first week. Editor tooling (Prettier, tree-sitter, Zed extension) shipped alongside. The Latin keyword syntax, Unicode operators, and genus/pactum/ordo type system were established immediately.</p>
           <p>313 commits in v0.6.0 alone. This was the "prove the concept exists" phase &mdash; breadth over depth, shipped fast to see what the language felt like in practice.</p>
         </div>
+        </div>
       </article>
 
       <article class="era">
+        <div class="era-inner">
         <div class="era-meta">
           <span class="era-dates">Dec 30 &ndash; Jan 5, 2026</span>
           <span class="era-versions">v0.7.0 &ndash; v0.14.0</span>
@@ -409,9 +428,11 @@
           </div>
           <p>Latin morphology was introduced in v0.14.0, beginning the long arc of linguistic precision that would define the project.</p>
         </div>
+        </div>
       </article>
 
       <article class="era">
+        <div class="era-inner">
         <div class="era-meta">
           <span class="era-dates">Jan 6 &ndash; Jan 13</span>
           <span class="era-versions">v0.15.0 &ndash; v0.22.0</span>
@@ -428,9 +449,11 @@
             <p>This is the first instance of what becomes a defining discipline: when something isn't earning its complexity, cut it. The project would prune features, syntax, and entire subsystems dozens of times over the next six months.</p>
           </div>
         </div>
+        </div>
       </article>
 
       <article class="era">
+        <div class="era-inner">
         <div class="era-meta">
           <span class="era-dates">Jan 13 &ndash; Jan 26</span>
           <span class="era-versions">v0.23.0 &ndash; v0.29.0</span>
@@ -440,9 +463,11 @@
           <p>The CLI framework was built, rebuilt, and refined. The Nanus microcompiler experiment produced tiny standalone compilers in Rust, Go, and Python &mdash; probing whether Faber could be implemented at minimal scale. Faber Glyph format arrived, replacing ASCII compound operators with Unicode.</p>
           <p>Language pruning accelerated: fit/fiet disabled, consilia/ directory removed, bindings unified under fixum/varia. Each release was smaller and more focused than the last &mdash; the project was converging.</p>
         </div>
+        </div>
       </article>
 
       <article class="era">
+        <div class="era-inner">
         <div class="era-meta">
           <span class="era-dates">Jan 26 &ndash; May 20</span>
           <span class="era-versions">v0.30.0 &ndash; v0.33.0</span>
@@ -460,9 +485,11 @@
             <p>February through April had only 3 releases total. Attention had shifted to the Gauntlet AI fellowship &mdash; commit frequency stayed high, but on fellowship projects, not Faber. The rewrite continued in the margins. When the fellowship ended and focus returned, the architectural groundwork was ready to accelerate.</p>
           </div>
         </div>
+        </div>
       </article>
 
       <article class="era">
+        <div class="era-inner">
         <div class="era-meta">
           <span class="era-dates">May 21 &ndash; Jun 22</span>
           <span class="era-versions">v0.34.0 &ndash; v0.40.0</span>
@@ -476,9 +503,11 @@
           </div>
           <p>v0.40.0 was a turning point in project methodology: 382 commits organized into an 8-stage polish campaign with the CISTA package manager. This is where the campaign/factory pattern became the dominant organizational structure.</p>
         </div>
+        </div>
       </article>
 
       <article class="era">
+        <div class="era-inner">
         <div class="era-meta">
           <span class="era-dates">Jun 22 &ndash; Jun 28</span>
           <span class="era-versions">v0.41.0 &ndash; v0.59.0</span>
@@ -492,9 +521,11 @@
             <p>The project went from 4 releases in December to 19 releases in a single week in late June. This isn't just faster typing &mdash; it's the compound effect of architectural decisions (MIR, campaign methodology, clean breaks) reducing the cost of each incremental change.</p>
           </div>
         </div>
+        </div>
       </article>
 
       <article class="era">
+        <div class="era-inner">
         <div class="era-meta">
           <span class="era-dates">Jun 28 &ndash; Jul 9</span>
           <span class="era-versions">v0.60.0 &ndash; v0.70.0</span>
@@ -508,9 +539,11 @@
           <p>Reader-locale diagnostics arrived (v0.68.0) &mdash; the compiler rendering errors in Thai, Vietnamese, Chinese, Hindi, Arabic, and Latin. The code-first diagnostic identity system made this tractable: stable codes, not human-readable messages, are the primary identifier.</p>
           <p>The workspace was aggressively reorganized: ~39,000 lines extracted to sibling repositories. The compiler shed weight as it gained capability.</p>
         </div>
+        </div>
       </article>
 
       <article class="era">
+        <div class="era-inner">
         <div class="era-meta">
           <span class="era-dates">Jul 9 &ndash; Jul 22</span>
           <span class="era-versions">v0.71.0 &ndash; v0.77.0 + RC1</span>
@@ -520,6 +553,7 @@
           <p>The compiler was modularized into separate crates in an 8-stage extraction (v0.76.0): radix-diagnostics, radix-lexer, radix-syntax, radix-types, radix-hir, radix-mir, codegen crates per target, runtime-contract, stepper, coverage. Crate manifests were realigned &mdash; v0.76.0 was the first release where the tag version equals the manifest version.</p>
           <p>v0.77.0 brought graphics pipeline reflection end-to-end, an autograd/backward differentiation pipeline, and WGSL workgroup reductions. The compiler can now emit GPU compute kernels with gradient support.</p>
           <p>The 1.0 release campaign was scaffolded (319-line campaign document) and an RC1 source-tag candidate was cut, awaiting operator approval.</p>
+        </div>
         </div>
       </article>
     </div>
