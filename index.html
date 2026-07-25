@@ -434,6 +434,77 @@
       .archive-summary span { display: block; margin-top: 14px; }
       .ledger summary { grid-template-columns: 76px 1fr auto auto; gap: 12px; }
     }
+
+    /* ---------- teletype easter egg (Konami) ---------- */
+    #tty {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: #0a0807;
+      color: var(--gilt);
+      font-family: var(--mono);
+      flex-direction: column;
+    }
+    #tty.open { display: flex; }
+    body.tty-active {
+      overflow: hidden;
+    }
+    #tty .tty-chrome {
+      flex: 0 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--gilt-deep);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--marmor-dim);
+    }
+    #tty .tty-chrome button {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--basalt);
+      background: var(--gilt);
+      border: 1px solid var(--gilt);
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    #tty .tty-chrome button:hover { background: var(--marmor); border-color: var(--marmor); }
+    #tty .tty-chrome button:focus-visible { outline: 2px solid var(--marmor); outline-offset: 2px; }
+    #tty .tty-screen {
+      flex: 1 1 auto;
+      overflow: auto;
+      padding: clamp(16px, 3vw, 28px);
+      -webkit-overflow-scrolling: touch;
+    }
+    #tty pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: var(--mono);
+      font-size: clamp(12px, 1.6vw, 14px);
+      line-height: 1.55;
+      color: var(--gilt);
+    }
+    #tty pre::after {
+      content: "█";
+      margin-left: 1px;
+      color: var(--gilt);
+      animation: tty-blink 1s step-end infinite;
+    }
+    #tty.done pre::after { animation: none; opacity: 1; }
+    @keyframes tty-blink {
+      50% { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #tty pre::after { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -1148,6 +1219,16 @@
     </div>
   </footer>
 
+  <div id="tty" role="dialog" aria-modal="true" aria-label="Teletype curriculum vitae" hidden>
+    <div class="tty-chrome">
+      <span>ianzepp.dev · teletype · esc to exit</span>
+      <button type="button" id="tty-close">Exit</button>
+    </div>
+    <div class="tty-screen" id="tty-screen">
+      <pre id="tty-out" aria-live="polite"></pre>
+    </div>
+  </div>
+
   <script>
     const search = document.querySelector('.search');
     if (search) {
@@ -1168,6 +1249,187 @@
         });
       });
     }
+
+    (function () {
+      const KONAMI = [
+        'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+        'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+        'KeyB', 'KeyA'
+      ];
+      const CV = [
+        'IANZEPP.DEV — TELETYPE SESSION',
+        '================================',
+        '',
+        'boot> identity',
+        '  Ian Zepp',
+        '  Systems engineer · founder · former VP of Engineering',
+        '  Cold starts. Real engineering.',
+        '',
+        'boot> now',
+        '  Full-time independent R&D · Aug 2025—present',
+        '  Learn the domain. Verify the output.',
+        '  Currently building in Rust.',
+        '',
+        'boot> lab (measured Jul 12, 2026)',
+        '  281K LOC Rust · Radix compiler · 24 crates',
+        '  3,714 compiler test functions · 48% test-to-source',
+        '  59 tagged releases · median 1 day apart',
+        '  92% blended model-cost cut · Jan→Apr 2026',
+        '  39 audit interventions · one campaign',
+        '  17,710 deduped commits · Aug 2025—Jul 2026',
+        '',
+        'boot> programs',
+        '  Faber/Radix   language + compiler · multi-target · GPU',
+        '  Swarm         multi-agent runtime · durable message handles',
+        '  Monk API      multi-tenant platform · 3rd clean-room build',
+        '  Monk OS       agent as PID 1 · Plan 9 metaphor · 21 days',
+        '  Trials        model eval harnesses · 17K+ result rows',
+        '  Field Board   AI whiteboard · Rust e2e · 7 crates / 7 days',
+        '',
+        'boot> process',
+        '  Goals and invariants before code.',
+        '  Work in bounded phases.',
+        '  Completion audited apart from implementation.',
+        '  Agents for dispatch. Judgment stays human.',
+        '  When it is not earning complexity: cut it.',
+        '',
+        'boot> selected history',
+        '  1996—  open source · systems · long arc',
+        '  Founder years · multi-tenant platform lineage',
+        '  VP Engineering tenure',
+        '  Member of Technical Staff · money-movement systems',
+        '  2025—  full-time AI-assisted systems R&D',
+        '',
+        'boot> contact',
+        '  github.com/ianzepp',
+        '  ian@ianzepp.com',
+        '  ianzepp.dev  (long form)',
+        '  ianzepp.dev/genz.html  (short form)',
+        '  ianzepp.dev/llms.txt  (agents)',
+        '',
+        'boot> epigraph',
+        '  The next chapter should be difficult enough to matter.',
+        '  Process first. Audits after.',
+        '',
+        'session complete.',
+        'press ESC or Exit to return.',
+        ''
+      ].join('\n');
+
+      const tty = document.getElementById('tty');
+      const out = document.getElementById('tty-out');
+      const screen = document.getElementById('tty-screen');
+      const closeBtn = document.getElementById('tty-close');
+      if (!tty || !out || !screen || !closeBtn) return;
+
+      let konamiIndex = 0;
+      let typingTimer = null;
+      let active = false;
+      let prevFocus = null;
+
+      function preferInstant() {
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      }
+
+      function stopTyping() {
+        if (typingTimer) {
+          clearTimeout(typingTimer);
+          typingTimer = null;
+        }
+      }
+
+      function typeCv() {
+        stopTyping();
+        out.textContent = '';
+        tty.classList.remove('done');
+        let i = 0;
+        const instant = preferInstant();
+        const baseDelay = instant ? 0 : 14;
+
+        function tick() {
+          if (!active) return;
+          if (i >= CV.length) {
+            tty.classList.add('done');
+            return;
+          }
+          // Burst a few chars per frame for smoother teletype feel
+          const burst = instant ? CV.length : (CV[i] === '\n' ? 1 : 2 + Math.floor(Math.random() * 2));
+          const next = Math.min(CV.length, i + burst);
+          out.textContent = CV.slice(0, next);
+          i = next;
+          screen.scrollTop = screen.scrollHeight;
+          if (i < CV.length) {
+            let delay = baseDelay;
+            if (!instant) {
+              const ch = CV[i - 1];
+              if (ch === '\n') delay = 90 + Math.random() * 80;
+              else if (ch === '.' || ch === ':') delay = 40;
+            }
+            typingTimer = setTimeout(tick, delay);
+          } else {
+            tty.classList.add('done');
+          }
+        }
+        tick();
+      }
+
+      function openTty() {
+        if (active) return;
+        active = true;
+        prevFocus = document.activeElement;
+        stopTyping();
+        tty.hidden = false;
+        tty.classList.add('open');
+        document.body.classList.add('tty-active');
+        closeBtn.focus();
+        typeCv();
+      }
+
+      function closeTty() {
+        if (!active) return;
+        active = false;
+        stopTyping();
+        tty.classList.remove('open', 'done');
+        tty.hidden = true;
+        document.body.classList.remove('tty-active');
+        out.textContent = '';
+        if (prevFocus && typeof prevFocus.focus === 'function') {
+          try { prevFocus.focus(); } catch (e) { /* ignore */ }
+        }
+      }
+
+      closeBtn.addEventListener('click', closeTty);
+
+      document.addEventListener('keydown', function (e) {
+        if (active) {
+          if (e.key === 'Escape') {
+            e.preventDefault();
+            closeTty();
+          }
+          // While open, do not advance Konami from typing noise
+          return;
+        }
+
+        if (e.code === KONAMI[konamiIndex]) {
+          konamiIndex += 1;
+          if (konamiIndex === KONAMI.length) {
+            konamiIndex = 0;
+            e.preventDefault();
+            openTty();
+          }
+        } else {
+          konamiIndex = e.code === KONAMI[0] ? 1 : 0;
+        }
+      });
+
+      // Dev / share path: ?tty=1
+      try {
+        if (new URLSearchParams(window.location.search).get('tty') === '1') {
+          openTty();
+        }
+      } catch (e) { /* ignore */ }
+    })();
   </script>
 </body>
 </html>
+
