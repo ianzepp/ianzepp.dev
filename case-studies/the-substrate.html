@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case study: The Substrate — Cassio and Vivarium, the evidence and coordination infrastructure that makes agent fleets sustainable over months. 13,512 transcripts processed, 26,530 coordination events, 61 agent roles across two live workspaces.">
+  <meta name="theme-color" content="#14100f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
+  <title>The Substrate &mdash; Ian Zepp</title>
+  <style>
+    @font-face {
+      font-family: "Cinzel";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("../fonts/cinzel.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Cinzel";
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url("../fonts/cinzel.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/plex-mono-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url("../fonts/plex-mono-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("../fonts/plex-mono-700.woff2") format("woff2");
+    }
+
+    :root {
+      --basalt: #14100f;
+      --basalt-deep: #0d0a09;
+      --porphyry: #6e2b3c;
+      --porphyry-deep: #4f1f2b;
+      --pompeian: #9b3324;
+      --pompeian-lit: #c04a38;
+      --giallo: #a87c34;
+      --giallo-lit: #c49a45;
+      --verde: #31513f;
+      --aegyptus: #25406b;
+      --gilt: #c9a24a;
+      --gilt-deep: #8a6a2f;
+      --marmor: #ece6da;
+      --marmor-dim: #b8ac9a;
+      --inscr: "Cinzel", Georgia, serif;
+      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      --measure: 680px;
+      --era-measure: 760px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--basalt);
+      color: var(--marmor);
+      font-family: var(--mono);
+      font-size: 14.5px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--gilt); text-decoration: none; transition: color .12s; }
+    a:hover { color: var(--marmor); }
+    a:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
+    ::selection { background: var(--porphyry); color: var(--marmor); }
+    code { font-family: var(--mono); font-size: 13px; color: var(--gilt); }
+
+    .label {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gilt);
+    }
+
+    /* architrave */
+    .architrave { background: var(--basalt); border-bottom: 2px solid var(--gilt-deep); }
+    .nav {
+      min-height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      padding: 0 clamp(20px, 4vw, 44px);
+    }
+    .wordmark { font-weight: 700; font-size: 15px; letter-spacing: .32em; color: var(--marmor); }
+    .wordmark:hover { color: var(--marmor); }
+    .wordmark span { color: var(--gilt); }
+    .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .nav-links a { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--marmor-dim); }
+    .nav-links a:hover { color: var(--gilt); }
+
+    /* page header */
+    .page-header {
+      background: var(--pompeian);
+      color: var(--marmor);
+      padding: clamp(56px, 7vw, 100px) clamp(24px, 4vw, 56px) clamp(46px, 5vw, 76px);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .page-header .back {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: #e8a89a;
+      display: inline-block; margin-bottom: 24px;
+    }
+    .page-header .back:hover { color: var(--marmor); }
+    .page-header .col { max-width: var(--measure); margin-inline: auto; }
+    .page-header h1 {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 48px); line-height: 1.15;
+      letter-spacing: .04em; color: var(--marmor);
+      margin-bottom: 16px; max-width: 24ch;
+    }
+    .page-header h1 em { color: var(--gilt); font-style: normal; }
+    .page-header .lede {
+      color: #e0b8b0; font-size: 14.5px; line-height: 1.75;
+    }
+
+    /* stats strip */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0;
+      border-bottom: 2px solid var(--gilt-deep);
+      background: var(--basalt-deep);
+    }
+    .stat-cell {
+      padding: 20px 22px;
+      border-right: 1px solid #2a2320;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+      font-size: 22px; font-weight: 700; color: var(--marmor);
+      font-variant-numeric: tabular-nums;
+      display: block; line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #8d8574; margin-top: 6px; display: block;
+    }
+
+    /* prose sections */
+    .prose {
+      padding: clamp(46px, 5vw, 76px) clamp(24px, 4vw, 56px);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .prose.on-basalt { background: var(--basalt); }
+    .prose.on-deep { background: var(--basalt-deep); }
+    .prose > * { max-width: var(--measure); margin-inline: auto; }
+    .prose .section-label { display: block; margin-bottom: 20px; }
+    .prose h2 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(20px, 2.2vw, 28px); line-height: 1.25;
+      letter-spacing: .03em; color: var(--marmor);
+      margin-bottom: 16px;
+    }
+    .prose p {
+      color: var(--marmor-dim); margin-bottom: 14px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose p strong { color: var(--marmor); font-weight: 700; }
+
+    /* callouts */
+    .callout {
+      border-left: 3px solid var(--gilt-deep);
+      padding: 14px 18px;
+      margin-block: 14px;
+      margin-inline: auto;
+      max-width: var(--measure);
+    }
+    .callout.evidence {
+      background: rgba(155, 51, 36, 0.2);
+      border-left-color: var(--pompeian);
+    }
+    .callout.design {
+      background: rgba(49, 81, 63, 0.25);
+      border-left-color: var(--verde);
+    }
+    .callout.loop {
+      background: rgba(168, 124, 52, 0.15);
+      border-left-color: var(--giallo);
+    }
+    .callout.arch {
+      background: rgba(37, 64, 107, 0.25);
+      border-left-color: var(--aegyptus);
+    }
+    .callout-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .callout.evidence .callout-label { color: #e8a89a; }
+    .callout.design .callout-label { color: #8ecaa0; }
+    .callout.loop .callout-label { color: var(--giallo-lit); }
+    .callout.arch .callout-label { color: #8eb8e0; }
+    .callout p { color: var(--marmor-dim); font-size: 13.5px; margin-bottom: 0; }
+    .callout p strong { color: var(--marmor); }
+
+    /* dual-column tool comparison */
+    .dual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
+    }
+    .dual-cell {
+      padding: 18px 20px;
+      border-right: 1px solid #2a2320;
+      border-bottom: 1px solid #2a2320;
+    }
+    .dual-cell.header {
+      font-size: 13px; font-weight: 700; color: var(--marmor);
+      letter-spacing: .04em;
+    }
+    .dual-cell.header.cassio { background: rgba(155, 51, 36, 0.15); }
+    .dual-cell.header.vivi { background: rgba(49, 81, 63, 0.15); }
+    .dual-cell .d-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #8d8574; display: block; margin-bottom: 4px;
+    }
+    .dual-cell .d-val {
+      font-size: 14px; font-weight: 700; color: var(--marmor);
+      font-variant-numeric: tabular-nums;
+    }
+    .dual-cell .d-note {
+      font-size: 11.5px; color: var(--marmor-dim); margin-top: 4px;
+    }
+
+    /* parser grid */
+    .parser-grid {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-block: 14px;
+      margin-inline: auto;
+      max-width: var(--measure);
+    }
+    .parser-tag {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .04em;
+      padding: 4px 10px;
+      border: 1px solid #2a2320;
+      color: var(--marmor-dim);
+    }
+    .parser-tag.active { border-color: var(--pompeian); color: #e8a89a; }
+
+    /* role grid */
+    .role-grid {
+      display: flex; flex-wrap: wrap; gap: 5px;
+      margin-block: 14px;
+      margin-inline: auto;
+      max-width: var(--measure);
+    }
+    .role-tag {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .04em;
+      padding: 3px 8px;
+      border: 1px solid #2a2320;
+      color: var(--marmor-dim);
+    }
+    .role-tag.mind { border-color: var(--gilt); color: var(--gilt); }
+    .role-tag.head { border-color: var(--pompeian); color: #e8a89a; }
+    .role-tag.hand { border-color: var(--verde); color: #8ecaa0; }
+    .role-tag.spec { border-color: var(--aegyptus); color: #8eb8e0; }
+
+    /* flow table */
+    .flow-grid {
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+    }
+    .flow-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      border-bottom: 1px solid #2a2320;
+    }
+    .flow-row.flow-header {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #8d8574;
+    }
+    .flow-cell {
+      font-size: 12px; color: var(--marmor-dim);
+      padding: 8px 14px;
+      border-right: 1px solid #2a2320;
+    }
+    .flow-cell strong { color: var(--gilt); font-weight: 700; }
+    .flow-cell.num {
+      font-variant-numeric: tabular-nums;
+      text-align: right; font-weight: 600;
+      color: var(--marmor);
+    }
+
+    /* corpus bar chart */
+    .corpus-bars {
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+      gap: clamp(2px, .5vw, 6px);
+      height: 160px;
+    }
+    .corpus-col {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 4px;
+      text-align: center;
+      min-width: 0;
+    }
+    .corpus-val {
+      align-self: end;
+      font-size: 9px; font-weight: 600; color: #8d8574;
+      font-variant-numeric: tabular-nums;
+    }
+    .corpus-barwrap { display: flex; align-items: flex-end; }
+    .corpus-bar {
+      width: 100%;
+      height: max(calc(var(--pct) * 1%), 1.5%);
+      background: linear-gradient(to top, var(--pompeian), var(--pompeian-lit));
+    }
+    .corpus-month {
+      font-size: 8px; font-weight: 600; letter-spacing: .02em; color: #8d8574;
+    }
+
+    /* timeline eras */
+    .era {
+      padding: clamp(36px, 4vw, 56px) clamp(24px, 4vw, 56px);
+      border-bottom: 1px solid #2a2320;
+      background: var(--basalt);
+    }
+    .era:last-child { border-bottom: 2px solid var(--gilt-deep); }
+    .era-inner {
+      max-width: var(--era-measure);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: clamp(20px, 3vw, 44px);
+      align-items: start;
+    }
+    .era-meta .era-dates {
+      font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
+      color: var(--gilt); display: block;
+    }
+    .era-meta .era-detail {
+      font-size: 10px; color: #8d8574;
+      letter-spacing: .04em; margin-top: 4px; display: block;
+    }
+    .era-content h2 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(18px, 2vw, 24px); line-height: 1.25;
+      letter-spacing: .03em; color: var(--marmor);
+      margin-bottom: 12px;
+    }
+    .era-content p {
+      color: var(--marmor-dim); margin-bottom: 10px;
+    }
+    .era-content p:last-child { margin-bottom: 0; }
+
+    /* pattern grid */
+    .pattern-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0;
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+    }
+    .pattern-cell {
+      padding: 20px 22px;
+      border-right: 1px solid #2a2320;
+      border-bottom: 1px solid #2a2320;
+    }
+    .pattern-cell h3 {
+      font-size: 14px; font-weight: 700; color: var(--marmor);
+      margin-bottom: 8px;
+    }
+    .pattern-cell p {
+      font-size: 12.5px; color: var(--marmor-dim); line-height: 1.75;
+      max-width: 42ch;
+    }
+
+    /* pull quote */
+    .pull {
+      border-left: 2px solid var(--gilt);
+      padding: 4px 0 4px 20px;
+      max-width: var(--measure);
+      font-size: 14px; line-height: 1.7;
+      color: var(--marmor);
+      margin-block: 20px;
+      margin-inline: auto;
+    }
+    .pull em { color: var(--gilt); font-style: normal; }
+
+    /* inscription */
+    .inscription {
+      background: var(--pompeian); text-align: center;
+      padding: clamp(52px, 6vw, 84px) clamp(24px, 4vw, 56px);
+    }
+    .inscription .txt {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(18px, 2.2vw, 30px); line-height: 1.35; letter-spacing: .1em;
+      color: var(--marmor);
+      max-width: 800px; margin-inline: auto;
+    }
+
+    /* footer */
+    .stylobate {
+      background: var(--basalt); border-top: 2px solid var(--gilt-deep);
+      padding: 22px clamp(20px, 4vw, 44px);
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #6b6153;
+    }
+
+    @media (max-width: 900px) {
+      .era-inner { grid-template-columns: 1fr; gap: 10px; }
+      .stats-strip { grid-template-columns: repeat(3, 1fr); }
+      .dual { grid-template-columns: 1fr; }
+      .flow-row { grid-template-columns: 1fr 1fr auto; }
+    }
+    @media (max-width: 540px) {
+      body { font-size: 14px; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .corpus-bars { height: 120px; }
+      .corpus-val { font-size: 7.5px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="architrave">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="wordmark" href="/">IZ<span>/</span>DEV</a>
+      <div class="nav-links">
+        <a href="/#research">Research</a>
+        <a href="/#case-studies">Case Studies</a>
+        <a href="/#programs">Programs</a>
+        <a href="/#evidence">Evidence</a>
+        <a href="/genz.html">Gen Z</a>
+        <a href="/llms.txt" title="Machine-readable site index for agents">LLMS</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <div class="col">
+        <a class="back" href="/#case-studies">&larr; Case Studies</a>
+        <h1>The substrate. <em>Evidence and coordination.</em></h1>
+        <p class="lede">Cassio and Vivarium are the infrastructure you build around agents to make them sustainable over months, not minutes. Cassio is the evidence layer &mdash; 13,512 AI session transcripts normalized, compacted, and made searchable. Vivarium is the coordination layer &mdash; 61 agent roles exchanging 20,672 messages across mailspaces that decide what work is ready and who does it. Two tools, one operating surface.</p>
+      </div>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat-cell"><span class="stat-num">75K</span><span class="stat-label">Lines of Rust</span></div>
+      <div class="stat-cell"><span class="stat-num">424</span><span class="stat-label">Combined commits</span></div>
+      <div class="stat-cell"><span class="stat-num">37</span><span class="stat-label">Tagged releases</span></div>
+      <div class="stat-cell"><span class="stat-num">13,512</span><span class="stat-label">Transcripts processed</span></div>
+      <div class="stat-cell"><span class="stat-num">26,530</span><span class="stat-label">Coordination events</span></div>
+      <div class="stat-cell"><span class="stat-num">61</span><span class="stat-label">Agent roles</span></div>
+    </div>
+
+    <!-- THESIS -->
+    <section class="prose on-basalt">
+      <span class="label section-label">The thesis</span>
+      <h2>Agents need infrastructure, not just prompts.</h2>
+      <p>The visible output of AI-assisted engineering is code. But code is the product of sessions, and sessions produce transcripts, and transcripts accumulate into a corpus that no human can read at scale. Meanwhile, agents that coordinate &mdash; dispatching work, reporting results, auditing output &mdash; need a communication surface that persists across sessions, supports role-based routing, and tracks what happened. Without infrastructure for evidence and coordination, agent fleets are just expensive typing.</p>
+      <p>Cassio and Vivarium solve the two halves of this problem. <strong>Cassio</strong> turns raw session logs from 10 different AI coding tools into a normalized AST, then compacts them through an LLM pipeline into daily, weekly, and monthly intelligence. <strong>Vivarium</strong> treats email as a durable agent data surface &mdash; local mailspaces with typed roles, work graphs, and a readiness frontier that decides which work is eligible for dispatch.</p>
+      <p>Together they form the substrate the Mind/Head/Hand fleet architecture runs on. The loop is closed: agents produce sessions, Cassio compacts them into evidence, Vivi's mailspaces route the evidence to the right roles, and those roles dispatch the next round of work.</p>
+    </section>
+
+    <!-- SIDE BY SIDE -->
+    <section class="prose on-deep">
+      <span class="label section-label">Two tools, one surface</span>
+      <h2>The evidence layer and the coordination layer.</h2>
+      <div class="dual">
+        <div class="dual-cell header cassio">Cassio &mdash; evidence</div>
+        <div class="dual-cell header vivi">Vivarium &mdash; coordination</div>
+        <div class="dual-cell"><span class="d-label">Purpose</span><span class="d-note">Normalize, compact, and search AI session transcripts</span></div>
+        <div class="dual-cell"><span class="d-label">Purpose</span><span class="d-note">Local-first email archive, mailspaces, and agent work routing</span></div>
+        <div class="dual-cell"><span class="d-label">LOC</span><span class="d-val">21K</span><span class="d-note">Rust &middot; single crate</span></div>
+        <div class="dual-cell"><span class="d-label">LOC</span><span class="d-val">53.8K</span><span class="d-note">Rust &middot; main crate + vivi-pty</span></div>
+        <div class="dual-cell"><span class="d-label">Commits</span><span class="d-val">112</span><span class="d-note">18 active days &middot; 17 releases</span></div>
+        <div class="dual-cell"><span class="d-label">Commits</span><span class="d-val">312</span><span class="d-note">24 active days &middot; 20 releases</span></div>
+        <div class="dual-cell"><span class="d-label">Tests</span><span class="d-val">266</span><span class="d-note">functions &middot; companion file pattern</span></div>
+        <div class="dual-cell"><span class="d-label">Tests</span><span class="d-val">56</span><span class="d-note">companion files &middot; 5.9K test LOC</span></div>
+        <div class="dual-cell"><span class="d-label">Core abstraction</span><span class="d-note">Parser &rarr; AST &rarr; Formatter</span></div>
+        <div class="dual-cell"><span class="d-label">Core abstraction</span><span class="d-note">Mailspace &rarr; Roles &rarr; Work graphs</span></div>
+      </div>
+    </section>
+
+    <!-- CASSIO -->
+    <section class="prose on-basalt">
+      <span class="label section-label">Cassio &middot; the evidence layer</span>
+      <h2>Ten formats, one AST.</h2>
+      <p>AI coding tools each produce their own session log format &mdash; Claude Code writes JSONL, Codex writes JSON rollouts, Hermes stores SQLite, OpenCode writes JSON, and each has its own schema, its own quirks, its own definition of what a "message" is. Cassio normalizes all of them into a shared AST: <code>Session &rarr; Message &rarr; ContentBlock &rarr; Tool</code>. Adding a new tool requires one parser module. Everything downstream &mdash; formatting, compaction, search, cost estimation, training export &mdash; only knows the AST.</p>
+      <div class="parser-grid">
+        <span class="parser-tag active">Claude Code</span>
+        <span class="parser-tag active">Codex</span>
+        <span class="parser-tag active">OpenCode</span>
+        <span class="parser-tag active">Hermes</span>
+        <span class="parser-tag active">Claude Chat</span>
+        <span class="parser-tag active">Claude Desktop</span>
+        <span class="parser-tag active">pi</span>
+        <span class="parser-tag active">Kimi Code</span>
+        <span class="parser-tag active">Grok</span>
+        <span class="parser-tag active">Cursor</span>
+      </div>
+      <p>The pipeline follows the compiler pattern deliberately: input formats are the source language, the AST is the intermediate representation, and formatters are the backends. This is why 10 parsers were added in 5 months without touching the output layer.</p>
+      <div class="callout evidence">
+        <div class="callout-label">Self-referential</div>
+        <p>Cassio processes the transcripts of the AI sessions that built Cassio. The tool that generates evidence was itself built by the process it documents. <strong>The 13,512-file corpus includes Cassio's own development history.</strong></p>
+      </div>
+    </section>
+
+    <!-- THE CORPUS -->
+    <section class="prose on-deep">
+      <span class="label section-label">The corpus</span>
+      <h2>13,512 transcripts. 5 GB. 22 months.</h2>
+      <p>The transcript archive spans October 2024 through July 2026. Cassio processes it into 232 daily summaries and 17 monthly rollups. The monthly volume tracks the research trajectory &mdash; 3 files in October 2024, then the November 2025 inflection when heavy Monk API and Radix work began, peaking at 2,765 in the first 25 days of July 2026.</p>
+      <div class="corpus-bars" role="img" aria-label="Monthly transcript file counts from October 2024 through July 2026">
+        <div class="corpus-col"><span class="corpus-val">3</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:0"></span></span><span class="corpus-month">O24</span></div>
+        <div class="corpus-col"><span class="corpus-val">22</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">N</span></div>
+        <div class="corpus-col"><span class="corpus-val">45</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:2"></span></span><span class="corpus-month">D</span></div>
+        <div class="corpus-col"><span class="corpus-val">78</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:3"></span></span><span class="corpus-month">J25</span></div>
+        <div class="corpus-col"><span class="corpus-val">18</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">F</span></div>
+        <div class="corpus-col"><span class="corpus-val">28</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">A</span></div>
+        <div class="corpus-col"><span class="corpus-val">69</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:2.5"></span></span><span class="corpus-month">S</span></div>
+        <div class="corpus-col"><span class="corpus-val">21</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">O</span></div>
+        <div class="corpus-col"><span class="corpus-val">773</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:28"></span></span><span class="corpus-month">N</span></div>
+        <div class="corpus-col"><span class="corpus-val">1.5K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:55"></span></span><span class="corpus-month">D</span></div>
+        <div class="corpus-col"><span class="corpus-val">1.3K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:47"></span></span><span class="corpus-month">J26</span></div>
+        <div class="corpus-col"><span class="corpus-val">2.3K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:82"></span></span><span class="corpus-month">F</span></div>
+        <div class="corpus-col"><span class="corpus-val">1.0K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:36"></span></span><span class="corpus-month">M</span></div>
+        <div class="corpus-col"><span class="corpus-val">984</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:36"></span></span><span class="corpus-month">A</span></div>
+        <div class="corpus-col"><span class="corpus-val">1.8K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:64"></span></span><span class="corpus-month">M</span></div>
+        <div class="corpus-col"><span class="corpus-val">825</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:30"></span></span><span class="corpus-month">J</span></div>
+        <div class="corpus-col"><span class="corpus-val">2.8K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:100"></span></span><span class="corpus-month">J*</span></div>
+      </div>
+      <p>The compaction pipeline is the distinctive feature. Raw sessions compact into daily summaries via a local LLM (ollama or llama.cpp). Dailies compact into weeklies. Weeklies compact into monthly personality and pattern analyses via cloud models (Claude or Codex). Each tier chunks automatically when content exceeds the context budget. Checkpoints persist for resume-on-failure. The result is navigable intelligence at every timescale.</p>
+    </section>
+
+    <!-- VIVARIUM -->
+    <section class="prose on-basalt">
+      <span class="label section-label">Vivarium &middot; the coordination layer</span>
+      <h2>Email as agent infrastructure.</h2>
+      <p>Vivarium &mdash; named after Cassiodorus's 6th-century monastery for preserving written works &mdash; treats email as a durable data surface for AI agents. Not email the UI. Email the protocol: messages with senders, recipients, threads, and persistence. Local mailspaces give each project a self-contained coordination surface with typed roles (inbox, sent, done, archive, tasks, memos, wants, needs), work graphs imported from Mermaid flowcharts, and event-driven watch surfaces.</p>
+      <p>The public binary is <code>vivi</code>. A companion binary <code>vivi-pty</code> provides a project-scoped PTY runtime for managing Fleet agent processes via Unix sockets. Three mail provider paths coexist: standard IMAP/SMTP, Proton Bridge, and a direct Proton Mail API integration that bypasses the Bridge entirely &mdash; including SRP authentication and OpenPGP encryption/decryption.</p>
+      <div class="callout design">
+        <div class="callout-label">Authority split</div>
+        <p>Vivi decides <strong>what work is ready</strong> (topology, readiness frontier, role capacity). Mind decides <strong>who does it</strong> (dispatch). Fleet <strong>executes</strong> (process management). Three systems, three responsibilities. Vivi never spawns an agent. Mind never computes readiness. The boundaries are load-bearing.</p>
+      </div>
+    </section>
+
+    <!-- LIVE DATA -->
+    <section class="prose on-deep">
+      <span class="label section-label">The live data</span>
+      <h2>61 roles, 20,672 messages, 16 days.</h2>
+      <p>Two active Vivi mailspaces &mdash; Faberlang (the compiler project) and Mintedgeek (the agent runtime) &mdash; have been running for 16 days as of July 25, 2026. The numbers below are production data, not test fixtures.</p>
+      <div class="dual">
+        <div class="dual-cell header cassio">Faberlang</div>
+        <div class="dual-cell header vivi">Mintedgeek</div>
+        <div class="dual-cell"><span class="d-label">Messages</span><span class="d-val">14,611</span></div>
+        <div class="dual-cell"><span class="d-label">Messages</span><span class="d-val">6,061</span></div>
+        <div class="dual-cell"><span class="d-label">Events</span><span class="d-val">17,989</span></div>
+        <div class="dual-cell"><span class="d-label">Events</span><span class="d-val">8,541</span></div>
+        <div class="dual-cell"><span class="d-label">Agent roles</span><span class="d-val">37</span></div>
+        <div class="dual-cell"><span class="d-label">Agent roles</span><span class="d-val">24</span></div>
+        <div class="dual-cell"><span class="d-label">Blob storage</span><span class="d-val">15.1 MB</span></div>
+        <div class="dual-cell"><span class="d-label">Blob storage</span><span class="d-val">5.8 MB</span></div>
+        <div class="dual-cell"><span class="d-label">Work graphs</span><span class="d-val">2 active</span><span class="d-note">48 nodes &middot; 45 edges &middot; 20 attempts</span></div>
+        <div class="dual-cell"><span class="d-label">Work graphs</span><span class="d-val">&mdash;</span><span class="d-note">Not yet adopted</span></div>
+        <div class="dual-cell"><span class="d-label">Peak day</span><span class="d-val">5,609</span><span class="d-note">Jul 14</span></div>
+        <div class="dual-cell"><span class="d-label">Peak day</span><span class="d-val">5,066</span><span class="d-note">Jul 14</span></div>
+      </div>
+      <p>Both workspaces peaked on the same day &mdash; <strong>10,675 coordination events on July 14</strong> across 61 agent roles. That's the operational scale Vivi is coordinating.</p>
+    </section>
+
+    <!-- ROLE TOPOLOGY -->
+    <section class="prose on-basalt">
+      <span class="label section-label">The role topology</span>
+      <h2>Mind is the hub. Everything routes through it.</h2>
+      <p>The Faberlang mailspace runs 37 distinct agent identities organized in the Mind/Head/Hand hierarchy. Mind is the dispatch nexus &mdash; the highest-traffic node in every message flow. Heads (CTO, CEO, CPO, CSO, CXO, CMO) own domain judgment. Hands execute. Specialists (hunters, auditors, planners, reviewer, strategist, purity, correctness) handle specific cross-cutting concerns.</p>
+      <div class="role-grid">
+        <span class="role-tag mind">mind</span>
+        <span class="role-tag head">head-cto</span>
+        <span class="role-tag head">head-ceo</span>
+        <span class="role-tag head">head-cpo</span>
+        <span class="role-tag head">head-cso</span>
+        <span class="role-tag head">head-cxo</span>
+        <span class="role-tag head">head-cmo</span>
+        <span class="role-tag hand">hand-1</span>
+        <span class="role-tag hand">hand-2</span>
+        <span class="role-tag hand">hand-3</span>
+        <span class="role-tag hand">hand-4</span>
+        <span class="role-tag hand">hand-5</span>
+        <span class="role-tag hand">hand-6</span>
+        <span class="role-tag hand">hand-7</span>
+        <span class="role-tag hand">hand-8</span>
+        <span class="role-tag hand">hand-9</span>
+        <span class="role-tag hand">hand-10</span>
+        <span class="role-tag hand">hand-11</span>
+        <span class="role-tag spec">reviewer</span>
+        <span class="role-tag spec">strategist</span>
+        <span class="role-tag spec">correctness</span>
+        <span class="role-tag spec">purity</span>
+        <span class="role-tag spec">hunter-1</span>
+        <span class="role-tag spec">hunter-2</span>
+        <span class="role-tag spec">hunter-3</span>
+        <span class="role-tag spec">hunter-4</span>
+        <span class="role-tag spec">hunter-5</span>
+        <span class="role-tag spec">auditor-1</span>
+        <span class="role-tag spec">auditor-2</span>
+        <span class="role-tag spec">auditor-3</span>
+        <span class="role-tag spec">auditor-4</span>
+        <span class="role-tag spec">planner-1</span>
+        <span class="role-tag spec">planner-2</span>
+        <span class="role-tag spec">planner-3</span>
+        <span class="role-tag spec">planner-4</span>
+        <span class="role-tag spec">codex</span>
+        <span class="role-tag spec">operator</span>
+      </div>
+      <p>The top message channels tell the coordination story:</p>
+      <div class="flow-grid">
+        <div class="flow-row flow-header"><span class="flow-cell">From</span><span class="flow-cell">To</span><span class="flow-cell">Msgs</span></div>
+        <div class="flow-row"><span class="flow-cell"><strong>hand-1</strong> &rarr;</span><span class="flow-cell">mind</span><span class="flow-cell num">335</span></div>
+        <div class="flow-row"><span class="flow-cell"><strong>head-cto</strong> &rarr;</span><span class="flow-cell">mind</span><span class="flow-cell num">308</span></div>
+        <div class="flow-row"><span class="flow-cell"><strong>mind</strong> &rarr;</span><span class="flow-cell">hand-1</span><span class="flow-cell num">297</span></div>
+        <div class="flow-row"><span class="flow-cell"><strong>reviewer</strong> &rarr;</span><span class="flow-cell">codex</span><span class="flow-cell num">249</span></div>
+        <div class="flow-row"><span class="flow-cell"><strong>reviewer</strong> &rarr;</span><span class="flow-cell">hunter-1</span><span class="flow-cell num">191</span></div>
+        <div class="flow-row"><span class="flow-cell"><strong>mind</strong> &rarr;</span><span class="flow-cell">hand-4</span><span class="flow-cell num">190</span></div>
+        <div class="flow-row"><span class="flow-cell"><strong>mind</strong> &rarr;</span><span class="flow-cell">head-cto</span><span class="flow-cell num">169</span></div>
+        <div class="flow-row"><span class="flow-cell"><strong>mind</strong> &rarr;</span><span class="flow-cell">hand-2</span><span class="flow-cell num">168</span></div>
+        <div class="flow-row"><span class="flow-cell"><strong>mind</strong> &rarr;</span><span class="flow-cell">hand-3</span><span class="flow-cell num">164</span></div>
+        <div class="flow-row"><span class="flow-cell"><strong>mind</strong> &rarr;</span><span class="flow-cell">mind</span><span class="flow-cell num">152</span></div>
+      </div>
+      <div class="callout loop">
+        <div class="callout-label">Mind &rarr; Mind</div>
+        <p>Mind sends 152 messages to itself in Faberlang. These are <strong>self-dispatch memos</strong> &mdash; work items Mind creates for its own future iterations. The coordination surface supports self-referential routing because sometimes the dispatcher is also the right executor.</p>
+      </div>
+    </section>
+
+    <!-- WORK GRAPHS -->
+    <section class="prose on-deep">
+      <span class="label section-label">Work graphs</span>
+      <h2>Mermaid in. Ready frontier out.</h2>
+      <p>Vivarium imports work graphs from Mermaid flowcharts &mdash; the same format you'd use to document a process diagram. But these aren't documentation. They're executable: each node is a work item with a state (<code>open</code>, <code>active</code>, <code>done</code>). Edges encode dependencies. The ready frontier is the set of nodes whose dependencies are all <code>done</code> &mdash; the work that is eligible right now.</p>
+      <p>The Faberlang workspace has two live graphs: <strong>rivus-campaign</strong> and <strong>rivus-v2</strong>, with 48 nodes, 45 edges, and 20 active attempts. Nodes follow a phased pattern &mdash; <code>P0 Bootstrap</code>, <code>P1 Spine</code>, <code>P2 Semantic</code> &mdash; with each phase containing Admit, Goal-Audit, Forge, Check, Delivery, and Delivery-Audit steps. This is the factory pattern expressed as a graph: the phases are the pipeline, and the readiness frontier is the scheduling discipline.</p>
+      <div class="callout arch">
+        <div class="callout-label">Vivi decides readiness, not dispatch</div>
+        <p>Vivi computes which nodes are ready. It does not decide which agent works on them. <strong>That's Mind's job.</strong> The authority split means the work-graph engine never needs to understand agent capabilities, and the dispatcher never needs to understand dependency topology. Each system does one thing well.</p>
+      </div>
+    </section>
+
+    <!-- SHARED DNA -->
+    <section class="prose on-basalt">
+      <span class="label section-label">Shared DNA</span>
+      <h2>The same engineering discipline, twice.</h2>
+      <p>Cassio and Vivarium share more than a use case. They share an engineering culture:</p>
+      <p><strong>Hygiene ratchets.</strong> Both projects enforce code quality via compile-time test suites that scan production source. Cassio caps <code>.unwrap()</code> at 11 calls and bans <code>panic!()</code>, <code>todo!()</code>, and inline test modules. Vivarium sets per-file line limits (1,000), per-function limits (60 lines), total LOC budgets, and the same inline-test ban. The budgets can only decrease &mdash; a ratchet that tightens as the code matures.</p>
+      <p><strong>Companion test files.</strong> Both projects ban <code>#[cfg(test)]</code> modules inside production files. Every module gets its own <code>*_test.rs</code> companion file. This isn't convention &mdash; it's enforced by a test that fails the build if violated. The separation means production files contain zero test infrastructure.</p>
+      <p><strong>Burst development.</strong> Cassio: 112 commits across 18 active days (6.2 per active day). Vivarium: 312 commits across 24 active days (13 per active day). Long pauses between bursts. Both projects were built in concentrated, deep sessions &mdash; not spread-out daily commits.</p>
+      <p><strong>Parser-AST architecture.</strong> Cassio normalizes 10 AI tool formats into a shared Session AST. Vivarium normalizes IMAP, Proton Bridge, and direct Proton API into a shared message store. Different domains, same structural pattern: heterogeneous inputs normalized through a trait-based parser layer into a unified representation that downstream systems consume without knowing the source.</p>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="prose on-deep">
+      <span class="label section-label">Timeline</span>
+      <h2>Five months, two tools, in parallel.</h2>
+    </section>
+
+    <article class="era">
+      <div class="era-inner">
+      <div class="era-meta">
+        <span class="era-dates">Feb 14, 2026</span>
+        <span class="era-detail">Cassio: 11 commits</span>
+      </div>
+      <div class="era-content">
+        <h2>Cassio: MVP in a day</h2>
+        <p>Initial commit through v0.3.0 in a single day: config system, Claude Code parser, Markdown formatter, 128 unit tests, GitHub Actions release workflow, and a curl-pipe-bash installer. The same day, Vivarium was scaffolded with its first 2 commits, then went dormant for 71 days.</p>
+      </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-inner">
+      <div class="era-meta">
+        <span class="era-dates">Feb &ndash; Apr 2026</span>
+        <span class="era-detail">Cassio: 28 commits</span>
+      </div>
+      <div class="era-content">
+        <h2>Cassio grows parsers</h2>
+        <p>Claude Desktop support, pricing module, Codex parser, OpenCode parser, Hermes parser (SQLite-backed). By April: 6 AI tools supported, semantic search with bundled Nomic embeddings, daily/weekly/monthly compaction pipeline across 5 LLM providers (ollama, Claude CLI, Codex CLI, OpenRouter, OpenAI-compatible). Vivarium remains dormant.</p>
+      </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-inner">
+      <div class="era-meta">
+        <span class="era-dates">May 2026</span>
+        <span class="era-detail">Vivi: 147 commits</span>
+      </div>
+      <div class="era-content">
+        <h2>Vivarium explodes</h2>
+        <p>58 commits on May 2 alone &mdash; a pivot day that rewrote Vivarium from prototype to phased implementation. IMAP sync, Proton Mail API integration (SRP auth, OpenPGP encrypt/decrypt), SQLite-backed message store, mailspace event system, role management. By month end: v5.x with the core coordination surface operational. Cassio adds pi and Kimi Code parsers in the same month.</p>
+      </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-inner">
+      <div class="era-meta">
+        <span class="era-dates">Jun &ndash; Jul 2026</span>
+        <span class="era-detail">Both active</span>
+      </div>
+      <div class="era-content">
+        <h2>Convergence</h2>
+        <p>Cassio's June polish pass adds Grok and Cursor parsers (10 tools total), plus a full codebase audit (21 commits on June 29). Vivarium's July burst (147 commits) adds work graphs with Mermaid import, board views, cross-role tracing, role scheduling, capacity management, and the vivi-pty companion binary. Both tools reach production use in the Faberlang and Mintedgeek workspaces simultaneously.</p>
+      </div>
+      </div>
+    </article>
+
+    <!-- THE CLOSED LOOP -->
+    <section class="prose on-basalt">
+      <span class="label section-label">The closed loop</span>
+      <h2>The infrastructure feeds itself.</h2>
+      <p>The loop is literal, not metaphorical. Agents produce coding sessions. Cassio discovers those sessions automatically (it knows where every supported tool stores its logs), normalizes them into AST, formats them as Markdown transcripts, and compacts them into daily intelligence. That intelligence enters Vivi's mailspaces. Mind reads the evidence. Mind dispatches work to Hands via the mailspace. Hands produce sessions. Cassio processes them.</p>
+      <p>The 13,512-file corpus and the 26,530 coordination events aren't parallel facts. They're the same loop at two measurement points &mdash; one upstream (what happened), one downstream (what to do next). The infrastructure is the loop.</p>
+      <div class="pull">The substrate doesn't do the work. It makes the work <em>legible</em> &mdash; to the human who audits it and to the agents who continue it.</div>
+    </section>
+
+    <!-- PATTERNS -->
+    <section class="prose on-deep">
+      <span class="label section-label">Patterns</span>
+      <h2>What the substrate reveals.</h2>
+      <div class="pattern-grid">
+        <div class="pattern-cell">
+          <h3>Evidence is infrastructure</h3>
+          <p>13,512 transcripts are useless without compaction. Cassio turns volume into intelligence: session → daily → weekly → monthly. Each tier is a different question answered at a different timescale.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Email is underrated</h3>
+          <p>Email has senders, recipients, threads, persistence, and search. Agents need all five. Vivi didn't invent a new protocol — it used the one that already works and added readiness computation.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Ratchets over rules</h3>
+          <p>Both projects enforce quality with monotonically-tightening budgets. The unwrap count can go down, never up. The max function length can shrink, never grow. Discipline that compounds.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Authority boundaries</h3>
+          <p>Vivi computes readiness. Mind dispatches. Fleet executes. Three systems, three jobs. No system does another's work. The boundaries survived because they were drawn before the code was written.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Parser-AST everywhere</h3>
+          <p>Cassio: 10 input formats → one AST. Vivarium: 3 mail providers → one message store. The same structural pattern in both tools, because the same problem (heterogeneous inputs, uniform downstream) appears in both domains.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Build the loop, not the tool</h3>
+          <p>Neither Cassio nor Vivarium does the actual engineering. They make the engineering process observable and coordinable. The value is in the loop they form together, not in either tool alone.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="prose on-basalt">
+      <p><strong>The substrate is the least visible part of the system and the part that makes everything else possible.</strong> Without Cassio, 13,512 session transcripts are a write-only archive &mdash; evidence that exists but can't be used. Without Vivarium, 61 agent roles have no coordination surface &mdash; they produce work but can't route it, track it, or decide what's ready. Together they close the loop: evidence feeds coordination, coordination produces sessions, sessions become evidence.</p>
+      <p>This is the infrastructure you build when you're serious about running agents over months, not minutes. It's not glamorous. It doesn't have a demo. What it has is 26,530 coordination events across two live workspaces, a 5 GB transcript corpus compacted into navigable intelligence, and a readiness frontier that runs in production today. The substrate does its job by being invisible.</p>
+    </section>
+
+    <div class="inscription">
+      <div class="txt">The infrastructure does its job by being invisible. The evidence is that the loop keeps running.</div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="stylobate">
+      <span>Ian Zepp &middot; ianzepp.dev</span>
+      <span><a href="/">Back to main &uarr;</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
