@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case study: The First Protocols — a KDE frontend for Nmap and a Gnutella P2P library, written during the last months of active military service. October 1999 to May 2000. The origin layer.">
+  <meta name="theme-color" content="#14100f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
+  <title>The First Protocols &mdash; Ian Zepp</title>
+  <style>
+    @font-face {
+      font-family: "Cinzel";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("../fonts/cinzel.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Cinzel";
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url("../fonts/cinzel.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/plex-mono-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url("../fonts/plex-mono-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("../fonts/plex-mono-700.woff2") format("woff2");
+    }
+
+    :root {
+      --basalt: #14100f;
+      --basalt-deep: #0d0a09;
+      --porphyry: #6e2b3c;
+      --porphyry-deep: #4f1f2b;
+      --pompeian: #9b3324;
+      --giallo: #a87c34;
+      --giallo-lit: #c49a45;
+      --verde: #31513f;
+      --aegyptus: #25406b;
+      --gilt: #c9a24a;
+      --gilt-deep: #8a6a2f;
+      --marmor: #ece6da;
+      --marmor-dim: #b8ac9a;
+      --inscr: "Cinzel", Georgia, serif;
+      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      --measure: 680px;
+      --era-measure: 760px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--basalt);
+      color: var(--marmor);
+      font-family: var(--mono);
+      font-size: 14.5px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--gilt); text-decoration: none; transition: color .12s; }
+    a:hover { color: var(--marmor); }
+    a:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
+    ::selection { background: var(--porphyry); color: var(--marmor); }
+    code { font-family: var(--mono); font-size: 13px; color: var(--gilt); }
+
+    .label {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gilt);
+    }
+
+    /* architrave */
+    .architrave { background: var(--basalt); border-bottom: 2px solid var(--gilt-deep); }
+    .nav {
+      min-height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      padding: 0 clamp(20px, 4vw, 44px);
+    }
+    .wordmark { font-weight: 700; font-size: 15px; letter-spacing: .32em; color: var(--marmor); }
+    .wordmark:hover { color: var(--marmor); }
+    .wordmark span { color: var(--gilt); }
+    .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .nav-links a { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--marmor-dim); }
+    .nav-links a:hover { color: var(--gilt); }
+
+    /* page header */
+    .page-header {
+      background: var(--gilt-deep);
+      color: var(--marmor);
+      padding: clamp(56px, 7vw, 100px) clamp(24px, 4vw, 56px) clamp(46px, 5vw, 76px);
+      border-bottom: 2px solid var(--gilt);
+    }
+    .page-header .back {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: #c9a86a;
+      display: inline-block; margin-bottom: 24px;
+    }
+    .page-header .back:hover { color: var(--marmor); }
+    .page-header .col { max-width: var(--measure); margin-inline: auto; }
+    .page-header h1 {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 48px); line-height: 1.15;
+      letter-spacing: .04em; color: var(--marmor);
+      margin-bottom: 16px; max-width: 24ch;
+    }
+    .page-header h1 em { color: var(--gilt); font-style: normal; }
+    .page-header .lede {
+      color: #ddd0b8; font-size: 14.5px; line-height: 1.75;
+    }
+
+    /* stats strip */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0;
+      border-bottom: 2px solid var(--gilt-deep);
+      background: var(--basalt-deep);
+    }
+    .stat-cell {
+      padding: 20px 22px;
+      border-right: 1px solid #2a2320;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+      font-size: 22px; font-weight: 700; color: var(--marmor);
+      font-variant-numeric: tabular-nums;
+      display: block; line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #8d8574; margin-top: 6px; display: block;
+    }
+
+    /* prose sections */
+    .prose {
+      padding: clamp(46px, 5vw, 76px) clamp(24px, 4vw, 56px);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .prose.on-basalt { background: var(--basalt); }
+    .prose.on-deep { background: var(--basalt-deep); }
+    .prose > * { max-width: var(--measure); margin-inline: auto; }
+    .prose .section-label { display: block; margin-bottom: 20px; }
+    .prose h2 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(20px, 2.2vw, 28px); line-height: 1.25;
+      letter-spacing: .03em; color: var(--marmor);
+      margin-bottom: 16px;
+    }
+    .prose p {
+      color: var(--marmor-dim); margin-bottom: 14px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose p strong { color: var(--marmor); font-weight: 700; }
+
+    /* callouts */
+    .callout {
+      border-left: 3px solid var(--gilt-deep);
+      padding: 14px 18px;
+      margin-block: 14px;
+      margin-inline: auto;
+      max-width: var(--measure);
+    }
+    .callout.evidence {
+      background: rgba(138, 106, 47, 0.15);
+      border-left-color: var(--gilt);
+    }
+    .callout.design {
+      background: rgba(49, 81, 63, 0.25);
+      border-left-color: var(--verde);
+    }
+    .callout.arch {
+      background: rgba(37, 64, 107, 0.25);
+      border-left-color: var(--aegyptus);
+    }
+    .callout.voice {
+      background: rgba(110, 43, 60, 0.2);
+      border-left-color: var(--porphyry);
+    }
+    .callout-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .callout.evidence .callout-label { color: var(--gilt); }
+    .callout.design .callout-label { color: #8ecaa0; }
+    .callout.arch .callout-label { color: #8eb8e0; }
+    .callout.voice .callout-label { color: #e8bfc7; }
+    .callout p { color: var(--marmor-dim); font-size: 13.5px; margin-bottom: 0; }
+    .callout p strong { color: var(--marmor); }
+
+    /* code blocks */
+    .code-block {
+      margin-block: 18px;
+      margin-inline: auto;
+      max-width: var(--measure);
+      background: var(--basalt-deep);
+      border: 1px solid #2a2320;
+      padding: 18px 20px;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: var(--marmor-dim);
+      margin: 0;
+      white-space: pre;
+    }
+    .code-block pre .kw { color: var(--gilt); }
+    .code-block pre .str { color: #8ecaa0; }
+    .code-block pre .cmt { color: #6b6153; }
+    .code-block pre .num { color: #e8a89a; }
+    .code-block .code-cap {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: #6b6153; margin-bottom: 12px;
+    }
+
+    /* file grid */
+    .file-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
+    }
+    .file-cell {
+      padding: 14px 18px;
+      border-right: 1px solid #2a2320;
+      border-bottom: 1px solid #2a2320;
+    }
+    .file-cell.header {
+      font-size: 13px; font-weight: 700; color: var(--marmor);
+      letter-spacing: .04em;
+    }
+    .file-cell.header.kmap { background: rgba(138, 106, 47, 0.15); }
+    .file-cell.header.gnutella { background: rgba(49, 81, 63, 0.15); }
+    .file-cell .f-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #8d8574; display: block; margin-bottom: 4px;
+    }
+    .file-cell .f-val {
+      font-size: 14px; font-weight: 700; color: var(--marmor);
+      font-variant-numeric: tabular-nums;
+    }
+    .file-cell .f-note {
+      font-size: 11.5px; color: var(--marmor-dim); margin-top: 4px;
+    }
+
+    /* component grid */
+    .comp-grid {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-block: 14px;
+      margin-inline: auto;
+      max-width: var(--measure);
+    }
+    .comp-tag {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .04em;
+      padding: 4px 10px;
+      border: 1px solid #2a2320;
+      color: var(--marmor-dim);
+    }
+    .comp-tag.core { border-color: var(--gilt); color: var(--gilt); }
+    .comp-tag.ui { border-color: var(--aegyptus); color: #8eb8e0; }
+    .comp-tag.net { border-color: var(--verde); color: #8ecaa0; }
+
+    /* thread grid */
+    .thread-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-block: 24px;
+      margin-inline: auto;
+      max-width: var(--measure);
+    }
+    .thread {
+      border-top: 2px solid var(--gilt-deep);
+      padding-top: 14px;
+    }
+    .thread h4 {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gilt); margin-bottom: 6px;
+    }
+    .thread .then { font-size: 12.5px; color: var(--marmor); margin-bottom: 6px; }
+    .thread .now { font-size: 12px; color: var(--marmor-dim); }
+
+    /* era timeline */
+    .era {
+      padding: clamp(36px, 4vw, 56px) clamp(24px, 4vw, 56px);
+      border-bottom: 2px solid var(--gilt-deep);
+      background: var(--basalt);
+    }
+    .era > * { max-width: var(--era-measure); margin-inline: auto; }
+    .era .section-label { display: block; margin-bottom: 24px; }
+    .era-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-top: 1px solid #2a2320;
+      align-items: baseline;
+    }
+    .era-date {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .04em; color: var(--gilt);
+      font-variant-numeric: tabular-nums;
+    }
+    .era-text { font-size: 13.5px; color: var(--marmor-dim); }
+    .era-text strong { color: var(--marmor); }
+
+    /* inscription */
+    .inscription {
+      background: var(--gilt-deep); text-align: center;
+      padding: clamp(64px, 7vw, 104px) clamp(24px, 4vw, 56px);
+    }
+    .inscription .txt {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(20px, 2.4vw, 34px); line-height: 1.35; letter-spacing: .1em;
+      color: var(--marmor);
+      max-width: 860px; margin-inline: auto;
+    }
+
+    /* stylobate */
+    .stylobate {
+      background: var(--basalt); border-top: 2px solid var(--gilt-deep);
+      padding: 22px clamp(20px, 4vw, 44px);
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #6b6153;
+    }
+
+    @media (max-width: 900px) {
+      .file-grid, .thread-grid { grid-template-columns: 1fr; }
+      .era-row { grid-template-columns: 1fr; gap: 6px; }
+    }
+    @media (max-width: 540px) {
+      body { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="architrave">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="wordmark" href="/">IZ<span>/</span>DEV</a>
+      <div class="nav-links">
+        <a href="/#case-studies">Case Studies</a>
+        <a href="/#evidence">Evidence</a>
+        <a href="/genz.html">Gen Z</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="col">
+        <a class="back" href="/#case-studies">&larr; Case Studies</a>
+        <span class="label">Origin story &middot; ordinal 0 &middot; 1999&ndash;2000</span>
+        <h1>The First <em>Protocols</em></h1>
+        <p class="lede">A KDE frontend for Nmap and a Gnutella peer-to-peer library, written during the last months of active military service. C++ and Python, two network protocols, one author. October 1999 to May 2000.</p>
+      </div>
+    </section>
+
+    <div class="stats-strip" role="list" aria-label="Key statistics">
+      <div class="stat-cell" role="listitem"><span class="stat-num">7,851</span><span class="stat-label">LOC &middot; C++ &amp; Python</span></div>
+      <div class="stat-cell" role="listitem"><span class="stat-num">3</span><span class="stat-label">Releases &middot; 0.6.1 / 0.7.1 / 0.3.0</span></div>
+      <div class="stat-cell" role="listitem"><span class="stat-num">2</span><span class="stat-label">Languages &middot; C++ &amp; Python</span></div>
+      <div class="stat-cell" role="listitem"><span class="stat-num">8</span><span class="stat-label">Months &middot; Oct 1999 &ndash; May 2000</span></div>
+      <div class="stat-cell" role="listitem"><span class="stat-num">1</span><span class="stat-label">Nmap citation &middot; release 2.50</span></div>
+    </div>
+
+    <!-- thesis -->
+    <section class="prose on-basalt">
+      <span class="label section-label">Thesis</span>
+      <h2>The patterns were already here</h2>
+      <p>Twenty-six years before the Radix compiler and the agent fleets, a twenty-year-old Marine wrote two open-source network tools in eight months. The code is not remarkable by 2026 standards. What is remarkable is how much of the later career&mdash;the protocol-level thinking, the refactoring discipline across versions, the instinct to design the spec and not just implement it&mdash;is already visible in projects that predate the career itself.</p>
+      <p>This is not retrospective mythology. The code is archived. The file headers carry their own dates. The Nmap project cited KMap by name in its contemporary release notes. The evidence is primary.</p>
+      <p>The two projects share an eight-month window, a common author, and a single concern: <strong>network protocols</strong>. One wraps a scanner in a desktop GUI. The other implements a peer-to-peer network from the binary wire format up. Both are complete, shipped, open-source systems&mdash;not sketches.</p>
+    </section>
+
+    <!-- side by side comparison -->
+    <section class="prose on-deep">
+      <span class="label section-label">Side by side</span>
+      <h2>Two protocols, one window</h2>
+      <div class="file-grid">
+        <div class="file-cell header kmap">Kmap</div>
+        <div class="file-cell header gnutella">GnutellaLib</div>
+        <div class="file-cell"><span class="f-label">Language</span><span class="f-val">C++ / Qt / KDE</span></div>
+        <div class="file-cell"><span class="f-label">Language</span><span class="f-val">Python 1.5</span></div>
+        <div class="file-cell"><span class="f-label">Source files</span><span class="f-val">17&ndash;21</span><span class="f-note">Refactored 21 &rarr; 17 across versions</span></div>
+        <div class="file-cell"><span class="f-label">Source files</span><span class="f-val">1</span><span class="f-note">2,313 lines, single module</span></div>
+        <div class="file-cell"><span class="f-label">LOC</span><span class="f-val">5,538</span><span class="f-note">v0.7.1 (.cpp + .h)</span></div>
+        <div class="file-cell"><span class="f-label">LOC</span><span class="f-val">2,313</span><span class="f-note">v0.3.0</span></div>
+        <div class="file-cell"><span class="f-label">Domain</span><span class="f-val">Port scanning</span><span class="f-note">GUI frontend for Nmap</span></div>
+        <div class="file-cell"><span class="f-label">Domain</span><span class="f-val">Peer-to-peer</span><span class="f-note">Gnutella protocol daemon</span></div>
+        <div class="file-cell"><span class="f-label">Build system</span><span class="f-val">GNU Autotools</span><span class="f-note">configure / make / KDE integration</span></div>
+        <div class="file-cell"><span class="f-label">Build system</span><span class="f-val">None</span><span class="f-note">python gnutellalib.py --listen</span></div>
+        <div class="file-cell"><span class="f-label">License</span><span class="f-val">GPL v2</span></div>
+        <div class="file-cell"><span class="f-label">License</span><span class="f-val">GPL v2</span></div>
+      </div>
+    </section>
+
+    <!-- kmap -->
+    <section class="prose on-basalt">
+      <span class="label section-label">Tool I &middot; Kmap</span>
+      <h2>The network scanner gets a face</h2>
+      <p>Kmap is a KDE desktop frontend for Nmap&mdash;the port scanner that was, in 1999, already the standard tool for network reconnaissance. The GUI wraps Nmap's command-line interface in a native Qt application: configuration dialogs for scan types, stealth options, decoy hosts, and timing; a process manager that pipes stdout and stderr to multiple views; scan history with argument persistence.</p>
+      <p>Two versions survive. <strong>Version 0.6.1</strong> (October 1999) has 21 source files and a monolithic option stack. <strong>Version 0.7.1</strong> (January 2000) refactors to 17 files, separates the port, info, and nmap output windows into independent dockable views, introduces a centralized <code>KmConfig</code> persistence layer, and starts KDE 2 / Qt 2.1 compatibility work.</p>
+      <p>The refactoring is the interesting part. Twenty-one files to seventeen is not code golf&mdash;it is architectural reorganization. The changelog is specific: <em>"Rewrote frontend and separated the port/info/nmap windows from the main entry widget. They are now full-fledged desktop windows."</em> This is a design decision about modularity, made between versions, by a single author, before the code was three months old.</p>
+
+      <div class="callout voice">
+        <div class="callout-label">Voice</div>
+        <p>The personality is already there. When Nmap cannot be found on the system, Kmap 0.7.1 displays: <strong>"I looked all over for Nmap, and I just couldn't find it installed anywhere. I rooted all through bin/ and sbin/ in all the system, local, and home directories, and it just wasn't there!"</strong></p>
+      </div>
+
+      <p>Architecture components across both versions:</p>
+      <div class="comp-grid">
+        <span class="comp-tag core">kmap.cpp</span>
+        <span class="comp-tag core">KmConfig</span>
+        <span class="comp-tag core">KmNmap</span>
+        <span class="comp-tag ui">KmapView</span>
+        <span class="comp-tag ui">KmPortView</span>
+        <span class="comp-tag ui">KmInfoView</span>
+        <span class="comp-tag ui">KmNmapView</span>
+        <span class="comp-tag ui">KmHistory</span>
+        <span class="comp-tag ui">KmOptionDlg</span>
+        <span class="comp-tag ui">opt_stealth</span>
+        <span class="comp-tag ui">opt_decoy</span>
+        <span class="comp-tag ui">opt_scan</span>
+        <span class="comp-tag ui">opt_path</span>
+        <span class="comp-tag core">ProcessBase</span>
+      </div>
+      <p style="font-size:12px; color:#6b6153; margin-top:8px"><span style="color:var(--gilt)">gold</span> = core / <span style="color:#8eb8e0">blue</span> = UI</p>
+
+      <div class="callout evidence">
+        <div class="callout-label">Third-party evidence</div>
+        <p>The Nmap 2.50 release announcement (Fyodor, insecure.org) names <strong>"a KDE front end by Ian Zepp"</strong>. The nmap-announce mailing list archive preserves the KMap 0.7 announcement with Linux and FreeBSD build notes. Both links remain live as of 2026.</p>
+      </div>
+    </section>
+
+    <!-- gnutellalib -->
+    <section class="prose on-deep">
+      <span class="label section-label">Tool II &middot; GnutellaLib</span>
+      <h2>The peer-to-peer protocol, from the wire up</h2>
+      <p>GnutellaLib is a complete implementation of the Gnutella file-sharing protocol in a single Python file. Not a client&mdash;a <strong>library and daemon</strong> that implements the full protocol: binary message parsing, multi-threaded connection management, message routing with TTL enforcement, servent caching, file indexing with recursive directory walks, and a search engine supporting glob, regex, size, and date filters.</p>
+      <p>The implementation handles both sides of the Gnutella handshake on a single TCP port. An incoming <code>GNUTELLA CONNECT/0.4</code> is rewritten to a standard HTTP CONNECT and dispatched through the same handler tree. Outgoing connections send the handshake, verify the response, transmit a login ping, and spawn a message loop on a new thread.</p>
+
+      <div class="code-block">
+        <div class="code-cap">Protocol constants &middot; gnutellalib.py</div>
+<pre><span class="kw">gnutella_ping</span>       = <span class="num">0x00</span>
+<span class="kw">gnutella_ping_rpl</span>   = <span class="num">0x01</span>
+<span class="kw">gnutella_push</span>       = <span class="num">0x40</span>
+<span class="kw">gnutella_query</span>      = <span class="num">0x80</span>
+<span class="kw">gnutella_query_rpl</span>  = <span class="num">0x81</span></pre>
+      </div>
+
+      <p>Five message types. Each one is a class with <code>encode()</code>, <code>decode()</code>, and <code>reset()</code> methods, backed by <code>struct.pack</code> and <code>struct.unpack</code> with explicit format strings. The GnutellaHeader alone is <code>&lt;16sBBBi</code>&mdash;a 16-byte message ID, three unsigned bytes for function ID, TTL, and hop count, and a signed 32-bit payload length. Every message passes through a five-stage verification pipeline before it reaches the handler:</p>
+
+      <div class="comp-grid">
+        <span class="comp-tag net">verify_fid</span>
+        <span class="comp-tag net">verify_mid</span>
+        <span class="comp-tag net">verify_ttl</span>
+        <span class="comp-tag net">verify_hops</span>
+        <span class="comp-tag net">handle</span>
+      </div>
+
+      <p>The message cache uses LRU-style slicing: when the cache exceeds 50,000 entries, the oldest 1,000 are discarded. Servent addresses are cached separately with the same pattern. Broadcasts exclude the originating link. Replies are routed back along the path of the original message.</p>
+
+      <div class="callout arch">
+        <div class="callout-label">Beyond implementation</div>
+        <p>The file does not stop at implementing the Gnutella spec. It proposes a <strong>redesigned protocol header</strong>: drops the hops field (redundant with TTL), adds a version byte for per-message compatibility, and aligns the header to 24 bytes. It designs an extended query record format with ten search types (0x00&ndash;0x0b)&mdash;glob, regex, file size, creation date, modification date, content matching. This is protocol design, not just protocol implementation.</p>
+      </div>
+    </section>
+
+    <!-- the threads -->
+    <section class="prose on-basalt">
+      <span class="label section-label">Continuity</span>
+      <h2>The threads that run forward</h2>
+      <p>These projects are twenty-six years old. They are interesting because the patterns they contain did not stop. Every thread below connects 1999 code to 2025&ndash;2026 code&mdash;not by descent (no line of Kmap or GnutellaLib survives in any current project) but by disposition.</p>
+
+      <div class="thread-grid">
+        <div class="thread">
+          <h4>Protocol thinking</h4>
+          <div class="then">1999: Implements and redesigns binary wire protocols. Proposes header improvements the spec committee hadn't considered.</div>
+          <div class="now">&rarr; 2025: Designs a programming language grammar, a compiler IR pipeline, agent message schemas, and mail-based coordination protocols.</div>
+        </div>
+        <div class="thread">
+          <h4>Refactoring across versions</h4>
+          <div class="then">1999: Kmap 0.6.1 &rarr; 0.7.1. Twenty-one files to seventeen. Monolith to dockable views. Three months between versions.</div>
+          <div class="now">&rarr; 2025: Minted.IO &rarr; Motivis &rarr; Monk API. Same platform vision rebuilt clean-room three times across a decade.</div>
+        </div>
+        <div class="thread">
+          <h4>Complete single-author systems</h4>
+          <div class="then">2000: A 2,313-line Python file that implements an entire P2P network&mdash;daemon, protocol, search engine, CLI, file server.</div>
+          <div class="now">&rarr; 2026: A 281K-line Rust compiler. A multi-agent runtime. The scale changed; the scope discipline didn't.</div>
+        </div>
+        <div class="thread">
+          <h4>Open source from day one</h4>
+          <div class="then">1999: GPL v2 on both projects. Published to public archives. Archived on Google Code. Nmap release notes cite the work.</div>
+          <div class="now">&rarr; 2025: GitHub profile with 40+ public repositories. Every case study links inspectable source.</div>
+        </div>
+      </div>
+
+      <div class="callout design">
+        <div class="callout-label">The deeper pattern</div>
+        <p>In 1999 the author wraps a network scanner in a GUI. In 2025 the author wraps agent fleets in orchestration layers. The architectural instinct is the same: <strong>take a powerful but raw protocol-level tool and build the infrastructure that makes it usable at scale</strong>. Kmap makes Nmap accessible. Vivarium makes agent coordination accessible. The abstraction level moved up; the impulse didn't.</p>
+      </div>
+    </section>
+
+    <!-- timeline -->
+    <section class="era">
+      <span class="label section-label">Timeline</span>
+      <div class="era-row">
+        <span class="era-date">Oct 28, 1999</span>
+        <span class="era-text"><strong>Kmap 0.6.1 begins.</strong> File header: <em>"begin: Thu Oct 28 14:00:30 EST 1999."</em> Active-duty USMC. Author email: icszepp@islc.net.</span>
+      </div>
+      <div class="era-row">
+        <span class="era-date">Jan 7, 2000</span>
+        <span class="era-text"><strong>Kmap 0.7.1 rewrite begins.</strong> Rewrites the frontend, separates views into independent windows, introduces KmConfig. Changelog entry: <em>"Fixed history window. Finally."</em></span>
+      </div>
+      <div class="era-row">
+        <span class="era-date">Jan 2000</span>
+        <span class="era-text"><strong>KMap 0.7 announced on nmap-announce.</strong> Mailing-list archive preserves the post with Linux and FreeBSD build notes.</span>
+      </div>
+      <div class="era-row">
+        <span class="era-date">~Early 2000</span>
+        <span class="era-text"><strong>Nmap 2.50 release notes cite KMap.</strong> Fyodor names "a KDE front end by Ian Zepp" in the official release announcement.</span>
+      </div>
+      <div class="era-row">
+        <span class="era-date">May 7, 2000</span>
+        <span class="era-text"><strong>GnutellaLib 0.3.0 dated.</strong> Author email has changed: devel@edotorg.org. Python 1.5.2 era. Single-file protocol implementation with proposed spec improvements.</span>
+      </div>
+      <div class="era-row">
+        <span class="era-date">May 2000</span>
+        <span class="era-text"><strong>DD-214 discharge.</strong> Active service ends. Four years as a 0351 Assaultman, out as a Corporal (E-4) with an honorable discharge.</span>
+      </div>
+    </section>
+
+    <!-- what survived -->
+    <section class="prose on-deep">
+      <span class="label section-label">Coda</span>
+      <h2>What survived and what didn't</h2>
+      <p>No line of Kmap or GnutellaLib code runs in any current project. The KDE 1.x widget toolkit is extinct. Python 1.5's <code>whrandom</code> module was removed from the standard library fifteen years ago. The Gnutella network itself is a historical footnote&mdash;replaced first by BitTorrent, then by streaming, then by irrelevance.</p>
+      <p>What survived is disposition. The instinct to think at the protocol level. The discipline to refactor between versions rather than just shipping the first thing that works. The habit of publishing source and building in the open. The tendency to go beyond implementation into design&mdash;to not just use a spec, but to <em>propose a better one</em>.</p>
+      <p>Those tendencies are visible in the Radix compiler, in the Monk API iterations, in the Faber grammar, in the agent fleet infrastructure. They did not start in 2025. They started in a barracks, on a machine running KDE, in a file that opens with <code>begin: Thu Oct 28 14:00:30 EST 1999</code>.</p>
+    </section>
+
+    <section class="inscription">
+      <p class="txt">The code is gone. The instinct is load-bearing.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="stylobate">
+      <span>Ian Zepp &middot; ianzepp.dev</span>
+      <span><a href="/">Full index &uarr;</a></span>
+    </div>
+  </footer>
+</body>
+</html>
