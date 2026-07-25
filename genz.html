@@ -266,6 +266,106 @@
     }
     .footer-note a { font-weight: 600; }
 
+    /* shorts — horizontal snap feed */
+    .shorts-section {
+      padding: clamp(24px, 4vw, 36px) 0 clamp(28px, 4vw, 40px);
+      border-bottom: 1px solid #2a2320;
+      background: var(--basalt);
+    }
+    .shorts-section .section-head {
+      padding: 0 clamp(16px, 4vw, 32px);
+      margin-bottom: 14px;
+      max-width: 720px;
+      margin-inline: auto;
+    }
+    .shorts-section .section-head .label { display: block; margin-bottom: 10px; }
+    .shorts-section .section-head h2 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(18px, 2.5vw, 22px); line-height: 1.3;
+      letter-spacing: .04em; color: var(--marmor); margin-bottom: 6px;
+    }
+    .shorts-section .section-head p {
+      color: var(--marmor-dim); font-size: 13.5px; max-width: var(--measure);
+    }
+    .shorts-rail-wrap {
+      overflow: hidden;
+    }
+    .shorts-rail {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: clamp(16px, 4vw, 32px);
+      padding: 4px clamp(16px, 4vw, 32px) 12px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gilt-deep) transparent;
+    }
+    .shorts-rail::-webkit-scrollbar { height: 6px; }
+    .shorts-rail::-webkit-scrollbar-thumb {
+      background: var(--gilt-deep); border-radius: 3px;
+    }
+    .short {
+      flex: 0 0 min(280px, 78vw);
+      scroll-snap-align: start;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px 18px 16px;
+      border: 1px solid #2a2320;
+      background: var(--basalt-deep);
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .12s, background .12s;
+    }
+    a.short:hover {
+      border-color: var(--gilt-deep);
+      background: #161210;
+      color: inherit;
+    }
+    a.short:hover .short-hook { color: var(--marmor); }
+    a.short:hover .short-more { color: var(--marmor); }
+    .short.s-porph { border-top: 3px solid var(--porphyry); }
+    .short.s-verde { border-top: 3px solid var(--verde); }
+    .short.s-giallo { border-top: 3px solid var(--giallo); }
+    .short.s-aegyp { border-top: 3px solid var(--aegyptus); }
+    .short.s-gilt { border-top: 3px solid var(--gilt); }
+    .short-top {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 10px; margin-bottom: 18px;
+    }
+    .short-n {
+      font-size: 11px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--gilt);
+    }
+    .short-len {
+      font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--marmor-dim);
+    }
+    .short-hook {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(20px, 3.2vw, 24px); line-height: 1.25;
+      letter-spacing: .02em; color: var(--marmor);
+      margin-bottom: 12px;
+    }
+    .short-body {
+      color: var(--marmor-dim); font-size: 13.5px; line-height: 1.45;
+      flex: 1;
+    }
+    .short-more {
+      display: block; margin-top: 16px;
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--gilt);
+    }
+    .shorts-hint {
+      padding: 0 clamp(16px, 4vw, 32px);
+      max-width: 720px; margin: 4px auto 0;
+      font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--marmor-dim);
+    }
+
     footer {
       border-top: 2px solid var(--gilt-deep);
       padding: 18px clamp(16px, 4vw, 32px);
@@ -281,6 +381,7 @@
       .stats .stat { border-right: 1px solid #2a2320; }
       .stats .stat:nth-child(even) { border-right: none; }
       .stats .stat:nth-child(n+3) { border-top: 1px solid #2a2320; }
+      .short { min-height: 300px; }
     }
   </style>
 </head>
@@ -292,6 +393,7 @@
       <div class="nav-links">
         <a href="/">Full site</a>
         <a href="/genz.html" aria-current="page">Gen Z</a>
+        <a href="#shorts">Shorts</a>
         <a href="/#case-studies">Essays</a>
       </div>
     </nav>
@@ -314,6 +416,114 @@
       <div class="stat"><strong>21</strong><span>Days → OS kernel</span></div>
       <div class="stat"><strong>3×</strong><span>Same platform</span></div>
     </div>
+
+    <section class="shorts-section" id="shorts" aria-labelledby="shorts-title">
+      <div class="section-head">
+        <span class="label">Shorts</span>
+        <h2 id="shorts-title">One hook. Swipe.</h2>
+        <p>The thesis of each project in under ten seconds. Tap a short for the full card or essay.</p>
+      </div>
+      <div class="shorts-rail-wrap">
+        <div class="shorts-rail" role="list">
+          <a class="short s-verde" role="listitem" href="/case-studies/monk-os-kernel.html">
+            <div>
+              <div class="short-top">
+                <span class="short-n">01 / OS</span>
+                <span class="short-len">~8s</span>
+              </div>
+              <div class="short-hook">The agent doesn’t need a chat UI.</div>
+              <p class="short-body">It needs an operating system. PID&nbsp;1 is the LLM. Memory is kernel state. Built in 21 days — months before the industry shipped the same idea.</p>
+            </div>
+            <span class="short-more">Full short →</span>
+          </a>
+
+          <a class="short s-giallo" role="listitem" href="/case-studies/monk-api.html">
+            <div>
+              <div class="short-top">
+                <span class="short-n">02 / Platform</span>
+                <span class="short-len">~8s</span>
+              </div>
+              <div class="short-hook">Same platform. Three times. Zero code carried.</div>
+              <p class="short-body">2015 → 2017 → 2025. Clean-room rebuilds. The observer rings never changed — because they were already right.</p>
+            </div>
+            <span class="short-more">Full short →</span>
+          </a>
+
+          <a class="short s-porph" role="listitem" href="/case-studies/radix-retrospective.html">
+            <div>
+              <div class="short-top">
+                <span class="short-n">03 / Compiler</span>
+                <span class="short-len">~8s</span>
+              </div>
+              <div class="short-hook">No PL theory. Still shipped a compiler.</div>
+              <p class="short-body">281K LOC Rust. 76 releases. Five pivots from evidence, not ego. A type system works or it doesn’t — bluffing fails.</p>
+            </div>
+            <span class="short-more">Full short →</span>
+          </a>
+
+          <a class="short s-aegyp" role="listitem" href="/#research">
+            <div>
+              <div class="short-top">
+                <span class="short-n">04 / Cost</span>
+                <span class="short-len">~6s</span>
+              </div>
+              <div class="short-hook">92% cheaper agents. Same work.</div>
+              <p class="short-body">Route models by task shape. Pass durable message handles, not full context. Cost is an engineering problem.</p>
+            </div>
+            <span class="short-more">See the numbers →</span>
+          </a>
+
+          <a class="short s-gilt" role="listitem" href="/case-studies/monk-api.html">
+            <div>
+              <div class="short-top">
+                <span class="short-n">05 / Design</span>
+                <span class="short-len">~6s</span>
+              </div>
+              <div class="short-hook">HTTP request = DB transaction.</div>
+              <p class="short-body">No BEGIN/COMMIT in app code. Ten observer rings, atomic by default. Invisible infrastructure done right.</p>
+            </div>
+            <span class="short-more">Full short →</span>
+          </a>
+
+          <a class="short s-porph" role="listitem" href="/case-studies/radix-retrospective.html">
+            <div>
+              <div class="short-top">
+                <span class="short-n">06 / Process</span>
+                <span class="short-len">~6s</span>
+              </div>
+              <div class="short-hook">Build it. Then cut it.</div>
+              <p class="short-body">Working code gets deleted when it isn’t earning complexity. Pruning is a process signal, not a waste signal.</p>
+            </div>
+            <span class="short-more">Full short →</span>
+          </a>
+
+          <a class="short s-verde" role="listitem" href="/case-studies/monk-os-kernel.html">
+            <div>
+              <div class="short-top">
+                <span class="short-n">07 / Velocity</span>
+                <span class="short-len">~6s</span>
+              </div>
+              <div class="short-hook">82 commits. Day one.</div>
+              <p class="short-body">Not improv. The architecture was already in the builder’s head — rebuilt from a decade of prior platforms.</p>
+            </div>
+            <span class="short-more">Full short →</span>
+          </a>
+
+          <div class="short s-gilt" role="listitem">
+            <div>
+              <div class="short-top">
+                <span class="short-n">08 / Rule</span>
+                <span class="short-len">~4s</span>
+              </div>
+              <div class="short-hook">Proof over vibes.</div>
+              <p class="short-body">Releases. Tests. Git history. Dated numbers. If it isn’t inspectable, it doesn’t count.</p>
+            </div>
+            <span class="short-more" style="color:var(--marmor-dim)">No link · that’s the point</span>
+          </div>
+        </div>
+      </div>
+      <p class="shorts-hint">Scroll sideways →</p>
+    </section>
 
     <section class="section">
       <span class="label">Who</span>
