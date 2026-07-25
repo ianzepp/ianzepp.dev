@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case study: Monk API — the third iteration of a multi-tenant platform vision rebuilt clean-room from memory, with the Observer Ring that survived a decade and two languages.">
+  <meta name="theme-color" content="#14100f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
+  <title>Monk API &mdash; Ian Zepp</title>
+  <style>
+    @font-face {
+      font-family: "Cinzel";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("../fonts/cinzel.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Cinzel";
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url("../fonts/cinzel.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/plex-mono-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url("../fonts/plex-mono-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("../fonts/plex-mono-700.woff2") format("woff2");
+    }
+
+    :root {
+      --basalt: #14100f;
+      --basalt-deep: #0d0a09;
+      --porphyry: #6e2b3c;
+      --porphyry-deep: #4f1f2b;
+      --pompeian: #9b3324;
+      --giallo: #a87c34;
+      --giallo-lit: #c49a45;
+      --verde: #31513f;
+      --aegyptus: #25406b;
+      --gilt: #c9a24a;
+      --gilt-deep: #8a6a2f;
+      --marmor: #ece6da;
+      --marmor-dim: #b8ac9a;
+      --inscr: "Cinzel", Georgia, serif;
+      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--basalt);
+      color: var(--marmor);
+      font-family: var(--mono);
+      font-size: 14.5px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--gilt); text-decoration: none; transition: color .12s; }
+    a:hover { color: var(--marmor); }
+    a:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
+    ::selection { background: var(--porphyry); color: var(--marmor); }
+    code { font-family: var(--mono); font-size: 13px; color: var(--gilt); }
+
+    .label {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gilt);
+    }
+    .ct {
+      font-family: var(--mono); font-size: 26px; line-height: 34px; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; color: var(--marmor);
+    }
+
+    /* architrave */
+    .architrave { background: var(--basalt); border-bottom: 2px solid var(--gilt-deep); }
+    .nav {
+      min-height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      padding: 0 clamp(20px, 4vw, 44px);
+    }
+    .wordmark { font-weight: 700; font-size: 15px; letter-spacing: .32em; color: var(--marmor); }
+    .wordmark:hover { color: var(--marmor); }
+    .wordmark span { color: var(--gilt); }
+    .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .nav-links a { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--marmor-dim); }
+    .nav-links a:hover { color: var(--gilt); }
+
+    /* page header */
+    .page-header {
+      background: var(--giallo);
+      color: var(--basalt);
+      padding: clamp(56px, 7vw, 100px) clamp(24px, 4vw, 56px) clamp(46px, 5vw, 76px);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .page-header .back {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: #5a3a10;
+      display: inline-block; margin-bottom: 24px;
+    }
+    .page-header .back:hover { color: var(--basalt); }
+    .page-header h1 {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 48px); line-height: 1.15;
+      letter-spacing: .04em; color: var(--basalt);
+      margin-bottom: 16px; max-width: 24ch;
+    }
+    .page-header h1 em { color: var(--porphyry-deep); font-style: normal; }
+    .page-header .lede {
+      color: #3a2810; max-width: 62ch; font-size: 14.5px; line-height: 1.75;
+    }
+
+    /* stats strip */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0;
+      border-bottom: 2px solid var(--gilt-deep);
+      background: var(--basalt-deep);
+    }
+    .stat-cell {
+      padding: 20px 22px;
+      border-right: 1px solid #2a2320;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+      font-size: 22px; font-weight: 700; color: var(--marmor);
+      font-variant-numeric: tabular-nums;
+      display: block; line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #8d8574; margin-top: 6px; display: block;
+    }
+
+    /* prose sections */
+    .prose {
+      padding: clamp(46px, 5vw, 76px) clamp(24px, 4vw, 56px);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .prose.on-basalt { background: var(--basalt); }
+    .prose.on-deep { background: var(--basalt-deep); }
+    .prose .section-label { display: block; margin-bottom: 20px; }
+    .prose h2 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(20px, 2.2vw, 28px); line-height: 1.25;
+      letter-spacing: .03em; color: var(--marmor);
+      margin-bottom: 16px;
+    }
+    .prose p {
+      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 14px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose p strong { color: var(--marmor); font-weight: 700; }
+
+    /* timeline eras */
+    .era {
+      padding: clamp(36px, 4vw, 56px) clamp(24px, 4vw, 56px);
+      border-bottom: 1px solid #2a2320;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: clamp(20px, 3vw, 44px);
+      align-items: start;
+      background: var(--basalt);
+    }
+    .era:last-child { border-bottom: 2px solid var(--gilt-deep); }
+    .era-meta .era-dates {
+      font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
+      color: var(--gilt); display: block;
+    }
+    .era-meta .era-detail {
+      font-size: 10px; color: #8d8574;
+      letter-spacing: .04em; margin-top: 4px; display: block;
+    }
+    .era-content h2 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(18px, 2vw, 24px); line-height: 1.25;
+      letter-spacing: .03em; color: var(--marmor);
+      margin-bottom: 12px;
+    }
+    .era-content p {
+      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 10px;
+    }
+    .era-content p:last-child { margin-bottom: 0; }
+
+    /* callouts */
+    .callout {
+      border-left: 3px solid var(--gilt-deep);
+      padding: 14px 18px;
+      margin: 14px 0;
+      max-width: 68ch;
+    }
+    .callout.design {
+      background: rgba(49, 81, 63, 0.25);
+      border-left-color: var(--verde);
+    }
+    .callout.pivot {
+      background: rgba(110, 43, 60, 0.25);
+      border-left-color: var(--porphyry);
+    }
+    .callout.insight {
+      background: rgba(37, 64, 107, 0.25);
+      border-left-color: var(--aegyptus);
+    }
+    .callout.lineage {
+      background: rgba(168, 124, 52, 0.15);
+      border-left-color: var(--giallo);
+    }
+    .callout-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .callout.design .callout-label { color: #8ecaa0; }
+    .callout.pivot .callout-label { color: #e8bfc7; }
+    .callout.insight .callout-label { color: #8eb8e0; }
+    .callout.lineage .callout-label { color: var(--giallo-lit); }
+    .callout p { color: var(--marmor-dim); font-size: 13.5px; margin-bottom: 0; }
+    .callout p strong { color: var(--marmor); }
+
+    /* ring diagram */
+    .ring-strip {
+      margin: 20px 0;
+      max-width: 680px;
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 0;
+    }
+    .ring-num {
+      font-size: 11px; font-weight: 700; color: var(--gilt);
+      font-variant-numeric: tabular-nums;
+      padding: 8px 0;
+      text-align: center;
+      border-right: 2px solid var(--gilt-deep);
+    }
+    .ring-name {
+      font-size: 12px; color: var(--marmor-dim);
+      padding: 8px 14px;
+      border-bottom: 1px solid #2a2320;
+    }
+    .ring-name strong { color: var(--marmor); font-weight: 700; }
+    .ring-name.active { background: rgba(168, 124, 52, 0.12); }
+    .ring-name.active strong { color: var(--gilt); }
+
+    /* API route table */
+    .route-grid {
+      margin: 20px 0;
+      max-width: 620px;
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+    }
+    .route-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      border-bottom: 1px solid #2a2320;
+    }
+    .route-path {
+      font-size: 12px; font-weight: 700; color: var(--gilt);
+      padding: 10px 14px;
+      border-right: 1px solid #2a2320;
+      word-break: break-all;
+    }
+    .route-desc {
+      font-size: 12px; color: var(--marmor-dim);
+      padding: 10px 14px;
+      border-right: 1px solid #2a2320;
+    }
+
+    /* operator list */
+    .op-grid {
+      margin: 14px 0;
+      display: flex; flex-wrap: wrap; gap: 6px;
+      max-width: 68ch;
+    }
+    .op {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .04em;
+      padding: 4px 10px;
+      border: 1px solid #2a2320;
+      color: var(--marmor-dim);
+    }
+    .op.highlight { border-color: var(--gilt-deep); color: var(--gilt); }
+
+    /* pattern grid */
+    .pattern-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0;
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+    }
+    .pattern-cell {
+      padding: 20px 22px;
+      border-right: 1px solid #2a2320;
+      border-bottom: 1px solid #2a2320;
+    }
+    .pattern-cell h3 {
+      font-size: 14px; font-weight: 700; color: var(--marmor);
+      margin-bottom: 8px;
+    }
+    .pattern-cell p {
+      font-size: 12.5px; color: var(--marmor-dim); line-height: 1.75;
+      max-width: 42ch;
+    }
+
+    /* pull quote */
+    .pull {
+      border-left: 2px solid var(--gilt);
+      padding: 4px 0 4px 20px;
+      max-width: 68ch;
+      font-size: 14px; line-height: 1.7;
+      color: var(--marmor);
+      margin: 20px 0;
+    }
+    .pull em { color: var(--gilt); font-style: normal; }
+
+    /* lineage */
+    .lineage-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+      margin: 20px 0;
+      max-width: 680px;
+    }
+    .lineage-cell {
+      padding: 16px 18px;
+      border-right: 1px solid #2a2320;
+      border-bottom: 1px solid #2a2320;
+    }
+    .lineage-cell .l-year {
+      font-size: 11px; font-weight: 600; color: var(--gilt);
+      letter-spacing: .04em; display: block; margin-bottom: 4px;
+    }
+    .lineage-cell .l-name {
+      font-size: 13px; font-weight: 700; color: var(--marmor);
+      display: block; margin-bottom: 4px;
+    }
+    .lineage-cell .l-desc {
+      font-size: 11px; color: var(--marmor-dim); line-height: 1.6;
+    }
+    .lineage-cell.current { background: rgba(168, 124, 52, 0.12); }
+
+    /* inscription */
+    .inscription {
+      background: var(--giallo); text-align: center;
+      padding: clamp(52px, 6vw, 84px) clamp(24px, 4vw, 56px);
+    }
+    .inscription .txt {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(18px, 2.2vw, 30px); line-height: 1.35; letter-spacing: .1em;
+      color: var(--basalt);
+      max-width: 800px; margin-inline: auto;
+    }
+
+    /* footer */
+    .stylobate {
+      background: var(--basalt); border-top: 2px solid var(--gilt-deep);
+      padding: 22px clamp(20px, 4vw, 44px);
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #6b6153;
+    }
+
+    @media (max-width: 900px) {
+      .era { grid-template-columns: 1fr; gap: 10px; }
+      .stats-strip { grid-template-columns: repeat(3, 1fr); }
+      .lineage-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      body { font-size: 14px; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .lineage-strip { grid-template-columns: 1fr; }
+      .route-row { grid-template-columns: 1fr; }
+      .route-path { border-right: none; border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="architrave">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="wordmark" href="/">IZ<span>/</span>DEV</a>
+      <div class="nav-links">
+        <a href="/#research">Research</a>
+        <a href="/#case-studies">Case Studies</a>
+        <a href="/#programs">Programs</a>
+        <a href="/#evidence">Evidence</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <a class="back" href="/#case-studies">&larr; Case Studies</a>
+      <h1>The same platform, <em>three times.</em></h1>
+      <p class="lede">Monk API is the third clean-room implementation of a multi-tenant, model-first platform &mdash; the same architectural vision rebuilt from memory after Minted.IO (2015) and Motivis (2017&ndash;2020). No code was carried forward. What survived is the design: describe your schema, query your data, and let the observer rings handle everything in between.</p>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat-cell"><span class="stat-num">1,131</span><span class="stat-label">Commits</span></div>
+      <div class="stat-cell"><span class="stat-num">52K</span><span class="stat-label">Lines of TypeScript</span></div>
+      <div class="stat-cell"><span class="stat-num">30</span><span class="stat-label">Query operators</span></div>
+      <div class="stat-cell"><span class="stat-num">10</span><span class="stat-label">Observer rings</span></div>
+      <div class="stat-cell"><span class="stat-num">8</span><span class="stat-label">Months</span></div>
+      <div class="stat-cell"><span class="stat-num">3rd</span><span class="stat-label">Iteration</span></div>
+    </div>
+
+    <!-- THE LINEAGE -->
+    <section class="prose on-basalt">
+      <span class="label section-label">The lineage</span>
+      <h2>One vision, four implementations, a decade.</h2>
+      <p>The core idea has never changed: a platform where the schema is data, not code. You describe your models and fields through an API. The platform generates CRUD, querying, access control, audit trails, and lifecycle hooks automatically. Tenants are isolated at the database level. The observer ring pipeline processes every mutation through a fixed sequence of validation, security, business logic, persistence, and notification stages.</p>
+      <p>This idea was first built as Minted.IO in 2015 (Salesforce-native), rebuilt as the Motivis platform in 2017 (TypeScript/Node.js/PostgreSQL), rebuilt again as Monk API in 2025 (TypeScript/Hono/Bun), and now runs hardcoded in Rust in the Minted Geek Swarm platform. No code was ever carried between iterations. The architecture persisted because one person carried it in their head.</p>
+      <div class="lineage-strip">
+        <div class="lineage-cell">
+          <span class="l-year">2015</span>
+          <span class="l-name">Minted.IO</span>
+          <span class="l-desc">Salesforce-native. Solo founder. Acquired by Motivis 2017.</span>
+        </div>
+        <div class="lineage-cell">
+          <span class="l-year">2017&ndash;2020</span>
+          <span class="l-name">Motivis</span>
+          <span class="l-desc">TS / Node / PostgreSQL. 10&ndash;20 engineers. VP Platform R&amp;D.</span>
+        </div>
+        <div class="lineage-cell current">
+          <span class="l-year">2025&ndash;2026</span>
+          <span class="l-name">Monk API</span>
+          <span class="l-desc">TS / Hono / Bun. Clean-room rebuild from memory. Solo.</span>
+        </div>
+        <div class="lineage-cell">
+          <span class="l-year">2026&ndash;now</span>
+          <span class="l-name">Swarm</span>
+          <span class="l-desc">Rust. Rings hardcoded. Same pipeline, fourth language.</span>
+        </div>
+      </div>
+      <div class="callout lineage">
+        <div class="callout-label">What survived</div>
+        <p>The Observer Ring pipeline &mdash; formalized on day 5 of Monk API &mdash; is the <strong>only subsystem that survived every subsequent rewrite unchanged in concept.</strong> The ORM was ripped out on day 3. The runtime migrated from Node to Bun. Auth was rewritten three times in 48 hours. But the rings never changed, because they were already right. They had been right since Minted.IO.</p>
+      </div>
+    </section>
+
+    <!-- DESCRIBE / DATA -->
+    <section class="prose on-deep">
+      <span class="label section-label">The describe / data pattern</span>
+      <h2>The schema is data, not code.</h2>
+      <p>Monk API has two primary route families. <code>/api/describe</code> lets you define and modify your data model at runtime &mdash; create objects, add fields, set types and constraints. <code>/api/data</code> lets you create, read, update, and delete records against those models. The describe layer is the schema; the data layer is the content. Both are APIs, both are versioned, both go through the same observer pipeline.</p>
+      <div class="route-grid">
+        <div class="route-row"><span class="route-path">/api/describe/:model</span><span class="route-desc">Create, read, update, or delete a model definition</span></div>
+        <div class="route-row"><span class="route-path">/api/describe/:model/fields</span><span class="route-desc">Define fields on a model &mdash; inline with model creation or separately</span></div>
+        <div class="route-row"><span class="route-path">/api/data/:model</span><span class="route-desc">CRUD against the described schema &mdash; create, find, update, delete</span></div>
+        <div class="route-row"><span class="route-path">/api/data/:model/:id/:rel</span><span class="route-desc">Nested child collections via relationship traversal</span></div>
+        <div class="route-row"><span class="route-path">/api/bulk</span><span class="route-desc">Multiple operations across multiple models in one transaction</span></div>
+        <div class="route-row"><span class="route-path">/api/bulk/import</span><span class="route-desc">Import a full SQLite database file with merge strategies</span></div>
+        <div class="route-row"><span class="route-path">/api/aggregate</span><span class="route-desc">Aggregation queries &mdash; count, sum, avg, min, max</span></div>
+        <div class="route-row"><span class="route-path">/api/tracked</span><span class="route-desc">Change history for any record</span></div>
+        <div class="route-row"><span class="route-path">/api/trashed</span><span class="route-desc">Soft-delete recovery</span></div>
+        <div class="route-row"><span class="route-path">/api/acls</span><span class="route-desc">Row-level access control</span></div>
+        <div class="route-row"><span class="route-path">/api/fs</span><span class="route-desc">Virtual filesystem</span></div>
+        <div class="route-row"><span class="route-path">/api/cron</span><span class="route-desc">Scheduled job management</span></div>
+      </div>
+      <p>This is the pattern that makes the platform self-describing. A new tenant can define its entire data model, populate it with records, set up access control, and query it &mdash; all through the same HTTP API. No migrations, no deploy, no code changes. The schema is a conversation with the platform.</p>
+    </section>
+
+    <!-- FIND DSL -->
+    <section class="prose on-basalt">
+      <span class="label section-label">The find DSL</span>
+      <h2>Thirty operators and recursive nesting.</h2>
+      <p>The query system is a custom DSL with 30 filter operators, purpose-built for the describe/data pattern. Queries are JSON objects where keys are field names and values are operator expressions. Logical operators (<code>$and</code>, <code>$or</code>, <code>$not</code>, <code>$nand</code>, <code>$nor</code>) nest recursively to arbitrary depth, producing parameterized SQL with ACL-aware WHERE clauses automatically injected.</p>
+      <div class="op-grid">
+        <span class="op highlight">eq</span><span class="op highlight">ne</span><span class="op">neq</span>
+        <span class="op highlight">gt</span><span class="op highlight">gte</span><span class="op highlight">lt</span><span class="op highlight">lte</span>
+        <span class="op">like</span><span class="op">nlike</span><span class="op">ilike</span><span class="op">nilike</span>
+        <span class="op">regex</span><span class="op">nregex</span>
+        <span class="op highlight">in</span><span class="op highlight">nin</span>
+        <span class="op">any</span><span class="op">all</span><span class="op">nany</span><span class="op">nall</span><span class="op">size</span>
+        <span class="op highlight">and</span><span class="op highlight">or</span><span class="op highlight">not</span><span class="op">nand</span><span class="op">nor</span>
+        <span class="op">between</span>
+        <span class="op">find</span><span class="op">text</span><span class="op">search</span>
+        <span class="op">exists</span><span class="op">null</span>
+      </div>
+      <p>The Postgres array operators (<code>any</code>, <code>all</code>, <code>nany</code>, <code>nall</code>, <code>size</code>) are distinctive &mdash; they enable set operations directly in the query DSL, which is also how the ACL system works: row-level permissions are stored as Postgres arrays and checked via array-overlap and containment operators baked into every query's WHERE clause. Permissions aren't a separate query; they're part of the same SQL.</p>
+      <div class="callout lineage">
+        <div class="callout-label">What didn't make it from Motivis</div>
+        <p>The Motivis version supported nested queries that traversed relationships &mdash; querying parent records filtered by properties of their children. Monk API has the stub (<code>_related</code> field, commented-out <code>$related</code> processor) but the implementation was never completed. The logical nesting works; the relationship traversal does not. This is noted honestly, not hidden.</p>
+      </div>
+    </section>
+
+    <!-- OBSERVER RINGS -->
+    <section class="prose on-deep">
+      <span class="label section-label">The observer rings</span>
+      <h2>Ten rings, file-based, auto-discovered.</h2>
+      <p>Every mutation in Monk API passes through a 10-ring observer pipeline. Each ring has a defined responsibility. Observers are TypeScript files dropped into <code>src/observers/:model/:ring/:observer.ts</code> and auto-discovered at boot &mdash; no registration code, no configuration. The ring number is the execution order.</p>
+      <div class="ring-strip">
+        <span class="ring-num">0</span><span class="ring-name"><strong>Data Preparation</strong> &mdash; normalize, coerce, set defaults</span>
+        <span class="ring-num">1</span><span class="ring-name active"><strong>Input Validation</strong> &mdash; accumulates all errors before throwing</span>
+        <span class="ring-num">2</span><span class="ring-name"><strong>Security</strong> &mdash; ACL checks, permission enforcement</span>
+        <span class="ring-num">3</span><span class="ring-name"><strong>Business Logic</strong> &mdash; domain rules, cross-field constraints</span>
+        <span class="ring-num">4</span><span class="ring-name"><strong>Enrichment</strong> &mdash; computed fields, derived values</span>
+        <span class="ring-num">5</span><span class="ring-name active"><strong>Database</strong> &mdash; SQL execution, the only ring that touches persistence</span>
+        <span class="ring-num">6</span><span class="ring-name"><strong>Post-Database</strong> &mdash; cache invalidation, materializations</span>
+        <span class="ring-num">7</span><span class="ring-name"><strong>Audit</strong> &mdash; change tracking, history records</span>
+        <span class="ring-num">8</span><span class="ring-name"><strong>Integration</strong> &mdash; webhooks, external system sync</span>
+        <span class="ring-num">9</span><span class="ring-name"><strong>Notification</strong> &mdash; events, alerts, pub/sub</span>
+      </div>
+      <div class="callout design">
+        <div class="callout-label">Passthrough mode</div>
+        <p>For high-throughput ingestion (sensor data, logs), Monk API supports a <code>passthrough</code> flag that <strong>skips rings 0&ndash;4 and 6&ndash;9, executing only ring 5 (Database).</strong> Validation, security, audit, and notification are all bypassed. This is a deliberate escape hatch for bulk ingest where the data is already trusted and the overhead of ten rings per record is prohibitive.</p>
+      </div>
+      <p>Ring 1 is architecturally distinctive: it's the only ring that accumulates errors rather than failing fast. A single validation pass collects every violation and reports them together, rather than stopping at the first one. Every other ring fails on first error. This asymmetry is intentional &mdash; validation is the one phase where the caller benefits from knowing everything that's wrong, not just the first thing.</p>
+    </section>
+
+    <!-- TRANSACTION BOUNDARY -->
+    <section class="prose on-basalt">
+      <span class="label section-label">The invisible transaction</span>
+      <h2>The HTTP boundary is the transaction boundary.</h2>
+      <p>Every mutating request in Monk API runs inside a database transaction that starts when the Hono handler receives the request and commits when the handler returns. If any observer in any ring throws &mdash; a validation failure in ring 1, a security rejection in ring 2, a database constraint in ring 5 &mdash; the transaction rolls back. No route handler ever calls <code>BEGIN</code> or <code>COMMIT</code>.</p>
+      <p>The mechanism is a <code>withTransaction()</code> wrapper in the routing layer. It pulls the tenant context from JWT middleware, opens the database adapter, starts a transaction, sets <code>SET LOCAL search_path</code> for tenant isolation, runs the handler (which runs the full observer pipeline), then commits or rolls back in a <code>finally</code> block. Cascading errors across multiple observer rings &mdash; including rings that trigger secondary mutations &mdash; are automatically captured because they share the same transaction scope.</p>
+      <div class="callout design">
+        <div class="callout-label">Read-only variant</div>
+        <p>Streaming read operations use <code>withSearchPath()</code> instead &mdash; an intentionally-never-committed transaction whose only purpose is to scope <code>SET LOCAL</code> for tenant isolation without blocking writes. The transaction is implicitly rolled back on disconnect. <strong>The same pattern (transaction = HTTP request) applies to reads, but without the commit.</strong></p>
+      </div>
+      <p>This design means that the entire observer pipeline &mdash; ten rings of validation, security, business logic, persistence, audit, and notification &mdash; is atomic by default. If ring 7 (Audit) fails after ring 5 (Database) has written, the write is rolled back. No partial state. No cleanup logic. The HTTP boundary is the consistency boundary.</p>
+    </section>
+
+    <!-- BULK OPERATIONS -->
+    <section class="prose on-deep">
+      <span class="label section-label">Bulk operations</span>
+      <h2>Multiple models, one transaction.</h2>
+      <p>The <code>/api/bulk</code> endpoint accepts an array of operations &mdash; create, update, delete, upsert &mdash; where each operation can target a different model. The entire array runs inside a single transaction. If any operation fails, every preceding operation in the batch is rolled back.</p>
+      <p>This isn't just convenience. In a model-first platform where tenants define their own schemas, cross-model consistency often can't be enforced by foreign keys alone. The bulk endpoint lets a client say: "create this Account, create these three Contacts that belong to it, and update this Opportunity &mdash; atomically." If the Opportunity update fails validation, the Account and Contacts don't exist.</p>
+      <p>A separate import endpoint (<code>/api/bulk/import</code>) takes a different approach entirely: it accepts a full SQLite database file and ingests it with configurable merge strategies (upsert, replace, merge, skip) and optional model filtering. This is tenant-snapshot import &mdash; move an entire dataset between environments in one call.</p>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="prose on-basalt">
+      <span class="label section-label">Timeline</span>
+      <h2>Eight months in four arcs.</h2>
+    </section>
+
+    <article class="era">
+      <div class="era-meta">
+        <span class="era-dates">Aug 19 &ndash; 30, 2025</span>
+        <span class="era-detail">331 commits</span>
+      </div>
+      <div class="era-content">
+        <h2>Genesis: full PaaS in twelve days</h2>
+        <p>Day one: CLI and API stood up in the same session. Full CRUD by end of day. Day two: Drizzle ORM added. Day three: Drizzle ripped out for raw PostgreSQL &mdash; the ORM was already in the way. Day five: the Observer Ring pipeline formalized (Epic #45), the one architectural decision that would outlast everything else.</p>
+        <p>By August 30, Monk API was at v2.0.0-rc2 with JWT auth, schema-per-tenant isolation, the describe/data pattern, and the find DSL. Twelve days from first commit to release candidate.</p>
+        <div class="callout insight">
+          <div class="callout-label">Speed from prior knowledge</div>
+          <p>331 commits in 12 days isn't just fast iteration. This is the third time the platform was built. The architecture was already proven &mdash; the speed comes from <strong>not needing to discover the design.</strong> The ORM removal on day 3 is the tell: the builder already knew raw SQL was the right call, tried the ORM anyway, confirmed it was wrong, and moved on in 24 hours.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-meta">
+        <span class="era-dates">Sep 1 &ndash; 10</span>
+        <span class="era-detail">64 commits &middot; then silence</span>
+      </div>
+      <div class="era-content">
+        <h2>RC hardening, then a two-month pause</h2>
+        <p>The release candidate was polished: ACL API, error-handling centralization, v2.0.0 through rc4. Then the project went quiet from September 10 to November 9. Other work took priority &mdash; the pause wasn't abandonment, it was deprioritization.</p>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-meta">
+        <span class="era-dates">Nov 9 &ndash; 29, 2025</span>
+        <span class="era-detail">624 commits &middot; v2.1 &rarr; v6.2</span>
+      </div>
+      <div class="era-content">
+        <h2>The November burst</h2>
+        <p>624 commits in three weeks, peaking at 62 commits in a single day (November 27). The version jumped from 2.1.0 to 6.2.0. This is where the platform matured.</p>
+        <p><strong>Runtime migration (Nov 26&ndash;27):</strong> Node.js removed entirely. Vitest replaced with Bun's test runner. The project went from a Node/Express-adjacent setup to pure Bun in 48 hours.</p>
+        <p><strong>MCP server (Nov 22):</strong> A Model Context Protocol server was added for Claude Code integration, initially as 11 tools, then refactored to 4 with TOON format. Later extracted to its own package.</p>
+        <p><strong>Agent/TTY subsystem (Nov 28&ndash;29):</strong> 79 commits built an in-process terminal shell with STM/LTM memory, jq parser, xargs, base64, bc &mdash; essentially a self-hosted agent interface inside the platform. This entire subsystem would later be explicitly removed.</p>
+      </div>
+    </article>
+
+    <article class="era">
+      <div class="era-meta">
+        <span class="era-dates">Apr 9 &ndash; 14, 2026</span>
+        <span class="era-detail">110 commits &middot; 5 days</span>
+      </div>
+      <div class="era-content">
+        <h2>The closing arc: audit, cut, rewrite, pivot</h2>
+        <p>After months of dormancy, a five-day burst closed the project's active development. An independent codebase analysis (Apr 9) triggered a correctness-swarm hardening pass: SQL injection, race conditions, encryption fail-closed.</p>
+        <p>The agent/TTY subsystem built in November was explicitly removed &mdash; a deliberate build-then-cut visible in one repository. The auth system was rewritten three times in 36 hours: local JWT, Auth0 brokered login, public-key machine auth &mdash; three complete architectures tried and either kept or discarded in rapid succession.</p>
+        <p>The final commits pivoted the project's homepage to "agent-first" and "LLM handoff" positioning. The marketing caught up to the architecture in real time.</p>
+        <div class="callout pivot">
+          <div class="callout-label">Build then cut</div>
+          <p>The agent/TTY subsystem &mdash; 79 commits of work &mdash; was built in November and removed in April. This is the same pruning discipline visible in the Radix compiler retrospective: <strong>when something isn't earning its complexity, cut it.</strong> The willingness to delete working code is a process signal, not a waste signal.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- PATTERNS -->
+    <section class="prose on-basalt">
+      <span class="label section-label">Patterns</span>
+      <h2>What the third iteration reveals.</h2>
+      <div class="pattern-grid">
+        <div class="pattern-cell">
+          <h3>The ring that never changed</h3>
+          <p>The Observer Ring survived four implementations across a decade and two languages. Everything around it &mdash; ORM, runtime, auth &mdash; was rewritten repeatedly. The rings were already right.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Faster each time</h3>
+          <p>Minted.IO took six months solo. Motivis took years with a team. Monk API reached release candidate in twelve days. Each iteration was faster because less design discovery was needed.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Transaction as HTTP boundary</h3>
+          <p>No explicit transaction management anywhere in the codebase. The HTTP request is the transaction. Ten rings of observers, atomic by default. This is invisible infrastructure done right.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Build then cut</h3>
+          <p>The agent/TTY subsystem was built (79 commits), used, evaluated, and removed. The auth system was rewritten three times in 36 hours. Fast iteration includes fast deletion.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Schema as conversation</h3>
+          <p>Describe, then data. The platform doesn't need code changes to support new data models. A tenant defines its schema through the same API it uses to query it.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>ACLs in the WHERE clause</h3>
+          <p>Row-level permissions use Postgres array operators baked into every query. Permissions aren't a separate check &mdash; they're part of the SQL. No query ever returns data the caller can't see.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="prose on-deep">
+      <p><strong>Monk API is not the interesting project. The lineage is.</strong> What makes this a case study isn't a single codebase &mdash; it's watching the same architectural vision survive a decade, four implementations, two languages, a startup acquisition, a VP tenure, a company shutdown, and a clean-room rebuild. The Observer Ring pipeline, the describe/data pattern, the transaction-as-HTTP-boundary, the schema-as-conversation philosophy &mdash; none of these were invented for Monk API. They were carried forward in one engineer's head and rebuilt each time the context changed.</p>
+      <p>The third iteration is the fastest because it has the least to discover. The rings don't change because they were already right. And the code that gets deleted &mdash; the ORM on day 3, the agent subsystem in April, the auth system three times in 36 hours &mdash; gets deleted fast because the builder knows what right looks like and isn't afraid to cut what isn't it.</p>
+    </section>
+
+    <div class="inscription">
+      <div class="txt">The design survived because one person carried it. The code is new every time.</div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="stylobate">
+      <span>Ian Zepp &middot; ianzepp.dev</span>
+      <span><a href="/">Back to main &uarr;</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

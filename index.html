@@ -442,6 +442,7 @@
       <a class="wordmark" href="#top">IZ<span>/</span>DEV</a>
       <div class="nav-links">
         <a href="#research">Research</a>
+        <a href="#case-studies">Case Studies</a>
         <a href="#programs">Programs</a>
         <a href="#skills">Skills</a>
         <a href="#story">Story</a>
@@ -510,6 +511,63 @@
           <div class="histo-col"><span class="histo-val">3,314</span><span class="histo-barwrap"><span class="histo-bar partial" style="--pct:82.7"></span></span><span class="histo-month">JUL*</span></div>
         </div>
         <p class="histo-note">Deduplicated commits in current histories, by month. <em>*July covers twelve days.</em> October is real, too: two commits. The pace was sustained, not retrofitted.</p>
+      </div>
+    </section>
+
+    <!-- COURSE — case studies -->
+    <section class="course" id="case-studies" aria-labelledby="case-studies-title">
+      <div class="head">
+        <span class="label">Case studies</span>
+        <h2 class="ct" id="case-studies-title">The work, examined.</h2>
+        <p>Deep retrospectives on specific projects &mdash; how they evolved, where they pivoted, and what the process looked like from the inside.</p>
+      </div>
+      <div class="stratum s-porph">
+        <div>
+          <span class="ord">I</span>
+          <span class="nm">Compiler</span>
+        </div>
+        <div class="body">
+          <h3><a href="/case-studies/radix-retrospective.html">Radix compiler &mdash; roadmap retrospective</a></h3>
+          <p>Seven months from a TypeScript prototype to a modularized Rust compiler with GPU codegen, autograd, and multi-locale diagnostics. 76 releases, 5 major pivots, and the process that produced them.</p>
+          <div class="fact-row">
+            <span class="fact">76 releases</span>
+            <span class="fact">5 pivots</span>
+            <span class="fact">281K LOC Rust</span>
+            <span class="fact">Dec 2025 &ndash; Jul 2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="stratum s-verde">
+        <div>
+          <span class="ord">II</span>
+          <span class="nm">OS Kernel</span>
+        </div>
+        <div class="body">
+          <h3><a href="/case-studies/monk-os-kernel.html">Monk OS Kernel &mdash; the agent needed an operating system</a></h3>
+          <p>Months before the industry shipped agent runtimes with filesystem access and tool dispatch, Monk OS built the architecture they converged on &mdash; and built it more purely. A Plan 9-inspired OS in TypeScript on Bun, where the AI agent is PID 1 and its memory is a first-class kernel resource. Three weeks, two dependencies.</p>
+          <div class="fact-row">
+            <span class="fact">539 commits</span>
+            <span class="fact">2 dependencies</span>
+            <span class="fact">139K LOC TypeScript</span>
+            <span class="fact">21 days</span>
+          </div>
+        </div>
+      </div>
+      <div class="stratum s-giallo">
+        <div>
+          <span class="ord">III</span>
+          <span class="nm">Platform</span>
+        </div>
+        <div class="body">
+          <h3><a href="/case-studies/monk-api.html">Monk API &mdash; the same platform, three times</a></h3>
+          <p>The third clean-room implementation of a multi-tenant, model-first platform &mdash; the same architectural vision rebuilt from memory after Minted.IO (2015) and Motivis (2017&ndash;2020). No code carried forward. The Observer Ring pipeline survived four iterations across a decade and two languages because it was already right.</p>
+          <div class="fact-row">
+            <span class="fact">1,131 commits</span>
+            <span class="fact">10 observer rings</span>
+            <span class="fact">30 query operators</span>
+            <span class="fact">3rd iteration</span>
+          </div>
+        </div>
       </div>
     </section>
 

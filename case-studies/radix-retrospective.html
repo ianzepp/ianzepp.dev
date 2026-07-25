@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Roadmap retrospective for the Radix compiler: 76 releases, 5 pivots, 7 months from a TypeScript prototype to a Rust-based release candidate with GPU codegen.">
+  <meta name="theme-color" content="#14100f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
+  <title>Radix Compiler Retrospective &mdash; Ian Zepp</title>
+  <style>
+    @font-face {
+      font-family: "Cinzel";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("../fonts/cinzel.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Cinzel";
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url("../fonts/cinzel.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/plex-mono-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url("../fonts/plex-mono-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("../fonts/plex-mono-700.woff2") format("woff2");
+    }
+
+    :root {
+      --basalt: #14100f;
+      --basalt-deep: #0d0a09;
+      --porphyry: #6e2b3c;
+      --porphyry-deep: #4f1f2b;
+      --pompeian: #9b3324;
+      --giallo: #a87c34;
+      --giallo-lit: #c49a45;
+      --verde: #31513f;
+      --aegyptus: #25406b;
+      --gilt: #c9a24a;
+      --gilt-deep: #8a6a2f;
+      --marmor: #ece6da;
+      --marmor-dim: #b8ac9a;
+      --inscr: "Cinzel", Georgia, serif;
+      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--basalt);
+      color: var(--marmor);
+      font-family: var(--mono);
+      font-size: 14.5px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--gilt); text-decoration: none; transition: color .12s; }
+    a:hover { color: var(--marmor); }
+    a:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
+    ::selection { background: var(--porphyry); color: var(--marmor); }
+
+    .label {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gilt);
+    }
+    .ct {
+      font-family: var(--mono); font-size: 26px; line-height: 34px; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; color: var(--marmor);
+    }
+
+    /* architrave */
+    .architrave { background: var(--basalt); border-bottom: 2px solid var(--gilt-deep); }
+    .nav {
+      min-height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      padding: 0 clamp(20px, 4vw, 44px);
+    }
+    .wordmark { font-weight: 700; font-size: 15px; letter-spacing: .32em; color: var(--marmor); }
+    .wordmark:hover { color: var(--marmor); }
+    .wordmark span { color: var(--gilt); }
+    .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .nav-links a { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--marmor-dim); }
+    .nav-links a:hover { color: var(--gilt); }
+
+    /* page header */
+    .page-header {
+      background: var(--porphyry);
+      padding: clamp(56px, 7vw, 100px) clamp(24px, 4vw, 56px) clamp(46px, 5vw, 76px);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .page-header .back {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: #e8bfc7;
+      display: inline-block; margin-bottom: 24px;
+    }
+    .page-header .back:hover { color: var(--marmor); }
+    .page-header h1 {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 48px); line-height: 1.15;
+      letter-spacing: .04em; color: var(--marmor);
+      margin-bottom: 16px; max-width: 22ch;
+    }
+    .page-header h1 em { color: var(--gilt); font-style: normal; }
+    .page-header .lede {
+      color: #e3c9cf; max-width: 62ch; font-size: 14.5px; line-height: 1.75;
+    }
+
+    /* stats strip */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0;
+      border-bottom: 2px solid var(--gilt-deep);
+      background: var(--basalt-deep);
+    }
+    .stat-cell {
+      padding: 20px 22px;
+      border-right: 1px solid #2a2320;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+      font-size: 22px; font-weight: 700; color: var(--marmor);
+      font-variant-numeric: tabular-nums;
+      display: block; line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #8d8574; margin-top: 6px; display: block;
+    }
+
+    /* thesis */
+    .thesis-section {
+      padding: clamp(46px, 5vw, 76px) clamp(24px, 4vw, 56px);
+      background: var(--basalt);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .thesis-section p {
+      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 14px;
+    }
+    .thesis-section p:first-child { color: var(--marmor); font-size: 15.5px; }
+    .thesis-section p:last-child { margin-bottom: 0; }
+
+    /* release chart */
+    .chart-section {
+      padding: clamp(40px, 5vw, 64px) clamp(24px, 4vw, 56px);
+      background: var(--basalt);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .chart-section .label { display: block; margin-bottom: 22px; }
+    .histo {
+      display: grid; grid-template-columns: repeat(8, 1fr);
+      gap: clamp(6px, 1.5vw, 16px);
+      height: 180px;
+    }
+    .histo-col { display: grid; grid-template-rows: auto 1fr auto; gap: 8px; text-align: center; min-width: 0; }
+    .histo-val { align-self: end; font-size: 10px; color: #8d8574; font-variant-numeric: tabular-nums; }
+    .histo-barwrap { display: flex; align-items: flex-end; }
+    .histo-bar {
+      width: 100%;
+      height: max(calc(var(--pct) * 1%), 1.5%);
+      background: linear-gradient(to top, var(--pompeian), var(--giallo-lit));
+    }
+    .histo-bar.fellowship {
+      background:
+        repeating-linear-gradient(-45deg, transparent 0 5px, rgba(13, 10, 9, .45) 5px 9px),
+        linear-gradient(to top, var(--pompeian), var(--giallo-lit));
+    }
+    .histo-month { font-size: 10px; font-weight: 600; letter-spacing: .06em; color: #8d8574; }
+    .chart-note { margin-top: 16px; font-size: 11px; line-height: 1.8; color: #6b6153; }
+    .chart-note em { color: var(--gilt); font-style: normal; }
+
+    /* timeline */
+    .timeline { background: var(--basalt); }
+
+    .era {
+      padding: clamp(36px, 4vw, 56px) clamp(24px, 4vw, 56px);
+      border-bottom: 1px solid #2a2320;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: clamp(20px, 3vw, 44px);
+      align-items: start;
+    }
+    .era:last-child { border-bottom: 2px solid var(--gilt-deep); }
+
+    .era-meta .era-dates {
+      font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
+      color: var(--gilt); display: block;
+    }
+    .era-meta .era-versions {
+      font-size: 10px; color: #8d8574;
+      letter-spacing: .04em; margin-top: 4px; display: block;
+    }
+
+    .era-content h2 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(18px, 2vw, 24px); line-height: 1.25;
+      letter-spacing: .03em; color: var(--marmor);
+      margin-bottom: 12px;
+    }
+    .era-content p {
+      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 10px;
+    }
+    .era-content p:last-child { margin-bottom: 0; }
+
+    /* pivot callout */
+    .pivot {
+      background: rgba(110, 43, 60, 0.25);
+      border-left: 3px solid var(--porphyry);
+      padding: 14px 18px;
+      margin: 14px 0;
+      max-width: 68ch;
+    }
+    .pivot-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: #e8bfc7; margin-bottom: 6px;
+    }
+    .pivot p {
+      color: var(--marmor); font-size: 13.5px; margin-bottom: 0;
+    }
+
+    /* observation callout */
+    .observation {
+      background: rgba(49, 81, 63, 0.25);
+      border-left: 3px solid var(--verde);
+      padding: 14px 18px;
+      margin: 14px 0;
+      max-width: 68ch;
+    }
+    .obs-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: #8ecaa0; margin-bottom: 6px;
+    }
+    .observation p {
+      color: var(--marmor-dim); font-size: 13.5px; margin-bottom: 0;
+    }
+
+    /* patterns */
+    .patterns-section {
+      padding: clamp(46px, 5vw, 76px) clamp(24px, 4vw, 56px);
+      background: var(--basalt);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .patterns-section .ct { display: block; margin-bottom: 28px; }
+    .pattern-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0;
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+    }
+    .pattern-cell {
+      padding: 20px 22px;
+      border-right: 1px solid #2a2320;
+      border-bottom: 1px solid #2a2320;
+    }
+    .pattern-cell h3 {
+      font-size: 14px; font-weight: 700; color: var(--marmor);
+      margin-bottom: 8px;
+    }
+    .pattern-cell p {
+      font-size: 12.5px; color: var(--marmor-dim); line-height: 1.75;
+      max-width: 42ch;
+    }
+
+    /* closing */
+    .closing-section {
+      padding: clamp(52px, 6vw, 84px) clamp(24px, 4vw, 56px);
+      background: var(--basalt-deep);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .closing-section p {
+      max-width: 68ch; color: var(--marmor-dim); margin-bottom: 14px;
+      font-size: 15px; line-height: 1.75;
+    }
+    .closing-section p:first-child { color: var(--marmor); }
+    .closing-section p:last-child { margin-bottom: 0; }
+
+    /* inscription */
+    .inscription {
+      background: var(--porphyry); text-align: center;
+      padding: clamp(52px, 6vw, 84px) clamp(24px, 4vw, 56px);
+    }
+    .inscription .txt {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(18px, 2.2vw, 30px); line-height: 1.35; letter-spacing: .1em;
+      color: var(--marmor);
+      max-width: 800px; margin-inline: auto;
+    }
+
+    /* footer */
+    .stylobate {
+      background: var(--basalt); border-top: 2px solid var(--gilt-deep);
+      padding: 22px clamp(20px, 4vw, 44px);
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #6b6153;
+    }
+
+    @media (max-width: 900px) {
+      .era { grid-template-columns: 1fr; gap: 10px; }
+      .stats-strip { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 540px) {
+      body { font-size: 14px; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .histo { height: 140px; gap: 4px; }
+      .histo-val { font-size: 8.5px; }
+      .histo-month { font-size: 8px; letter-spacing: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="architrave">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="wordmark" href="/">IZ<span>/</span>DEV</a>
+      <div class="nav-links">
+        <a href="/#research">Research</a>
+        <a href="/#case-studies">Case Studies</a>
+        <a href="/#programs">Programs</a>
+        <a href="/#evidence">Evidence</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <a class="back" href="/#case-studies">&larr; Case Studies</a>
+      <h1>Seven months from first commit to <em>release candidate.</em></h1>
+      <p class="lede">How a programming language compiler went from a TypeScript prototype to a modularized Rust system with GPU codegen, autograd, and multi-locale diagnostics &mdash; and the five pivots that shaped the path.</p>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat-cell"><span class="stat-num">76</span><span class="stat-label">Tagged releases</span></div>
+      <div class="stat-cell"><span class="stat-num">281K</span><span class="stat-label">Lines of Rust</span></div>
+      <div class="stat-cell"><span class="stat-num">3,714</span><span class="stat-label">Test functions</span></div>
+      <div class="stat-cell"><span class="stat-num">24</span><span class="stat-label">Crates</span></div>
+      <div class="stat-cell"><span class="stat-num">5</span><span class="stat-label">Major pivots</span></div>
+      <div class="stat-cell"><span class="stat-num">7</span><span class="stat-label">Months</span></div>
+    </div>
+
+    <section class="thesis-section">
+      <p>The Radix compiler didn't follow a roadmap. It followed a process: write the goal, bound the work, implement a coherent slice, audit the result separately. The roadmap emerged from that loop &mdash; and the pivots emerged from the audits.</p>
+      <p>What makes this retrospective worth reading isn't the output volume. It's the pattern of deliberate course-correction: five times the project changed direction significantly, and each time the pivot was a response to evidence, not a failure of planning.</p>
+    </section>
+
+    <section class="chart-section">
+      <span class="label">Release density by month</span>
+      <div class="histo" role="img" aria-label="Monthly release counts from December 2025 through July 2026: 4, 22, 2, 0, 1, 6, 21, 20.">
+        <div class="histo-col"><span class="histo-val">4</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:18"></span></span><span class="histo-month">DEC</span></div>
+        <div class="histo-col"><span class="histo-val">22</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:100"></span></span><span class="histo-month">JAN</span></div>
+        <div class="histo-col"><span class="histo-val">2</span><span class="histo-barwrap"><span class="histo-bar fellowship" style="--pct:9"></span></span><span class="histo-month">FEB</span></div>
+        <div class="histo-col"><span class="histo-val">0</span><span class="histo-barwrap"><span class="histo-bar fellowship" style="--pct:0"></span></span><span class="histo-month">MAR</span></div>
+        <div class="histo-col"><span class="histo-val">1</span><span class="histo-barwrap"><span class="histo-bar fellowship" style="--pct:5"></span></span><span class="histo-month">APR</span></div>
+        <div class="histo-col"><span class="histo-val">6</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:27"></span></span><span class="histo-month">MAY</span></div>
+        <div class="histo-col"><span class="histo-val">21</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:95"></span></span><span class="histo-month">JUN</span></div>
+        <div class="histo-col"><span class="histo-val">20</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:91"></span></span><span class="histo-month">JUL</span></div>
+      </div>
+      <p class="chart-note"><em>Hatched bars</em> mark the Gauntlet AI fellowship period, when attention shifted to fellowship projects and Radix work continued in the margins.</p>
+    </section>
+
+    <div class="timeline">
+      <article class="era">
+        <div class="era-meta">
+          <span class="era-dates">Dec 22 &ndash; Dec 30, 2025</span>
+          <span class="era-versions">v0.3.0 &ndash; v0.6.0</span>
+        </div>
+        <div class="era-content">
+          <h2>The multi-target prototype</h2>
+          <p>Faber launched as a TypeScript compiler targeting everything at once: TypeScript, Python, Zig, Rust, C++, and WASM backends, all in the first week. Editor tooling (Prettier, tree-sitter, Zed extension) shipped alongside. The Latin keyword syntax, Unicode operators, and genus/pactum/ordo type system were established immediately.</p>
+          <p>313 commits in v0.6.0 alone. This was the "prove the concept exists" phase &mdash; breadth over depth, shipped fast to see what the language felt like in practice.</p>
+        </div>
+      </article>
+
+      <article class="era">
+        <div class="era-meta">
+          <span class="era-dates">Dec 30 &ndash; Jan 5, 2026</span>
+          <span class="era-versions">v0.7.0 &ndash; v0.14.0</span>
+        </div>
+        <div class="era-content">
+          <h2>The self-hosting attempt</h2>
+          <p>An aggressive push to make Faber compile itself. The bootstrap compiler (Rivus) was written in Faber, a semantic analyzer and TypeScript codegen were ported, and 25 <code>.fab</code> source files formed the self-hosted core.</p>
+          <div class="pivot">
+            <div class="pivot-label">Pivot 1 &mdash; Bootstrap target</div>
+            <p><strong>v0.9.0 (Dec 31):</strong> The bootstrap target changed from Zig to TypeScript. Zig was architecturally cleaner but TypeScript was pragmatically faster for self-hosting velocity. The decision prioritized learning speed over target elegance &mdash; a pattern that would repeat.</p>
+          </div>
+          <p>Latin morphology was introduced in v0.14.0, beginning the long arc of linguistic precision that would define the project.</p>
+        </div>
+      </article>
+
+      <article class="era">
+        <div class="era-meta">
+          <span class="era-dates">Jan 6 &ndash; Jan 13</span>
+          <span class="era-versions">v0.15.0 &ndash; v0.22.0</span>
+        </div>
+        <div class="era-content">
+          <h2>Stdlib and language research</h2>
+          <p>The annotation-driven stdlib framework (Norma), HTTP/database/serialization libraries, and the LLM learnability trial harness (Probationes) all arrived in this week. Codegen backends for Rust, C++, and Zig were rebuilt &mdash; and then almost immediately archived.</p>
+          <div class="pivot">
+            <div class="pivot-label">Pivot 2 &mdash; Target narrowing</div>
+            <p><strong>v0.22.0 (Jan 12&ndash;13):</strong> Faber was narrowed from six codegen targets to TypeScript-only, with Go added as the second priority. Rust, Zig, and C++ backends were archived as broken. The decision: stop spreading thin across six half-working backends and focus the reference compiler on one that works completely.</p>
+          </div>
+          <div class="observation">
+            <div class="obs-label">Pattern</div>
+            <p>This is the first instance of what becomes a defining discipline: when something isn't earning its complexity, cut it. The project would prune features, syntax, and entire subsystems dozens of times over the next six months.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="era">
+        <div class="era-meta">
+          <span class="era-dates">Jan 13 &ndash; Jan 26</span>
+          <span class="era-versions">v0.23.0 &ndash; v0.29.0</span>
+        </div>
+        <div class="era-content">
+          <h2>CLI, microcompilers, and language pruning</h2>
+          <p>The CLI framework was built, rebuilt, and refined. The Nanus microcompiler experiment produced tiny standalone compilers in Rust, Go, and Python &mdash; probing whether Faber could be implemented at minimal scale. Faber Glyph format arrived, replacing ASCII compound operators with Unicode.</p>
+          <p>Language pruning accelerated: fit/fiet disabled, consilia/ directory removed, bindings unified under fixum/varia. Each release was smaller and more focused than the last &mdash; the project was converging.</p>
+        </div>
+      </article>
+
+      <article class="era">
+        <div class="era-meta">
+          <span class="era-dates">Jan 26 &ndash; May 20</span>
+          <span class="era-versions">v0.30.0 &ndash; v0.33.0</span>
+        </div>
+        <div class="era-content">
+          <h2>The Rust rewrite</h2>
+          <div class="pivot">
+            <div class="pivot-label">Pivot 3 &mdash; Compiler rewrite in Rust</div>
+            <p><strong>v0.30.0 (Jan 26&ndash;29):</strong> The entire compiler was rewritten in Rust. The TypeScript compiler ecosystem (Faber, Rivus, Nanus) was superseded by <code>radix-rs</code>: ~8,800 lines with full HIR lowering, bidirectional type inference, six-pass semantic architecture, and borrow analysis. This was the foundational architectural shift of the project.</p>
+          </div>
+          <p>The gap between v0.30.0 (Jan 29) and v0.31.0 (Feb 15) &mdash; and then between v0.31.0 and v0.32.0 (Apr 3) &mdash; reflects the Gauntlet AI fellowship absorbing primary attention. The old TS compilers were pruned, the workspace consolidated, and the CLI rebuilt from scratch.</p>
+          <p>v0.33.0 (May 20) was the first real compiled release: a <code>faber</code> binary, CI release pipeline, Docker artifacts. Everything before this was retrospective tagging.</p>
+          <div class="observation">
+            <div class="obs-label">The quiet months</div>
+            <p>February through April had only 3 releases total. Attention had shifted to the Gauntlet AI fellowship &mdash; commit frequency stayed high, but on fellowship projects, not Faber. The rewrite continued in the margins. When the fellowship ended and focus returned, the architectural groundwork was ready to accelerate.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="era">
+        <div class="era-meta">
+          <span class="era-dates">May 21 &ndash; Jun 22</span>
+          <span class="era-versions">v0.34.0 &ndash; v0.40.0</span>
+        </div>
+        <div class="era-content">
+          <h2>MIR, tool separation, and maturation</h2>
+          <p>The compiler split into two tools: <code>faber</code> (user-facing CLI) and <code>radix</code> (compiler). The Glyph clean break removed the last ASCII compound operators.</p>
+          <div class="pivot">
+            <div class="pivot-label">Pivot 4 &mdash; MIR foundation</div>
+            <p><strong>v0.36.0 (May 22&ndash;23):</strong> A proper Middle Intermediate Representation was established with 10 lowering phases. This is the architectural layer that enabled every subsequent backend &mdash; LLVM, WASM, Metal, WGSL &mdash; to consume the same representation. Without MIR, multi-target codegen was ad-hoc per-backend translation. With MIR, it became systematic.</p>
+          </div>
+          <p>v0.40.0 was a turning point in project methodology: 382 commits organized into an 8-stage polish campaign with the CISTA package manager. This is where the campaign/factory pattern became the dominant organizational structure.</p>
+        </div>
+      </article>
+
+      <article class="era">
+        <div class="era-meta">
+          <span class="era-dates">Jun 22 &ndash; Jun 28</span>
+          <span class="era-versions">v0.41.0 &ndash; v0.59.0</span>
+        </div>
+        <div class="era-content">
+          <h2>Scripting runtime and type system expansion</h2>
+          <p>Nineteen releases in six days. The compiler gained a scripting interpreter (Scena, v0.50.0), tensor types (v0.52.0), sized numeric primitives, and indexed tensor types with angle-bracket generics (v0.59.0). The literal system was overhauled: guillemet strings, template strings, byte literals, JSON valor literals.</p>
+          <p>The pace here reflects the MIR foundation paying off: each new type or feature drops into the existing lowering pipeline rather than requiring per-backend implementation.</p>
+          <div class="observation">
+            <div class="obs-label">Acceleration</div>
+            <p>The project went from 4 releases in December to 19 releases in a single week in late June. This isn't just faster typing &mdash; it's the compound effect of architectural decisions (MIR, campaign methodology, clean breaks) reducing the cost of each incremental change.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="era">
+        <div class="era-meta">
+          <span class="era-dates">Jun 28 &ndash; Jul 9</span>
+          <span class="era-versions">v0.60.0 &ndash; v0.70.0</span>
+        </div>
+        <div class="era-content">
+          <h2>GPU codegen and target promotion</h2>
+          <div class="pivot">
+            <div class="pivot-label">Pivot 5 &mdash; GPU and multi-target promotion</div>
+            <p><strong>v0.66.0&ndash;v0.70.0 (Jul 1&ndash;9):</strong> The compiler became a real multi-target system. GPU kernel emission for WGSL, Metal, and LLVM. TLA+ verification infrastructure. All 5 MIR emit targets promoted from probe to supported. v0.66.0 alone spanned 818 commits. This was the moment the compiler stopped being a single-target tool and became a platform.</p>
+          </div>
+          <p>Reader-locale diagnostics arrived (v0.68.0) &mdash; the compiler rendering errors in Thai, Vietnamese, Chinese, Hindi, Arabic, and Latin. The code-first diagnostic identity system made this tractable: stable codes, not human-readable messages, are the primary identifier.</p>
+          <p>The workspace was aggressively reorganized: ~39,000 lines extracted to sibling repositories. The compiler shed weight as it gained capability.</p>
+        </div>
+      </article>
+
+      <article class="era">
+        <div class="era-meta">
+          <span class="era-dates">Jul 9 &ndash; Jul 22</span>
+          <span class="era-versions">v0.71.0 &ndash; v0.77.0 + RC1</span>
+        </div>
+        <div class="era-content">
+          <h2>Modularization and 1.0 preparation</h2>
+          <p>The compiler was modularized into separate crates in an 8-stage extraction (v0.76.0): radix-diagnostics, radix-lexer, radix-syntax, radix-types, radix-hir, radix-mir, codegen crates per target, runtime-contract, stepper, coverage. Crate manifests were realigned &mdash; v0.76.0 was the first release where the tag version equals the manifest version.</p>
+          <p>v0.77.0 brought graphics pipeline reflection end-to-end, an autograd/backward differentiation pipeline, and WGSL workgroup reductions. The compiler can now emit GPU compute kernels with gradient support.</p>
+          <p>The 1.0 release campaign was scaffolded (319-line campaign document) and an RC1 source-tag candidate was cut, awaiting operator approval.</p>
+        </div>
+      </article>
+    </div>
+
+    <section class="patterns-section">
+      <span class="ct">Recurring patterns.</span>
+      <div class="pattern-grid">
+        <div class="pattern-cell">
+          <h3>Relentless pruning</h3>
+          <p>Features, syntax, and subsystems are regularly removed. The project consistently sheds complexity rather than accumulating it.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Campaign methodology</h3>
+          <p>From v0.40.0 onward, all work is organized into formal campaigns with goals, stages, delivery documents, and closeout ledgers.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Architecture before velocity</h3>
+          <p>Each major pivot slowed visible output temporarily but unlocked compounding returns. The Feb&ndash;Apr valley preceded the Jun&ndash;Jul acceleration.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Clean breaks over deprecation</h3>
+          <p>When old syntax or systems are superseded, they're removed, not deprecated. No backwards-compatibility shims. The codebase stays in one present tense.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Latin morphological convergence</h3>
+          <p>Every release refines the Latin naming. Keywords, types, stdlib methods, diagnostics &mdash; all converge on morphologically correct Latin.</p>
+        </div>
+        <div class="pattern-cell">
+          <h3>Workspace extraction arc</h3>
+          <p>The monolith progressively extracts subsystems to sibling repos and modularizes internally. The compiler gets smaller as it gets more capable.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-section">
+      <p>The trajectory from a TypeScript prototype to a modularized Rust compiler with GPU codegen isn't a story about speed. It's a story about a process that produces good pivots: write the goal, do the work, audit the result, and change direction when the evidence says to.</p>
+      <p>The five pivots &mdash; bootstrap target, target narrowing, Rust rewrite, MIR foundation, GPU promotion &mdash; were not failures of the original plan. They were the plan working correctly. Each one emerged from an audit that said: what we built works, but it won't scale to what we need next.</p>
+      <p>The 1.0 RC exists because seventy-five prior releases earned it.</p>
+    </section>
+
+    <div class="inscription">
+      <div class="txt">The roadmap emerged from the process. The pivots emerged from the audits.</div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="stylobate">
+      <span>Ian Zepp &middot; ianzepp.dev</span>
+      <span><a href="/">Back to main &uarr;</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
