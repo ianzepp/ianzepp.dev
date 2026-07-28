@@ -34,7 +34,7 @@ flatly. Prefer method and falsifiable systems over raw commit volume.
 
 ## Sections of the page
 
-- Thesis: learn the domain, verify the output (Aug 2025—present)
+- Thesis: learn the domain, verify the output (1996—present)
 - Programs: Faber/Radix, Minted Geek Swarm, Field Board, The Trials, Monk,
   kernel lineage, plus satellites (Cephalopodic, Gofolio, LegacyLens, QRStatic)
 - Method: goal → phases → slice → commit → audit; human charter/audit vs agent coordination

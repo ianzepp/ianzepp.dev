@@ -379,7 +379,7 @@ Selected for Cohort 4 of a ten-week AI engineering fellowship in Austin, TX (hig
 
 2025—26Independent AI research at repository scaleA
 
-Full-time independent R&D from August 2025: Faber/Radix compiler work product (hundreds of thousands of lines of Rust, thousands of tests, frequent tagged releases), Minted Geek Swarm multi-agent runtime with measured session economics and audit pipeline, Monk, and related systems. Lab-scale inventories (repos, commits, sessions, trials) measured July 12, 2026 support activity volume; compiler and fleet figures above are the primary technical claims. Git histories, transcript archives, and factory documents remain the inspectable spine.
+Full-time independent R&D from August 2025: Faber/Radix compiler work product (hundreds of thousands of lines of Rust, thousands of tests, frequent tagged releases), Minted Geek Swarm multi-agent runtime with measured session economics and audit pipeline, Monk, and related systems. Lab-scale inventories (repos, commits, sessions, trials) measured July 28, 2026 support activity volume; compiler and fleet figures above are the primary technical claims. Git histories, transcript archives, and factory documents remain the inspectable spine.
 GitHub profile ↗
 
 The repository archive.
