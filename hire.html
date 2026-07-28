@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hire Ian Zepp — fractional CTO or fractional principal engineer for early-stage startups. Remote-first. Also full-time engagements for recruiters, with CV downloads.">
+  <meta name="theme-color" content="#14100f">
+  <meta property="og:title" content="Hire — Ian Zepp">
+  <meta property="og:description" content="Fractional CTO and fractional principal engineer for early-stage startups. Remote-first US. Full-time engagements considered.">
+  <meta property="og:url" content="https://ianzepp.dev/hire.html">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
+  <title>Hire &mdash; Ian Zepp</title>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Ian Zepp — Fractional CTO & Principal Engineering",
+      "url": "https://ianzepp.dev/hire.html",
+      "email": "mailto:ian@ianzepp.com",
+      "description": "Remote-first fractional CTO and fractional principal engineer for early-stage startups. Full-time engagements considered.",
+      "areaServed": "US",
+      "founder": {
+        "@type": "Person",
+        "name": "Ian Zepp",
+        "url": "https://ianzepp.dev/",
+        "sameAs": ["https://github.com/ianzepp"]
+      }
+    }
+  </script>
+  <style>
+    @font-face { font-family: "Cinzel"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/cinzel.woff2") format("woff2"); }
+    @font-face { font-family: "Cinzel"; font-style: normal; font-weight: 900; font-display: swap; src: url("fonts/cinzel.woff2") format("woff2"); }
+    @font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/plex-mono-400.woff2") format("woff2"); }
+    @font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/plex-mono-500.woff2") format("woff2"); }
+    @font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/plex-mono-700.woff2") format("woff2"); }
+
+    :root {
+      --basalt: #14100f;
+      --basalt-deep: #0d0a09;
+      --porphyry: #6e2b3c;
+      --porphyry-deep: #4f1f2b;
+      --pompeian: #9b3324;
+      --giallo: #a87c34;
+      --giallo-lit: #c49a45;
+      --verde: #31513f;
+      --aegyptus: #25406b;
+      --gilt: #c9a24a;
+      --gilt-deep: #8a6a2f;
+      --marmor: #ece6da;
+      --marmor-dim: #b8ac9a;
+      --inscr: "Cinzel", Georgia, serif;
+      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      --measure: 680px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--basalt);
+      color: var(--marmor);
+      font-family: var(--mono);
+      font-size: 14.5px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--gilt); text-decoration: none; transition: color .12s; }
+    a:hover { color: var(--marmor); }
+    a:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
+    ::selection { background: var(--porphyry); color: var(--marmor); }
+    code { font-family: var(--mono); font-size: 13px; color: var(--gilt); }
+
+    .label {
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gilt);
+    }
+
+    /* architrave */
+    .architrave { background: var(--basalt); border-bottom: 2px solid var(--gilt-deep); }
+    .nav {
+      min-height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      padding: 0 clamp(20px, 4vw, 44px);
+    }
+    .wordmark { font-weight: 700; font-size: 15px; letter-spacing: .32em; color: var(--marmor); }
+    .wordmark:hover { color: var(--marmor); }
+    .wordmark span { color: var(--gilt); }
+    .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .nav-links a { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--marmor-dim); }
+    .nav-links a:hover { color: var(--gilt); }
+    .nav-links a.active { color: var(--gilt); }
+
+    /* page header */
+    .page-header {
+      background: var(--giallo);
+      color: var(--basalt);
+      padding: clamp(56px, 7vw, 100px) clamp(24px, 4vw, 56px) clamp(46px, 5vw, 76px);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .page-header .back {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: #5a3a10;
+      display: inline-block; margin-bottom: 24px;
+    }
+    .page-header .back:hover { color: var(--basalt); }
+    .page-header .col { max-width: var(--measure); margin-inline: auto; }
+    .page-header h1 {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 48px); line-height: 1.15;
+      letter-spacing: .04em; color: var(--basalt);
+      margin-bottom: 16px; max-width: 24ch;
+    }
+    .page-header h1 em { color: var(--porphyry-deep); font-style: normal; }
+    .page-header .lede {
+      color: #3a2810; font-size: 14.5px; line-height: 1.75;
+    }
+
+    /* quick jump strip */
+    .jump-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0;
+      border-bottom: 2px solid var(--gilt-deep);
+      background: var(--basalt-deep);
+    }
+    .jump-cell {
+      padding: 18px 22px;
+      border-right: 1px solid #2a2320;
+    }
+    .jump-cell:last-child { border-right: none; }
+    .jump-cell a {
+      display: block;
+      color: var(--marmor); font-weight: 700; font-size: 13px;
+    }
+    .jump-cell a:hover { color: var(--gilt); }
+    .jump-cell .jump-sub {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #8d8574; margin-top: 4px; display: block;
+    }
+
+    /* section blocks */
+    .offer {
+      padding: clamp(46px, 5vw, 76px) clamp(24px, 4vw, 56px);
+      border-bottom: 2px solid var(--gilt-deep);
+    }
+    .offer.on-basalt { background: var(--basalt); }
+    .offer.on-deep { background: var(--basalt-deep); }
+    .offer > * { max-width: var(--measure); margin-inline: auto; }
+    .offer .section-label { display: block; margin-bottom: 20px; }
+    .offer h2 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(22px, 2.4vw, 30px); line-height: 1.25;
+      letter-spacing: .03em; color: var(--marmor);
+      margin-bottom: 18px;
+    }
+    .offer h3 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: 15px; letter-spacing: .04em;
+      color: var(--gilt); text-transform: uppercase;
+      margin-top: 22px; margin-bottom: 10px;
+    }
+    .offer p {
+      color: var(--marmor-dim); margin-bottom: 14px;
+    }
+    .offer p:last-child { margin-bottom: 0; }
+    .offer p strong { color: var(--marmor); font-weight: 700; }
+    .offer ul {
+      color: var(--marmor-dim);
+      list-style: none;
+      margin-bottom: 14px;
+    }
+    .offer ul li {
+      padding-left: 20px;
+      margin-bottom: 6px;
+      position: relative;
+    }
+    .offer ul li::before {
+      content: "·";
+      color: var(--gilt);
+      position: absolute;
+      left: 6px;
+      font-weight: 700;
+    }
+
+    /* rate table */
+    .rate-grid {
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+    }
+    .rate-row {
+      display: grid;
+      grid-template-columns: 180px 200px 1fr;
+      border-bottom: 1px solid #2a2320;
+    }
+    .rate-row.default { background: rgba(168, 124, 52, 0.10); }
+    .rate-cell {
+      padding: 12px 16px;
+      border-right: 1px solid #2a2320;
+      font-size: 12.5px;
+      color: var(--marmor-dim);
+    }
+    .rate-cell.cadence { color: var(--marmor); font-weight: 600; }
+    .rate-cell.price { color: var(--gilt); font-weight: 700; font-variant-numeric: tabular-nums; }
+    .rate-row.default .rate-cell.cadence,
+    .rate-row.default .rate-cell.price { color: var(--gilt-lit, var(--marmor)); }
+
+    /* fit blocks side by side */
+    .fit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+    }
+    .fit-cell {
+      padding: 18px 20px;
+      border-right: 1px solid #2a2320;
+      border-bottom: 1px solid #2a2320;
+    }
+    .fit-cell h4 {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .fit-cell.good h4 { color: #8ecaa0; }
+    .fit-cell.not h4 { color: #e8bfc7; }
+    .fit-cell ul {
+      margin: 0;
+      font-size: 12.5px;
+    }
+    .fit-cell ul li { margin-bottom: 4px; }
+
+    /* CTA row */
+    .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+    .cta a {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      border: 1px solid var(--gilt-deep);
+      color: var(--gilt);
+    }
+    .cta a.primary {
+      background: var(--gilt);
+      color: var(--basalt);
+      border-color: var(--gilt);
+    }
+    .cta a.primary:hover { background: var(--giallo-lit); color: var(--basalt); }
+    .cta a:hover { color: var(--marmor); border-color: var(--marmor); }
+
+    /* CV downloads */
+    .cv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0;
+      margin-block: 20px;
+      margin-inline: auto;
+      max-width: var(--measure);
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+    }
+    .cv-cell {
+      padding: 20px 22px;
+      border-right: 1px solid #2a2320;
+      border-bottom: 1px solid #2a2320;
+    }
+    .cv-cell h4 {
+      font-size: 13px; font-weight: 700; color: var(--marmor);
+      margin-bottom: 6px;
+    }
+    .cv-cell .cv-sub {
+      font-size: 11px; color: #8d8574;
+      letter-spacing: .04em;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .cv-cell a {
+      display: inline-block;
+      padding: 8px 14px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      border: 1px solid var(--gilt-deep);
+      color: var(--gilt);
+    }
+    .cv-cell a:hover {
+      border-color: var(--gilt);
+      color: var(--marmor);
+      background: rgba(168, 124, 52, 0.08);
+    }
+
+    /* callout */
+    .callout {
+      border-left: 3px solid var(--gilt-deep);
+      padding: 14px 18px;
+      margin-block: 18px;
+      margin-inline: auto;
+      max-width: var(--measure);
+      background: rgba(37, 64, 107, 0.15);
+      border-left-color: var(--aegyptus);
+    }
+    .callout p { color: var(--marmor-dim); font-size: 13.5px; margin-bottom: 0; }
+    .callout p strong { color: var(--marmor); }
+
+    /* inscription */
+    .inscription {
+      background: var(--giallo); text-align: center;
+      padding: clamp(52px, 6vw, 84px) clamp(24px, 4vw, 56px);
+    }
+    .inscription .txt {
+      font-family: var(--inscr); font-weight: 900;
+      font-size: clamp(18px, 2.2vw, 30px); line-height: 1.35; letter-spacing: .1em;
+      color: var(--basalt);
+      max-width: 800px; margin-inline: auto;
+    }
+
+    /* footer */
+    .stylobate {
+      background: var(--basalt); border-top: 2px solid var(--gilt-deep);
+      padding: 22px clamp(20px, 4vw, 44px);
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #6b6153;
+    }
+
+    @media (max-width: 900px) {
+      .rate-row { grid-template-columns: 1fr; }
+      .rate-cell { border-right: none; border-bottom: 1px solid #2a2320; }
+      .rate-row .rate-cell:last-child { border-bottom: none; }
+      .fit-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="architrave">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="wordmark" href="/">IZ<span>/</span>DEV</a>
+      <div class="nav-links">
+        <a href="/hire.html" class="active">Hire</a>
+        <a href="/#research">Research</a>
+        <a href="/#case-studies">Case Studies</a>
+        <a href="/#programs">Programs</a>
+        <a href="/#evidence">Evidence</a>
+        <a href="/genz.html">Gen Z</a>
+        <a href="/llms.txt" title="Machine-readable site index for agents">LLMS</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="page-header">
+      <div class="col">
+        <a class="back" href="/">&larr; ianzepp.dev</a>
+        <h1>Technical leadership <em>for hire.</em></h1>
+        <p class="lede">Fractional CTO and fractional principal engineering for early-stage companies &mdash; architecture, hiring, roadmap, engineering process &mdash; without a full-time exec seat. Remote-first US. Full-time engagements considered when the fit is right.</p>
+      </div>
+    </div>
+
+    <div class="jump-strip">
+      <div class="jump-cell">
+        <a href="#fractional-cto">Fractional CTO</a>
+        <span class="jump-sub">Retainer &middot; ~2 days / week</span>
+      </div>
+      <div class="jump-cell">
+        <a href="#fractional-principal">Fractional Principal Engineer</a>
+        <span class="jump-sub">Day rate or IC retainer</span>
+      </div>
+      <div class="jump-cell">
+        <a href="#full-time">Full-time &amp; recruiters</a>
+        <span class="jump-sub">CV downloads</span>
+      </div>
+      <div class="jump-cell">
+        <a href="mailto:ian@ianzepp.com?subject=Engagement%20inquiry">ian@ianzepp.com</a>
+        <span class="jump-sub">Real reply, one business day</span>
+      </div>
+    </div>
+
+    <!-- FRACTIONAL CTO -->
+    <section id="fractional-cto" class="offer on-basalt">
+      <span class="label section-label">Product A</span>
+      <h2>Fractional CTO.</h2>
+      <p>Technical leadership for a smaller company &mdash; architecture, roadmap, hiring, and engineering process &mdash; delivered remote-first at a cadence that respects your runway and mine. Written charter. IP carve-out. Explicit exit path.</p>
+
+      <h3>Who this is for</h3>
+      <p>Pre-seed through Series A. Zero to fifteen engineers. Remote-first US. The pain that brings people here is usually one or two of:</p>
+      <ul>
+        <li>Technical decisions are gating revenue, fundraising, or a launch.</li>
+        <li>Hiring without a senior bar, or unable to attract seniors without a leader in the loop.</li>
+        <li>Architecture or platform choices the current team cannot close.</li>
+        <li>Agent-generated code shipping without review, attribution, or cost control.</li>
+        <li>Bridge after a CTO left, or before the first full-time CTO hire.</li>
+      </ul>
+
+      <h3>Engagement shape</h3>
+      <ul>
+        <li>Weekly founder / CEO sync. Written 30 / 60 / 90 day outcomes.</li>
+        <li>Owned: architecture, roadmap alignment, hiring screens and debriefs, engineering process, critical-path review.</li>
+        <li>Not owned: ticket throughput, day-to-day project management, badge presence.</li>
+        <li>Optional onsite for launches, fundraises, or a key week per quarter &mdash; scoped separately.</li>
+        <li>Prior-inventions schedule and IP carve-out on every engagement.</li>
+      </ul>
+
+      <h3>Rates</h3>
+      <div class="rate-grid">
+        <div class="rate-row">
+          <div class="rate-cell cadence">1 day / week</div>
+          <div class="rate-cell price">$10K &ndash; $12K / mo</div>
+          <div class="rate-cell">Strategic oversight, reviews, key decisions.</div>
+        </div>
+        <div class="rate-row default">
+          <div class="rate-cell cadence">2 days / week &middot; default</div>
+          <div class="rate-cell price">$15K &ndash; $18K / mo</div>
+          <div class="rate-cell">Embedded: roadmap, architecture, hiring, process.</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-cell cadence">3 days / week</div>
+          <div class="rate-cell price">$20K &ndash; $25K / mo</div>
+          <div class="rate-cell">Near full-time; only if the attention cost is worth it.</div>
+        </div>
+      </div>
+
+      <div class="fit-grid">
+        <div class="fit-cell good">
+          <h4>Good fit</h4>
+          <ul>
+            <li>Founder wants technical co-leadership, not a title</li>
+            <li>Remote-first cadence, weekly sync tolerated</li>
+            <li>Cash to fund at band for 6+ months</li>
+            <li>AI-native or platform product with real engineering pain</li>
+          </ul>
+        </div>
+        <div class="fit-cell not">
+          <h4>Not a fit</h4>
+          <ul>
+            <li>Onsite five days / week in SF</li>
+            <li>Equity-only in short runway conditions</li>
+            <li>Committee decision-maker with no single owner</li>
+            <li>Want to buy a productized methodology to install</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a class="primary" href="mailto:ian@ianzepp.com?subject=Fractional%20CTO%20inquiry">ian@ianzepp.com</a>
+        <a href="#full-time">CV downloads &darr;</a>
+      </div>
+    </section>
+
+    <!-- FRACTIONAL PRINCIPAL ENGINEER -->
+    <section id="fractional-principal" class="offer on-deep">
+      <span class="label section-label">Product B</span>
+      <h2>Fractional Principal Engineer.</h2>
+      <p>Senior hands-on systems work when the ask is capacity and judgment, not the CTO seat. Architecture and implementation on your codebase; embedded principal engineering; evaluation and audit-style work on shipping systems.</p>
+
+      <h3>Who this is for</h3>
+      <p>Engineering manager, founding engineer, or CTO who needs a specialist for a bounded stretch &mdash; usually one of:</p>
+      <ul>
+        <li>Platform, runtime, compiler, or agent-fleet work outside the team's depth.</li>
+        <li>Architecture design + first implementation, handed off to a permanent owner.</li>
+        <li>Audit and evaluation on AI-generated code or model-routing infrastructure.</li>
+        <li>Short intense sprint on a critical path the team cannot free up for.</li>
+      </ul>
+
+      <h3>Rates</h3>
+      <div class="rate-grid">
+        <div class="rate-row">
+          <div class="rate-cell cadence">Day rate</div>
+          <div class="rate-cell price">$2,500 / day</div>
+          <div class="rate-cell">Principal-level architecture and systems work.</div>
+        </div>
+        <div class="rate-row default">
+          <div class="rate-cell cadence">Retainer &middot; ~2 days / week</div>
+          <div class="rate-cell price">$15K &ndash; $20K / mo</div>
+          <div class="rate-cell">Sustained embedded work over weeks or months.</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p><strong>No hourly.</strong> Day rate or retainer. Hourly meters attention and rewards ticket throughput over judgment, which is the opposite of what this product is.</p>
+      </div>
+
+      <div class="cta">
+        <a class="primary" href="mailto:ian@ianzepp.com?subject=Principal%20engineer%20inquiry">ian@ianzepp.com</a>
+      </div>
+    </section>
+
+    <!-- FULL-TIME + RECRUITERS -->
+    <section id="full-time" class="offer on-basalt">
+      <span class="label section-label">For recruiters</span>
+      <h2>Full-time engagements.</h2>
+      <p>Full-time is a capstone, not the opening move. If a role is genuinely staff / principal / architect IC or a small-company VP-of-Engineering / CTO seat, it is worth a conversation. Director-plus roles with heavy people-management-only accountability are usually not the right fit.</p>
+
+      <h3>Filter before you send</h3>
+      <ul>
+        <li><strong>Remote-first US.</strong> Will not relocate to SF. Austin considered case by case.</li>
+        <li><strong>Small engineering org.</strong> ~30 engineers or fewer where the technical judgment matters.</li>
+        <li><strong>Staff / principal / architect IC</strong>, or <strong>small-company VP Eng / CTO</strong>. Not layered director seats.</li>
+        <li><strong>Product with a verifiable correctness surface.</strong> Compilers, runtimes, platforms, agent systems, developer tools.</li>
+        <li><strong>Cash + equity in that order.</strong> Equity-heavy early roles by exception, not default.</li>
+      </ul>
+
+      <h3>Download the CV</h3>
+      <div class="cv-grid">
+        <div class="cv-cell">
+          <h4>Full CV &middot; multi-page</h4>
+          <span class="cv-sub">ATS-oriented &middot; complete work history</span>
+          <a href="/cv/Ian-Zepp-CV.docx" download>Download .docx</a>
+        </div>
+        <div class="cv-cell">
+          <h4>One-page CV</h4>
+          <span class="cv-sub">Length discipline &middot; recent + condensed leadership</span>
+          <a href="/cv/Ian-Zepp-CV-1page.docx" download>Download .docx</a>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p><strong>ATS note.</strong> Both files are single-column .docx with standard section names, MM/YYYY dates, no tables or graphics. Upload as-is; do not convert to PDF first if the system will re-parse.</p>
+      </div>
+
+      <div class="cta">
+        <a class="primary" href="mailto:ian@ianzepp.com?subject=Full-time%20role%20-%20%5Bcompany%5D">ian@ianzepp.com</a>
+        <a href="https://linkedin.com/in/ianzepp" rel="noopener">LinkedIn &rarr;</a>
+      </div>
+    </section>
+
+    <div class="inscription">
+      <div class="txt">Lead with the work. State the offer plainly. The rest is conversation.</div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="stylobate">
+      <span>Ian Zepp &middot; ianzepp.dev &middot; <a href="mailto:ian@ianzepp.com">ian@ianzepp.com</a></span>
+      <span><a href="/">Back to main &uarr;</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>

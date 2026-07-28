@@ -4,8 +4,9 @@
 > learns unfamiliar technical domains from the ground up and builds engineering
 > process robust enough to sustain AI-assisted development over months. This
 > site is the long autobiographical surface: lab programs, method, career
-> evidence graded A/B/C. Commercial / fractional work is intended for
-> ianzepp.com (when live); this domain is craft and history.
+> evidence graded A/B/C. Commercial / fractional work is offered on this
+> domain at https://ianzepp.dev/hire.html (fractional CTO, fractional principal
+> engineer, and full-time engagements with CV downloads for recruiters).
 
 The single page at https://ianzepp.dev/ is the canonical human-readable source.
 https://ianzepp.dev/llms-full.txt carries the same content as clean Markdown
@@ -53,6 +54,9 @@ flatly. Prefer method and falsifiable systems over raw commit volume.
 - Trials harness: https://github.com/ianzepp/faber-trials
 - Monk platform: https://github.com/ianzepp/monk-api
 - Contact: mailto:ian@ianzepp.com
+- Hire page: https://ianzepp.dev/hire.html
+- CV (full, .docx): https://ianzepp.dev/cv/Ian-Zepp-CV.docx
+- CV (one-page, .docx): https://ianzepp.dev/cv/Ian-Zepp-CV-1page.docx
 
 ## Machine surfaces
 
