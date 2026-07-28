@@ -19,18 +19,18 @@ calls, and build engineering process that holds up over months of AI-assisted
 development. Do not lead with retirement; state the 2021–2025 pause late and
 flatly. Prefer method and falsifiable systems over raw commit volume.
 
-## Headline technical claims (as on current CV / site)
+## Headline technical claims (as on current CV / case studies)
 
 - Faber/Radix: ~281K LOC Rust across 24 crates; 3,714 test functions; ~48%
-  test-to-source; clippy pedantic at deny; 59 tagged releases since Dec 2025
+  test-to-source; clippy pedantic at deny; 76 tagged releases since Dec 2025
   (median ~1 day between releases). No prior PL-theory background.
 - Swarm: multi-agent runtime; durable message handles (not full context ship);
   measured session shape / cost-per-work-hour improvement after orchestration;
   ~92% imputed blended model-cost cut Jan→Apr 2026 (list prices under
   subscription — not cash outlay); three-pass audit with 39 interventions in
   one sample campaign.
-- Supporting lab scale (measured July 12, 2026): 17,710 deduplicated commits
-  Aug 2025–Jul 2026; 218 local repos; 6,638 agent sessions; 17,681 LLM trial rows.
+- Supporting lab scale (measured July 28, 2026): 29,211 deduplicated commits
+  Aug 2025–Jul 2026; 214 local repos.
 
 ## Sections of the page
 
@@ -39,7 +39,10 @@ flatly. Prefer method and falsifiable systems over raw commit volume.
   kernel lineage, plus satellites (Cephalopodic, Gofolio, LegacyLens, QRStatic)
 - Method: goal → phases → slice → commit → audit; human charter/audit vs agent coordination
 - Skills: repo-owned agent skill library
-- Story: five acts, 1996—present (retirement in act IV only)
+- Story: seven acts, 1996—present (retirement in act VI only)
+- Case studies: deep retrospectives on six projects &mdash; Radix compiler,
+  Monk OS Kernel, Monk API, Field Board, The Substrate, The First Protocols
+  (origin story). See /case-studies/*.html for individual pages.
 - Evidence ledger: claims graded A/B/C
 - Repository archive: ranked public GitHub projects, generated from live data
 
@@ -53,6 +56,13 @@ flatly. Prefer method and falsifiable systems over raw commit volume.
 - Field Board source: https://github.com/ianzepp/gauntlet-week-1
 - Trials harness: https://github.com/ianzepp/faber-trials
 - Monk platform: https://github.com/ianzepp/monk-api
+- Case studies:
+  - Radix compiler retrospective: https://ianzepp.dev/case-studies/radix-retrospective.html
+  - Monk OS Kernel: https://ianzepp.dev/case-studies/monk-os-kernel.html
+  - Monk API: https://ianzepp.dev/case-studies/monk-api.html
+  - Field Board: https://ianzepp.dev/case-studies/fieldboard.html
+  - The Substrate (Cassio + Vivarium): https://ianzepp.dev/case-studies/the-substrate.html
+  - The First Protocols (origin): https://ianzepp.dev/case-studies/the-first-protocols.html
 - Contact: mailto:ian@ianzepp.com
 - Hire page: https://ianzepp.dev/hire.html
 - CV (full, .docx): https://ianzepp.dev/cv/Ian-Zepp-CV.docx

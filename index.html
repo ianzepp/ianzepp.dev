@@ -163,9 +163,9 @@
       margin-top: 36px;
       border-top: 1px solid #2a2320; border-left: 1px solid #2a2320;
     }
-    .number { padding: 18px 20px; border-right: 1px solid #2a2320; border-bottom: 1px solid #2a2320; }
-    .number strong { display: block; font-size: 21px; font-weight: 700; color: var(--marmor); }
-    .number span { display: block; margin-top: 8px; font-size: 10px; font-weight: 500; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; color: #8d8574; }
+    .number { padding: 22px 22px; border-right: 1px solid #2a2320; border-bottom: 1px solid #2a2320; }
+    .number strong { display: block; font-size: 13px; font-weight: 700; color: var(--marmor); line-height: 1.45; }
+    .number span { display: block; margin-top: 8px; font-size: 12px; font-weight: 400; line-height: 1.65; color: #8d8574; }
     .stat-note { margin-top: 18px; max-width: 84ch; font-size: 11px; line-height: 1.8; color: #6b6153; }
 
     .histo-wrap { padding: clamp(40px, 5vw, 64px) clamp(24px, 4vw, 56px) clamp(46px, 5vw, 76px); background: var(--basalt); }
@@ -509,7 +509,7 @@
 </head>
 <body>
   <header class="architrave">
-    <nav class="nav shell" aria-label="Primary navigation">
+    <nav class="nav" aria-label="Primary navigation">
       <a class="wordmark" href="#top">IZ<span>/</span>DEV</a>
       <div class="nav-links">
         <a href="/hire.html">Hire</a>
@@ -539,52 +539,52 @@
       </div>
       <div class="tablet">
         <div class="inner">
-          <span class="label">What the year proved</span>
-          <p class="aside">A Rust compiler built without prior PL theory. Agent fleets with measured cost routing and a three-pass audit pipeline. The numbers are dated below — what matters is whether the output holds up, not how many commits produced it.</p>
+          <span class="label">What this is</span>
+          <p class="aside">Six case studies spanning 1999 to 2026. A seven-act career from the Marine Corps through real estate, enterprise platforms, founder exits, and full-time independent R&amp;D. An evidence ledger graded A/B/C. The depth is below &mdash; the front door should reflect the scope.</p>
           <div class="status"><span class="sq" aria-hidden="true"></span>Currently building in Rust</div>
         </div>
       </div>
     </section>
 
-    <!-- COURSE — thesis: the lab, measured -->
+    <!-- COURSE — thesis: the career pattern -->
     <section class="course thesis" id="research" aria-labelledby="research-title">
       <div class="head">
-        <span class="label">The main story · Aug 2025—present</span>
+        <span class="label">The thesis &middot; 1996&mdash;present</span>
         <h2 class="ct" id="research-title">Learn the domain. Verify the output.</h2>
       </div>
       <div class="thesis-body">
         <div class="thesis-copy">
-          <p>Since August 2025 I have worked full time on AI-assisted systems: a programming language and its Rust compiler, a multi-agent runtime and fleet orchestration layer, a multi-tenant platform, MCP security tooling, and the evaluation harnesses that keep the rest honest. I had no programming-language-theory background when the compiler started. I chose a domain where bluffing fails—a type system works or it doesn’t.</p>
-          <p>The process came first. For months I ran it by hand — goals and invariants before code, work in bounded phases, completion audited apart from implementation — until the coordination load outgrew one person. Then I built the tooling to hand dispatch and tactical judgment to agent fleets, keeping the problem definition and the audit for myself.</p>
-          <p>Agents coordinate by passing durable message handles, not by shipping full context between sessions. Routing models by task shape cut blended cost roughly 92% from early-2026 peaks. The volume numbers below are real and dated; they are not the thesis.</p>
+          <p>The pattern started in 1999: write a KDE frontend for Nmap without knowing Qt, build a multi-tenant platform without knowing enterprise architecture, ship a Rust compiler without prior PL theory. Each time the approach is the same &mdash; learn the theory well enough to make real design calls, then build process robust enough that the output holds up under audit.</p>
+          <p>Since August 2025 that approach has run full time on AI-assisted systems: a programming language and its Rust compiler, a multi-agent runtime and fleet orchestration layer, a multi-tenant platform, MCP security tooling, and evaluation harnesses. The process came first &mdash; goals and invariants before code, work in bounded phases, completion audited apart from implementation &mdash; until the coordination load outgrew one person and the tooling was built to hand dispatch to agent fleets.</p>
+          <p>The case studies below trace the pattern across decades. The research programs, method, skills, and evidence ledger that follow are the current instantiation &mdash; deeper, more measured, but the same instinct that started in a barracks in 1999.</p>
         </div>
-        <div class="numbers" aria-label="Research period measurements">
-          <div class="number"><strong>281K</strong><span>LOC Rust · Radix compiler · 24 crates</span></div>
-          <div class="number"><strong>3,714</strong><span>compiler test functions · 48% test-to-source</span></div>
-          <div class="number"><strong>59</strong><span>tagged releases · median 1 day apart</span></div>
-          <div class="number"><strong>92%</strong><span>blended model-cost cut · Jan→Apr 2026</span></div>
-          <div class="number"><strong>39</strong><span>audit interventions · one campaign</span></div>
-          <div class="number"><strong>17,710</strong><span>deduped commits · Aug 2025—Jul 2026</span></div>
+        <div class="numbers" aria-label="What the work is">
+          <div class="number"><strong>Cold-starts domains</strong><span>From KDE protocol tools in 1999 to a Rust compiler without prior PL theory. The domain changes; the pattern doesn&rsquo;t.</span></div>
+          <div class="number"><strong>Rebuilds right when the context changes</strong><span>The same platform vision rebuilt clean-room across four iterations, two languages, and a decade. The design survived because it was correct.</span></div>
+          <div class="number"><strong>Builds the process before the code</strong><span>Goals and invariants first. Bounded phases. Audit apart from implementation. The loop runs by hand before it runs automated.</span></div>
+          <div class="number"><strong>Ships falsifiable systems</strong><span>Compilers, agent runtimes, operating systems, multi-tenant platforms. If it can&rsquo;t be tested, it doesn&rsquo;t count.</span></div>
+          <div class="number"><strong>Open source from day one</strong><span>Nmap citation in 1999, kdelibs contributor, 40+ public repositories. The work has always been inspectable.</span></div>
+          <div class="number"><strong>Evidence graded, not claimed</strong><span>Claims reconstructed against executed agreements, payroll records, and primary sources. Where the record is thin, the grade says so.</span></div>
         </div>
-        <p class="stat-note">Compiler and release figures from the Radix/Faber work product as used on the current CV. Cost figures are imputed at public list prices under subscription use—not cash outlay—and travel with that caveat permanently. Commit total measured July 12, 2026: deduplicated by SHA across local repositories, filtered to my author identity; directed, reviewed, integrated engineering—not a claim that I typed every line. Supporting lab scale: 218 local repos, 6,638 recorded agent sessions, 17,681 LLM trial rows (same measurement date).</p>
+        <p class="stat-note">The sections below hold the proof: six case studies with dated metrics, six research programs with inspectable source, an operating method with named artifacts, a seven-act career reconstructed against primary records, and an evidence ledger graded A, B, or C depending on what the receipts support.</p>
       </div>
       <div class="histo-wrap">
-        <span class="label">Unique commits per month</span>
-        <div class="histo" role="img" aria-label="Monthly deduplicated commit counts from August 2025 through July 12, 2026: 589, 138, 2, 940, 1113, 1028, 1286, 591, 1505, 3196, 4008, and 3314 in the first twelve days of July.">
-          <div class="histo-col"><span class="histo-val">589</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:14.7"></span></span><span class="histo-month">AUG</span></div>
-          <div class="histo-col"><span class="histo-val">138</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:3.4"></span></span><span class="histo-month">SEP</span></div>
-          <div class="histo-col"><span class="histo-val">2</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:0"></span></span><span class="histo-month">OCT</span></div>
-          <div class="histo-col"><span class="histo-val">940</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:23.5"></span></span><span class="histo-month">NOV</span></div>
-          <div class="histo-col"><span class="histo-val">1,113</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:27.8"></span></span><span class="histo-month">DEC</span></div>
-          <div class="histo-col"><span class="histo-val">1,028</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:25.7"></span></span><span class="histo-month">JAN</span></div>
-          <div class="histo-col"><span class="histo-val">1,286</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:32.1"></span></span><span class="histo-month">FEB</span></div>
-          <div class="histo-col"><span class="histo-val">591</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:14.7"></span></span><span class="histo-month">MAR</span></div>
-          <div class="histo-col"><span class="histo-val">1,505</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:37.6"></span></span><span class="histo-month">APR</span></div>
-          <div class="histo-col"><span class="histo-val">3,196</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:79.8"></span></span><span class="histo-month">MAY</span></div>
-          <div class="histo-col"><span class="histo-val">4,008</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:100"></span></span><span class="histo-month">JUN</span></div>
-          <div class="histo-col"><span class="histo-val">3,314</span><span class="histo-barwrap"><span class="histo-bar partial" style="--pct:82.7"></span></span><span class="histo-month">JUL*</span></div>
+        <span class="label">The current period &middot; unique commits per month</span>
+        <div class="histo" role="img" aria-label="Monthly deduplicated commit counts from August 2025 through July 2026: 1302, 866, 711, 1807, 2418, 2169, 2841, 1233, 2531, 3117, 3154, and 7072 in July.">
+          <div class="histo-col"><span class="histo-val">1,302</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:18.4"></span></span><span class="histo-month">AUG</span></div>
+          <div class="histo-col"><span class="histo-val">866</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:12.2"></span></span><span class="histo-month">SEP</span></div>
+          <div class="histo-col"><span class="histo-val">711</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:10.1"></span></span><span class="histo-month">OCT</span></div>
+          <div class="histo-col"><span class="histo-val">1,807</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:25.6"></span></span><span class="histo-month">NOV</span></div>
+          <div class="histo-col"><span class="histo-val">2,418</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:34.2"></span></span><span class="histo-month">DEC</span></div>
+          <div class="histo-col"><span class="histo-val">2,169</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:30.7"></span></span><span class="histo-month">JAN</span></div>
+          <div class="histo-col"><span class="histo-val">2,841</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:40.2"></span></span><span class="histo-month">FEB</span></div>
+          <div class="histo-col"><span class="histo-val">1,233</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:17.4"></span></span><span class="histo-month">MAR</span></div>
+          <div class="histo-col"><span class="histo-val">2,531</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:35.8"></span></span><span class="histo-month">APR</span></div>
+          <div class="histo-col"><span class="histo-val">3,117</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:44.1"></span></span><span class="histo-month">MAY</span></div>
+          <div class="histo-col"><span class="histo-val">3,154</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:44.6"></span></span><span class="histo-month">JUN</span></div>
+          <div class="histo-col"><span class="histo-val">7,072</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:100"></span></span><span class="histo-month">JUL</span></div>
         </div>
-        <p class="histo-note">Deduplicated commits in current histories, by month. <em>*July covers twelve days.</em> October is real, too: two commits. The pace was sustained, not retrofitted.</p>
+        <p class="histo-note">Deduplicated commits across the full lab, by month. This is the current burst &mdash; the case studies below span the decades that produced it.</p>
       </div>
     </section>
 
@@ -705,7 +705,7 @@
           <span class="tag">Language / compiler · Active · private</span>
           <h3>Faber / Radix</h3>
           <p>A Latin-derived programming language and Radix, its Rust compiler: one semantic core with multiple locale renderings, HIR/MIR lowering, emission across Rust, Go, TypeScript, WebAssembly, LLVM, Metal, and WGSL. Built without prior PL-theory background—chosen because a compiler cannot bluff. Clippy pedantic at deny across every crate; structured release notes on a daily median cadence.</p>
-          <div class="stats"><span><strong>281K</strong> LOC · 24 crates</span><span><strong>3,714</strong> test functions</span><span><strong>59</strong> releases · median 1 day</span></div>
+          <div class="stats"><span><strong>281K</strong> LOC · 24 crates</span><span><strong>3,714</strong> test functions</span><span><strong>76</strong> releases · median 1 day</span></div>
           <div class="links"><a href="https://www.faberlang.dev">faberlang.dev ↗</a><a href="https://github.com/faberlang">github.com/faberlang ↗</a><a href="https://github.com/ianzepp/tree-sitter-faber">Grammar ↗</a></div>
         </article>
         <article class="tile t-basalt">
@@ -719,7 +719,7 @@
           <span class="tag">Seven-day build · Open source</span>
           <h3>Field Board</h3>
           <p>A real-time collaborative whiteboard with AI board manipulation, written in Rust end to end: Axum and PostgreSQL behind, Leptos and WebAssembly in front, binary protobuf frames between. Seven crates in seven days, February 2026.</p>
-          <div class="stats"><span><strong>511</strong> commits</span><span><strong>1,077</strong> test definitions</span><span><strong>7</strong> crates / 7 days</span></div>
+          <div class="stats"><span><strong>511</strong> commits</span><span><strong>1,065</strong> tests passed</span><span><strong>7</strong> crates / 7 days</span></div>
           <div class="links"><a href="https://github.com/ianzepp/gauntlet-week-1">Source ↗</a></div>
         </article>
         <article class="tile t-aegyp">
@@ -733,7 +733,7 @@
           <span class="tag">Programmable platform · Open source</span>
           <h3>Monk</h3>
           <p>A multi-tenant backend where the schema is data: model-first APIs, per-tenant isolation, observer rings, packages, cron—and protocol adapters that expose the same records over FUSE, FTP, and IRC. The clearest bridge between my enterprise-platform years and the current work.</p>
-          <div class="stats"><span><strong>1,122</strong> commits</span><span><strong>15+</strong> ecosystem repos</span></div>
+          <div class="stats"><span><strong>1,131</strong> commits</span><span><strong>15+</strong> ecosystem repos</span></div>
           <div class="links"><a href="https://github.com/ianzepp/monk-api">Source ↗</a></div>
         </article>
         <article class="tile t-pomp wide">
@@ -988,19 +988,19 @@
             <div class="ledger-body"><p>A DD-214 records active service from May 1996 to May 2000, an honorable discharge, the rank of Corporal (E-4), and the 0351 Assaultman occupational specialty.</p></div>
           </details>
           <details>
-            <summary><span class=”ledger-date”>2000</span><span class=”ledger-title”>KMap enters the Nmap ecosystem</span><span class=”ledger-grade” data-grade=”A”>A</span></summary>
-            <div class=”ledger-body”><p>Nmap’s contemporary release announcement names “a KDE front end by Ian Zepp”; the mailing-list archive preserves my KMap 0.7 announcement, Linux and FreeBSD notes included. Separately, the KDE 3.5 API reference preserves <code>KStringHandler</code> in kdelibs/kdecore with the copyright line “Copyright (C) 1999 Ian Zepp (icszepp@islc.net)”&mdash;original author of a core KDE library class shipped with every KDE installation.</p><a href=”https://insecure.org/stf/Nmap-2.50-Release.html”>Nmap release archive ↗</a><a href=”https://seclists.org/nmap-announce/2000/1”>KMap announcement ↗</a><a href=”https://api.kde.org/legacy/3.5-api/kdelibs-apidocs/kdecore/html/kstringhandler_8h_source.html”>KStringHandler source ↗</a></div>
+            <summary><span class="ledger-date">2000</span><span class="ledger-title">KMap enters the Nmap ecosystem</span><span class="ledger-grade" data-grade="A">A</span></summary>
+            <div class="ledger-body"><p>Nmap’s contemporary release announcement names “a KDE front end by Ian Zepp”; the mailing-list archive preserves my KMap 0.7 announcement, Linux and FreeBSD notes included. Separately, the KDE 3.5 API reference preserves <code>KStringHandler</code> in kdelibs/kdecore with the copyright line “Copyright (C) 1999 Ian Zepp (icszepp@islc.net)”&mdash;original author of a core KDE library class shipped with every KDE installation.</p><a href="https://insecure.org/stf/Nmap-2.50-Release.html">Nmap release archive ↗</a><a href="https://seclists.org/nmap-announcement/2000/1">KMap announcement ↗</a><a href="https://api.kde.org/legacy/3.5-api/kdelibs-apidocs/kdecore/html/kstringhandler_8h_source.html">KStringHandler source ↗</a></div>
           </details>
           <details>
-            <summary><span class=”ledger-date”>2002—07</span><span class=”ledger-title”>Real estate and early Salesforce</span><span class=”ledger-grade” data-grade=”B”>B</span></summary>
-            <div class=”ledger-body”><p>Buena Ventura Investments (Asheville, NC) as General Partner, then multiple real estate roles in Gainesville, FL including Equity Ventures, Bosshardt Realty, University Corners, and Gainesville Greens. Recovered Wayback Machine captures of ucorners.com, investgainesville.com, gainesvillegreens.com, motionhill.com, and others corroborate the marketing-site and CRM work. Gmail headers preserve Salesforce org identifiers (two distinct orgs with Web-to-Lead integration) and outbound CRM mail from 2005&ndash;2007. A 2009 r&eacute;sum&eacute; independently confirms the timeline.</p></div>
+            <summary><span class="ledger-date">2002—07</span><span class="ledger-title">Real estate and early Salesforce</span><span class="ledger-grade" data-grade="B">B</span></summary>
+            <div class="ledger-body"><p>Buena Ventura Investments (Asheville, NC) as General Partner, then multiple real estate roles in Gainesville, FL including Equity Ventures, Bosshardt Realty, University Corners, and Gainesville Greens. Recovered Wayback Machine captures of ucorners.com, investgainesville.com, gainesvillegreens.com, motionhill.com, and others corroborate the marketing-site and CRM work. Gmail headers preserve Salesforce org identifiers (two distinct orgs with Web-to-Lead integration) and outbound CRM mail from 2005&ndash;2007. A 2009 r&eacute;sum&eacute; independently confirms the timeline.</p></div>
           </details>
           <details>
-            <summary><span class=”ledger-date”>2007—08</span><span class=”ledger-title”>Certification blitz</span><span class=”ledger-grade” data-grade=”A”>A</span></summary>
-            <div class=”ledger-body”><p>RHCE exam results email from Red Hat Certification Central dated 2007-08-25 (certificate 805007943028057, PASS, sent to ian@zeppgroup.com from mx1.redhat.com)&mdash;earned during the real estate years, before the crash. Sun SCJP exam score report, Cisco CCENT certificate, CCNA exam reports (2008-07-16), and CompTIA VA reimbursement requests for A+ and Security+ on file. ZCE and MySQL per contemporaneous r&eacute;sum&eacute;. BBA completed at UMass Amherst; Duke MS in Engineering Management begun.</p></div>
+            <summary><span class="ledger-date">2007—08</span><span class="ledger-title">Certification blitz</span><span class="ledger-grade" data-grade="A">A</span></summary>
+            <div class="ledger-body"><p>RHCE exam results email from Red Hat Certification Central dated 2007-08-25 (certificate 805007943028057, PASS, sent to ian@zeppgroup.com from mx1.redhat.com)&mdash;earned during the real estate years, before the crash. Sun SCJP exam score report, Cisco CCENT certificate, CCNA exam reports (2008-07-16), and CompTIA VA reimbursement requests for A+ and Security+ on file. ZCE and MySQL per contemporaneous r&eacute;sum&eacute;. BBA completed at UMass Amherst; Duke MS in Engineering Management begun.</p></div>
           </details>
           <details>
-            <summary><span class=”ledger-date”>2008—09</span><span class=”ledger-title”>Beatport engineering</span><span class=”ledger-grade” data-grade=”A”>A</span></summary>
+            <summary><span class="ledger-date">2008—09</span><span class="ledger-title">Beatport engineering</span><span class="ledger-grade" data-grade="A">A</span></summary>
             <div class="ledger-body"><p>Employer records—payroll, benefits, and a 2008 performance review—establish the software-development role. The detailed stack narrative comes from my own résumé of the period, and is labeled accordingly.</p></div>
           </details>
           <details>
@@ -1049,7 +1049,7 @@
           </details>
           <details>
             <summary><span class="ledger-date">2025—26</span><span class="ledger-title">Independent AI research at repository scale</span><span class="ledger-grade" data-grade="A">A</span></summary>
-            <div class="ledger-body"><p>Full-time independent R&amp;D from August 2025: Faber/Radix compiler work product (hundreds of thousands of lines of Rust, thousands of tests, frequent tagged releases), Minted Geek Swarm multi-agent runtime with measured session economics and audit pipeline, Monk, and related systems. Lab-scale inventories (repos, commits, sessions, trials) measured July 12, 2026 support activity volume; compiler and fleet figures above are the primary technical claims. Git histories, transcript archives, and factory documents remain the inspectable spine.</p><a href="https://github.com/ianzepp">GitHub profile ↗</a></div>
+            <div class="ledger-body"><p>Full-time independent R&amp;D from August 2025: Faber/Radix compiler work product (hundreds of thousands of lines of Rust, thousands of tests, frequent tagged releases), Minted Geek Swarm multi-agent runtime with measured session economics and audit pipeline, Monk, and related systems. Lab-scale inventories (repos, commits, sessions, trials) measured July 28, 2026 support activity volume; compiler and fleet figures above are the primary technical claims. Git histories, transcript archives, and factory documents remain the inspectable spine.</p><a href="https://github.com/ianzepp">GitHub profile ↗</a></div>
           </details>
         </div>
       </div>
@@ -1303,7 +1303,7 @@
   <footer>
     <div class="stylobate">
       <span>Ian Zepp · ianzepp.dev · I am the OG <a href="https://staphengineer.com" rel="noopener">staff engineer</a> · <a href="https://nachtbagger.com" rel="noopener">Beatbaggers allowed</a> · Konami Code Compatible</span>
-      <span>Metrics measured July 12, 2026 · <a href="#top">Back to top ↑</a></span>
+      <span>Metrics measured July 28, 2026 · <a href="#top">Back to top ↑</a></span>
     </div>
   </footer>
 
@@ -1354,17 +1354,17 @@
         '  Cold starts. Real engineering.',
         '',
         'boot> now',
-        '  Full-time independent R&D · Aug 2025—present',
+        '  Six case studies · seven-act career · 1996—present',
         '  Learn the domain. Verify the output.',
         '  Currently building in Rust.',
         '',
-        'boot> lab (measured Jul 12, 2026)',
+        'boot> lab (measured Jul 28, 2026)',
         '  281K LOC Rust · Radix compiler · 24 crates',
         '  3,714 compiler test functions · 48% test-to-source',
-        '  59 tagged releases · median 1 day apart',
+        '  76 tagged releases · median 1 day apart',
         '  92% blended model-cost cut · Jan→Apr 2026',
         '  39 audit interventions · one campaign',
-        '  17,710 deduped commits · Aug 2025—Jul 2026',
+        '  29,211 deduped commits · Aug 2025—Jul 2026',
         '',
         'boot> programs',
         '  Faber/Radix   language + compiler · multi-target · GPU',

@@ -2,7 +2,7 @@
 
 Full text mirror of https://ianzepp.dev/ for agent readers.
 The HTML page is canonical. Cost figures are imputed at list prices under
-subscription use unless noted. Commit/repo/session scale measured July 12, 2026.
+subscription use unless noted. Commit/repo/session scale measured July 28, 2026.
 
 ---
 
@@ -16,47 +16,53 @@ I’m Ian Zepp — systems engineer, founder, former VP of Engineering. I learn 
 
  Scroll to begin ↓
 
- What the year proved
+ What this is
 
-A Rust compiler built without prior PL theory. Agent fleets with measured cost routing and a three-pass audit pipeline. The numbers are dated below — what matters is whether the output holds up, not how many commits produced it.
+Six case studies spanning 1999 to 2026. A seven-act career from the Marine Corps through real estate, enterprise platforms, founder exits, and full-time independent R&D. An evidence ledger graded A/B/C. The depth is below — the front door should reflect the scope.
 
  Currently building in Rust
 
- The main story · Aug 2025—present
+ The thesis · 1996—present
 
 Learn the domain. Verify the output.
 
-Since August 2025 I have worked full time on AI-assisted systems: a programming language and its Rust compiler, a multi-agent runtime and fleet orchestration layer, a multi-tenant platform, MCP security tooling, and the evaluation harnesses that keep the rest honest. I had no programming-language-theory background when the compiler started. I chose a domain where bluffing fails—a type system works or it doesn’t.
+The pattern started in 1999: write a KDE frontend for Nmap without knowing Qt, build a multi-tenant platform without knowing enterprise architecture, ship a Rust compiler without prior PL theory. Each time the approach is the same — learn the theory well enough to make real design calls, then build process robust enough that the output holds up under audit.
 
-The process came first. For months I ran it by hand — goals and invariants before code, work in bounded phases, completion audited apart from implementation — until the coordination load outgrew one person. Then I built the tooling to hand dispatch and tactical judgment to agent fleets, keeping the problem definition and the audit for myself.
+Since August 2025 that approach has run full time on AI-assisted systems: a programming language and its Rust compiler, a multi-agent runtime and fleet orchestration layer, a multi-tenant platform, MCP security tooling, and evaluation harnesses. The process came first — goals and invariants before code, work in bounded phases, completion audited apart from implementation — until the coordination load outgrew one person and the tooling was built to hand dispatch to agent fleets.
 
-Agents coordinate by passing durable message handles, not by shipping full context between sessions. Routing models by task shape cut blended cost roughly 92% from early-2026 peaks. The volume numbers below are real and dated; they are not the thesis.
+The case studies below trace the pattern across decades. The research programs, method, skills, and evidence ledger that follow are the current instantiation — deeper, more measured, but the same instinct that started in a barracks in 1999.
 
- 281KLOC Rust · Radix compiler · 24 crates
- 3,714compiler test functions · 48% test-to-source
- 59tagged releases · median 1 day apart
- 92%blended model-cost cut · Jan→Apr 2026
- 39audit interventions · one campaign
- 17,710deduped commits · Aug 2025—Jul 2026
+ Cold-starts domains
+ From KDE protocol tools in 1999 to a Rust compiler without prior PL theory. The domain changes; the pattern doesn't.
+ Rebuilds right when the context changes
+ The same platform vision rebuilt clean-room across four iterations, two languages, and a decade. The design survived because it was correct.
+ Builds the process before the code
+ Goals and invariants first. Bounded phases. Audit apart from implementation. The loop runs by hand before it runs automated.
+ Ships falsifiable systems
+ Compilers, agent runtimes, operating systems, multi-tenant platforms. If it can't be tested, it doesn't count.
+ Open source from day one
+ Nmap citation in 1999, kdelibs contributor, 40+ public repositories. The work has always been inspectable.
+ Evidence graded, not claimed
+ Claims reconstructed against executed agreements, payroll records, and primary sources. Where the record is thin, the grade says so.
 
-Compiler and release figures from the Radix/Faber work product as used on the current CV. Cost figures are imputed at public list prices under subscription use—not cash outlay—and travel with that caveat permanently. Commit total measured July 12, 2026: deduplicated by SHA across local repositories, filtered to my author identity; directed, reviewed, integrated engineering—not a claim that I typed every line. Supporting lab scale: 218 local repos, 6,638 recorded agent sessions, 17,681 LLM trial rows (same measurement date).
+The sections below hold the proof: six case studies with dated metrics, six research programs with inspectable source, an operating method with named artifacts, a seven-act career reconstructed against primary records, and an evidence ledger graded A, B, or C depending on what the receipts support.
 
- Unique commits per month
+ The current period · unique commits per month
 
- 589AUG
- 138SEP
- 2OCT
- 940NOV
- 1,113DEC
- 1,028JAN
- 1,286FEB
- 591MAR
- 1,505APR
- 3,196MAY
- 4,008JUN
- 3,314JUL*
+ 1,302AUG
+ 866SEP
+ 711OCT
+ 1,807NOV
+ 2,418DEC
+ 2,169JAN
+ 2,841FEB
+ 1,233MAR
+ 2,531APR
+ 3,117MAY
+ 3,154JUN
+ 7,072JUL
 
-Deduplicated commits in current histories, by month. *July covers twelve days. October is real, too: two commits. The pace was sustained, not retrofitted.
+Deduplicated commits across the full lab, by month. This is the current burst — the case studies below span the decades that produced it.
 
  The research programs
 

@@ -70,7 +70,7 @@ class PublicationSafetyTests(unittest.TestCase):
         document = (ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn('<html lang="en">', document)
         self.assertEqual(document.count("<h1>"), 1)
-        self.assertIn('<nav class="nav shell" aria-label="Primary navigation">', document)
+        self.assertIn('<nav class="nav" aria-label="Primary navigation">', document)
         self.assertIn('<main id="top">', document)
         self.assertIn("<footer>", document)
         self.assertIn('type="search"', document)
