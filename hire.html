@@ -483,7 +483,7 @@
         </div>
         <div class="metric">
           <span class="num">247,791</span>
-          <span class="cap">Lines deleted in a single day &mdash; 83% of the codebase &mdash; rewriting TypeScript to Rust. The test suite was kept intact across the cliff and used as the specification to rebuild against.</span>
+          <span class="cap">Lines deleted in a single day &mdash; 83% of the codebase &mdash; replacing a TypeScript compiler with a Rust one. Test coverage did not move, because the tests were never bound to the implementation.</span>
           <span class="src">v0.24.0 &rarr; v0.25.0, 2026-01-17</span>
         </div>
       </div>
@@ -521,6 +521,23 @@
           <span class="src">Session corpus</span>
         </div>
       </div>
+
+      <h3>The part worth stealing</h3>
+
+      <p>That deletion was not courage. The language was developed against six parallel compiler
+      implementations &mdash; a large TypeScript one, four microcompilers in Rust, Go, Python, and
+      TypeScript, and a self-hosting attempt written in the language itself. The test suite was a
+      corpus of example programs, not unit tests wired into any one compiler. A build script swapped
+      which compiler ran; each read the same example, emitted its target language, and the native
+      toolchain compiled and ran the result.</p>
+
+      <p>So the tests measured the language, not the implementation. Replacing the implementation
+      cost nothing in coverage, and the only open question at the cliff was whether the new compiler
+      had reached parity &mdash; which the corpus could answer directly. All six implementations are
+      still on disk.</p>
+
+      <p>The transferable claim is not that I move fast. It is that I set work up so that changes
+      this size stay reversible, and I do it before I need it.</p>
 
       <h3>Why this is the number that matters</h3>
 
