@@ -214,11 +214,14 @@
     /* evidence metrics */
     .metric-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       margin-block: 22px;
+      max-width: var(--measure);
       border-top: 1px solid #2a2320;
       border-left: 1px solid #2a2320;
     }
+    @media (max-width: 760px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 460px) { .metric-grid { grid-template-columns: 1fr; } }
     .metric {
       padding: 16px 18px;
       border-bottom: 1px solid #2a2320;
@@ -473,6 +476,16 @@
           <span class="cap">Tagged releases in seven months. The median gap between consecutive releases is zero days: more than half ship the same day as the one before.</span>
           <span class="src">git tag &middot; Dec 2025&ndash;Jul 2026</span>
         </div>
+        <div class="metric">
+          <span class="num">10,926</span>
+          <span class="cap">Commits across the twelve Rust repositories. 5,166 of them landed in July 2026 alone.</span>
+          <span class="src">git log</span>
+        </div>
+        <div class="metric">
+          <span class="num">2,173</span>
+          <span class="cap">Tracked source files. Not a private codebase described from memory &mdash; a tree you can clone and count yourself.</span>
+          <span class="src">git ls-files</span>
+        </div>
       </div>
 
       <h3>Operated</h3>
@@ -496,6 +509,16 @@
           <span class="num">54&times;</span>
           <span class="cap">Cost spread between the cheapest and most expensive model on an identical task, in a controlled six-model comparison. $0.04 against $2.33.</span>
           <span class="src">Fleet experiment, Jul 2026</span>
+        </div>
+        <div class="metric">
+          <span class="num">1,730</span>
+          <span class="cap">Agent-driven sessions in July that ran without a human in the loop &mdash; up 12.7&times; since January.</span>
+          <span class="src">Session classification</span>
+        </div>
+        <div class="metric">
+          <span class="num">379,082</span>
+          <span class="cap">Tool calls in July. Roughly fifteen machine actions for every instruction I typed.</span>
+          <span class="src">Session corpus</span>
         </div>
       </div>
 
