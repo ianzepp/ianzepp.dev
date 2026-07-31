@@ -211,6 +211,51 @@
     .rate-row.default .rate-cell.cadence,
     .rate-row.default .rate-cell.price { color: var(--gilt-lit, var(--marmor)); }
 
+    /* evidence metrics */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      margin-block: 22px;
+      border-top: 1px solid #2a2320;
+      border-left: 1px solid #2a2320;
+    }
+    .metric {
+      padding: 16px 18px;
+      border-bottom: 1px solid #2a2320;
+      border-right: 1px solid #2a2320;
+    }
+    .metric .num {
+      display: block;
+      font-family: var(--mono);
+      font-size: 21px; font-weight: 700;
+      color: var(--gilt);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.15;
+    }
+    .metric .cap {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px; line-height: 1.45;
+      color: var(--marmor-dim);
+    }
+    .metric .src {
+      display: block;
+      margin-top: 7px;
+      font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+      color: #7d7565;
+    }
+    .shift {
+      margin-block: 22px;
+      border: 1px solid #2a2320;
+    }
+    .shift-row { display: grid; grid-template-columns: 130px 1fr 1fr; border-bottom: 1px solid #2a2320; }
+    .shift-row:last-child { border-bottom: none; }
+    .shift-row.head .shift-cell { color: var(--marmor); font-weight: 700; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
+    .shift-cell { padding: 11px 15px; border-right: 1px solid #2a2320; font-size: 12.5px; color: var(--marmor-dim); }
+    .shift-cell:last-child { border-right: none; }
+    .shift-cell.k { color: var(--marmor); font-weight: 600; }
+    .shift-cell em { color: var(--gilt); font-style: normal; font-weight: 700; font-variant-numeric: tabular-nums; }
+
     /* fit blocks side by side */
     .fit-grid {
       display: grid;
@@ -373,12 +418,16 @@
 
     <div class="jump-strip">
       <div class="jump-cell">
+        <a href="#the-record">The record</a>
+        <span class="jump-sub">Measured, not asserted</span>
+      </div>
+      <div class="jump-cell">
         <a href="#fractional-cto">Fractional CTO</a>
-        <span class="jump-sub">Retainer &middot; ~2 days / week</span>
+        <span class="jump-sub">Priced by problem, not calendar</span>
       </div>
       <div class="jump-cell">
         <a href="#fractional-principal">Fractional Principal Engineer</a>
-        <span class="jump-sub">Day rate or IC retainer</span>
+        <span class="jump-sub">Scoped or embedded</span>
       </div>
       <div class="jump-cell">
         <a href="#full-time">Full-time &amp; recruiters</a>
@@ -389,6 +438,116 @@
         <span class="jump-sub">Real reply, one business day</span>
       </div>
     </div>
+
+    <!-- EVIDENCE -->
+    <section id="the-record" class="offer on-deep">
+      <span class="label section-label">The record</span>
+      <h2>What one operator produced.</h2>
+
+      <p>Most engineering evidence is a logo. Someone worked somewhere, and you infer the rest.
+      That inference is what a r&eacute;sum&eacute; is for, and it is the weakest part of hiring.</p>
+
+      <p>The numbers below are measured from live repositories and session logs, not estimated.
+      Every one of them is reproducible &mdash; the commands that produce them are recorded, and
+      the repositories are open. You do not have to take my word for any of it, which is the point.</p>
+
+      <h3>Built</h3>
+      <div class="metric-grid">
+        <div class="metric">
+          <span class="num">363,085</span>
+          <span class="cap">Lines of Rust in Radix, a compiler for a language I designed. 27 crates. I had no programming-language-theory background when I started.</span>
+          <span class="src">git ls-files &middot; tokei</span>
+        </div>
+        <div class="metric">
+          <span class="num">773,212</span>
+          <span class="cap">Total lines of Rust across both workspaces, 2,173 tracked files &mdash; compiler, runtime, and the orchestration layer that runs them.</span>
+          <span class="src">12 repositories</span>
+        </div>
+        <div class="metric">
+          <span class="num">10,384</span>
+          <span class="cap">Test functions. Not a coverage claim &mdash; a count of tests that exist and run.</span>
+          <span class="src">#[test] attributes</span>
+        </div>
+        <div class="metric">
+          <span class="num">77</span>
+          <span class="cap">Tagged releases in seven months. The median gap between consecutive releases is zero days: more than half ship the same day as the one before.</span>
+          <span class="src">git tag &middot; Dec 2025&ndash;Jul 2026</span>
+        </div>
+      </div>
+
+      <h3>Operated</h3>
+      <div class="metric-grid">
+        <div class="metric">
+          <span class="num">106.1B</span>
+          <span class="cap">Tokens across 13,200 instrumented sessions, October 2024 to July 2026. Every session logged with its model and token counts.</span>
+          <span class="src">Session corpus</span>
+        </div>
+        <div class="metric">
+          <span class="num">26,881</span>
+          <span class="cap">Agent-to-agent messages across 69 distinct agent identities in a 21-day window &mdash; roughly 1,280 a day, none of them written by me.</span>
+          <span class="src">Queryable SQLite</span>
+        </div>
+        <div class="metric">
+          <span class="num">17,045</span>
+          <span class="cap">Scored trials across 26 models, measuring how learnable a novel language is to an LLM. 74.8% aggregate accuracy.</span>
+          <span class="src">Evaluation harness</span>
+        </div>
+        <div class="metric">
+          <span class="num">54&times;</span>
+          <span class="cap">Cost spread between the cheapest and most expensive model on an identical task, in a controlled six-model comparison. $0.04 against $2.33.</span>
+          <span class="src">Fleet experiment, Jul 2026</span>
+        </div>
+      </div>
+
+      <h3>Why this is the number that matters</h3>
+
+      <p>Throughput went up while the expensive tier went to zero. That is not a tuning trick;
+      it is the whole discipline, and it is the thing most teams running agents have not solved.</p>
+
+      <div class="shift">
+        <div class="shift-row head">
+          <div class="shift-cell"></div>
+          <div class="shift-cell">January 2026</div>
+          <div class="shift-cell">July 2026</div>
+        </div>
+        <div class="shift-row">
+          <div class="shift-cell k">Monthly tokens</div>
+          <div class="shift-cell"><em>7.5B</em></div>
+          <div class="shift-cell"><em>31.7B</em> &mdash; at least 4.2&times;</div>
+        </div>
+        <div class="shift-row">
+          <div class="shift-cell k">Workhorse model</div>
+          <div class="shift-cell">Claude Opus 4.5 &mdash; <em>5.06B</em> tokens over 405 sessions</div>
+          <div class="shift-cell">DeepSeek, GLM, mid-tier GPT</div>
+        </div>
+        <div class="shift-row">
+          <div class="shift-cell k">Frontier tier</div>
+          <div class="shift-cell">76% of sessions</div>
+          <div class="shift-cell">Absent from the top seven</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p><strong>The July figure is a floor.</strong> Only 37% of July sessions report token counts,
+        because three of the cheap-tier harnesses emit none. January reported 92%. The real growth is
+        larger than 4.2&times;; I am quoting the number I can prove rather than the number I believe.</p>
+      </div>
+
+      <h3>What it does not show</h3>
+
+      <p>Worth saying plainly, because the limits are part of the evidence. None of this measures
+      defect escape rate &mdash; I know what the audit layer caught, not what it missed. None of it
+      demonstrates that the method transfers to a team; no other team has tried it. And it holds
+      where output is verifiable. Where failure is silent and delayed, or where the real bottleneck
+      is tacit institutional knowledge, the approach is weaker and I would say so before taking the
+      engagement.</p>
+
+      <div class="cta">
+        <a class="primary" href="#fractional-cto">What this buys you &darr;</a>
+        <a href="https://github.com/ianzepp" rel="noopener">Go look &rarr;</a>
+        <a href="/#evidence">Career record, graded &rarr;</a>
+      </div>
+    </section>
 
     <!-- FRACTIONAL CTO -->
     <section id="fractional-cto" class="offer on-basalt">
@@ -416,22 +575,33 @@
       </ul>
 
       <h3>Rates</h3>
+      <p>Priced by the problem, not by the calendar. The range is wide on purpose &mdash;
+      the same nominal engagement is a different job at a seed-stage company than at one with a
+      board deadline and eleven services in production.</p>
+
       <div class="rate-grid">
         <div class="rate-row">
-          <div class="rate-cell cadence">1 day / week</div>
-          <div class="rate-cell price">$10K &ndash; $12K / mo</div>
-          <div class="rate-cell">Strategic oversight, reviews, key decisions.</div>
+          <div class="rate-cell cadence">Focused</div>
+          <div class="rate-cell price">$10K &ndash; $25K</div>
+          <div class="rate-cell">One bounded decision or system. An architecture read, a model-routing design, an audit of an agent pipeline before it scales.</div>
         </div>
         <div class="rate-row default">
-          <div class="rate-cell cadence">2 days / week &middot; default</div>
-          <div class="rate-cell price">$15K &ndash; $18K / mo</div>
-          <div class="rate-cell">Embedded: roadmap, architecture, hiring, process.</div>
+          <div class="rate-cell cadence">Substantial &middot; typical</div>
+          <div class="rate-cell price">$25K &ndash; $75K</div>
+          <div class="rate-cell">A platform area taken from unclear to shipped. Several interacting decisions, hiring input, process that outlives me.</div>
         </div>
         <div class="rate-row">
-          <div class="rate-cell cadence">3 days / week</div>
-          <div class="rate-cell price">$20K &ndash; $25K / mo</div>
-          <div class="rate-cell">Near full-time; only if the attention cost is worth it.</div>
+          <div class="rate-cell cadence">Sustained</div>
+          <div class="rate-cell price">$75K &ndash; $200K</div>
+          <div class="rate-cell">Ongoing technical leadership across a roadmap. Quoted per quarter, renewed deliberately, with an explicit exit.</div>
         </div>
+      </div>
+
+      <div class="callout">
+        <p><strong>Where you land in the range</strong> is set by how tangled the problem is, how much
+        is already on fire, and what a wrong answer costs you &mdash; not by how many hours it takes me.
+        I will tell you which band I think you are in on the first call, before either of us has spent
+        anything.</p>
       </div>
 
       <div class="fit-grid">
@@ -479,19 +649,23 @@
       <h3>Rates</h3>
       <div class="rate-grid">
         <div class="rate-row">
-          <div class="rate-cell cadence">Day rate</div>
-          <div class="rate-cell price">$2,500 / day</div>
-          <div class="rate-cell">Principal-level architecture and systems work.</div>
+          <div class="rate-cell cadence">Scoped piece</div>
+          <div class="rate-cell price">$8K &ndash; $30K</div>
+          <div class="rate-cell">A subsystem, a migration, a critical-path build with a definition of done we agree on up front.</div>
         </div>
         <div class="rate-row default">
-          <div class="rate-cell cadence">Retainer &middot; ~2 days / week</div>
-          <div class="rate-cell price">$15K &ndash; $20K / mo</div>
-          <div class="rate-cell">Sustained embedded work over weeks or months.</div>
+          <div class="rate-cell cadence">Embedded</div>
+          <div class="rate-cell price">$30K &ndash; $90K</div>
+          <div class="rate-cell">Sustained hands-on work across a quarter. Same output expectations, longer horizon.</div>
         </div>
       </div>
 
       <div class="callout">
-        <p><strong>No hourly.</strong> Day rate or retainer. Hourly meters attention and rewards ticket throughput over judgment, which is the opposite of what this product is.</p>
+        <p><strong>No hourly, and no day rate.</strong> Both meter attention rather than outcome, and
+        both quietly punish the thing that makes this worth buying. I run fleets of agents in parallel;
+        work that used to take a team a quarter can take days. If you are paying for my calendar you are
+        buying the wrong unit &mdash; and I would be pricing the work at a fraction of what it is worth
+        to you. So the number is attached to the result.</p>
       </div>
 
       <div class="cta">
