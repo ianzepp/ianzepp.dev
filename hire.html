@@ -478,8 +478,8 @@
       <h3>Operated</h3>
       <div class="metric-grid">
         <div class="metric">
-          <span class="num">106.1B</span>
-          <span class="cap">Tokens across 13,200 instrumented sessions, October 2024 to July 2026. Every session logged with its model and token counts.</span>
+          <span class="num">125.9B</span>
+          <span class="cap">Tokens across 15,307 instrumented sessions, October 2024 to July 2026. Every session logged with its model and token counts.</span>
           <span class="src">Session corpus</span>
         </div>
         <div class="metric">
@@ -513,7 +513,7 @@
         <div class="shift-row">
           <div class="shift-cell k">Monthly tokens</div>
           <div class="shift-cell"><em>7.5B</em></div>
-          <div class="shift-cell"><em>31.7B</em> &mdash; at least 4.2&times;</div>
+          <div class="shift-cell"><em>51.2B</em> &mdash; <em>6.8&times;</em></div>
         </div>
         <div class="shift-row">
           <div class="shift-cell k">Workhorse model</div>
@@ -521,16 +521,23 @@
           <div class="shift-cell">DeepSeek, GLM, mid-tier GPT</div>
         </div>
         <div class="shift-row">
+          <div class="shift-cell k">Autonomous runs</div>
+          <div class="shift-cell"><em>136</em> sessions</div>
+          <div class="shift-cell"><em>1,730</em> &mdash; <em>12.7&times;</em></div>
+        </div>
+        <div class="shift-row">
           <div class="shift-cell k">Frontier tier</div>
-          <div class="shift-cell">76% of sessions</div>
-          <div class="shift-cell">Absent from the top seven</div>
+          <div class="shift-cell"><em>80%</em> of sessions</div>
+          <div class="shift-cell"><em>1%</em></div>
         </div>
       </div>
 
       <div class="callout">
-        <p><strong>The July figure is a floor.</strong> Only 37% of July sessions report token counts,
-        because three of the cheap-tier harnesses emit none. January reported 92%. The real growth is
-        larger than 4.2&times;; I am quoting the number I can prove rather than the number I believe.</p>
+        <p><strong>These numbers went up when I looked harder.</strong> Three capture bugs were dropping
+        Grok sessions entirely &mdash; token counts, concurrent sub-agent runs, and agent-driven sessions
+        misfiled as human. Fixing them raised July from 3,777 sessions to 5,748 and from 31.7B tokens to
+        51.2B. Every error understated the record, which is the failure mode you want from instrumentation:
+        a reader who checks finds more than the claim, never less.</p>
       </div>
 
       <h3>What it does not show</h3>
