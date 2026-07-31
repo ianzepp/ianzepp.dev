@@ -247,18 +247,6 @@
       font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
       color: #7d7565;
     }
-    .shift {
-      margin-block: 22px;
-      border: 1px solid #2a2320;
-    }
-    .shift-row { display: grid; grid-template-columns: 130px 1fr 1fr; border-bottom: 1px solid #2a2320; }
-    .shift-row:last-child { border-bottom: none; }
-    .shift-row.head .shift-cell { color: var(--marmor); font-weight: 700; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
-    .shift-cell { padding: 11px 15px; border-right: 1px solid #2a2320; font-size: 12.5px; color: var(--marmor-dim); }
-    .shift-cell:last-child { border-right: none; }
-    .shift-cell.k { color: var(--marmor); font-weight: 600; }
-    .shift-cell em { color: var(--gilt); font-style: normal; font-weight: 700; font-variant-numeric: tabular-nums; }
-
     /* fit blocks side by side */
     .fit-grid {
       display: grid;
@@ -442,157 +430,65 @@
       </div>
     </div>
 
-    <!-- EVIDENCE -->
+    <!-- THE RECORD -->
     <section id="the-record" class="offer on-deep">
       <span class="label section-label">The record</span>
-      <h2>What one operator produced.</h2>
+      <h2>Why you can check instead of trusting me.</h2>
 
-      <p>Most engineering evidence is a logo. Someone worked somewhere, and you infer the rest.
-      That inference is what a r&eacute;sum&eacute; is for, and it is the weakest part of hiring.</p>
+      <p>Most engineering evidence is a logo &mdash; someone worked somewhere, and you infer the rest.
+      I don't have that inference working for me, so here are numbers instead. They are measured from
+      live repositories and session logs, and the repositories are open.</p>
 
-      <p>The numbers below are measured from live repositories and session logs, not estimated.
-      Every one of them is reproducible &mdash; the commands that produce them are recorded, and
-      the repositories are open. You do not have to take my word for any of it, which is the point.</p>
-
-      <h3>Built</h3>
       <div class="metric-grid">
         <div class="metric">
           <span class="num">363,085</span>
-          <span class="cap">Lines of Rust in Radix, a compiler for a language I designed. 27 crates. I had no programming-language-theory background when I started.</span>
+          <span class="cap">Lines of Rust in a compiler for a language I designed, entering the domain with no programming-language-theory background.</span>
           <span class="src">git ls-files &middot; tokei</span>
         </div>
         <div class="metric">
-          <span class="num">773,212</span>
-          <span class="cap">Total lines of Rust across both workspaces, 2,173 tracked files &mdash; compiler, runtime, and the orchestration layer that runs them.</span>
-          <span class="src">12 repositories</span>
-        </div>
-        <div class="metric">
-          <span class="num">10,384</span>
-          <span class="cap">Test functions. Not a coverage claim &mdash; a count of tests that exist and run. Density rose from 2.3 to 13.7 per thousand lines across the rewrite.</span>
-          <span class="src">#[test] attributes &middot; 77 releases</span>
-        </div>
-        <div class="metric">
           <span class="num">77</span>
-          <span class="cap">Tagged releases in seven months. The median gap between consecutive releases is zero days: more than half ship the same day as the one before.</span>
-          <span class="src">git tag &middot; Dec 2025&ndash;Jul 2026</span>
-        </div>
-        <div class="metric">
-          <span class="num">10,926</span>
-          <span class="cap">Commits across the twelve Rust repositories. 5,166 of them landed in July 2026 alone.</span>
-          <span class="src">git log</span>
-        </div>
-        <div class="metric">
-          <span class="num">247,791</span>
-          <span class="cap">Lines deleted in a single day &mdash; 83% of the codebase &mdash; replacing a TypeScript compiler with a Rust one. Test coverage did not move, because the tests were never bound to the implementation.</span>
-          <span class="src">v0.24.0 &rarr; v0.25.0, 2026-01-17</span>
-        </div>
-      </div>
-
-      <h3>Operated</h3>
-      <div class="metric-grid">
-        <div class="metric">
-          <span class="num">125.9B</span>
-          <span class="cap">Tokens across 15,307 instrumented sessions, October 2024 to July 2026. Every session logged with its model and token counts.</span>
-          <span class="src">Session corpus</span>
-        </div>
-        <div class="metric">
-          <span class="num">26,881</span>
-          <span class="cap">Agent-to-agent messages across 69 distinct agent identities in a 21-day window &mdash; roughly 1,280 a day, none of them written by me.</span>
-          <span class="src">Queryable SQLite</span>
-        </div>
-        <div class="metric">
-          <span class="num">17,045</span>
-          <span class="cap">Scored trials across 26 models, measuring how learnable a novel language is to an LLM. 74.8% aggregate accuracy.</span>
-          <span class="src">Evaluation harness</span>
-        </div>
-        <div class="metric">
-          <span class="num">54&times;</span>
-          <span class="cap">Cost spread between the cheapest and most expensive model on an identical task, in a controlled six-model comparison. $0.04 against $2.33.</span>
-          <span class="src">Fleet experiment, Jul 2026</span>
+          <span class="cap">Tagged releases in seven months. Median gap between them is zero days &mdash; more than half ship same-day as the one before.</span>
+          <span class="src">git tag</span>
         </div>
         <div class="metric">
           <span class="num">1,730</span>
-          <span class="cap">Agent-driven sessions in July that ran without a human in the loop &mdash; up 12.7&times; since January.</span>
-          <span class="src">Session classification</span>
+          <span class="cap">Agent-driven sessions in a single month that ran without me in the loop, up 12.7&times; since January.</span>
+          <span class="src">Session corpus</span>
         </div>
         <div class="metric">
           <span class="num">379,082</span>
-          <span class="cap">Tool calls in July. Roughly fifteen machine actions for every instruction I typed.</span>
+          <span class="cap">Tool calls in July &mdash; roughly fifteen machine actions for every instruction I typed.</span>
           <span class="src">Session corpus</span>
         </div>
-      </div>
-
-      <h3>The part worth stealing</h3>
-
-      <p>That deletion was not courage. The language was developed against six parallel compiler
-      implementations &mdash; a large TypeScript one, four microcompilers in Rust, Go, Python, and
-      TypeScript, and a self-hosting attempt written in the language itself. The test suite was a
-      corpus of example programs, not unit tests wired into any one compiler. A build script swapped
-      which compiler ran; each read the same example, emitted its target language, and the native
-      toolchain compiled and ran the result.</p>
-
-      <p>So the tests measured the language, not the implementation. Replacing the implementation
-      cost nothing in coverage, and the only open question at the cliff was whether the new compiler
-      had reached parity &mdash; which the corpus could answer directly. All six implementations are
-      still on disk.</p>
-
-      <p>The transferable claim is not that I move fast. It is that I set work up so that changes
-      this size stay reversible, and I do it before I need it.</p>
-
-      <h3>Why this is the number that matters</h3>
-
-      <p>Throughput went up while the expensive tier went to zero. That is not a tuning trick;
-      it is the whole discipline, and it is the thing most teams running agents have not solved.</p>
-
-      <div class="shift">
-        <div class="shift-row head">
-          <div class="shift-cell"></div>
-          <div class="shift-cell">January 2026</div>
-          <div class="shift-cell">July 2026</div>
+        <div class="metric">
+          <span class="num">6.8&times;</span>
+          <span class="cap">Throughput growth January to July while frontier-model usage fell from 80% of sessions to 1%. Volume up; the expensive tier gone.</span>
+          <span class="src">125.9B tokens, 15,307 sessions</span>
         </div>
-        <div class="shift-row">
-          <div class="shift-cell k">Monthly tokens</div>
-          <div class="shift-cell"><em>7.5B</em></div>
-          <div class="shift-cell"><em>51.2B</em> &mdash; <em>6.8&times;</em></div>
-        </div>
-        <div class="shift-row">
-          <div class="shift-cell k">Workhorse model</div>
-          <div class="shift-cell">Claude Opus 4.5 &mdash; <em>5.06B</em> tokens over 405 sessions</div>
-          <div class="shift-cell">DeepSeek, GLM, mid-tier GPT</div>
-        </div>
-        <div class="shift-row">
-          <div class="shift-cell k">Autonomous runs</div>
-          <div class="shift-cell"><em>136</em> sessions</div>
-          <div class="shift-cell"><em>1,730</em> &mdash; <em>12.7&times;</em></div>
-        </div>
-        <div class="shift-row">
-          <div class="shift-cell k">Frontier tier</div>
-          <div class="shift-cell"><em>80%</em> of sessions</div>
-          <div class="shift-cell"><em>1%</em></div>
+        <div class="metric">
+          <span class="num">247,791</span>
+          <span class="cap">Lines deleted in one day replacing a TypeScript compiler with a Rust one &mdash; with no loss of test coverage, because the tests were never bound to the implementation.</span>
+          <span class="src">v0.24.0 &rarr; v0.25.0</span>
         </div>
       </div>
+
+      <p>That last one is the one I would actually want a founder to read. Deleting 83% of a codebase
+      safely is not nerve; it is having built the thing so that it could be done. The full account of
+      how &mdash; six parallel compiler implementations, a language-agnostic test corpus, and what it
+      cost &mdash; is in the Radix retrospective.</p>
 
       <div class="callout">
-        <p><strong>These numbers went up when I looked harder.</strong> Three capture bugs were dropping
-        Grok sessions entirely &mdash; token counts, concurrent sub-agent runs, and agent-driven sessions
-        misfiled as human. Fixing them raised July from 3,777 sessions to 5,748 and from 31.7B tokens to
-        51.2B. Every error understated the record, which is the failure mode you want from instrumentation:
-        a reader who checks finds more than the claim, never less.</p>
+        <p><strong>What this does not show.</strong> No defect-escape-rate measurement &mdash; I know
+        what the audit layer caught, not what it missed. No evidence the method transfers to a team;
+        no other team has run it. And it holds where output is verifiable. Where failure is silent and
+        delayed, or the real bottleneck is tacit institutional knowledge, the approach is weaker and I
+        would say so before taking the engagement.</p>
       </div>
-
-      <h3>What it does not show</h3>
-
-      <p>Worth saying plainly, because the limits are part of the evidence. None of this measures
-      defect escape rate &mdash; I know what the audit layer caught, not what it missed. None of it
-      demonstrates that the method transfers to a team; no other team has tried it. And it holds
-      where output is verifiable. Where failure is silent and delayed, or where the real bottleneck
-      is tacit institutional knowledge, the approach is weaker and I would say so before taking the
-      engagement.</p>
 
       <div class="cta">
         <a class="primary" href="#fractional-cto">What this buys you &darr;</a>
+        <a href="/case-studies/radix-retrospective.html">Radix retrospective &rarr;</a>
         <a href="https://github.com/ianzepp" rel="noopener">Go look &rarr;</a>
-        <a href="/#evidence">Career record, graded &rarr;</a>
       </div>
     </section>
 

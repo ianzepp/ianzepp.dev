@@ -260,6 +260,33 @@
       margin-inline: auto;
       max-width: var(--measure);
     }
+    table.mini {
+      width: 100%;
+      border-collapse: collapse;
+      margin-block: 10px;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      font-variant-numeric: tabular-nums;
+    }
+    table.mini th {
+      text-align: left;
+      font-weight: 600;
+      font-size: 9.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #8ecaa0;
+      border-bottom: 1px solid rgba(142, 202, 160, 0.35);
+      padding: 4px 10px 4px 0;
+    }
+    table.mini td {
+      padding: 4px 10px 4px 0;
+      color: var(--marmor-dim);
+      border-bottom: 1px solid rgba(142, 202, 160, 0.12);
+    }
+    table.mini tr:last-child td { border-bottom: none; }
+    table.mini td strong { color: var(--marmor); }
+    .obs-scroll { overflow-x: auto; }
+
     .obs-label {
       font-size: 10px; font-weight: 600;
       letter-spacing: .14em; text-transform: uppercase;
@@ -372,10 +399,10 @@
     </div>
 
     <div class="stats-strip">
-      <div class="stat-cell"><span class="stat-num">76</span><span class="stat-label">Tagged releases</span></div>
-      <div class="stat-cell"><span class="stat-num">281K</span><span class="stat-label">Lines of Rust</span></div>
-      <div class="stat-cell"><span class="stat-num">3,714</span><span class="stat-label">Test functions</span></div>
-      <div class="stat-cell"><span class="stat-num">24</span><span class="stat-label">Crates</span></div>
+      <div class="stat-cell"><span class="stat-num">77</span><span class="stat-label">Tagged releases</span></div>
+      <div class="stat-cell"><span class="stat-num">363K</span><span class="stat-label">Lines of Rust</span></div>
+      <div class="stat-cell"><span class="stat-num">5,402</span><span class="stat-label">Test functions</span></div>
+      <div class="stat-cell"><span class="stat-num">27</span><span class="stat-label">Crates</span></div>
       <div class="stat-cell"><span class="stat-num">5</span><span class="stat-label">Major pivots</span></div>
       <div class="stat-cell"><span class="stat-num">7</span><span class="stat-label">Months</span></div>
     </div>
@@ -482,6 +509,46 @@
           </div>
           <p>The gap between v0.30.0 (Jan 29) and v0.31.0 (Feb 15) &mdash; and then between v0.31.0 and v0.32.0 (Apr 3) &mdash; reflects the Gauntlet AI fellowship absorbing primary attention. The old TS compilers were pruned, the workspace consolidated, and the CLI rebuilt from scratch.</p>
           <p>v0.33.0 (May 20) was the first real compiled release: a <code>faber</code> binary, CI release pipeline, Docker artifacts. Everything before this was retrospective tagging.</p>
+          <div class="observation">
+            <div class="obs-label">Measured at the tags</div>
+            <p>Walking every tag with <code>git archive</code> + <code>tokei</code> puts the cliff a
+            week earlier than the pivot label suggests, and separates the two halves of it. The
+            TypeScript deletion lands at <strong>v0.25.0 on Jan 17</strong>; the Rust buildup follows
+            over the next fortnight.</p>
+            <table class="mini">
+              <tr><th>Tag</th><th>Date</th><th>Lines total</th><th>Lines Rust</th><th>Tests</th></tr>
+              <tr><td>v0.24.0</td><td>Jan 16</td><td>297,442</td><td>183</td><td>1,072</td></tr>
+              <tr><td><strong>v0.25.0</strong></td><td><strong>Jan 17</strong></td><td><strong>49,651</strong></td><td>183</td><td><strong>1,065</strong></td></tr>
+              <tr><td>v0.27.0</td><td>Jan 21</td><td>70,436</td><td>5,627</td><td>1,064</td></tr>
+              <tr><td>v0.30.0</td><td>Jan 29</td><td>61,899</td><td>21,750</td><td>464</td></tr>
+              <tr><td>v0.78.0</td><td>Jul 30</td><td>392,445</td><td>307,904</td><td>5,370</td></tr>
+            </table>
+            <p><strong>247,791 lines &mdash; 83% of the tree &mdash; went away in a single day, and
+            the test count moved by seven.</strong> Reproduce with
+            <code>scripta/release-stats.sh</code>.</p>
+          </div>
+
+          <div class="observation">
+            <div class="obs-label">Why the deletion was cheap</div>
+            <p>The test count barely moving is the whole story, and it was not luck. Faber was never
+            developed against a single compiler. At the point of the rewrite there were six
+            implementations in play &mdash; the large TypeScript compiler, four <code>nanus-*</code>
+            microcompilers in Rust, Go, Python, and TypeScript, and <code>rivus</code>, a
+            self-hosting attempt written in Faber itself.</p>
+            <p>The suite was a corpus of <code>.fab</code> example programs, not unit tests wired
+            into any one compiler's internals. A build script chose the backend; each implementation
+            read the same example, emitted its target language, and that language's native toolchain
+            compiled and ran the result. <strong>The tests measured the language, not the
+            implementation</strong> &mdash; so swapping the implementation cost nothing in coverage,
+            and the only open question at the cliff was whether Radix had reached parity on core
+            compilation. The corpus answered that directly.</p>
+            <p>All six are preserved in <code>archivum</code>: <code>reference/faber-ts</code>
+            (37,191 lines), <code>nanus-rs</code> (7,097), <code>nanus-go</code> (6,185),
+            <code>nanus-py</code> (4,884), <code>nanus-ts</code> (3,887), and
+            <code>self-hosting/rivus</code> (1,170), with the per-backend build drivers and shared
+            golden corpora still in place.</p>
+          </div>
+
           <div class="observation">
             <div class="obs-label">The quiet months</div>
             <p>February through April had only 3 releases total. Attention had shifted to the Gauntlet AI fellowship &mdash; commit frequency stayed high, but on fellowship projects, not Faber. The rewrite continued in the margins. When the fellowship ended and focus returned, the architectural groundwork was ready to accelerate.</p>
