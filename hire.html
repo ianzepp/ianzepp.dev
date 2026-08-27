@@ -196,7 +196,7 @@
     }
     .rate-row {
       display: grid;
-      grid-template-columns: 180px 200px 1fr;
+      grid-template-columns: 180px 1fr;
       border-bottom: 1px solid #2a2320;
     }
     .rate-row.default { background: rgba(168, 124, 52, 0.10); }
@@ -207,9 +207,7 @@
       color: var(--marmor-dim);
     }
     .rate-cell.cadence { color: var(--marmor); font-weight: 600; }
-    .rate-cell.price { color: var(--gilt); font-weight: 700; font-variant-numeric: tabular-nums; }
-    .rate-row.default .rate-cell.cadence,
-    .rate-row.default .rate-cell.price { color: var(--gilt-lit, var(--marmor)); }
+    .rate-row.default .rate-cell.cadence { color: var(--gilt-lit, var(--marmor)); }
 
     /* evidence metrics */
     .metric-grid {
@@ -531,32 +529,30 @@
       is binary. It is trade-offs, and the useful contribution is making the trade legible.</p>
 
       <h3>Rates</h3>
-      <p>Priced by the problem, not by the calendar. The range is wide on purpose &mdash;
-      the same nominal engagement is a different job at a seed-stage company than at one with a
-      board deadline and eleven services in production.</p>
+      <p>Priced by the problem, not by the calendar &mdash; the same nominal engagement is a
+      different job at a seed-stage company than at one with a board deadline and eleven services
+      in production. No published ranges; the number comes out of a first conversation.
+      Let's talk.</p>
 
       <div class="rate-grid">
         <div class="rate-row">
           <div class="rate-cell cadence">Focused</div>
-          <div class="rate-cell price">$10K &ndash; $25K</div>
           <div class="rate-cell">One bounded decision or system. An architecture read, a model-routing design, an audit of an agent pipeline before it scales.</div>
         </div>
         <div class="rate-row default">
           <div class="rate-cell cadence">Substantial &middot; typical</div>
-          <div class="rate-cell price">$25K &ndash; $75K</div>
           <div class="rate-cell">A platform area taken from unclear to shipped. Several interacting decisions, hiring input, process that outlives me.</div>
         </div>
         <div class="rate-row">
           <div class="rate-cell cadence">Sustained</div>
-          <div class="rate-cell price">$75K &ndash; $200K</div>
           <div class="rate-cell">Ongoing technical leadership across a roadmap. Quoted per quarter, renewed deliberately, with an explicit exit.</div>
         </div>
       </div>
 
       <div class="callout">
-        <p><strong>Where you land in the range</strong> is set by how tangled the problem is, how much
-        is already on fire, and what a wrong answer costs you &mdash; not by how many hours it takes me.
-        I will tell you which band I think you are in on the first call, before either of us has spent
+        <p><strong>How the number is set.</strong> How tangled the problem is, how much
+        is already on fire, and what a wrong answer costs you &mdash; not how many hours it takes me.
+        I will tell you what I think it should cost on the first call, before either of us has spent
         anything.</p>
       </div>
 
@@ -566,7 +562,7 @@
           <ul>
             <li>Founder wants technical co-leadership, not a title</li>
             <li>Remote-first cadence, weekly sync tolerated</li>
-            <li>Cash to fund at band for 6+ months</li>
+            <li>Cash runway to fund 6+ months</li>
             <li>AI-native or platform product with real engineering pain</li>
           </ul>
         </div>
@@ -603,15 +599,15 @@
       </ul>
 
       <h3>Rates</h3>
+      <p>No rate card here either &mdash; priced by the piece and by the result, not by the
+      clock. Bring the problem and I will put a number on it. Let's talk.</p>
       <div class="rate-grid">
         <div class="rate-row">
           <div class="rate-cell cadence">Scoped piece</div>
-          <div class="rate-cell price">$8K &ndash; $30K</div>
           <div class="rate-cell">A subsystem, a migration, a critical-path build with a definition of done we agree on up front.</div>
         </div>
         <div class="rate-row default">
           <div class="rate-cell cadence">Embedded</div>
-          <div class="rate-cell price">$30K &ndash; $90K</div>
           <div class="rate-cell">Sustained hands-on work across a quarter. Same output expectations, longer horizon.</div>
         </div>
       </div>
