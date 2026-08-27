@@ -21,16 +21,16 @@ flatly. Prefer method and falsifiable systems over raw commit volume.
 
 ## Headline technical claims (as on current CV / case studies)
 
-- Faber/Radix: ~281K LOC Rust across 24 crates; 3,714 test functions; ~48%
-  test-to-source; clippy pedantic at deny; 76 tagged releases since Dec 2025
-  (median ~1 day between releases). No prior PL-theory background.
+- Faber/Radix: ~790K LOC Rust (tokei code lines) across 47 crates; 12,539
+  test functions; clippy pedantic at deny; 94 tagged releases since Dec 2025
+  (median gap 0 days; 78% ship same-day). No prior PL-theory background.
 - Swarm: multi-agent runtime; durable message handles (not full context ship);
   measured session shape / cost-per-work-hour improvement after orchestration;
   ~92% imputed blended model-cost cut Jan→Apr 2026 (list prices under
   subscription — not cash outlay); three-pass audit with 39 interventions in
   one sample campaign.
-- Supporting lab scale (measured July 28, 2026): 29,211 deduplicated commits
-  Aug 2025–Jul 2026; 214 local repos.
+- Supporting lab scale (measured August 27, 2026): 39,433 deduplicated commits
+  Aug 2025–Aug 2026; 223 local repos.
 
 ## Sections of the page
 

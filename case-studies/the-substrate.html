@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Case study: The Substrate — Cassio and Vivarium, the evidence and coordination infrastructure that makes agent fleets sustainable over months. 13,512 transcripts processed, 26,530 coordination events, 61 agent roles across two live workspaces.">
+  <meta name="description" content="Case study: The Substrate — Cassio and Vivarium, the evidence and coordination infrastructure that makes agent fleets sustainable over months. 23,626 transcripts processed, 92,865 coordination events, 153 agent roles across two workspaces.">
   <meta name="theme-color" content="#14100f">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
   <title>The Substrate &mdash; Ian Zepp</title>
@@ -465,17 +465,17 @@
       <div class="col">
         <a class="back" href="/#case-studies">&larr; Case Studies</a>
         <h1>The substrate. <em>Evidence and coordination.</em></h1>
-        <p class="lede">Cassio and Vivarium are the infrastructure you build around agents to make them sustainable over months, not minutes. Cassio is the evidence layer &mdash; 13,512 AI session transcripts normalized, compacted, and made searchable. Vivarium is the coordination layer &mdash; 61 agent roles exchanging 20,672 messages across mailspaces that decide what work is ready and who does it. Two tools, one operating surface.</p>
+        <p class="lede">Cassio and Vivarium are the infrastructure you build around agents to make them sustainable over months, not minutes. Cassio is the evidence layer &mdash; 23,626 AI session transcripts normalized, compacted, and made searchable. Vivarium is the coordination layer &mdash; 153 agent roles exchanging 70,143 messages across mailspaces that decide what work is ready and who does it. Two tools, one operating surface.</p>
       </div>
     </div>
 
     <div class="stats-strip">
-      <div class="stat-cell"><span class="stat-num">75K</span><span class="stat-label">Lines of Rust</span></div>
-      <div class="stat-cell"><span class="stat-num">424</span><span class="stat-label">Combined commits</span></div>
-      <div class="stat-cell"><span class="stat-num">37</span><span class="stat-label">Tagged releases</span></div>
-      <div class="stat-cell"><span class="stat-num">13,512</span><span class="stat-label">Transcripts processed</span></div>
-      <div class="stat-cell"><span class="stat-num">26,530</span><span class="stat-label">Coordination events</span></div>
-      <div class="stat-cell"><span class="stat-num">61</span><span class="stat-label">Agent roles</span></div>
+      <div class="stat-cell"><span class="stat-num">79K</span><span class="stat-label">Lines of Rust</span></div>
+      <div class="stat-cell"><span class="stat-num">448</span><span class="stat-label">Combined commits</span></div>
+      <div class="stat-cell"><span class="stat-num">78</span><span class="stat-label">Tagged releases</span></div>
+      <div class="stat-cell"><span class="stat-num">23,626</span><span class="stat-label">Transcripts processed</span></div>
+      <div class="stat-cell"><span class="stat-num">92,865</span><span class="stat-label">Coordination events</span></div>
+      <div class="stat-cell"><span class="stat-num">153</span><span class="stat-label">Agent roles</span></div>
     </div>
 
     <!-- THESIS -->
@@ -483,7 +483,7 @@
       <span class="label section-label">The thesis</span>
       <h2>Agents need infrastructure, not just prompts.</h2>
       <p>The visible output of AI-assisted engineering is code. But code is the product of sessions, and sessions produce transcripts, and transcripts accumulate into a corpus that no human can read at scale. Meanwhile, agents that coordinate &mdash; dispatching work, reporting results, auditing output &mdash; need a communication surface that persists across sessions, supports role-based routing, and tracks what happened. Without infrastructure for evidence and coordination, agent fleets are just expensive typing.</p>
-      <p>Cassio and Vivarium solve the two halves of this problem. <strong>Cassio</strong> turns raw session logs from 10 different AI coding tools into a normalized AST, then compacts them through an LLM pipeline into daily, weekly, and monthly intelligence. <strong>Vivarium</strong> treats email as a durable agent data surface &mdash; local mailspaces with typed roles, work graphs, and a readiness frontier that decides which work is eligible for dispatch.</p>
+      <p>Cassio and Vivarium solve the two halves of this problem. <strong>Cassio</strong> turns raw session logs from 9 different AI coding tools into a normalized AST, then compacts them through an LLM pipeline into daily, weekly, and monthly intelligence. <strong>Vivarium</strong> treats email as a durable agent data surface &mdash; local mailspaces with typed roles, work graphs, and a readiness frontier that decides which work is eligible for dispatch.</p>
       <p>Together they form the substrate the Mind/Head/Hand fleet architecture runs on. The loop is closed: agents produce sessions, Cassio compacts them into evidence, Vivi's mailspaces route the evidence to the right roles, and those roles dispatch the next round of work.</p>
     </section>
 
@@ -527,33 +527,34 @@
       <p>The pipeline follows the compiler pattern deliberately: input formats are the source language, the AST is the intermediate representation, and formatters are the backends. This is why 10 parsers were added in 5 months without touching the output layer.</p>
       <div class="callout evidence">
         <div class="callout-label">Self-referential</div>
-        <p>Cassio processes the transcripts of the AI sessions that built Cassio. The tool that generates evidence was itself built by the process it documents. <strong>The 13,512-file corpus includes Cassio's own development history.</strong></p>
+        <p>Cassio processes the transcripts of the AI sessions that built Cassio. The tool that generates evidence was itself built by the process it documents. <strong>The 23,626-file corpus includes Cassio's own development history.</strong></p>
       </div>
     </section>
 
     <!-- THE CORPUS -->
     <section class="prose on-deep">
       <span class="label section-label">The corpus</span>
-      <h2>13,512 transcripts. 5 GB. 22 months.</h2>
-      <p>The transcript archive spans October 2024 through July 2026. Cassio processes it into 232 daily summaries and 17 monthly rollups. The monthly volume tracks the research trajectory &mdash; 3 files in October 2024, then the November 2025 inflection when heavy Monk API and Radix work began, peaking at 2,765 in the first 25 days of July 2026.</p>
-      <div class="corpus-bars" role="img" aria-label="Monthly transcript file counts from October 2024 through July 2026">
+      <h2>23,626 transcripts. 1 GB of Markdown. 23 months.</h2>
+      <p>The transcript archive spans October 2024 through August 2026. Cassio processes it into daily summaries and monthly rollups. The monthly volume tracks the research trajectory &mdash; 3 files in October 2024, then the November 2025 inflection when heavy Monk API and Radix work began, peaking at 8,055 sessions in August 2026.</p>
+      <div class="corpus-bars" role="img" aria-label="Monthly transcript session counts from October 2024 through August 2026">
         <div class="corpus-col"><span class="corpus-val">3</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:0"></span></span><span class="corpus-month">O24</span></div>
         <div class="corpus-col"><span class="corpus-val">22</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">N</span></div>
-        <div class="corpus-col"><span class="corpus-val">45</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:2"></span></span><span class="corpus-month">D</span></div>
-        <div class="corpus-col"><span class="corpus-val">78</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:3"></span></span><span class="corpus-month">J25</span></div>
+        <div class="corpus-col"><span class="corpus-val">45</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">D</span></div>
+        <div class="corpus-col"><span class="corpus-val">78</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">J25</span></div>
         <div class="corpus-col"><span class="corpus-val">18</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">F</span></div>
-        <div class="corpus-col"><span class="corpus-val">28</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">A</span></div>
-        <div class="corpus-col"><span class="corpus-val">69</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:2.5"></span></span><span class="corpus-month">S</span></div>
-        <div class="corpus-col"><span class="corpus-val">21</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">O</span></div>
-        <div class="corpus-col"><span class="corpus-val">773</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:28"></span></span><span class="corpus-month">N</span></div>
-        <div class="corpus-col"><span class="corpus-val">1.5K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:55"></span></span><span class="corpus-month">D</span></div>
-        <div class="corpus-col"><span class="corpus-val">1.3K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:47"></span></span><span class="corpus-month">J26</span></div>
-        <div class="corpus-col"><span class="corpus-val">2.3K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:82"></span></span><span class="corpus-month">F</span></div>
-        <div class="corpus-col"><span class="corpus-val">1.0K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:36"></span></span><span class="corpus-month">M</span></div>
-        <div class="corpus-col"><span class="corpus-val">984</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:36"></span></span><span class="corpus-month">A</span></div>
-        <div class="corpus-col"><span class="corpus-val">1.8K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:64"></span></span><span class="corpus-month">M</span></div>
-        <div class="corpus-col"><span class="corpus-val">825</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:30"></span></span><span class="corpus-month">J</span></div>
-        <div class="corpus-col"><span class="corpus-val">2.8K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:100"></span></span><span class="corpus-month">J*</span></div>
+        <div class="corpus-col"><span class="corpus-val">6</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:0"></span></span><span class="corpus-month">A</span></div>
+        <div class="corpus-col"><span class="corpus-val">23</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">S</span></div>
+        <div class="corpus-col"><span class="corpus-val">14</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:0"></span></span><span class="corpus-month">O</span></div>
+        <div class="corpus-col"><span class="corpus-val">690</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:9"></span></span><span class="corpus-month">N</span></div>
+        <div class="corpus-col"><span class="corpus-val">1.4K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:18"></span></span><span class="corpus-month">D</span></div>
+        <div class="corpus-col"><span class="corpus-val">1.2K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:15"></span></span><span class="corpus-month">J26</span></div>
+        <div class="corpus-col"><span class="corpus-val">2.1K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:26"></span></span><span class="corpus-month">F</span></div>
+        <div class="corpus-col"><span class="corpus-val">911</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:11"></span></span><span class="corpus-month">M</span></div>
+        <div class="corpus-col"><span class="corpus-val">870</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:11"></span></span><span class="corpus-month">A</span></div>
+        <div class="corpus-col"><span class="corpus-val">1.6K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:20"></span></span><span class="corpus-month">M</span></div>
+        <div class="corpus-col"><span class="corpus-val">783</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:10"></span></span><span class="corpus-month">J</span></div>
+        <div class="corpus-col"><span class="corpus-val">5.7K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:71"></span></span><span class="corpus-month">J</span></div>
+        <div class="corpus-col"><span class="corpus-val">8.1K</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:100"></span></span><span class="corpus-month">A*</span></div>
       </div>
       <p>The compaction pipeline is the distinctive feature. Raw sessions compact into daily summaries via a local LLM (ollama or llama.cpp). Dailies compact into weeklies. Weeklies compact into monthly personality and pattern analyses via cloud models (Claude or Codex). Each tier chunks automatically when content exceeds the context budget. Checkpoints persist for resume-on-failure. The result is navigable intelligence at every timescale.</p>
     </section>
@@ -573,25 +574,23 @@
     <!-- LIVE DATA -->
     <section class="prose on-deep">
       <span class="label section-label">The live data</span>
-      <h2>61 roles, 20,672 messages, 16 days.</h2>
-      <p>Two active Vivi mailspaces &mdash; Faberlang (the compiler project) and Mintedgeek (the agent runtime) &mdash; have been running for 16 days as of July 25, 2026. The numbers below are production data, not test fixtures.</p>
+      <h2>153 roles, 70,143 messages, 50 days.</h2>
+      <p>Two Vivi mailspaces &mdash; Faberlang (the compiler project) and Mintedgeek (the agent runtime) &mdash; have been running for 50 days as of August 27, 2026. The numbers below are production data, not test fixtures. Mintedgeek has been quiet since early August; Faberlang carries the load.</p>
       <div class="dual">
         <div class="dual-cell header cassio">Faberlang</div>
         <div class="dual-cell header vivi">Mintedgeek</div>
-        <div class="dual-cell"><span class="d-label">Messages</span><span class="d-val">14,611</span></div>
-        <div class="dual-cell"><span class="d-label">Messages</span><span class="d-val">6,061</span></div>
-        <div class="dual-cell"><span class="d-label">Events</span><span class="d-val">17,989</span></div>
-        <div class="dual-cell"><span class="d-label">Events</span><span class="d-val">8,541</span></div>
-        <div class="dual-cell"><span class="d-label">Agent roles</span><span class="d-val">37</span></div>
-        <div class="dual-cell"><span class="d-label">Agent roles</span><span class="d-val">24</span></div>
-        <div class="dual-cell"><span class="d-label">Blob storage</span><span class="d-val">15.1 MB</span></div>
-        <div class="dual-cell"><span class="d-label">Blob storage</span><span class="d-val">5.8 MB</span></div>
-        <div class="dual-cell"><span class="d-label">Work graphs</span><span class="d-val">2 active</span><span class="d-note">48 nodes &middot; 45 edges &middot; 20 attempts</span></div>
-        <div class="dual-cell"><span class="d-label">Work graphs</span><span class="d-val">&mdash;</span><span class="d-note">Not yet adopted</span></div>
-        <div class="dual-cell"><span class="d-label">Peak day</span><span class="d-val">5,609</span><span class="d-note">Jul 14</span></div>
+        <div class="dual-cell"><span class="d-label">Messages</span><span class="d-val">63,231</span></div>
+        <div class="dual-cell"><span class="d-label">Messages</span><span class="d-val">6,912</span></div>
+        <div class="dual-cell"><span class="d-label">Events</span><span class="d-val">83,566</span></div>
+        <div class="dual-cell"><span class="d-label">Events</span><span class="d-val">9,299</span></div>
+        <div class="dual-cell"><span class="d-label">Agent roles</span><span class="d-val">134</span></div>
+        <div class="dual-cell"><span class="d-label">Agent roles</span><span class="d-val">19</span></div>
+        <div class="dual-cell"><span class="d-label">Blob storage</span><span class="d-val">148 MB</span></div>
+        <div class="dual-cell"><span class="d-label">Blob storage</span><span class="d-val">17 MB</span></div>
+        <div class="dual-cell"><span class="d-label">Peak day</span><span class="d-val">11,391</span><span class="d-note">Aug 16</span></div>
         <div class="dual-cell"><span class="d-label">Peak day</span><span class="d-val">5,066</span><span class="d-note">Jul 14</span></div>
       </div>
-      <p>Both workspaces peaked on the same day &mdash; <strong>10,675 coordination events on July 14</strong> across 61 agent roles. That's the operational scale Vivi is coordinating.</p>
+      <p>Both workspaces once peaked on the same day &mdash; <strong>10,675 coordination events on July 14</strong>. A month later the Faberlang workspace passed that mark alone: <strong>11,391 events on August 16</strong>. That's the operational scale Vivi is coordinating.</p>
     </section>
 
     <!-- ROLE TOPOLOGY -->
@@ -744,7 +743,7 @@
       <span class="label section-label">The closed loop</span>
       <h2>The infrastructure feeds itself.</h2>
       <p>The loop is literal, not metaphorical. Agents produce coding sessions. Cassio discovers those sessions automatically (it knows where every supported tool stores its logs), normalizes them into AST, formats them as Markdown transcripts, and compacts them into daily intelligence. That intelligence enters Vivi's mailspaces. Mind reads the evidence. Mind dispatches work to Hands via the mailspace. Hands produce sessions. Cassio processes them.</p>
-      <p>The 13,512-file corpus and the 26,530 coordination events aren't parallel facts. They're the same loop at two measurement points &mdash; one upstream (what happened), one downstream (what to do next). The infrastructure is the loop.</p>
+      <p>The 23,626-file corpus and the 92,865 coordination events aren't parallel facts. They're the same loop at two measurement points &mdash; one upstream (what happened), one downstream (what to do next). The infrastructure is the loop.</p>
       <div class="pull">The substrate doesn't do the work. It makes the work <em>legible</em> &mdash; to the human who audits it and to the agents who continue it.</div>
     </section>
 
@@ -755,7 +754,7 @@
       <div class="pattern-grid">
         <div class="pattern-cell">
           <h3>Evidence is infrastructure</h3>
-          <p>13,512 transcripts are useless without compaction. Cassio turns volume into intelligence: session → daily → weekly → monthly. Each tier is a different question answered at a different timescale.</p>
+          <p>23,626 transcripts are useless without compaction. Cassio turns volume into intelligence: session → daily → weekly → monthly. Each tier is a different question answered at a different timescale.</p>
         </div>
         <div class="pattern-cell">
           <h3>Email is underrated</h3>
@@ -782,8 +781,8 @@
 
     <!-- CLOSING -->
     <section class="prose on-basalt">
-      <p><strong>The substrate is the least visible part of the system and the part that makes everything else possible.</strong> Without Cassio, 13,512 session transcripts are a write-only archive &mdash; evidence that exists but can't be used. Without Vivarium, 61 agent roles have no coordination surface &mdash; they produce work but can't route it, track it, or decide what's ready. Together they close the loop: evidence feeds coordination, coordination produces sessions, sessions become evidence.</p>
-      <p>This is the infrastructure you build when you're serious about running agents over months, not minutes. It's not glamorous. It doesn't have a demo. What it has is 26,530 coordination events across two live workspaces, a 5 GB transcript corpus compacted into navigable intelligence, and a readiness frontier that runs in production today. The substrate does its job by being invisible.</p>
+      <p><strong>The substrate is the least visible part of the system and the part that makes everything else possible.</strong> Without Cassio, 23,626 session transcripts are a write-only archive &mdash; evidence that exists but can't be used. Without Vivarium, 153 agent roles have no coordination surface &mdash; they produce work but can't route it, track it, or decide what's ready. Together they close the loop: evidence feeds coordination, coordination produces sessions, sessions become evidence.</p>
+      <p>This is the infrastructure you build when you're serious about running agents over months, not minutes. It's not glamorous. It doesn't have a demo. What it has is 92,865 coordination events across two workspaces, a 1 GB Markdown transcript corpus compacted into navigable intelligence, and a readiness frontier that runs in production today. The substrate does its job by being invisible.</p>
     </section>
 
     <div class="inscription">

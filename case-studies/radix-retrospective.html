@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Roadmap retrospective for the Radix compiler: 76 releases, 5 pivots, 7 months from a TypeScript prototype to a Rust-based release candidate with GPU codegen.">
+  <meta name="description" content="Roadmap retrospective for the Radix compiler: 77 releases through the 1.0 RC, 5 pivots, 7 months from a TypeScript prototype to a Rust-based release candidate with GPU codegen.">
   <meta name="theme-color" content="#14100f">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
   <title>Radix Compiler Retrospective &mdash; Ian Zepp</title>
@@ -152,6 +152,13 @@
       letter-spacing: .08em; text-transform: uppercase;
       color: #8d8574; margin-top: 6px; display: block;
     }
+    .strip-note {
+      background: var(--basalt-deep);
+      border-bottom: 2px solid var(--gilt-deep);
+      padding: 10px clamp(24px, 4vw, 56px) 14px;
+      font-size: 11.5px; color: #8d8574; text-align: center;
+    }
+    .strip-note a { color: var(--gilt); }
 
     /* thesis */
     .thesis-section {
@@ -338,6 +345,13 @@
     }
     .closing-section p:first-child { color: var(--marmor); }
     .closing-section p:last-child { margin-bottom: 0; }
+    .closing-section .label { display: block; margin-bottom: 18px; }
+    .closing-section h2 {
+      font-family: var(--inscr); font-weight: 700;
+      font-size: clamp(18px, 2vw, 24px); line-height: 1.25;
+      letter-spacing: .03em; color: var(--marmor);
+      margin-bottom: 12px;
+    }
 
     /* inscription */
     .inscription {
@@ -406,6 +420,7 @@
       <div class="stat-cell"><span class="stat-num">5</span><span class="stat-label">Major pivots</span></div>
       <div class="stat-cell"><span class="stat-num">7</span><span class="stat-label">Months</span></div>
     </div>
+    <p class="strip-note">Figures as of the 1.0 release candidate, July 2026 &mdash; the arc this retrospective covers. The project kept shipping afterward; see the <a href="#epilogue">epilogue</a> for where it stands now.</p>
 
     <section class="thesis-section">
       <p>The Radix compiler didn't follow a roadmap. It followed a process: write the goal, bound the work, implement a coherent slice, audit the result separately. The roadmap emerged from that loop &mdash; and the pivots emerged from the audits.</p>
@@ -661,6 +676,12 @@
       <p>The trajectory from a TypeScript prototype to a modularized Rust compiler with GPU codegen isn't a story about speed. It's a story about a process that produces good pivots: write the goal, do the work, audit the result, and change direction when the evidence says to.</p>
       <p>The five pivots &mdash; bootstrap target, target narrowing, Rust rewrite, MIR foundation, GPU promotion &mdash; were not failures of the original plan. They were the plan working correctly. Each one emerged from an audit that said: what we built works, but it won't scale to what we need next.</p>
       <p>The 1.0 RC exists because seventy-five prior releases earned it.</p>
+    </section>
+
+    <section class="closing-section" id="epilogue">
+      <span class="label">Epilogue &middot; measured August 27, 2026</span>
+      <h2>The arc didn't stop at the RC.</h2>
+      <p>As of August 27, 2026 the repository carries <strong>94 tagged releases</strong> (latest: faber/v1.9.0-canary.2, cut today), <strong>790,314 lines of Rust code</strong>, and <strong>12,539 test functions</strong> across <strong>47 workspace crates</strong> &mdash; with the median gap between releases still zero days and more than three in four releases shipping same-day as the one before. Reproduce with <code>scripta/release-stats.sh</code> and <code>git tag</code>. The five-pivot story above is unchanged; the compiler that earned it kept growing.</p>
     </section>
 
     <div class="inscription">
