@@ -2,7 +2,7 @@
 
 Full text mirror of https://ianzepp.dev/ for agent readers.
 The HTML page is canonical. Cost figures are imputed at list prices under
-subscription use unless noted. Commit/repo/session scale measured August 27, 2026.
+subscription use unless noted. Faber and Swarm source inventories and GitHub repository count measured September 30, 2026. Historical session, commit, and document series retain their stated dates.
 
 ---
 
@@ -41,13 +41,13 @@ The case studies below trace the pattern across decades. The research programs, 
  Ships falsifiable systems
  Compilers, agent runtimes, operating systems, multi-tenant platforms. If it can't be tested, it doesn't count.
  Open source from day one
- Nmap citation in 1999, kdelibs contributor, 40+ public repositories. The work has always been inspectable.
+ Nmap citation in 1999, kdelibs contributor, 82 public repositories. The work has always been inspectable.
  Evidence graded, not claimed
  Claims reconstructed against executed agreements, payroll records, and primary sources. Where the record is thin, the grade says so.
 
 The sections below hold the proof: six case studies with dated metrics, six research programs with inspectable source, an operating method with named artifacts, a seven-act career reconstructed against primary records, and an evidence ledger graded A, B, or C depending on what the receipts support.
 
- The current period · unique commits per month
+ August 2025–July 2026 · unique commits per month
 
  1,302AUG
  866SEP
@@ -62,7 +62,7 @@ The sections below hold the proof: six case studies with dated metrics, six rese
  3,154JUN
  7,072JUL
 
-Deduplicated commits across the full lab, by month. This is the current burst — the case studies below span the decades that produced it.
+Deduplicated commits across the full lab, by month. This historical series ends in July 2026; the case studies below span the decades that produced it.
 
  The research programs
 
@@ -74,18 +74,18 @@ Every program below is a running system with its own tests, documents, and Git h
 
 Faber / Radix
 
-A Latin-derived programming language and Radix, its Rust compiler: one semantic core with multiple locale renderings, HIR/MIR lowering, emission across Rust, Go, TypeScript, WebAssembly, LLVM, Metal, and WGSL. Built without prior PL-theory background—chosen because a compiler cannot bluff. Clippy pedantic at deny across every crate; structured release notes on a daily median cadence.
+A Latin-derived programming language and Radix, its Rust compiler: one semantic core with multiple locale renderings, HIR/MIR lowering, source emission to Rust, Go, TypeScript, Swift, Python, Haskell, and Faber, plus MIR targets for WebAssembly, LLVM, Metal, and WGSL with staging limitations. Built without prior PL-theory background—chosen because a compiler cannot bluff. Clippy pedantic configured at deny in 48 of 49 workspace packages; structured release notes.
 
- 790K LOC · 47 crates12,539 test functions94 releases · same-day median
+ 913K LOC · 49 crates14,815 Rust test definitions87 release tags
  faberlang.dev ↗github.com/faberlang ↗Grammar ↗
 
  Agent runtime · Active · private
 
 Minted Geek Swarm
 
-A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleets coordinate by passing durable message handles rather than full context—session shape and cost structure moved when that layer landed.
+A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleet dispatch uses durable message references and bounded summaries. The current source inventory covers the runtime, CLI, and Git/SSH hub; historical cost estimates are separate from this September 30, 2026 snapshot.
 
- 10.9M→2.5M tokens/session−61% cost per work-hour39 audit interventions · sample campaign
+ 277K Rust code lines23 Rust packages3,362 Rust test definitions
  mintedgeek.com ↗
 
  Seven-day build · Open source
@@ -160,7 +160,7 @@ The loop below ran by hand for months before any of it was automated. Agents now
 
 Write the goal first.
 
-The intended end state and its invariants go into a document that outlives the conversation. So far: 216 goal documents, 43 campaign plans, 91 ledgers.
+The intended end state and its invariants go into a document that outlives the conversation. The August 27, 2026 inventory recorded 216 goal documents, 43 campaign plans, and 91 ledgers.
 
  IIPhases
 
@@ -197,7 +197,7 @@ Coordination and execution (agents)
 Dispatch, sequencing, settlement. Reconnaissance, implementation, review passes, documentation.
 
  In one fleet, 8,452 coordination events ran against 10 that required me. In a separate campaign, an audit caught specs naming tests that did not exist — a naive cargo test would have passed them. The system's job is to refuse, not just to execute.
- 216 goals43 campaigns1,396 delivery docs91 ledgers
+ August 27, 2026 document inventory: 216 goals43 campaigns1,396 delivery docs91 ledgers
 
  The skill library
 

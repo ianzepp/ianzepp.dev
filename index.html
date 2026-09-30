@@ -563,13 +563,13 @@
           <div class="number"><strong>Rebuilds right when the context changes</strong><span>The same platform vision rebuilt clean-room across four iterations, two languages, and a decade. The design survived because it was correct.</span></div>
           <div class="number"><strong>Builds the process before the code</strong><span>Goals and invariants first. Bounded phases. Audit apart from implementation. The loop runs by hand before it runs automated.</span></div>
           <div class="number"><strong>Ships falsifiable systems</strong><span>Compilers, agent runtimes, operating systems, multi-tenant platforms. If it can&rsquo;t be tested, it doesn&rsquo;t count.</span></div>
-          <div class="number"><strong>Open source from day one</strong><span>Nmap citation in 1999, kdelibs contributor, 40+ public repositories. The work has always been inspectable.</span></div>
+          <div class="number"><strong>Open source from day one</strong><span>Nmap citation in 1999, kdelibs contributor, 82 public repositories. The work has always been inspectable.</span></div>
           <div class="number"><strong>Evidence graded, not claimed</strong><span>Claims reconstructed against executed agreements, payroll records, and primary sources. Where the record is thin, the grade says so.</span></div>
         </div>
         <p class="stat-note">The sections below hold the proof: six case studies with dated metrics, six research programs with inspectable source, an operating method with named artifacts, a seven-act career reconstructed against primary records, and an evidence ledger graded A, B, or C depending on what the receipts support.</p>
       </div>
       <div class="histo-wrap">
-        <span class="label">The current period &middot; unique commits per month</span>
+        <span class="label">August 2025–July 2026 &middot; unique commits per month</span>
         <div class="histo" role="img" aria-label="Monthly deduplicated commit counts from August 2025 through July 2026: 1302, 866, 711, 1807, 2418, 2169, 2841, 1233, 2531, 3117, 3154, and 7072 in July.">
           <div class="histo-col"><span class="histo-val">1,302</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:18.4"></span></span><span class="histo-month">AUG</span></div>
           <div class="histo-col"><span class="histo-val">866</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:12.2"></span></span><span class="histo-month">SEP</span></div>
@@ -584,7 +584,7 @@
           <div class="histo-col"><span class="histo-val">3,154</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:44.6"></span></span><span class="histo-month">JUN</span></div>
           <div class="histo-col"><span class="histo-val">7,072</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:100"></span></span><span class="histo-month">JUL</span></div>
         </div>
-        <p class="histo-note">Deduplicated commits across the full lab, by month. This is the current burst &mdash; the case studies below span the decades that produced it.</p>
+        <p class="histo-note">Deduplicated commits across the full lab, by month. This historical series ends in July 2026; the case studies below span the decades that produced it.</p>
       </div>
     </section>
 
@@ -666,12 +666,12 @@
         </div>
         <div class="body">
           <h3><a href="/case-studies/the-substrate.html" style="color:var(--marmor)">The Substrate &mdash; evidence and coordination for agent fleets</a></h3>
-          <p style="color:#e0b8b0">Cassio and Vivarium: the infrastructure you build around agents to make them sustainable. Cassio normalizes 23,626 AI session transcripts from 9 tools into compacted intelligence. Vivarium coordinates 153 agent roles across mailspaces with work graphs and readiness frontiers. Two tools, one closed loop.</p>
+          <p style="color:#e0b8b0">Cassio and Vivarium: the infrastructure you build around agents to make them sustainable. Cassio parses an archive of 27,326 AI session transcripts from 9 tools as of September 30, 2026. The linked retrospective records Vivarium coordinating 153 agent identities and 92,865 events in its August 27 snapshot. Two tools, one closed loop.</p>
           <div class="fact-row">
             <span class="fact">75K LOC Rust</span>
-            <span class="fact">23,626 transcripts</span>
-            <span class="fact">92,865 events</span>
-            <span class="fact">153 agent roles</span>
+            <span class="fact">27,326 archived transcripts · Sep 30</span>
+            <span class="fact">92,865 events · Aug snapshot</span>
+            <span class="fact">153 agent identities · Aug snapshot</span>
           </div>
         </div>
       </div>
@@ -704,15 +704,15 @@
         <article class="tile t-porph wide">
           <span class="tag">Language / compiler · Active · private</span>
           <h3>Faber / Radix</h3>
-          <p>A Latin-derived programming language and Radix, its Rust compiler: one semantic core with multiple locale renderings, HIR/MIR lowering, emission across Rust, Go, TypeScript, WebAssembly, LLVM, Metal, and WGSL. Built without prior PL-theory background—chosen because a compiler cannot bluff. Clippy pedantic at deny across every crate; structured release notes on a daily median cadence.</p>
-          <div class="stats"><span><strong>790K</strong> LOC · 47 crates</span><span><strong>12,539</strong> test functions</span><span><strong>94</strong> releases · same-day median</span></div>
+          <p>A Latin-derived programming language and Radix, its Rust compiler: one semantic core with multiple locale renderings, HIR/MIR lowering, source emission to Rust, Go, TypeScript, Swift, Python, Haskell, and Faber, plus MIR targets for WebAssembly, LLVM, Metal, and WGSL with staging limitations. Built without prior PL-theory background—chosen because a compiler cannot bluff. Clippy pedantic configured at deny in 48 of 49 workspace packages; structured release notes.</p>
+          <div class="stats"><span><strong>913K</strong> LOC · 49 crates</span><span><strong>14,815</strong> Rust test definitions</span><span><strong>87</strong> release tags</span></div>
           <div class="links"><a href="https://www.faberlang.dev">faberlang.dev ↗</a><a href="https://github.com/faberlang">github.com/faberlang ↗</a><a href="https://github.com/ianzepp/tree-sitter-faber">Grammar ↗</a></div>
         </article>
         <article class="tile t-basalt">
           <span class="tag">Agent runtime · Active · private</span>
           <h3>Minted Geek Swarm</h3>
-          <p>A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleets coordinate by passing durable message handles rather than full context—session shape and cost structure moved when that layer landed.</p>
-          <div class="stats"><span><strong>10.9M→2.5M</strong> tokens/session</span><span><strong>−61%</strong> cost per work-hour</span><span><strong>39</strong> audit interventions · sample campaign</span></div>
+          <p>A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleet dispatch uses durable message references and bounded summaries. The current source inventory covers the runtime, CLI, and Git/SSH hub; historical cost estimates are separate from this September 30, 2026 snapshot.</p>
+          <div class="stats"><span><strong>277K</strong> Rust code lines</span><span><strong>23</strong> Rust packages</span><span><strong>3,362</strong> Rust test definitions</span></div>
           <div class="links"><a href="https://www.mintedgeek.com">mintedgeek.com ↗</a></div>
         </article>
         <article class="tile t-verde">
@@ -780,7 +780,7 @@
         <div><span class="ord">I</span><span class="nm">Goal</span></div>
         <div class="body">
           <h3>Write the goal first.</h3>
-          <p>The intended end state and its invariants go into a document that outlives the conversation. So far: 216 goal documents, 43 campaign plans, 91 ledgers.</p>
+          <p>The intended end state and its invariants go into a document that outlives the conversation. The August 27, 2026 inventory recorded 216 goal documents, 43 campaign plans, and 91 ledgers.</p>
         </div>
       </div>
       <div class="stratum s-porph">
@@ -825,6 +825,7 @@
             </div>
           </div>
           <div class="pull">In one fleet, 8,452 coordination events ran against 10 that required me. In a separate campaign, an audit caught specs naming tests that did not exist — a naive <em>cargo test</em> would have passed them. The system's job is to refuse, not just to execute.</div>
+          <p class="disc">Document inventory measured August 27, 2026.</p>
           <div class="doc-stats"><span><strong>216</strong> goals</span><span><strong>43</strong> campaigns</span><span><strong>1,396</strong> delivery docs</span><span><strong>91</strong> ledgers</span></div>
         </div>
       </div>
@@ -1060,7 +1061,7 @@
       <details>
         <summary class="archive-summary"><h2 class="ct" id="archive-title">The repository archive.</h2><span>Open the full index ＋</span></summary>
         <div class="archive-panel">
-          <input type="search" class="search" placeholder="Filter public and private project metadata…" aria-label="Filter repositories">
+          <input type="search" class="search" placeholder="Filter public repositories…" aria-label="Filter repositories">
           <!-- BEGIN GENERATED PROJECTS -->
   <div class="section-label">Featured Work</div>
 
@@ -1070,7 +1071,7 @@
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/abbot">abbot</a> <span class="badge-commits">608 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/abbot">abbot</a> <span class="badge-commits">617 commits</span></div>
     <div class="project-desc">Persistent, tool-using AI daemon with SQLite state store and OpenAI-compatible APIs</div>
   </div>
 
@@ -1080,20 +1081,30 @@
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/gauntlet-week-1">gauntlet-week-1</a> <span class="badge-commits">510 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/gauntlet-week-1">gauntlet-week-1</a> <span class="badge-commits">511 commits</span></div>
     <div class="project-desc">Collaborative whiteboard where users draw, chat, and let AI rearrange objects</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/vivarium">vivarium</a> <span class="badge-commits">291 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/vivi">vivi</a> <span class="badge-commits">374 commits</span></div>
     <div class="project-desc">Local-first IMAP email sync for LLMs that pulls email into .eml files on disk</div>
   </div>
 
   <div class="section-label">Previous Projects</div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/fleet">fleet</a> <span class="badge-commits">214 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/prior">prior</a> <span class="badge-commits">353 commits</span></div>
+    <div class="project-desc">Agentic runtime where every subsystem speaks the same frame protocol</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/fleet">fleet</a> <span class="badge-commits">225 commits</span></div>
     <div class="project-desc">Fleet skill — Mind/Head/Hand multi-agent project loops (Abbot pattern)</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/vivi-mail">vivi-mail</a> <span class="badge-commits">199 commits</span></div>
+    <div class="project-desc">Email transport, sync, and local archive for Vivi</div>
   </div>
 
   <div class="project">
@@ -1107,13 +1118,18 @@
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/gofolio-api">gofolio-api</a> <span class="badge-commits">116 commits</span></div>
-    <div class="project-desc">Go backend for portfolio tracking with Ghostfolio API compatibility</div>
+    <div class="project-name"><a href="https://github.com/ianzepp/interface-ai-th1">interface-ai-th1</a> <span class="badge-commits">169 commits</span></div>
+    <div class="project-desc">LLM-authored browser capabilities and their deterministic replay, with reviewed evidence and a credential-scanning commit gate.</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/cassio">cassio</a> <span class="badge-commits">104 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/cassio">cassio</a> <span class="badge-commits">120 commits</span></div>
     <div class="project-desc">AI transcript AST processor - converts Claude Code, Codex, and OpenCode session logs into readable transcripts</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/gofolio-api">gofolio-api</a> <span class="badge-commits">116 commits</span></div>
+    <div class="project-desc">Go backend for portfolio tracking with Ghostfolio API compatibility</div>
   </div>
 
   <div class="project">
@@ -1122,12 +1138,12 @@
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/gofolio-cli">gofolio-cli</a> <span class="badge-commits">89 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/gofolio-cli">gofolio-cli</a> <span class="badge-commits">90 commits</span></div>
     <div class="project-desc">Rust terminal application for portfolio management with chat UI and LLM evals</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/muninn">muninn</a> <span class="badge-commits">84 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/muninn">muninn</a> <span class="badge-commits">85 commits</span></div>
     <div class="project-desc">Multi-language protocol and runtime family for Muninn frames, kernels, and client integrations.</div>
   </div>
 
@@ -1137,8 +1153,18 @@
   </div>
 
   <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/fleeting-chat">fleeting-chat</a> <span class="badge-commits">62 commits</span></div>
+    <div class="project-desc">fleeting.chat — HTTP agent-to-agent rendezvous (2–8 seats, llms.txt contract)</div>
+  </div>
+
+  <div class="project">
     <div class="project-name"><a href="https://github.com/ianzepp/monk-irc">monk-irc</a> <span class="badge-commits">58 commits</span></div>
     <div class="project-desc">IRC Protocol Server for Monk API integration - Bridge between IRC protocol and HTTP API</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/vivi-pty">vivi-pty</a> <span class="badge-commits">55 commits</span></div>
+    <div class="project-desc">Project-scoped PTY runtime adapter for Vivi-managed Fleets</div>
   </div>
 
   <div class="project">
@@ -1162,7 +1188,7 @@
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/monk-cli">monk-cli</a> <span class="badge-commits">23 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/monk-cli">monk-cli</a> <span class="badge-commits">25 commits</span></div>
     <div class="project-desc">Rust CLI for the Monk API</div>
   </div>
 
@@ -1171,12 +1197,22 @@
     <div class="project-desc">Agent orchestration CLI for spawning isolated Claude/OpenCode runs</div>
   </div>
 
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/prior-web">prior-web</a> <span class="badge-commits">22 commits</span></div>
+    <div class="project-desc">Leptos web client shell for Prior, deployed separately from the daemon.</div>
+  </div>
+
   <div class="section-label">Other</div>
 
   <div class="compact">
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/skyfi-cli">skyfi-cli</a> <span class="badge-commits">18</span></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/skyfi-cli">skyfi-cli</a> <span class="badge-commits">19</span></div>
       <div class="project-desc">Rust CLI wrapper for the SkyFi satellite imagery Platform API</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/faber-www">faber-www</a> <span class="badge-commits">17</span></div>
+      <div class="project-desc">Faber programming language documentation</div>
     </div>
 
     <div class="project">
@@ -1190,12 +1226,12 @@
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/faber-www">faber-www</a> <span class="badge-commits">14</span></div>
-      <div class="project-desc">Faber programming language documentation</div>
+      <div class="project-name"><a href="https://github.com/ianzepp/tugboat">tugboat</a> <span class="badge-commits">15</span></div>
+      <div class="project-desc">Lightweight Mind/Hand/Cadence multi-agent protocol on Vivi</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/ai-transcripts">ai-transcripts</a> <span class="badge-commits">13</span></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/ai-transcripts">ai-transcripts</a> <span class="badge-commits">14</span></div>
       <div class="project-desc">Extract Claude Code session logs to readable transcripts</div>
     </div>
 
@@ -1205,8 +1241,8 @@
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/prior-web">prior-web</a> <span class="badge-commits">12</span></div>
-      <div class="project-desc">Leptos web client shell for Prior, deployed separately from the daemon.</div>
+      <div class="project-name"><a href="https://github.com/ianzepp/qrstatic-riptide">qrstatic-riptide</a> <span class="badge-commits">11</span></div>
+      <div class="project-desc">qrstatic-riptide</div>
     </div>
 
     <div class="project">
@@ -1225,11 +1261,6 @@
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/qrstatic-riptide">qrstatic-riptide</a> <span class="badge-commits">10</span></div>
-      <div class="project-desc">qrstatic-riptide</div>
-    </div>
-
-    <div class="project">
       <div class="project-name"><a href="https://github.com/ianzepp/upstream-ecommerce">upstream-ecommerce</a> <span class="badge-commits">10</span></div>
       <div class="project-desc">upstream-ecommerce</div>
     </div>
@@ -1245,6 +1276,11 @@
     </div>
 
     <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/claude-ctx">claude-ctx</a> <span class="badge-commits">7</span></div>
+      <div class="project-desc">CLI utility to inspect Claude Code context window usage for a project</div>
+    </div>
+
+    <div class="project">
       <div class="project-name"><a href="https://github.com/ianzepp/faber-trials">faber-trials</a> <span class="badge-commits">7</span></div>
       <div class="project-desc">LLM learnability research harness for the Faber programming language</div>
     </div>
@@ -1255,11 +1291,6 @@
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/claude-ctx">claude-ctx</a> <span class="badge-commits">6</span></div>
-      <div class="project-desc">CLI utility to inspect Claude Code context window usage for a project</div>
-    </div>
-
-    <div class="project">
       <div class="project-name"><a href="https://github.com/ianzepp/monk-api-bindings-ts">monk-api-bindings-ts</a> <span class="badge-commits">6</span></div>
       <div class="project-desc">TypeScript bindings for Monk API</div>
     </div>
@@ -1267,6 +1298,16 @@
     <div class="project">
       <div class="project-name"><a href="https://github.com/ianzepp/claude-mailer">claude-mailer</a> <span class="badge-commits">5</span></div>
       <div class="project-desc">CLI tool for sending HTML emails via Proton Bridge SMTP/IMAP</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/github2md">github2md</a> <span class="badge-commits">5</span></div>
+      <div class="project-desc">Export GitHub issues to Markdown files</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/xpaper">xpaper</a> <span class="badge-commits">5</span></div>
+      <div class="project-desc">Morning newspaper PDF from your X feed — agent skill + Python render CLI (Vivarium-style)</div>
     </div>
 
     <div class="project">
@@ -1303,7 +1344,7 @@
   <footer>
     <div class="stylobate">
       <span>Ian Zepp · ianzepp.dev · I am the OG <a href="https://staphengineer.com" rel="noopener">staff engineer</a> · <a href="https://nachtbagger.com" rel="noopener">Beatbaggers allowed</a> · Konami Code Compatible</span>
-      <span>Metrics measured August 27, 2026 · <a href="#top">Back to top ↑</a></span>
+      <span>Project source and GitHub inventory: September 30, 2026; historical series dated separately · <a href="#top">Back to top ↑</a></span>
     </div>
   </footer>
 
@@ -1358,13 +1399,13 @@
         '  Learn the domain. Verify the output.',
         '  Currently building in Rust.',
         '',
-        'boot> lab (measured Aug 27, 2026)',
-        '  790K LOC Rust · Radix compiler · 47 crates',
-        '  12,539 compiler test functions',
-        '  94 tagged releases · median same-day',
-        '  92% blended model-cost cut · Jan→Apr 2026',
-        '  39 audit interventions · one campaign',
-        '  39,433 deduped commits · Aug 2025—Aug 2026',
+        'boot> lab (source inventory Sep 30, 2026)',
+        '  913K LOC Rust · Radix compiler · 49 crates',
+        '  14,815 Rust #[test] definitions',
+        '  87 release tags in the current checkout',
+        '  277K Rust LOC · Swarm runtime, CLI and hub · 23 packages',
+        '  3,362 Swarm Rust test definitions · source inventory',
+        '  82 public GitHub repos · Sep 30, 2026',
         '',
         'boot> programs',
         '  Faber/Radix   language + compiler · multi-target · GPU',
