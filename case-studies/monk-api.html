@@ -104,6 +104,7 @@
     .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
     .nav-links a { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--marmor-dim); }
     .nav-links a:hover { color: var(--gilt); }
+    .nav-links a.active, .nav-links a[aria-current] { color: var(--gilt); }
 
     /* page header */
     .page-header {
@@ -415,13 +416,10 @@
     <nav class="nav" aria-label="Primary navigation">
       <a class="wordmark" href="/">IZ<span>/</span>DEV</a>
       <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/case-studies/" class="active" aria-current="location">Work</a>
         <a href="/hire.html">Hire</a>
-        <a href="/#research">Research</a>
-        <a href="/#case-studies">Case Studies</a>
-        <a href="/#programs">Programs</a>
-        <a href="/#evidence">Evidence</a>
         <a href="/genz.html">Gen Z</a>
-        <a href="/llms.txt" title="Machine-readable site index for agents">LLMS</a>
       </div>
     </nav>
   </header>
@@ -429,7 +427,7 @@
   <main>
     <div class="page-header">
       <div class="col">
-        <a class="back" href="/#case-studies">&larr; Case Studies</a>
+        <a class="back" href="/case-studies/">&larr; All work</a>
         <h1>The same platform, <em>three times.</em></h1>
         <p class="lede">Monk API is the third clean-room implementation of a multi-tenant, model-first platform &mdash; the same architectural vision rebuilt from memory after Minted.IO (2015) and Motivis (2017&ndash;2020). No code was carried forward. What survived is the design: describe your schema, query your data, and let the observer rings handle everything in between.</p>
       </div>

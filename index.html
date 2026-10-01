@@ -118,6 +118,21 @@
     .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
     .nav-links a { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--marmor-dim); }
     .nav-links a:hover { color: var(--gilt); }
+    .nav-links a.active, .nav-links a[aria-current] { color: var(--gilt); }
+
+    .page-map { padding: 0 clamp(20px, 4vw, 44px) 10px; }
+    .page-map summary {
+      width: fit-content; cursor: pointer; color: var(--gilt);
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .page-map-links {
+      display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 8px;
+    }
+    .page-map-links a {
+      color: var(--marmor-dim); font-size: 10px;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .page-map-links a:hover { color: var(--gilt); }
 
     /* ---------- courses ---------- */
     .course { border-top: 2px solid var(--gilt-deep); }
@@ -170,7 +185,7 @@
 
     .histo-wrap { padding: clamp(40px, 5vw, 64px) clamp(24px, 4vw, 56px) clamp(46px, 5vw, 76px); background: var(--basalt); }
     .histo {
-      display: grid; grid-template-columns: repeat(12, 1fr);
+      display: grid; grid-template-columns: repeat(14, minmax(0, 1fr));
       gap: clamp(4px, 1vw, 12px);
       height: 220px; margin-top: 26px;
     }
@@ -188,6 +203,7 @@
         linear-gradient(to top, var(--pompeian), var(--giallo-lit));
     }
     .histo-month { font-size: 9.5px; font-weight: 600; letter-spacing: .06em; color: #8d8574; }
+    .histo-month small { margin-left: 3px; font: inherit; }
     .histo-note { margin-top: 16px; font-size: 11px; line-height: 1.8; color: #6b6153; }
     .histo-note em { color: var(--gilt); font-style: normal; }
 
@@ -430,6 +446,7 @@
       .histo { height: 140px; gap: 3px; }
       .histo-val { font-size: 8.5px; }
       .histo-month { font-size: 8px; letter-spacing: 0; }
+      .histo-month small { display: block; margin-left: 0; line-height: 1.1; }
       .archive-summary { display: block; }
       .archive-summary span { display: block; margin-top: 14px; }
       .ledger summary { grid-template-columns: 76px 1fr auto auto; gap: 12px; }
@@ -510,20 +527,28 @@
 <body>
   <header class="architrave">
     <nav class="nav" aria-label="Primary navigation">
-      <a class="wordmark" href="#top">IZ<span>/</span>DEV</a>
+      <a class="wordmark" href="/">IZ<span>/</span>DEV</a>
       <div class="nav-links">
+        <a href="/" class="active" aria-current="page">Home</a>
+        <a href="/case-studies/">Work</a>
         <a href="/hire.html">Hire</a>
-        <a href="#research">Research</a>
-        <a href="#case-studies">Case Studies</a>
-        <a href="#programs">Programs</a>
-        <a href="#skills">Skills</a>
-        <a href="#story">Story</a>
-        <a href="#evidence">Evidence</a>
-        <a href="#archive">Archive</a>
         <a href="/genz.html">Gen Z</a>
-        <a href="/llms.txt" title="Machine-readable site index for agents">LLMS</a>
       </div>
     </nav>
+    <div class="page-map">
+      <details>
+        <summary>On this page</summary>
+        <nav class="page-map-links" aria-label="Homepage sections">
+          <a href="#research">Research</a>
+          <a href="#case-studies">Case studies</a>
+          <a href="#programs">Programs</a>
+          <a href="#skills">Skills</a>
+          <a href="#story">Story</a>
+          <a href="#evidence">Evidence</a>
+          <a href="#archive">Archive</a>
+        </nav>
+      </details>
+    </div>
   </header>
 
   <main id="top">
@@ -540,7 +565,7 @@
       <div class="tablet">
         <div class="inner">
           <span class="label">What this is</span>
-          <p class="aside">Six case studies spanning 1999 to 2026. A seven-act career from the Marine Corps through real estate, enterprise platforms, founder exits, and full-time independent R&amp;D. An evidence ledger graded A/B/C. The depth is below &mdash; the front door should reflect the scope.</p>
+          <p class="aside">Seven case studies spanning 1999 to 2026. A seven-act career from the Marine Corps through real estate, enterprise platforms, founder exits, and full-time independent R&amp;D. An evidence ledger graded A/B/C. The depth is below &mdash; the front door should reflect the scope.</p>
           <div class="status"><span class="sq" aria-hidden="true"></span>Currently building in Rust</div>
         </div>
       </div>
@@ -566,25 +591,27 @@
           <div class="number"><strong>Open source from day one</strong><span>Nmap citation in 1999, kdelibs contributor, 82 public repositories. The work has always been inspectable.</span></div>
           <div class="number"><strong>Evidence graded, not claimed</strong><span>Claims reconstructed against executed agreements, payroll records, and primary sources. Where the record is thin, the grade says so.</span></div>
         </div>
-        <p class="stat-note">The sections below hold the proof: six case studies with dated metrics, six research programs with inspectable source, an operating method with named artifacts, a seven-act career reconstructed against primary records, and an evidence ledger graded A, B, or C depending on what the receipts support.</p>
+        <p class="stat-note">The sections below hold the proof: seven case studies with dated metrics, six research programs with inspectable source, an operating method with named artifacts, a seven-act career reconstructed against primary records, and an evidence ledger graded A, B, or C depending on what the receipts support.</p>
       </div>
       <div class="histo-wrap">
-        <span class="label">August 2025–July 2026 &middot; unique commits per month</span>
-        <div class="histo" role="img" aria-label="Monthly deduplicated commit counts from August 2025 through July 2026: 1302, 866, 711, 1807, 2418, 2169, 2841, 1233, 2531, 3117, 3154, and 7072 in July.">
-          <div class="histo-col"><span class="histo-val">1,302</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:18.4"></span></span><span class="histo-month">AUG</span></div>
-          <div class="histo-col"><span class="histo-val">866</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:12.2"></span></span><span class="histo-month">SEP</span></div>
-          <div class="histo-col"><span class="histo-val">711</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:10.1"></span></span><span class="histo-month">OCT</span></div>
-          <div class="histo-col"><span class="histo-val">1,807</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:25.6"></span></span><span class="histo-month">NOV</span></div>
-          <div class="histo-col"><span class="histo-val">2,418</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:34.2"></span></span><span class="histo-month">DEC</span></div>
-          <div class="histo-col"><span class="histo-val">2,169</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:30.7"></span></span><span class="histo-month">JAN</span></div>
-          <div class="histo-col"><span class="histo-val">2,841</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:40.2"></span></span><span class="histo-month">FEB</span></div>
-          <div class="histo-col"><span class="histo-val">1,233</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:17.4"></span></span><span class="histo-month">MAR</span></div>
-          <div class="histo-col"><span class="histo-val">2,531</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:35.8"></span></span><span class="histo-month">APR</span></div>
-          <div class="histo-col"><span class="histo-val">3,117</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:44.1"></span></span><span class="histo-month">MAY</span></div>
-          <div class="histo-col"><span class="histo-val">3,154</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:44.6"></span></span><span class="histo-month">JUN</span></div>
-          <div class="histo-col"><span class="histo-val">7,072</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:100"></span></span><span class="histo-month">JUL</span></div>
+        <span class="label">August 2025–September 2026 &middot; unique commits per month</span>
+        <div class="histo" role="img" aria-label="Monthly deduplicated commit counts from August 2025 through September 2026: August 2025 1302, September 2025 866, October 2025 711, November 2025 1807, December 2025 2418, January 2026 2170, February 2026 2843, March 2026 1240, April 2026 2549, May 2026 3368, June 2026 3653, July 2026 7747, August 2026 9837, September 2026 3820.">
+          <div class="histo-col"><span class="histo-val">1,302</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:13.2"></span></span><span class="histo-month">AUG <small>25</small></span></div>
+          <div class="histo-col"><span class="histo-val">866</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:8.8"></span></span><span class="histo-month">SEP <small>25</small></span></div>
+          <div class="histo-col"><span class="histo-val">711</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:7.2"></span></span><span class="histo-month">OCT <small>25</small></span></div>
+          <div class="histo-col"><span class="histo-val">1,807</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:18.4"></span></span><span class="histo-month">NOV <small>25</small></span></div>
+          <div class="histo-col"><span class="histo-val">2,418</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:24.6"></span></span><span class="histo-month">DEC <small>25</small></span></div>
+          <div class="histo-col"><span class="histo-val">2,170</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:22.1"></span></span><span class="histo-month">JAN <small>26</small></span></div>
+          <div class="histo-col"><span class="histo-val">2,843</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:28.9"></span></span><span class="histo-month">FEB <small>26</small></span></div>
+          <div class="histo-col"><span class="histo-val">1,240</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:12.6"></span></span><span class="histo-month">MAR <small>26</small></span></div>
+          <div class="histo-col"><span class="histo-val">2,549</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:25.9"></span></span><span class="histo-month">APR <small>26</small></span></div>
+          <div class="histo-col"><span class="histo-val">3,368</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:34.2"></span></span><span class="histo-month">MAY <small>26</small></span></div>
+          <div class="histo-col"><span class="histo-val">3,653</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:37.1"></span></span><span class="histo-month">JUN <small>26</small></span></div>
+          <div class="histo-col"><span class="histo-val">7,747</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:78.8"></span></span><span class="histo-month">JUL <small>26</small></span></div>
+          <div class="histo-col"><span class="histo-val">9,837</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:100"></span></span><span class="histo-month">AUG <small>26</small></span></div>
+          <div class="histo-col"><span class="histo-val">3,820</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:38.8"></span></span><span class="histo-month">SEP <small>26</small></span></div>
         </div>
-        <p class="histo-note">Deduplicated commits across the full lab, by month. This historical series ends in July 2026; the case studies below span the decades that produced it.</p>
+        <p class="histo-note">Counts cover 222 commit-bearing local work repositories (excluding <code>xai-org</code>), all authors and currently available local refs, deduplicated by commit SHA and grouped by recorded author date. Recounted from the October 1, 2026 local snapshot; the historical values use this same current repository set.</p>
       </div>
     </section>
 
@@ -595,10 +622,26 @@
         <h2 class="ct" id="case-studies-title">The work, examined.</h2>
         <p>Deep retrospectives on specific projects &mdash; how they evolved, where they pivoted, and what the process looked like from the inside.</p>
       </div>
-      <div class="stratum s-porph">
+      <div class="stratum s-ground" style="background:var(--aegyptus); color:var(--marmor);">
         <div>
           <span class="ord">I</span>
-          <span class="nm">Compiler</span>
+          <span class="nm">Agent Runtime</span>
+        </div>
+        <div class="body">
+          <h3><a href="/case-studies/minted-geek-swarm.html" style="color:var(--marmor)">Minted Geek Swarm &mdash; agent work that outlasts a turn</a></h3>
+          <p style="color:#c2d2e8">A Rust runtime for multiple tenants, built around trusted identity, durable tasks, bounded dispatch from sensors to rooms, and hives that operators can create and dissolve. The case study follows the request boundary and the evidence that connects queued work to an agent turn.</p>
+          <div class="fact-row">
+            <span class="fact">One authenticated gateway</span>
+            <span class="fact">Durable AQS work</span>
+            <span class="fact">Bounded room context</span>
+            <span class="fact">Managed-local lifecycle scenarios</span>
+          </div>
+        </div>
+      </div>
+      <div class="stratum s-porph">
+        <div>
+          <span class="ord">II</span>
+          <span class="nm">Faber / Radix</span>
         </div>
         <div class="body">
           <h3><a href="/case-studies/radix-retrospective.html">Radix compiler &mdash; roadmap retrospective</a></h3>
@@ -613,7 +656,7 @@
       </div>
       <div class="stratum s-verde">
         <div>
-          <span class="ord">II</span>
+          <span class="ord">III</span>
           <span class="nm">OS Kernel</span>
         </div>
         <div class="body">
@@ -629,7 +672,7 @@
       </div>
       <div class="stratum s-giallo">
         <div>
-          <span class="ord">III</span>
+          <span class="ord">IV</span>
           <span class="nm">Platform</span>
         </div>
         <div class="body">
@@ -645,7 +688,7 @@
       </div>
       <div class="stratum s-aegyp">
         <div>
-          <span class="ord">IV</span>
+          <span class="ord">V</span>
           <span class="nm">Sprint</span>
         </div>
         <div class="body">
@@ -661,7 +704,7 @@
       </div>
       <div class="stratum s-ground" style="background:var(--pompeian); color:var(--marmor);">
         <div>
-          <span class="ord">V</span>
+          <span class="ord">VI</span>
           <span class="nm">Substrate</span>
         </div>
         <div class="body">
@@ -713,7 +756,7 @@
           <h3>Minted Geek Swarm</h3>
           <p>A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleet dispatch uses durable message references and bounded summaries. The current source inventory covers the runtime, CLI, and Git/SSH hub; historical cost estimates are separate from this September 30, 2026 snapshot.</p>
           <div class="stats"><span><strong>277K</strong> Rust code lines</span><span><strong>23</strong> Rust packages</span><span><strong>3,362</strong> Rust test definitions</span></div>
-          <div class="links"><a href="https://www.mintedgeek.com">mintedgeek.com ↗</a></div>
+          <div class="links"><a href="/case-studies/minted-geek-swarm.html">Case study ↗</a><a href="https://www.mintedgeek.com">mintedgeek.com ↗</a></div>
         </article>
         <article class="tile t-verde">
           <span class="tag">Seven-day build · Open source</span>
@@ -1395,7 +1438,7 @@
         '  Cold starts. Real engineering.',
         '',
         'boot> now',
-        '  Six case studies · seven-act career · 1996—present',
+        '  Seven case studies · seven-act career · 1996—present',
         '  Learn the domain. Verify the output.',
         '  Currently building in Rust.',
         '',
@@ -1561,4 +1604,3 @@
   </script>
 </body>
 </html>
-

@@ -18,7 +18,7 @@ I’m Ian Zepp — systems engineer, founder, former VP of Engineering. I learn 
 
  What this is
 
-Six case studies spanning 1999 to 2026. A seven-act career from the Marine Corps through real estate, enterprise platforms, founder exits, and full-time independent R&D. An evidence ledger graded A/B/C. The depth is below — the front door should reflect the scope.
+Seven case studies spanning 1999 to 2026. A seven-act career from the Marine Corps through real estate, enterprise platforms, founder exits, and full-time independent R&D. An evidence ledger graded A/B/C. The depth is below — the front door should reflect the scope.
 
  Currently building in Rust
 
@@ -45,24 +45,26 @@ The case studies below trace the pattern across decades. The research programs, 
  Evidence graded, not claimed
  Claims reconstructed against executed agreements, payroll records, and primary sources. Where the record is thin, the grade says so.
 
-The sections below hold the proof: six case studies with dated metrics, six research programs with inspectable source, an operating method with named artifacts, a seven-act career reconstructed against primary records, and an evidence ledger graded A, B, or C depending on what the receipts support.
+The sections below hold the proof: seven case studies with dated metrics, six research programs with inspectable source, an operating method with named artifacts, a seven-act career reconstructed against primary records, and an evidence ledger graded A, B, or C depending on what the receipts support.
 
- August 2025–July 2026 · unique commits per month
+ August 2025–September 2026 · unique commits per month
 
- 1,302AUG
- 866SEP
- 711OCT
- 1,807NOV
- 2,418DEC
- 2,169JAN
- 2,841FEB
- 1,233MAR
- 2,531APR
- 3,117MAY
- 3,154JUN
- 7,072JUL
+ 1,302AUG 25
+ 866SEP 25
+ 711OCT 25
+ 1,807NOV 25
+ 2,418DEC 25
+ 2,170JAN 26
+ 2,843FEB 26
+ 1,240MAR 26
+ 2,549APR 26
+ 3,368MAY 26
+ 3,653JUN 26
+ 7,747JUL 26
+ 9,837AUG 26
+ 3,820SEP 26
 
-Deduplicated commits across the full lab, by month. This historical series ends in July 2026; the case studies below span the decades that produced it.
+Counts cover 222 commit-bearing local work repositories (excluding xai-org), all authors and currently available local refs, deduplicated by commit SHA and grouped by recorded author date. Recounted from the October 1, 2026 local snapshot; the historical values use this same current repository set.
 
  The research programs
 

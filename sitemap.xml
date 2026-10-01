@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ianzepp.dev/</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
   </url>
   <url>
     <loc>https://ianzepp.dev/hire.html</loc>
@@ -11,6 +11,14 @@
   <url>
     <loc>https://ianzepp.dev/genz.html</loc>
     <lastmod>2026-07-24</lastmod>
+  </url>
+  <url>
+    <loc>https://ianzepp.dev/case-studies/</loc>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://ianzepp.dev/case-studies/minted-geek-swarm.html</loc>
+    <lastmod>2026-10-01</lastmod>
   </url>
   <url>
     <loc>https://ianzepp.dev/case-studies/radix-retrospective.html</loc>
