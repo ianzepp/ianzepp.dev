@@ -463,7 +463,7 @@
       <div class="col">
         <a class="back" href="/case-studies/">&larr; All work</a>
         <h1>The substrate. <em>Evidence and coordination.</em></h1>
-        <p class="lede">Cassio and Vivarium are the infrastructure you build around agents to make them sustainable over months, not minutes. Cassio is the evidence layer &mdash; session transcripts normalized, compacted, and made searchable. Vivarium is the coordination layer &mdash; agent roles exchanging mail across mailspaces that decide what work is ready and who does it. Two tools, one operating surface.</p>
+        <p class="lede">Cassio and Vivarium are the infrastructure you build around agents to make them sustainable over months, not minutes. Cassio is the evidence layer &mdash; session transcripts normalized, compacted, and made searchable. Vivarium is the coordination layer &mdash; a local-first project mailspace where agent roles exchange messages and work graphs decide what is ready. Two tools, one operating surface.</p>
       </div>
     </div>
 
@@ -486,7 +486,7 @@
       <span class="label section-label">The thesis</span>
       <h2>Agents need infrastructure, not just prompts.</h2>
       <p>The visible output of AI-assisted engineering is code. But code is the product of sessions, and sessions produce transcripts, and transcripts accumulate into a corpus that no human can read at scale. Meanwhile, agents that coordinate &mdash; dispatching work, reporting results, auditing output &mdash; need a communication surface that persists across sessions, supports role-based routing, and tracks what happened. Without infrastructure for evidence and coordination, agent fleets are just expensive typing.</p>
-      <p>Cassio and Vivarium solve the two halves of this problem. <strong>Cassio</strong> turns raw session logs from 9 different AI coding tools into a normalized AST, then compacts them through an LLM pipeline into daily, weekly, and monthly intelligence. <strong>Vivarium</strong> treats email as a durable agent data surface &mdash; local mailspaces with typed roles, work graphs, and a readiness frontier that decides which work is eligible for dispatch.</p>
+      <p>Cassio and Vivarium solve the two halves of this problem. <strong>Cassio</strong> turns raw session logs from 9 different AI coding tools into a normalized AST, then compacts them through an LLM pipeline into daily, weekly, and monthly intelligence. <strong>Vivarium</strong> is a local-first project mailspace &mdash; tasks, agent-to-agent mail inside the mailspace, memos, roles, and work graphs &mdash; and Vivi dispatches agent jobs across a multi-machine cluster.</p>
       <p>Together they form the substrate the Mind/Head/Hand fleet architecture runs on. The loop is closed: agents produce sessions, Cassio compacts them into evidence, Vivi's mailspaces route the evidence to the right roles, and those roles dispatch the next round of work.</p>
     </section>
 
@@ -498,7 +498,7 @@
         <div class="dual-cell header cassio">Cassio &mdash; evidence</div>
         <div class="dual-cell header vivi">Vivarium &mdash; coordination</div>
         <div class="dual-cell"><span class="d-label">Purpose</span><span class="d-note">Normalize, compact, and search AI session transcripts</span></div>
-        <div class="dual-cell"><span class="d-label">Purpose</span><span class="d-note">Local-first email archive, mailspaces, and agent work routing</span></div>
+        <div class="dual-cell"><span class="d-label">Purpose</span><span class="d-note">Local-first project mailspace: tasks, roles, work graphs</span></div>
         <div class="dual-cell"><span class="d-label">Stack</span><span class="d-val">Rust</span><span class="d-note">single crate</span></div>
         <div class="dual-cell"><span class="d-label">Stack</span><span class="d-val">Rust</span><span class="d-note">main crate + vivi-pty</span></div>
         <div class="dual-cell"><span class="d-label">Commits</span><span class="d-val">112</span><span class="d-note">18 active days &middot; 17 releases</span></div>
@@ -565,9 +565,9 @@
     <!-- VIVARIUM -->
     <section class="prose on-basalt">
       <span class="label section-label">Vivarium &middot; the coordination layer</span>
-      <h2>Email as agent infrastructure.</h2>
-      <p>Vivarium &mdash; named after Cassiodorus's 6th-century monastery for preserving written works &mdash; treats email as a durable data surface for AI agents. Not email the UI. Email the protocol: messages with senders, recipients, threads, and persistence. Local mailspaces give each project a self-contained coordination surface with typed roles (inbox, sent, done, archive, tasks, memos, wants, needs), work graphs imported from Mermaid flowcharts, and event-driven watch surfaces.</p>
-      <p>The public binary is <code>vivi</code>. A companion binary <code>vivi-pty</code> provides a project-scoped PTY runtime for managing Fleet agent processes via Unix sockets. Three mail provider paths coexist: standard IMAP/SMTP, Proton Bridge, and a direct Proton Mail API integration that bypasses the Bridge entirely &mdash; including SRP authentication and OpenPGP encryption/decryption.</p>
+      <h2>A local-first project mailspace.</h2>
+      <p>Vivarium &mdash; named after Cassiodorus's 6th-century monastery for preserving written works &mdash; is a local-first project mailspace and coordination toolkit for LLM agents. Each project gets tasks, agent-to-agent mail inside the mailspace, memos, roles, and work graphs in <code>.vivi/</code>, plus the Tugboat, Speedboat, and Pump coordination tools. Pump dispatches jobs across a multi-machine cluster to pools on Docker, SSH, Fly.io, and RunPod, with a loopback LLM proxy and credential pools.</p>
+      <p>The family is three public repos. <a href="https://github.com/ianzepp/vivi">vivi</a> is the mailspace and cluster dispatcher. <a href="https://github.com/ianzepp/vivi-mail">vivi-mail</a> is email transport, IMAP/SMTP sync, and a local archive. <a href="https://github.com/ianzepp/vivi-server">vivi-server</a> is a public rendezvous server for Vivi chat, with rooms backed by real Vivi mailspaces. A companion binary <code>vivi-pty</code> provides a project-scoped PTY runtime for Fleet agent processes via Unix sockets.</p>
       <div class="callout design">
         <div class="callout-label">Authority split</div>
         <p>Vivi decides <strong>what work is ready</strong> (topology, readiness frontier, role capacity). Mind decides <strong>who does it</strong> (dispatch). Fleet <strong>executes</strong> (process management). Three systems, three responsibilities. Vivi never spawns an agent. Mind never computes readiness. The boundaries are load-bearing.</p>
@@ -680,7 +680,7 @@
       <p><strong>Hygiene ratchets.</strong> Both projects enforce code quality via compile-time test suites that scan production source. Cassio caps <code>.unwrap()</code> at 11 calls and bans <code>panic!()</code>, <code>todo!()</code>, and inline test modules. Vivarium sets per-file line limits (1,000), per-function limits (60 lines), total LOC budgets, and the same inline-test ban. The budgets can only decrease &mdash; a ratchet that tightens as the code matures.</p>
       <p><strong>Companion test files.</strong> Both projects ban <code>#[cfg(test)]</code> modules inside production files. Every module gets its own <code>*_test.rs</code> companion file. This isn't convention &mdash; it's enforced by a test that fails the build if violated. The separation means production files contain zero test infrastructure.</p>
       <p><strong>Burst development.</strong> Cassio and Vivarium were both built in concentrated, deep sessions with long pauses between bursts &mdash; not spread-out daily commits.</p>
-      <p><strong>Parser-AST architecture.</strong> Cassio normalizes 10 AI tool formats into a shared Session AST. Vivarium normalizes IMAP, Proton Bridge, and direct Proton API into a shared message store. Different domains, same structural pattern: heterogeneous inputs normalized through a trait-based parser layer into a unified representation that downstream systems consume without knowing the source.</p>
+      <p><strong>Parser-AST architecture.</strong> Cassio normalizes 10 AI tool formats into a shared Session AST. vivi-mail normalizes IMAP/SMTP transport into a local archive. Different domains, same structural pattern: heterogeneous inputs normalized through a trait-based parser layer into a unified representation that downstream systems consume without knowing the source.</p>
     </section>
 
     <!-- TIMELINE -->
@@ -723,7 +723,7 @@
       </div>
       <div class="era-content">
         <h2>Vivarium explodes</h2>
-        <p>58 commits on May 2 alone &mdash; a pivot day that rewrote Vivarium from prototype to phased implementation. IMAP sync, Proton Mail API integration (SRP auth, OpenPGP encrypt/decrypt), SQLite-backed message store, mailspace event system, role management. By month end: v5.x with the core coordination surface operational. Cassio adds pi and Kimi Code parsers in the same month.</p>
+        <p>58 commits on May 2 alone &mdash; a pivot day that rewrote Vivarium from prototype to phased implementation. Mailspace event system and role management, plus email transport work that now lives in vivi-mail (IMAP/SMTP sync and a local archive). By month end: v5.x with the core coordination surface operational. Cassio adds pi and Kimi Code parsers in the same month.</p>
       </div>
       </div>
     </article>
@@ -760,8 +760,8 @@
           <p>Thousands of transcripts are useless without compaction. Cassio turns volume into intelligence: session → daily → weekly → monthly. Each tier is a different question answered at a different timescale.</p>
         </div>
         <div class="pattern-cell">
-          <h3>Email is underrated</h3>
-          <p>Email has senders, recipients, threads, persistence, and search. Agents need all five. Vivi didn't invent a new protocol — it used the one that already works and added readiness computation.</p>
+          <h3>Mailspace plus email transport</h3>
+          <p>Vivi's mail is agent-to-agent messages inside the project mailspace &mdash; tasks, memos, roles, work graphs. vivi-mail is email transport, IMAP/SMTP sync, and a local archive.</p>
         </div>
         <div class="pattern-cell">
           <h3>Ratchets over rules</h3>
@@ -773,7 +773,7 @@
         </div>
         <div class="pattern-cell">
           <h3>Parser-AST everywhere</h3>
-          <p>Cassio: 10 input formats → one AST. Vivarium: 3 mail providers → one message store. The same structural pattern in both tools, because the same problem (heterogeneous inputs, uniform downstream) appears in both domains.</p>
+          <p>Cassio: 10 input formats → one AST. vivi-mail: IMAP/SMTP transport → a local archive. The same structural pattern in both tools, because the same problem (heterogeneous inputs, uniform downstream) appears in both domains.</p>
         </div>
         <div class="pattern-cell">
           <h3>Build the loop, not the tool</h3>
