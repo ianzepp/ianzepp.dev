@@ -39,12 +39,19 @@ class SitegenTests(unittest.TestCase):
                 "isPrivate": False,
                 "defaultBranchRef": {"target": {"history": {"totalCount": 999}}},
             },
+            {
+                "name": "faber-trials",
+                "description": "dead public repo; do not list",
+                "isPrivate": False,
+                "defaultBranchRef": {"target": {"history": {"totalCount": 7}}},
+            },
         ]
 
         rows, sections = rank_repos(repos)
 
         self.assertEqual([row["name"] for row in rows], ["alpha", "zeta"])
         self.assertEqual([row["name"] for row in sections["Featured Work"]], ["alpha", "zeta"])
+        self.assertNotIn("faber-trials", [row["name"] for row in rows])
 
     def test_rendering_escapes_public_data_and_excludes_private_repos(self):
         rows, sections = rank_repos(
@@ -128,10 +135,10 @@ class SitegenTests(unittest.TestCase):
 
         updated = replace_generated_region(document, "  <div>replacement archive</div>")
 
-        self.assertIn("Cold starts.", updated)
+        self.assertIn("Principal engineer and", updated)
         self.assertIn("The evidence ledger.", updated)
         self.assertIn("Six main lines of work.", updated)
-        self.assertIn("Learn the domain. Verify the output.", updated)
+        self.assertIn("Enter a domain, then verify the system.", updated)
         self.assertIn("replacement archive", updated)
         self.assertEqual(updated.count(BEGIN_MARKER), 1)
         self.assertEqual(updated.count(END_MARKER), 1)

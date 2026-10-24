@@ -1,25 +1,27 @@
-# Ian Zepp — Cold starts, real engineering
+# Ian Zepp. Principal engineer and software architect
 
 Full text mirror of https://ianzepp.dev/ for agent readers.
 The HTML page is canonical.
 
 ---
 
-Ian Zepp — Cold starts, real engineering
+Ian Zepp. Principal engineer and software architect
 
 Autobiography / selected works / 1996—present
 
-I’m Ian Zepp — systems engineer, founder, former VP of Engineering. I learn unfamiliar technical domains from the ground up: asking the questions that surface real constraints, understanding the theory well enough to make design calls, then building engineering process robust enough to sustain AI-assisted development over months. This is the long version.
+Principal engineer and software architect.
+
+I am Ian Zepp. Principal and staff engineer, software architect. I build AI agent infrastructure, compilers, and multi-tenant platforms, and I have led engineering organizations. This page is the long career narrative, the case studies, and the graded evidence.
 
 ## What this is
 
-Seven case studies spanning 1999 to 2026. A seven-act career from the Marine Corps through real estate, enterprise platforms, founder exits, and full-time independent R&D. An evidence ledger graded A/B/C. The depth is below — the front door should reflect the scope.
+Seven case studies spanning 1999 to 2026. A seven-act career from the Marine Corps through real estate, enterprise platforms, founder exits, and full-time independent R&D. An evidence ledger graded A/B/C. The case studies, career narrative, and evidence ledger are on this page.
 
 Currently building in Rust.
 
 ## The thesis · 1996—present
 
-Learn the domain. Verify the output.
+Enter a domain, then verify the system.
 
 The pattern started in 1999: write a KDE frontend for Nmap without knowing Qt, build a multi-tenant platform without knowing enterprise architecture, ship a Rust compiler without prior PL theory. Each time the approach is the same — learn the theory well enough to make real design calls, then build process robust enough that the output holds up under audit.
 
@@ -209,7 +211,7 @@ Faber/Radix, Swarm, Monk, and related systems. Git histories and transcript arch
 ## Contact
 
 https://github.com/ianzepp
-ian@ianzepp.com
+ian.zepp@gmail.com
 https://ianzepp.dev
 https://ianzepp.dev/hire.html
 https://ianzepp.dev/genz.html
