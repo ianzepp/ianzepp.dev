@@ -1,4 +1,4 @@
-# Ian Zepp — Cold starts, real engineering
+# Ian Zepp. Principal engineer and software architect
 
 Full text mirror of https://ianzepp.dev/ for agent readers.
 The HTML page is canonical. Cost figures are imputed at list prices under
@@ -6,25 +6,25 @@ subscription use unless noted. Faber and Swarm source inventories and GitHub rep
 
 ---
 
-Ian Zepp — Cold starts, real engineering
+Ian Zepp. Principal engineer and software architect
 
  Autobiography / selected works / 1996—present
 
-Cold starts. Real engineering.
+Principal engineer and software architect.
 
-I’m Ian Zepp — systems engineer, founder, former VP of Engineering. I learn unfamiliar technical domains from the ground up: asking the questions that surface real constraints, understanding the theory well enough to make design calls, then building engineering process robust enough to sustain AI-assisted development over months. This is the long version.
+I am Ian Zepp. Principal and staff engineer, software architect. I build AI agent infrastructure, compilers, and multi-tenant platforms, and I have led engineering organizations. This page is the long career narrative, the case studies, and the graded evidence.
 
  Scroll to begin ↓
 
  What this is
 
-Seven case studies spanning 1999 to 2026. A seven-act career from the Marine Corps through real estate, enterprise platforms, founder exits, and full-time independent R&D. An evidence ledger graded A/B/C. The depth is below — the front door should reflect the scope.
+Seven case studies spanning 1999 to 2026. A seven-act career from the Marine Corps through real estate, enterprise platforms, founder exits, and full-time independent R&D. An evidence ledger graded A/B/C. The case studies, career narrative, and evidence ledger are on this page.
 
  Currently building in Rust
 
  The thesis · 1996—present
 
-Learn the domain. Verify the output.
+Enter a domain, then verify the system.
 
 The pattern started in 1999: write a KDE frontend for Nmap without knowing Qt, build a multi-tenant platform without knowing enterprise architecture, ship a Rust compiler without prior PL theory. Each time the approach is the same — learn the theory well enough to make real design calls, then build process robust enough that the output holds up under audit.
 
@@ -132,7 +132,7 @@ A line of experiments in how agents should execute: Abbot’s persistent daemon,
 
 Cephalopodic
 
-Gauntlet AI Cohort 4 capstone with two co-founders: a Go control plane and security gateway for MCP—registration, catalogs, user-scoped taps, policy enforcement, JSON-RPC inspection. Wound down within three months when managed MCP shipped natively and removed the market.
+Gauntlet AI Cohort 4 capstone with two co-founders: a Go control plane and security gateway for MCP (registration, catalogs, user-scoped taps, policy enforcement, JSON-RPC inspection). Wound down within about two months when managed MCP shipped natively and removed the market.
 
  Applied product
 
@@ -267,7 +267,7 @@ Arbitrary local mailspaces for agents and projects. Vivi grew out of the mail sk
  /docs
  …and more
 
-All of it points one direction. The same principle that shaped these skills is the founding premise of Faber: a language designed for LLMs first, because humans don’t write the code anymore—we just need to be able to understand what’s going on.
+Faber is a language designed for coding agents first, so a human can still read and audit what the agents produce.
 
  The backstory
 
@@ -289,11 +289,11 @@ The path from there was not direct: five years selling real estate in Florida be
 
 Salesforce, scale, and the founder turn.
 
-At Red Hat I worked on a multilingual APAC Partner Center built on Salesforce—Korea, Japan, and China, twenty-odd sandboxes. roundCorner hired me in 2011 as Chief Scientist; I later held Head of Engineering for a Salesforce-native nonprofit CRM used by large institutions (including St. Jude, Georgetown, Duke). The product line was later acquired by Salesforce.org.
+At Red Hat I worked on a multilingual APAC Partner Center built on Salesforce (Korea, Japan, and China, twenty-odd sandboxes). roundCorner hired me in 2011 as Chief Scientist; I was later Vice President of Software Engineering for a Salesforce-native nonprofit CRM used by large institutions (including St. Jude, Georgetown, Duke). The product line was later acquired by Salesforce.org.
 
 In 2015 I founded Minted.IO and, as a solo founder, built a metadata-driven multi-tenant application platform end to end in six months. After a year at Salesforce as a Technical Solution Architect—forward-deployed with CarMax and Home Depot—Motivis acquired the Minted.IO software/API assets in February 2017. My VP offer was written into the acquisition.
 
- Chief Scientist → Head of EngFounder / acquiredForward-deployed TSA
+ Chief Scientist → VP of Software EngineeringFounder / acquiredForward-deployed TSA
 
  III2017—2021
 
@@ -352,7 +352,7 @@ I worked on a multilingual APAC Partner Center built on Salesforce for deploymen
 
 2011—15roundCorner leadershipB
 
-An executed employment agreement, equity records, and separation correspondence establish the relationship and the Chief Scientist start. Public business records corroborate the later VP Engineering title; the exact promotion dates remain unresolved.
+An executed employment agreement, equity records, and separation correspondence establish the relationship and the Chief Scientist start. Public business records corroborate the later Vice President of Software Engineering title; the exact promotion dates remain unresolved.
 Company profile ↗
 
 2016—17Salesforce employmentA
@@ -373,7 +373,7 @@ Joined as Member of Technical Staff on money-movement systems for a global crypt
 
 2026Cephalopodic — MCP control planeA
 
-Co-founded with two Gauntlet AI Cohort 4 peers as the program capstone: a Go control plane and security gateway for MCP (registration, catalogs, user-scoped taps, policy enforcement, JSON-RPC inspection). Wound down within three months of founding when managed MCP shipped natively and removed the market.
+Co-founded with two Gauntlet AI Cohort 4 peers as the program capstone: a Go control plane and security gateway for MCP (registration, catalogs, user-scoped taps, policy enforcement, JSON-RPC inspection). Wound down within about two months of founding when managed MCP shipped natively and removed the market.
 
 2026Gauntlet AI — Cohort 4 fellowshipA
 
