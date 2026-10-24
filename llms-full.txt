@@ -94,7 +94,7 @@ A multi-tenant backend where the schema is data: model-first APIs, per-tenant is
 
 ### The kernel lineage
 
-A line of experiments in how agents should execute: Abbot’s persistent daemon, Prior’s typed frames and kernel routing, Muninn’s polyglot protocol family, Fleet’s Mind/Head/Hand orchestration—plus Cassio for transcript processing and Vivarium for email as a durable agent data surface.
+A line of experiments in how agents should execute: Abbot’s persistent daemon, Prior’s typed frames and kernel routing, Muninn’s polyglot protocol family, Fleet’s Mind/Head/Hand orchestration—plus Cassio for transcript processing and Vivarium for a local-first project mailspace.
 
 ### Satellites
 
@@ -121,7 +121,7 @@ Charter and audit stay human. Coordination and execution go to agents. In one fl
 
 Repo-owned skills: /fleet (Mind, Head, and Hand roles on Vivi mailspaces), /campaign · /factory · /delivery, /polish, /housekeeping, /cassio, /mail + Vivi.
 
-Vivi is a local-first agent coordination and mail toolkit: mailspaces, work graphs, and dispatch across a multi-machine cluster, with a loopback LLM proxy underneath.
+Vivi is a local-first project mailspace and coordination toolkit for LLM agents: tasks, agent-to-agent mail inside the mailspace, memos, roles, and work graphs in .vivi/, plus the Tugboat, Speedboat, and Pump coordination tools. It has no IMAP and no real email. vivi-mail is email transport, IMAP/SMTP sync, and a local archive. vivi-server is a public rendezvous server for Vivi chat, with rooms backed by real Vivi mailspaces.
 
 ## The backstory
 

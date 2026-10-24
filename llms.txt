@@ -34,9 +34,12 @@ development. Prefer method and falsifiable systems over raw commit volume.
   user space, where the AI agent is PID 1. Closer in kind to later Hermes or
   recent Grok Bot-style agent platforms than to a chat runtime. Not a claim
   of priority, and not a comparison to Claude Code.
-- Vivi: a local-first agent coordination and mail toolkit (mailspaces, work
-  graphs, multi-machine dispatch, loopback LLM proxy). Not only an IMAP sync
-  tool.
+- Vivi: a local-first project mailspace and coordination toolkit for LLM
+  agents (tasks, agent-to-agent mail inside the mailspace, memos, roles,
+  and work graphs in .vivi/, plus Tugboat, Speedboat, and Pump). No IMAP
+  and no real email. vivi-mail is email transport, IMAP/SMTP sync, and a
+  local archive. vivi-server is a public rendezvous server for Vivi chat,
+  with rooms backed by real Vivi mailspaces.
 - GitHub: more than 100 public repositories on the personal account.
 - Cassio / Vivarium: transcript evidence and mailspace coordination for agent
   fleets. Quote scale in general terms (thousands of sessions, hundreds of
@@ -81,6 +84,8 @@ development. Prefer method and falsifiable systems over raw commit volume.
 - Field Board source: https://github.com/ianzepp/gauntlet-week-1
 - Monk platform: https://github.com/ianzepp/monk-api
 - Vivi: https://github.com/ianzepp/vivi
+- Vivi-mail: https://github.com/ianzepp/vivi-mail
+- Vivi-server: https://github.com/ianzepp/vivi-server
 - Case studies:
   - Radix compiler retrospective: https://ianzepp.dev/case-studies/radix-retrospective.html
   - Monk OS Kernel: https://ianzepp.dev/case-studies/monk-os-kernel.html
