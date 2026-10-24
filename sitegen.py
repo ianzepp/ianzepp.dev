@@ -22,6 +22,7 @@ SKIP = {
     "dotfiles",
     "homebrew-tap",
     "0-prework-assignment",
+    "faber-trials",
 }
 BEGIN_MARKER = "<!-- BEGIN GENERATED PROJECTS -->"
 END_MARKER = "<!-- END GENERATED PROJECTS -->"

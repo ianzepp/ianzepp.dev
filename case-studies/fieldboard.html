@@ -403,17 +403,17 @@
       <div class="col">
         <a class="back" href="/case-studies/">&larr; All work</a>
         <h1>Seven crates. Seven days. <em>Zero JavaScript.</em></h1>
-        <p class="lede">Field Board is a real-time collaborative whiteboard built entirely in Rust &mdash; Axum and PostgreSQL behind, Leptos and WebAssembly in front, binary protobuf between &mdash; delivered as a Gauntlet AI Week 1 sprint. 511 commits, 49,900 lines across seven workspace crates, a full framework rewrite on day three, and a portfolio site that documents every commit.</p>
+        <p class="lede">Field Board is a real-time collaborative whiteboard built entirely in Rust &mdash; Axum and PostgreSQL behind, Leptos and WebAssembly in front, binary protobuf between &mdash; delivered as a Gauntlet AI Week 1 sprint. Seven workspace crates, a full framework rewrite on day three, and a portfolio site that documents the work.</p>
       </div>
     </div>
 
     <div class="stats-strip">
-      <div class="stat-cell"><span class="stat-num">511</span><span class="stat-label">Commits</span></div>
-      <div class="stat-cell"><span class="stat-num">49.9K</span><span class="stat-label">Lines of Rust</span></div>
+      <div class="stat-cell"><span class="stat-num">Rust</span><span class="stat-label">End to end</span></div>
+      <div class="stat-cell"><span class="stat-num">Zero</span><span class="stat-label">JavaScript runtime</span></div>
       <div class="stat-cell"><span class="stat-num">7</span><span class="stat-label">Workspace crates</span></div>
-      <div class="stat-cell"><span class="stat-num">1,065</span><span class="stat-label">Tests passed</span></div>
+      <div class="stat-cell"><span class="stat-num">Day 3</span><span class="stat-label">React &rarr; Leptos</span></div>
       <div class="stat-cell"><span class="stat-num">7</span><span class="stat-label">Days</span></div>
-      <div class="stat-cell"><span class="stat-num">$2,133</span><span class="stat-label">AI spend</span></div>
+      <div class="stat-cell"><span class="stat-num">Logged</span><span class="stat-label">AI spend</span></div>
     </div>
 
     <!-- THE BRIEF -->
@@ -424,7 +424,7 @@
       <p>The project documented its own constraints before writing code: 5&ndash;20 concurrent users, $100/month budget ceiling, WebSocket-mandatory real-time sync, seven-day window. The constraints doc preceded the design doc, which preceded the code.</p>
       <div class="callout velocity">
         <div class="callout-label">Why the speed was possible</div>
-        <p>510 of 511 commits land in a single seven-day burst (February 16&ndash;22, 2026). The 511th is a lone dependency-policy commit from May. This isn't overtime or chaos &mdash; it's <strong>the builder knew the tools, wrote the plan first, and the scope was hard-bounded by a deadline that couldn't move.</strong></p>
+        <p>Almost all of the work lands in a single seven-day burst (February 16&ndash;22, 2026), with a later dependency-policy commit from May. This isn't overtime or chaos &mdash; <strong>the builder knew the tools, wrote the plan first, and the scope was hard-bounded by a deadline that couldn't move.</strong></p>
       </div>
     </section>
 
@@ -462,8 +462,8 @@
       <span class="label section-label">The EngineCore split</span>
       <h2>Test without a browser.</h2>
       <p>The canvas crate is split in two: <code>EngineCore</code> is pure Rust with no platform dependencies. It handles coordinate math, shape geometry, rotation-aware hit testing, selection state, a 7-state input gesture machine, and 9 shape kinds. A thin WASM wrapper bridges it to <code>web-sys</code> and the browser Canvas API via a <code>CanvasHost</code> trait.</p>
-      <p>This split is what made 1,065 tests possible in seven days. Every geometry calculation, every state transition, every hit-test edge case runs as a normal <code>cargo test</code> &mdash; no headless browser, no DOM simulation, no test harness overhead. The WASM boundary is tested separately. The engine is tested exhaustively.</p>
-      <div class="pull">The canvas engine has <em>10,241 lines of Rust</em> and zero browser dependencies. The framework rewrite on Day 3 didn't touch a single engine test.</div>
+      <p>This split is what made a large test suite possible in seven days. Every geometry calculation, every state transition, every hit-test edge case runs as a normal <code>cargo test</code> &mdash; no headless browser, no DOM simulation, no test harness overhead. The WASM boundary is tested separately. The engine is tested exhaustively.</p>
+      <div class="pull">The canvas engine is thousands of lines of Rust with zero browser dependencies. The framework rewrite on Day 3 didn't touch a single engine test.</div>
     </section>
 
     <!-- ARCHITECTURE HIGHLIGHTS -->
@@ -582,7 +582,7 @@
       <div class="era-content">
         <h2>The field report</h2>
         <p>The final day built the portfolio site: a "Field Survey Terminal"-themed static page with three tabs &mdash; Architecture (SVG crate dependency map), Timeline (hand-authored day-by-day field notes with per-commit annotations), and Transcripts (254 raw AI session transcripts organized by day). Not auto-generated: hand-curated from git log analysis.</p>
-        <p>Final numbers on the portfolio strip: 48,932 LOC, 1,065 tests passed / 1 failed, 40.4% coverage, 498 commits (the remaining commits landed after the snapshot).</p>
+        <p>The portfolio strip recorded a large Rust tree, a test suite with one known failure, partial coverage, and a seven-day commit burst (a few more commits landed after the snapshot).</p>
       </div>
       </div>
     </article>
@@ -590,10 +590,10 @@
     <!-- COST TRANSPARENCY -->
     <section class="prose on-basalt">
       <span class="label section-label">The cost of speed</span>
-      <h2>$2,133 and 347 sessions.</h2>
-      <p>The project logged its own AI spend via Cassio: <strong>347 sessions, 855 million input tokens, 4.5 million output tokens, $2,133 total.</strong> 158 hours of wall time across parallel worktrees. Split roughly 64% Codex (implementation) and 35% Claude Opus (architecture and review).</p>
+      <h2>The spend was logged, not guessed.</h2>
+      <p>The project logged its own AI spend via Cassio: hundreds of sessions, hundreds of millions of tokens, and a documented dollar total. Days of wall time across parallel worktrees. Split roughly toward Codex for implementation and Claude Opus for architecture and review.</p>
       <p>Two custom agents were used: a "Rust Correctness Surgeon" for targeted fixes and a "Technical Writer" for documentation. The project's <code>CLAUDE.md</code> enforced no <code>.unwrap()</code> in production code, mandatory <code>fmt&rarr;clippy&rarr;test&rarr;commit</code> pipelines, and auto-commit with no permission-asking.</p>
-      <p>The project self-reports as ~99% AI-generated code. This is noted transparently, not hidden &mdash; and it's the point. The thesis isn't that a human typed 49,900 lines. The thesis is that a human directed a coherent system of that scale in seven days, and the system works.</p>
+      <p>The project self-reports as almost entirely AI-generated code. This is noted transparently, not hidden &mdash; and it's the point. The thesis isn't that a human typed tens of thousands of lines. The thesis is that a human directed a coherent system of that scale in seven days, and the system works.</p>
     </section>
 
     <!-- PATTERNS -->
@@ -607,7 +607,7 @@
         </div>
         <div class="pattern-cell">
           <h3>Test without the platform</h3>
-          <p>EngineCore compiles and tests without web-sys. 10,241 lines of canvas logic verified by cargo test alone. The framework rewrite didn't touch a single engine test.</p>
+          <p>EngineCore compiles and tests without web-sys. The canvas logic is verified by cargo test alone. The framework rewrite didn't touch a single engine test.</p>
         </div>
         <div class="pattern-cell">
           <h3>Constraint as liberator</h3>
@@ -615,7 +615,7 @@
         </div>
         <div class="pattern-cell">
           <h3>Refactor day earns its keep</h3>
-          <p>Day 5 added zero features. It decomposed modules, split CSS, restructured for the endgame. The final two days landed 138 commits without accumulating debt.</p>
+          <p>Day 5 added zero features. It decomposed modules, split CSS, restructured for the endgame. The final two days landed the remaining work without accumulating debt.</p>
         </div>
         <div class="pattern-cell">
           <h3>Document the receipts</h3>

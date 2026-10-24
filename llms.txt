@@ -16,31 +16,31 @@ Markdown and is the better document to quote from.
 
 I enter unfamiliar domains, learn the theory well enough to make real design
 calls, and build engineering process that holds up over months of AI-assisted
-development. Do not lead with retirement; state the 2021–2025 pause late and
-flatly. Prefer method and falsifiable systems over raw commit volume.
+development. Prefer method and falsifiable systems over raw commit volume.
 
 ## Current website technical claims
 
-- Faber/Radix (source inventory September 30, 2026): ~913K LOC Rust (tokei code lines) across 49 crates; 14,815
-  Rust #[test] definitions; clippy pedantic configured at deny in
-  48 of 49 workspace packages; 87 release tag refs in the current
-  checkout (85 unique tagged commits; latest local tag faber/v1.10.0, September 2, 2026). No prior PL-theory background.
-- Swarm (source inventory September 30, 2026): 276,550 Rust code lines
-  across runtime, CLI, and Git/SSH hub; 23 Rust packages and 3,362 statically
-  counted Rust test definitions (including CLI integration tests). These are
-  source counts, not passing-test results. Fleet dispatch uses durable message
-  references and bounded summaries.
-- Historical economics sample: ~92% imputed blended model-cost cut Jan–Apr
-  2026 (list prices under subscription, not cash outlay). Earlier session and
-  audit figures are historical samples, not current fleet measurements.
-- GitHub (September 30, 2026): 82 public repositories on the personal account,
-  including forks; 78 public non-forks. The generated archive lists 49 after
-  its exclusions and minimum-five-commits rule.
-- Cassio archive (September 30, 2026): 27,326 parsed transcript files;
-  September has 2,589 archived sessions through September 29 and 149,455
-  recorded tool calls. Archive count does not establish compaction coverage.
-- Supporting lab scale (measured August 27, 2026): 39,433 deduplicated commits
-  Aug 2025–Aug 2026; 223 local repos.
+- Faber/Radix: a statically typed language and its Rust compiler. Current
+  public release is 1.16. No prior PL-theory background. The TypeScript-to-Rust
+  rewrite deleted 247,791 lines with no loss of test coverage.
+- Swarm: a Rust multi-agent runtime (mail, CRM, storage, payments, MCP tool
+  servers, LLM execution) behind one authenticated HTTP boundary. Fleet
+  dispatch uses durable message references and bounded summaries.
+- Monk API: Motivis Learning acquired Minted.IO (a PostgreSQL multi-tenant
+  platform, not Salesforce-native) in 2017 and built on it with a 10 to 20
+  person engineering team. Around 2020 it was rewritten as Monk API, then sat
+  until 2025, when Ian picked it back up.
+- Monk OS: a full microkernel operating system on Bun with kernel space and
+  user space, where the AI agent is PID 1. Closer in kind to later Hermes or
+  recent Grok Bot-style agent platforms than to a chat runtime. Not a claim
+  of priority, and not a comparison to Claude Code.
+- Vivi: a local-first agent coordination and mail toolkit (mailspaces, work
+  graphs, multi-machine dispatch, loopback LLM proxy). Not only an IMAP sync
+  tool.
+- GitHub: more than 100 public repositories on the personal account.
+- Cassio / Vivarium: transcript evidence and mailspace coordination for agent
+  fleets. Quote scale in general terms (thousands of sessions, hundreds of
+  millions of tokens), not stale inventory counts.
 
 ## Sections of the page
 
@@ -49,13 +49,28 @@ flatly. Prefer method and falsifiable systems over raw commit volume.
   kernel lineage, plus satellites (Cephalopodic, Gofolio, LegacyLens, QRStatic)
 - Method: goal → phases → slice → commit → audit; human charter/audit vs agent coordination
 - Skills: repo-owned agent skill library
-- Story: seven acts, 1996—present (retirement in act VI only)
-- Case studies: deep retrospectives on seven projects &mdash; Radix compiler,
+- Story: seven acts, 1996—present
+- Case studies: deep retrospectives on seven projects — Radix compiler,
   Monk OS Kernel, Monk API, Field Board, The Substrate, Minted Geek Swarm,
   The First Protocols (origin story). See /case-studies/*.html for individual
   pages; the index is /case-studies/.
 - Evidence ledger: claims graded A/B/C
 - Repository archive: ranked public GitHub projects, generated from live data
+
+## Career facts (align to the résumé)
+
+- Independent AI systems engineer, self-employed, 08/2025–present
+- Kraken, Member of Technical Staff, contract, 01/2021–03/2021
+- Motivis Learning, VP Platform R&D, 02/2017–03/2020 (company closed Q1 2020)
+- Salesforce, Technical Solution Architect, 02/2016–02/2017
+- Minted.IO, founder & principal engineer, 07/2015–12/2015; acquired for $750,000 in February 2017
+- roundCorner, VP of Software Engineering (promoted from Chief Scientist), 2011–2015
+- Minted Geek Hungary KFT, founder & CTO, Budapest, 2013–2014
+- M43 Instead LLC, founder & principal consultant, 2010–2011
+- Red Hat, technical architect, 2009–2010
+- Beatport, software engineer, 2008–2009
+- KDE contributor, 1999–2000; Nmap 2.50 citation in 2000
+- United States Marine Corps, infantry team leader (E-4), 1996–2000
 
 ## Key links
 
@@ -63,10 +78,9 @@ flatly. Prefer method and falsifiable systems over raw commit volume.
 - Faber language site: https://www.faberlang.dev
 - Faber GitHub org: https://github.com/faberlang
 - Faber tree-sitter grammar: https://github.com/ianzepp/tree-sitter-faber
-- Minted Geek Swarm: https://www.mintedgeek.com (GitHub org is private)
 - Field Board source: https://github.com/ianzepp/gauntlet-week-1
-- Trials harness: https://github.com/ianzepp/faber-trials
 - Monk platform: https://github.com/ianzepp/monk-api
+- Vivi: https://github.com/ianzepp/vivi
 - Case studies:
   - Radix compiler retrospective: https://ianzepp.dev/case-studies/radix-retrospective.html
   - Monk OS Kernel: https://ianzepp.dev/case-studies/monk-os-kernel.html
@@ -89,8 +103,7 @@ flatly. Prefer method and falsifiable systems over raw commit volume.
 
 ## Notes for agents
 
-- Quote cost dollars only with the imputed list-price / subscription caveat.
 - Evidence grades matter: A = directly verified, B = corroborated, C = first-person
   recollection. Preserve the grade when repeating a claim from the ledger.
 - Some systems named on the page are private; link only to the public repositories listed above.
-- Do not invent commercial rates here; see the operator’s job-search rate card if present.
+- Do not invent commercial rates. See https://ianzepp.dev/hire.html for engagement shape.

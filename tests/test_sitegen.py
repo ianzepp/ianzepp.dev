@@ -39,12 +39,19 @@ class SitegenTests(unittest.TestCase):
                 "isPrivate": False,
                 "defaultBranchRef": {"target": {"history": {"totalCount": 999}}},
             },
+            {
+                "name": "faber-trials",
+                "description": "dead public repo; do not list",
+                "isPrivate": False,
+                "defaultBranchRef": {"target": {"history": {"totalCount": 7}}},
+            },
         ]
 
         rows, sections = rank_repos(repos)
 
         self.assertEqual([row["name"] for row in rows], ["alpha", "zeta"])
         self.assertEqual([row["name"] for row in sections["Featured Work"]], ["alpha", "zeta"])
+        self.assertNotIn("faber-trials", [row["name"] for row in rows])
 
     def test_rendering_escapes_public_data_and_excludes_private_repos(self):
         rows, sections = rank_repos(

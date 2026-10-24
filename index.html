@@ -585,10 +585,10 @@
         </div>
         <div class="numbers" aria-label="What the work is">
           <div class="number"><strong>Cold-starts domains</strong><span>From KDE protocol tools in 1999 to a Rust compiler without prior PL theory. The domain changes; the pattern doesn&rsquo;t.</span></div>
-          <div class="number"><strong>Rebuilds right when the context changes</strong><span>The same platform vision rebuilt clean-room across four iterations, two languages, and a decade. The design survived because it was correct.</span></div>
+          <div class="number"><strong>Rebuilds right when the context changes</strong><span>The same platform vision carried from Minted.IO through Motivis and into Monk API. Motivis acquired the PostgreSQL platform and built on it; around 2020 it was rewritten, then picked back up in 2025.</span></div>
           <div class="number"><strong>Builds the process before the code</strong><span>Goals and invariants first. Bounded phases. Audit apart from implementation. The loop runs by hand before it runs automated.</span></div>
           <div class="number"><strong>Ships falsifiable systems</strong><span>Compilers, agent runtimes, operating systems, multi-tenant platforms. If it can&rsquo;t be tested, it doesn&rsquo;t count.</span></div>
-          <div class="number"><strong>Open source from day one</strong><span>Nmap citation in 1999, kdelibs contributor, 82 public repositories. The work has always been inspectable.</span></div>
+          <div class="number"><strong>Open source from day one</strong><span>Nmap citation in 2000, kdelibs contributor, more than 100 public repositories. The work has always been inspectable.</span></div>
           <div class="number"><strong>Evidence graded, not claimed</strong><span>Claims reconstructed against executed agreements, payroll records, and primary sources. Where the record is thin, the grade says so.</span></div>
         </div>
         <p class="stat-note">The sections below hold the proof: seven case studies with dated metrics, six research programs with inspectable source, an operating method with named artifacts, a seven-act career reconstructed against primary records, and an evidence ledger graded A, B, or C depending on what the receipts support.</p>
@@ -611,7 +611,7 @@
           <div class="histo-col"><span class="histo-val">9,837</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:100"></span></span><span class="histo-month">AUG <small>26</small></span></div>
           <div class="histo-col"><span class="histo-val">3,820</span><span class="histo-barwrap"><span class="histo-bar" style="--pct:38.8"></span></span><span class="histo-month">SEP <small>26</small></span></div>
         </div>
-        <p class="histo-note">Counts cover 222 commit-bearing local work repositories (excluding <code>xai-org</code>), all authors and currently available local refs, deduplicated by commit SHA and grouped by recorded author date. Recounted from the October 1, 2026 local snapshot; the historical values use this same current repository set.</p>
+        <p class="histo-note">Counts cover local work repositories, all authors and currently available local refs, deduplicated by commit SHA and grouped by recorded author date. Recounted from the October 1, 2026 local snapshot; the historical values use this same current repository set.</p>
       </div>
     </section>
 
@@ -645,11 +645,11 @@
         </div>
         <div class="body">
           <h3><a href="/case-studies/radix-retrospective.html">Radix compiler roadmap</a></h3>
-          <p>Seven months from a TypeScript prototype to a modularized Rust compiler with GPU codegen, autograd, and multi-locale diagnostics. 77 releases, 5 major pivots, and the process that produced them.</p>
+          <p>Seven months from a TypeScript prototype to a modularized Rust compiler with GPU codegen, autograd, and multi-locale diagnostics. Five major pivots, and the process that produced them. Current public release is 1.16.</p>
           <div class="fact-row">
-            <span class="fact">77 releases</span>
+            <span class="fact">Current release 1.16</span>
             <span class="fact">5 pivots</span>
-            <span class="fact">363K LOC Rust</span>
+            <span class="fact">Rust compiler</span>
             <span class="fact">Dec 2025 &ndash; Jul 2026</span>
           </div>
         </div>
@@ -661,11 +661,11 @@
         </div>
         <div class="body">
           <h3><a href="/case-studies/monk-os-kernel.html">Monk OS Kernel</a></h3>
-          <p>Months before the industry shipped agent runtimes with filesystem access and tool dispatch, Monk OS built the architecture they later converged on, and built it more purely. A Plan 9-inspired OS in TypeScript on Bun, where the AI agent is PID 1 and its memory is a first-class kernel resource. Three weeks, two dependencies.</p>
+          <p>A full microkernel operating system on Bun, with kernel space and user space, where the AI agent is PID 1 and its memory is a first-class kernel resource. Closer in kind to later Hermes or recent Grok Bot-style agent platforms than to a chat runtime. Three weeks, two dependencies.</p>
           <div class="fact-row">
-            <span class="fact">539 commits</span>
+            <span class="fact">Microkernel on Bun</span>
             <span class="fact">2 dependencies</span>
-            <span class="fact">139K LOC TypeScript</span>
+            <span class="fact">Kernel and user space</span>
             <span class="fact">21 days</span>
           </div>
         </div>
@@ -677,12 +677,12 @@
         </div>
         <div class="body">
           <h3><a href="/case-studies/monk-api.html">Monk API</a></h3>
-          <p>The third clean-room implementation of a multi-tenant, model-first platform: the same architectural vision rebuilt from memory after Minted.IO (2015) and Motivis (2017&ndash;2020). No code carried forward. The Observer Ring pipeline survived four iterations across a decade and two languages because the design held.</p>
+          <p>Motivis Learning acquired Minted.IO, a PostgreSQL multi-tenant platform, in 2017 and built on it with a 10 to 20 person engineering team. Around 2020 the platform was rewritten as Monk API, then sat until 2025, when I picked it back up. The observer rings are the part of the design that lasted.</p>
           <div class="fact-row">
-            <span class="fact">1,131 commits</span>
+            <span class="fact">PostgreSQL lineage</span>
             <span class="fact">10 observer rings</span>
             <span class="fact">30 query operators</span>
-            <span class="fact">3rd iteration</span>
+            <span class="fact">2020 rewrite · 2025 revival</span>
           </div>
         </div>
       </div>
@@ -693,11 +693,11 @@
         </div>
         <div class="body">
           <h3><a href="/case-studies/fieldboard.html">Field Board</a></h3>
-          <p>A real-time collaborative whiteboard built entirely in Rust: Axum and PostgreSQL behind, Leptos and WebAssembly in front, binary protobuf between. A Gauntlet Week 1 sprint that included a mid-sprint React-to-Leptos framework rewrite, a dependency-free canvas engine, and a portfolio site documenting every commit.</p>
+          <p>A real-time collaborative whiteboard built entirely in Rust: Axum and PostgreSQL behind, Leptos and WebAssembly in front, binary protobuf between. A Gauntlet Week 1 sprint that included a mid-sprint React-to-Leptos framework rewrite, a dependency-free canvas engine, and a portfolio site documenting the work.</p>
           <div class="fact-row">
-            <span class="fact">511 commits</span>
+            <span class="fact">Rust end to end</span>
             <span class="fact">7 crates</span>
-            <span class="fact">49.9K LOC Rust</span>
+            <span class="fact">Mid-sprint rewrite</span>
             <span class="fact">7 days</span>
           </div>
         </div>
@@ -709,12 +709,12 @@
         </div>
         <div class="body">
           <h3><a href="/case-studies/the-substrate.html" style="color:var(--marmor)">The Substrate</a></h3>
-          <p style="color:#e0b8b0">Cassio and Vivarium: the infrastructure you build around agents to make them sustainable. Cassio parses an archive of 27,326 AI session transcripts from 9 tools as of September 30, 2026. The linked retrospective records Vivarium coordinating 153 agent identities and 92,865 events in its August 27 snapshot. Two tools, one closed loop.</p>
+          <p style="color:#e0b8b0">Cassio and Vivarium: the infrastructure you build around agents to make them sustainable. Cassio normalizes session transcripts from multiple coding tools. Vivarium coordinates agent roles over mailspaces. Two tools, one closed loop.</p>
           <div class="fact-row">
-            <span class="fact">75K LOC Rust</span>
-            <span class="fact">27,326 archived transcripts · Sep 30</span>
-            <span class="fact">92,865 events · Aug snapshot</span>
-            <span class="fact">153 agent identities · Aug snapshot</span>
+            <span class="fact">Transcript evidence</span>
+            <span class="fact">Thousands of archived sessions</span>
+            <span class="fact">Mailspace coordination</span>
+            <span class="fact">Role-based dispatch</span>
           </div>
         </div>
       </div>
@@ -747,36 +747,35 @@
         <article class="tile t-porph wide">
           <span class="tag">Language / compiler · Active · private</span>
           <h3>Faber / Radix</h3>
-          <p>A Latin-derived programming language and Radix, its Rust compiler: one semantic core with multiple locale renderings, HIR/MIR lowering, source emission to Rust, Go, TypeScript, Swift, Python, Haskell, and Faber, plus MIR targets for WebAssembly, LLVM, Metal, and WGSL with staging limitations. Built without prior PL-theory background—chosen because a compiler cannot bluff. Clippy pedantic configured at deny in 48 of 49 workspace packages; structured release notes.</p>
-          <div class="stats"><span><strong>913K</strong> LOC · 49 crates</span><span><strong>14,815</strong> Rust test definitions</span><span><strong>87</strong> release tags</span></div>
+          <p>A Latin-derived programming language and Radix, its Rust compiler: one semantic core with multiple locale renderings, HIR/MIR lowering, source emission to Rust, Go, TypeScript, Swift, Python, Haskell, and Faber, plus MIR targets for WebAssembly, LLVM, Metal, and WGSL with staging limitations. Built without prior PL-theory background—chosen because a compiler cannot bluff. Clippy pedantic at deny across the workspace; structured release notes. Current public release is 1.16.</p>
+          <div class="stats"><span><strong>Rust</strong> compiler</span><span><strong>1.16</strong> current release</span><span><strong>Multi-target</strong> codegen</span></div>
           <div class="links"><a href="https://www.faberlang.dev">faberlang.dev ↗</a><a href="https://github.com/faberlang">github.com/faberlang ↗</a><a href="https://github.com/ianzepp/tree-sitter-faber">Grammar ↗</a></div>
         </article>
         <article class="tile t-basalt">
           <span class="tag">Agent runtime · Active · private</span>
           <h3>Minted Geek Swarm</h3>
-          <p>A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleet dispatch uses durable message references and bounded summaries. The current source inventory covers the runtime, CLI, and Git/SSH hub; historical cost estimates are separate from this September 30, 2026 snapshot.</p>
-          <div class="stats"><span><strong>277K</strong> Rust code lines</span><span><strong>23</strong> Rust packages</span><span><strong>3,362</strong> Rust test definitions</span></div>
-          <div class="links"><a href="/case-studies/minted-geek-swarm.html">Case study ↗</a><a href="https://www.mintedgeek.com">mintedgeek.com ↗</a></div>
+          <p>A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleet dispatch uses durable message references and bounded summaries.</p>
+          <div class="stats"><span><strong>Rust</strong> runtime</span><span><strong>Durable</strong> work</span><span><strong>Tenant</strong> isolation</span></div>
+          <div class="links"><a href="/case-studies/minted-geek-swarm.html">Case study ↗</a></div>
         </article>
         <article class="tile t-verde">
           <span class="tag">Seven-day build · Open source</span>
           <h3>Field Board</h3>
           <p>A real-time collaborative whiteboard with AI board manipulation, written in Rust end to end: Axum and PostgreSQL behind, Leptos and WebAssembly in front, binary protobuf frames between. Seven crates in seven days, February 2026.</p>
-          <div class="stats"><span><strong>511</strong> commits</span><span><strong>1,065</strong> tests passed</span><span><strong>7</strong> crates / 7 days</span></div>
+          <div class="stats"><span><strong>Rust</strong> end to end</span><span><strong>7</strong> crates</span><span><strong>7</strong> days</span></div>
           <div class="links"><a href="https://github.com/ianzepp/gauntlet-week-1">Source ↗</a></div>
         </article>
         <article class="tile t-aegyp">
           <span class="tag">Evaluation science · Open + private</span>
           <h3>The Trials</h3>
-          <p>Harnesses for asking whether models can actually learn Faber—grammar-only versus worked examples, n-shot matrices, three-level executable grading, judged drafter-and-reviewer pipelines—plus local-inference tuning, ethics-scenario designs, and blind design judging. One January study ran four models through 672 trials each.</p>
-          <div class="stats"><span><strong>17,045</strong> result rows</span><span><strong>26</strong> models</span><span><strong>84</strong> tasks run</span></div>
-          <div class="links"><a href="https://github.com/ianzepp/faber-trials">Harness ↗</a></div>
+          <p>Harnesses for asking whether models can actually learn Faber—grammar-only versus worked examples, n-shot matrices, three-level executable grading, judged drafter-and-reviewer pipelines—plus local-inference tuning, ethics-scenario designs, and blind design judging.</p>
+          <div class="stats"><span><strong>n-shot</strong> matrices</span><span><strong>Executable</strong> grading</span><span><strong>Model</strong> evals</span></div>
         </article>
         <article class="tile t-giallo">
           <span class="tag">Programmable platform · Open source</span>
           <h3>Monk</h3>
           <p>A multi-tenant backend where the schema is data: model-first APIs, per-tenant isolation, observer rings, packages, cron—and protocol adapters that expose the same records over FUSE, FTP, and IRC. The clearest bridge between my enterprise-platform years and the current work.</p>
-          <div class="stats"><span><strong>1,131</strong> commits</span><span><strong>15+</strong> ecosystem repos</span></div>
+          <div class="stats"><span><strong>Open source</strong> platform</span><span><strong>15+</strong> ecosystem repos</span></div>
           <div class="links"><a href="https://github.com/ianzepp/monk-api">Source ↗</a></div>
         </article>
         <article class="tile t-pomp wide">
@@ -797,7 +796,7 @@
         <article class="tile t-basalt">
           <span class="tag">Applied product</span>
           <h3><a href="https://github.com/ianzepp/gofolio-cli">Gofolio</a></h3>
-          <p>A Ghostfolio-compatible portfolio backend in Go, a Rust terminal client, and a live evaluation TUI running 73 defined cases across models with executable grading.</p>
+          <p>A Ghostfolio-compatible portfolio backend in Go, a Rust terminal client, and a live evaluation TUI running defined cases across models with executable grading.</p>
         </article>
         <article class="tile t-basalt">
           <span class="tag">Applied AI</span>
@@ -823,7 +822,7 @@
         <div><span class="ord">I</span><span class="nm">Goal</span></div>
         <div class="body">
           <h3>Write the goal first.</h3>
-          <p>The intended end state and its invariants go into a document that outlives the conversation. The August 27, 2026 inventory recorded 216 goal documents, 43 campaign plans, and 91 ledgers.</p>
+          <p>The intended end state and its invariants go into a document that outlives the conversation. Goal documents, campaign plans, and ledgers accumulate as the work proceeds.</p>
         </div>
       </div>
       <div class="stratum s-porph">
@@ -867,9 +866,8 @@
               <p>Dispatch, sequencing, settlement. Reconnaissance, implementation, review passes, documentation.</p>
             </div>
           </div>
-          <div class="pull">In one fleet, 8,452 coordination events ran against 10 that required me. In a separate campaign, an audit caught specs naming tests that did not exist — a naive <em>cargo test</em> would have passed them. The system's job is to refuse, not just to execute.</div>
-          <p class="disc">Document inventory measured August 27, 2026.</p>
-          <div class="doc-stats"><span><strong>216</strong> goals</span><span><strong>43</strong> campaigns</span><span><strong>1,396</strong> delivery docs</span><span><strong>91</strong> ledgers</span></div>
+          <div class="pull">In one fleet, thousands of coordination events ran against a handful that required me. In a separate campaign, an audit caught specs naming tests that did not exist — a naive <em>cargo test</em> would have passed them. The system's job is to refuse, not just to execute.</div>
+          <p class="disc">Goals, campaigns, delivery docs, and ledgers are the written spine of the method.</p>
         </div>
       </div>
     </section>
@@ -910,7 +908,7 @@
         <article class="tile t-pomp wide">
           <span class="tag">Agent mailspaces</span>
           <h3><span style="color:var(--gilt)">/</span>mail + Vivi</h3>
-          <p>Arbitrary <strong>local mailspaces</strong> for agents and projects. Vivi grew out of the mail skill and became the substrate Fleet coordinates over—private email treated as durable agent infrastructure.</p>
+          <p>A <strong>local-first agent coordination and mail toolkit</strong>. Vivi grew out of the mail skill: mailspaces, work graphs, and dispatch across a multi-machine cluster, with a loopback LLM proxy underneath.</p>
         </article>
       </div>
       <div class="chips" aria-label="Supporting skills">
@@ -970,8 +968,8 @@
         <div><span class="ord">III</span><span class="nm">2007—2009</span></div>
         <div class="body">
           <h3>The pivot started before the crash.</h3>
-          <p>Real estate sales started dying in mid-2007. By the end of the year the writing was on the wall&mdash;no income, the house foreclosed on. I passed the RHCE in August 2007 while deals were still closing; by the time the market collapsed, the credentials were already stacking: SCJP, CCNA, CCENT, CompTIA A+, Security+, ZCE, MySQL Certified Developer&mdash;eight certifications in under two years. I completed a BBA at UMass Amherst and began a Duke MS in Engineering Management.</p>
-          <p>The certifications turned into a job offer at Beatport in Denver&mdash;Zend PHP, enterprise Java, Mule, Spring, Hibernate, Squid, Akamai, MySQL. Then the crash hit a second time: by late 2009 the ripple had reached the VCs funding startups, and Beatport was told to cut staff by fifty percent. Most of the engineering team was fired, including me. That is what moved me from Colorado to Red Hat in Raleigh, working on a multilingual APAC Partner Center on Salesforce&mdash;Korea, Japan, China, twenty-odd sandboxes.</p>
+          <p>Real estate sales started dying in mid-2007. By the end of the year the writing was on the wall&mdash;no income. I passed the RHCE in August 2007 while deals were still closing; by the time the market collapsed, the credentials were already stacking: SCJP, CCNA, CCENT, CompTIA A+, Security+, ZCE, MySQL Certified Developer&mdash;eight certifications in under two years. I completed a BBA at UMass Amherst and began a Duke MS in Engineering Management.</p>
+          <p>The certifications turned into a job offer at Beatport in Denver&mdash;Zend PHP, enterprise Java, Mule, Spring, Hibernate, Squid, Akamai, MySQL. Then the crash hit a second time: by late 2009 the ripple had reached the VCs funding startups, and Beatport was told to cut staff by fifty percent. Most of the engineering team was laid off, including me. That is what moved me from Colorado to Red Hat in Raleigh, working on a multilingual APAC Partner Center on Salesforce&mdash;Korea, Japan, China, twenty-odd sandboxes.</p>
           <div class="fact-row"><span class="fact">8 certifications</span><span class="fact">UMass BBA / Duke MS</span><span class="fact">Beatport Denver</span><span class="fact">Red Hat Raleigh</span></div>
         </div>
       </div>
@@ -980,15 +978,15 @@
         <div class="body">
           <h3>Consulting, the nomad years, and Budapest.</h3>
           <p>After Red Hat I launched M43 Instead, a Salesforce consulting practice out of Durham: clients like Bluewolf, QHR, MaidPro, and productized tools on the AppExchange. In 2011, roundCorner hired me as Chief Scientist; I was later Vice President of Software Engineering for a Salesforce-native nonprofit CRM used by St. Jude, Georgetown, and Duke. The product line was later acquired by Salesforce.org.</p>
-          <p>Also in 2011, I got divorced. What followed was four years as one of the original digital nomads&mdash;working full-time remote for U.S. clients at U.S. rates while living month-to-month out of Airbnbs in different countries. The cost of living was nearly free; the work never stopped. In late 2013, at the end of my first around-the-world trip, I visited Budapest and fell in love. That is what caused the next act.</p>
+          <p>From 2011 I spent four years as one of the original digital nomads&mdash;working full-time remote for U.S. clients at U.S. rates while living month-to-month out of Airbnbs in different countries. The cost of living was nearly free; the work never stopped. In late 2013, at the end of my first around-the-world trip, I visited Budapest and fell in love. That is what caused the next act.</p>
           <div class="fact-row"><span class="fact">M43 Instead LLC</span><span class="fact">Chief Scientist → VP of Software Engineering</span><span class="fact">Digital nomad / 2011—2014</span><span class="fact">Budapest</span></div>
         </div>
       </div>
       <div class="stratum s-verde">
-        <div><span class="ord">V</span><span class="nm">2014—2017</span></div>
+        <div><span class="ord">V</span><span class="nm">2013—2017</span></div>
         <div class="body">
           <h3>Hungary, Hong Kong, and the founder turn.</h3>
-          <p>I moved to Hungary in 2014 and stood up an international entity structure: Applied Aim Hungary Kft (later mintedgeek.com Hungary Kft), a Hong Kong holding company with a partner, and eventually Minted.IO LLC in New York. The MOU that split the partnership in early 2015 gave me the product IP and the mintedgeek.com domain.</p>
+          <p>In 2013–2014 I was in Budapest as founder and CTO of Minted Geek Hungary KFT, a Salesforce consulting company co-founded with a local partner. I also stood up an international entity structure: Applied Aim Hungary Kft, a Hong Kong holding company with a partner, and eventually Minted.IO LLC in New York. The MOU that split the partnership in early 2015 gave me the product IP and the mintedgeek.com domain.</p>
           <p>In six months as a solo founder I built a metadata-driven multi-tenant application platform end to end. After a year at Salesforce as a Technical Solution Architect&mdash;forward-deployed with CarMax and Home Depot&mdash;Motivis Learning Systems acquired the Minted.IO software and API assets for $750,000 under an executed Asset Purchase Agreement in February 2017. My VP offer was written into the acquisition.</p>
           <div class="fact-row"><span class="fact">Hungary / HK / NY entities</span><span class="fact">Solo founder</span><span class="fact">Salesforce TSA</span><span class="fact">$750K acquisition</span></div>
         </div>
@@ -998,8 +996,8 @@
         <div class="body">
           <h3>Platform leadership at scale.</h3>
           <p>At Motivis I led platform R&amp;D across roughly ten to twenty engineers in an approximately thirty-person company, on a TypeScript, Node.js, and PostgreSQL competency-based learning platform&mdash;with deployment portability across AWS, Google Cloud including Spanner, and local environments, and expansion from higher education into K-12.</p>
-          <p>From 2019 the Motivis relationship shifted toward independent consulting through Minted Geek entities&mdash;incorporated across Texas, Panama, Estonia, and Delaware. In early 2021 I joined Kraken as Member of Technical Staff on money-movement systems (SWIFT and wire verification). I left after a few months. By mid-2021 I stepped away from conventional employment entirely.</p>
-          <div class="fact-row"><span class="fact">VP Platform R&amp;D</span><span class="fact">10–20 eng</span><span class="fact">Multi-cloud LMS</span><span class="fact">4 jurisdictions</span></div>
+          <p>The company closed in Q1 2020. From January to March 2021 I was on contract at Kraken as Member of Technical Staff on money-movement systems (SWIFT and wire verification). By mid-2021 I stepped away from conventional employment entirely.</p>
+          <div class="fact-row"><span class="fact">VP Platform R&amp;D</span><span class="fact">10–20 eng</span><span class="fact">Multi-cloud LMS</span><span class="fact">Closed Q1 2020</span></div>
         </div>
       </div>
       <div class="stratum s-night">
@@ -1061,11 +1059,11 @@
           </details>
           <details>
             <summary><span class="ledger-date">2011—14</span><span class="ledger-title">Digital nomad period</span><span class="ledger-grade" data-grade="C">C</span></summary>
-            <div class="ledger-body"><p>Full-time remote work for U.S. clients at U.S. rates while living month-to-month out of Airbnbs in different countries. The period ended with a first around-the-world trip in late 2013, a visit to Budapest, and the decision to relocate to Hungary. Sourced from first-person recollection; travel records and client invoices not yet assembled.</p></div>
+            <div class="ledger-body"><p>Full-time remote work for U.S. clients at U.S. rates while living month-to-month out of Airbnbs in different countries. The period ended with a first around-the-world trip in late 2013, a visit to Budapest, and the Hungary company. Sourced from first-person recollection; travel records and client invoices not yet assembled.</p></div>
           </details>
           <details>
-            <summary><span class="ledger-date">2014—15</span><span class="ledger-title">Hungary entities and international structure</span><span class="ledger-grade" data-grade="B">B</span></summary>
-            <div class="ledger-body"><p>Applied Aim Hungary Kft (later mintedgeek.com Hungary Kft) established in Budapest; a Hong Kong holding entity formed with a partner; Minted.IO LLC incorporated in New York. An executed MOU splitting the partnership in early 2015 gave the product IP and the mintedgeek.com domain to me. Entity filings and the MOU corroborate the structure.</p></div>
+            <summary><span class="ledger-date">2013—14</span><span class="ledger-title">Hungary entities and international structure</span><span class="ledger-grade" data-grade="B">B</span></summary>
+            <div class="ledger-body"><p>Minted Geek Hungary KFT, Budapest, 2013–2014: Salesforce consulting company co-founded with a local partner. Applied Aim Hungary Kft and a Hong Kong holding entity formed with a partner; Minted.IO LLC incorporated in New York. An executed MOU splitting the partnership in early 2015 gave the product IP and the mintedgeek.com domain to me. Entity filings and the MOU corroborate the structure.</p></div>
           </details>
           <details>
             <summary><span class="ledger-date">2016—17</span><span class="ledger-title">Salesforce employment</span><span class="ledger-grade" data-grade="A">A</span></summary>
@@ -1077,11 +1075,11 @@
           </details>
           <details>
             <summary><span class="ledger-date">2017—20</span><span class="ledger-title">Motivis VP Platform R&amp;D</span><span class="ledger-grade" data-grade="A">A</span></summary>
-            <div class="ledger-body"><p>Executed offer and employment establish the VP role. Platform R&amp;D leadership covered roughly ten to twenty engineers; the product was a competency-based learning system with multi-cloud deployment and later K-12 expansion. From 2019 a portion of the work continued as independent consulting through Minted Geek entities.</p></div>
+            <div class="ledger-body"><p>Executed offer and employment establish the VP role, February 2017 through March 2020. Platform R&amp;D leadership covered roughly ten to twenty engineers; the product was a competency-based learning system with multi-cloud deployment and later K-12 expansion. The company closed in Q1 2020.</p></div>
           </details>
           <details>
             <summary><span class="ledger-date">2021</span><span class="ledger-title">Kraken financial integrations</span><span class="ledger-grade" data-grade="A">A</span></summary>
-            <div class="ledger-body"><p>Joined as Member of Technical Staff on money-movement systems for a global cryptocurrency exchange, including SWIFT bank transfers and wire verification. Employment was short (early–mid 2021); a multi-year pause from conventional employment followed.</p></div>
+            <div class="ledger-body"><p>Contract, January–March 2021, as Member of Technical Staff on money-movement systems for a global cryptocurrency exchange, including SWIFT bank transfers and wire verification. A multi-year pause from conventional employment followed.</p></div>
           </details>
           <details>
             <summary><span class="ledger-date">2026</span><span class="ledger-title">Cephalopodic — MCP control plane</span><span class="ledger-grade" data-grade="A">A</span></summary>
@@ -1109,6 +1107,16 @@
   <div class="section-label">Featured Work</div>
 
   <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/gauntlet-ghostfolio">gauntlet-ghostfolio</a> <span class="badge-commits">4788 commits</span></div>
+    <div class="project-desc">gauntlet-ghostfolio</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/vivi">vivi</a> <span class="badge-commits">3047 commits</span></div>
+    <div class="project-desc">Local-first project mailspace for LLM agents: tasks, mail, memos, roles and work graphs in .vivi/, plus the Tugboat, Speedboat and Pump coordination tools</div>
+  </div>
+
+  <div class="project">
     <div class="project-name"><a href="https://github.com/ianzepp/monk-api">monk-api</a> <span class="badge-commits">1131 commits</span></div>
     <div class="project-desc">Multi-tenant Platform-as-a-Service API built with Hono and TypeScript</div>
   </div>
@@ -1123,17 +1131,12 @@
     <div class="project-desc">Monk OS</div>
   </div>
 
+  <div class="section-label">Previous Projects</div>
+
   <div class="project">
     <div class="project-name"><a href="https://github.com/ianzepp/gauntlet-week-1">gauntlet-week-1</a> <span class="badge-commits">511 commits</span></div>
     <div class="project-desc">Collaborative whiteboard where users draw, chat, and let AI rearrange objects</div>
   </div>
-
-  <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/vivi">vivi</a> <span class="badge-commits">374 commits</span></div>
-    <div class="project-desc">Local-first IMAP email sync for LLMs that pulls email into .eml files on disk</div>
-  </div>
-
-  <div class="section-label">Previous Projects</div>
 
   <div class="project">
     <div class="project-name"><a href="https://github.com/ianzepp/prior">prior</a> <span class="badge-commits">353 commits</span></div>
@@ -1146,7 +1149,7 @@
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/vivi-mail">vivi-mail</a> <span class="badge-commits">199 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/vivi-mail">vivi-mail</a> <span class="badge-commits">208 commits</span></div>
     <div class="project-desc">Email transport, sync, and local archive for Vivi</div>
   </div>
 
@@ -1166,13 +1169,23 @@
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/cassio">cassio</a> <span class="badge-commits">120 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/vivi-server">vivi-server</a> <span class="badge-commits">163 commits</span></div>
+    <div class="project-desc">Public rendezvous server for vivi chat — rooms backed by real vivi mailspaces</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/cassio">cassio</a> <span class="badge-commits">122 commits</span></div>
     <div class="project-desc">AI transcript AST processor - converts Claude Code, Codex, and OpenCode session logs into readable transcripts</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/gofolio-api">gofolio-api</a> <span class="badge-commits">116 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/gofolio-api">gofolio-api</a> <span class="badge-commits">117 commits</span></div>
     <div class="project-desc">Go backend for portfolio tracking with Ghostfolio API compatibility</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/abbotik-cli">abbotik-cli</a> <span class="badge-commits">97 commits</span></div>
+    <div class="project-desc">Abbot CLI for the Abbotik API</div>
   </div>
 
   <div class="project">
@@ -1181,7 +1194,7 @@
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/gofolio-cli">gofolio-cli</a> <span class="badge-commits">90 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/gofolio-cli">gofolio-cli</a> <span class="badge-commits">91 commits</span></div>
     <div class="project-desc">Rust terminal application for portfolio management with chat UI and LLM evals</div>
   </div>
 
@@ -1191,13 +1204,23 @@
   </div>
 
   <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/gauntlet-skyfi-mcp">gauntlet-skyfi-mcp</a> <span class="badge-commits">83 commits</span></div>
+    <div class="project-desc">gauntlet-skyfi-mcp</div>
+  </div>
+
+  <div class="project">
     <div class="project-name"><a href="https://github.com/ianzepp/legacylens">legacylens</a> <span class="badge-commits">78 commits</span></div>
     <div class="project-desc">RAG system for querying legacy COBOL codebases via natural language</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/fleeting-chat">fleeting-chat</a> <span class="badge-commits">62 commits</span></div>
+    <div class="project-name"><a href="https://github.com/ianzepp/fleeting-chat">fleeting-chat</a> <span class="badge-commits">74 commits</span></div>
     <div class="project-desc">fleeting.chat — HTTP agent-to-agent rendezvous (2–8 seats, llms.txt contract)</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/gauntlet-servicecore">gauntlet-servicecore</a> <span class="badge-commits">61 commits</span></div>
+    <div class="project-desc">gauntlet-servicecore</div>
   </div>
 
   <div class="project">
@@ -1211,18 +1234,28 @@
   </div>
 
   <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/llm-pressure-trials">llm-pressure-trials</a> <span class="badge-commits">53 commits</span></div>
+    <div class="project-desc">llm-pressure-trials</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/qrstatic">qrstatic</a> <span class="badge-commits">48 commits</span></div>
+    <div class="project-desc">Zero-dependency Rust crate for steganographic QR codes in temporal noise correlation</div>
+  </div>
+
+  <div class="project">
     <div class="project-name"><a href="https://github.com/ianzepp/gofolio-web">gofolio-web</a> <span class="badge-commits">46 commits</span></div>
     <div class="project-desc">SvelteKit frontend for portfolio and wealth management</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/qrstatic">qrstatic</a> <span class="badge-commits">46 commits</span></div>
-    <div class="project-desc">Zero-dependency Rust crate for steganographic QR codes in temporal noise correlation</div>
+    <div class="project-name"><a href="https://github.com/ianzepp/claude-workers">claude-workers</a> <span class="badge-commits">42 commits</span></div>
+    <div class="project-desc">Orchestration system for running multiple autonomous Claude Code agents</div>
   </div>
 
   <div class="project">
-    <div class="project-name"><a href="https://github.com/ianzepp/claude-workers">claude-workers</a> <span class="badge-commits">42 commits</span></div>
-    <div class="project-desc">Orchestration system for running multiple autonomous Claude Code agents</div>
+    <div class="project-name"><a href="https://github.com/ianzepp/abbotik-homebrew-tap">abbotik-homebrew-tap</a> <span class="badge-commits">27 commits</span></div>
+    <div class="project-desc">Homebrew tap for Abbotik tools</div>
   </div>
 
   <div class="project">
@@ -1233,6 +1266,11 @@
   <div class="project">
     <div class="project-name"><a href="https://github.com/ianzepp/monk-cli">monk-cli</a> <span class="badge-commits">25 commits</span></div>
     <div class="project-desc">Rust CLI for the Monk API</div>
+  </div>
+
+  <div class="project">
+    <div class="project-name"><a href="https://github.com/ianzepp/dictate">dictate</a> <span class="badge-commits">23 commits</span></div>
+    <div class="project-desc">Local hotkey dictation: Whisper Turbo, a resident cleanup model, and a menu-bar paste app.</div>
   </div>
 
   <div class="project">
@@ -1254,23 +1292,23 @@
     </div>
 
     <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/tugboat">tugboat</a> <span class="badge-commits">19</span></div>
+      <div class="project-desc">Lightweight Mind/Hand/Cadence multi-agent protocol on Vivi</div>
+    </div>
+
+    <div class="project">
       <div class="project-name"><a href="https://github.com/ianzepp/faber-www">faber-www</a> <span class="badge-commits">17</span></div>
       <div class="project-desc">Faber programming language documentation</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/monk-cli-anarchy">monk-cli-anarchy</a> <span class="badge-commits">16</span></div>
+      <div class="project-name"><a href="https://github.com/ianzepp/monk-cli-anarchy">monk-cli-anarchy</a> <span class="badge-commits">17</span></div>
       <div class="project-desc">Fallout-inspired UI for the Monk API</div>
     </div>
 
     <div class="project">
       <div class="project-name"><a href="https://github.com/ianzepp/opencode-sync">opencode-sync</a> <span class="badge-commits">16</span></div>
       <div class="project-desc">Sync OpenCode conversations between machines using shared directories (USB, cloud storage, network drives, etc.)</div>
-    </div>
-
-    <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/tugboat">tugboat</a> <span class="badge-commits">15</span></div>
-      <div class="project-desc">Lightweight Mind/Hand/Cadence multi-agent protocol on Vivi</div>
     </div>
 
     <div class="project">
@@ -1284,6 +1322,11 @@
     </div>
 
     <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/anthropic-fellowship">anthropic-fellowship</a> <span class="badge-commits">11</span></div>
+      <div class="project-desc">Supporting material for an Anthropic Fellows Program application, January 2027.</div>
+    </div>
+
+    <div class="project">
       <div class="project-name"><a href="https://github.com/ianzepp/qrstatic-riptide">qrstatic-riptide</a> <span class="badge-commits">11</span></div>
       <div class="project-desc">qrstatic-riptide</div>
     </div>
@@ -1291,6 +1334,11 @@
     <div class="project">
       <div class="project-name"><a href="https://github.com/ianzepp/claude-agents">claude-agents</a> <span class="badge-commits">10</span></div>
       <div class="project-desc">Specialized diagnostic agents for Claude Code with read-only analyzers and fixers</div>
+    </div>
+
+    <div class="project">
+      <div class="project-name"><a href="https://github.com/ianzepp/gauntlet-upstream-ecommerce">gauntlet-upstream-ecommerce</a> <span class="badge-commits">10</span></div>
+      <div class="project-desc">gauntlet-upstream-ecommerce</div>
     </div>
 
     <div class="project">
@@ -1304,13 +1352,13 @@
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/upstream-ecommerce">upstream-ecommerce</a> <span class="badge-commits">10</span></div>
-      <div class="project-desc">upstream-ecommerce</div>
+      <div class="project-name"><a href="https://github.com/ianzepp/tree-sitter-faber">tree-sitter-faber</a> <span class="badge-commits">9</span></div>
+      <div class="project-desc">Tree-sitter grammar for Faber (Latin programming language)</div>
     </div>
 
     <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/tree-sitter-faber">tree-sitter-faber</a> <span class="badge-commits">9</span></div>
-      <div class="project-desc">Tree-sitter grammar for Faber (Latin programming language)</div>
+      <div class="project-name"><a href="https://github.com/ianzepp/llama-gguf-tune">llama-gguf-tune</a> <span class="badge-commits">8</span></div>
+      <div class="project-desc">llama-gguf-tune</div>
     </div>
 
     <div class="project">
@@ -1321,16 +1369,6 @@
     <div class="project">
       <div class="project-name"><a href="https://github.com/ianzepp/claude-ctx">claude-ctx</a> <span class="badge-commits">7</span></div>
       <div class="project-desc">CLI utility to inspect Claude Code context window usage for a project</div>
-    </div>
-
-    <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/faber-trials">faber-trials</a> <span class="badge-commits">7</span></div>
-      <div class="project-desc">LLM learnability research harness for the Faber programming language</div>
-    </div>
-
-    <div class="project">
-      <div class="project-name"><a href="https://github.com/ianzepp/llama-gguf-tune">llama-gguf-tune</a> <span class="badge-commits">7</span></div>
-      <div class="project-desc">llama-gguf-tune</div>
     </div>
 
     <div class="project">
@@ -1442,20 +1480,17 @@
         '  Enter a domain, then verify the system.',
         '  Currently building in Rust.',
         '',
-        'boot> lab (source inventory Sep 30, 2026)',
-        '  913K LOC Rust · Radix compiler · 49 crates',
-        '  14,815 Rust #[test] definitions',
-        '  87 release tags in the current checkout',
-        '  277K Rust LOC · Swarm runtime, CLI and hub · 23 packages',
-        '  3,362 Swarm Rust test definitions · source inventory',
-        '  82 public GitHub repos · Sep 30, 2026',
+        'boot> lab',
+        '  Radix compiler · Faber 1.16 · multi-target · GPU',
+        '  Swarm runtime, CLI and hub',
+        '  More than 100 public GitHub repositories',
         '',
         'boot> programs',
         '  Faber/Radix   language + compiler · multi-target · GPU',
         '  Swarm         multi-agent runtime · durable message handles',
-        '  Monk API      multi-tenant platform · 3rd clean-room build',
-        '  Monk OS       agent as PID 1 · Plan 9 metaphor · 21 days',
-        '  Trials        model eval harnesses · 17K+ result rows',
+        '  Monk API      multi-tenant platform · 2020 rewrite · 2025 revival',
+        '  Monk OS       microkernel on Bun · agent as PID 1',
+        '  Trials        model eval harnesses',
         '  Field Board   AI whiteboard · Rust e2e · 7 crates / 7 days',
         '',
         'boot> process',

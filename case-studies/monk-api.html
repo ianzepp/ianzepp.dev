@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Case study: Monk API — the third iteration of a multi-tenant platform vision rebuilt clean-room from memory, with the Observer Ring that survived a decade and two languages.">
+  <meta name="description" content="Case study: Monk API — a multi-tenant platform vision carried from Minted.IO through Motivis, rewritten around 2020, then picked back up in 2025.">
   <meta name="theme-color" content="#14100f">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
   <title>Monk API &mdash; Ian Zepp</title>
@@ -428,46 +428,46 @@
     <div class="page-header">
       <div class="col">
         <a class="back" href="/case-studies/">&larr; All work</a>
-        <h1>The same platform, <em>three times.</em></h1>
-        <p class="lede">Monk API is the third clean-room implementation of a multi-tenant, model-first platform &mdash; the same architectural vision rebuilt from memory after Minted.IO (2015) and Motivis (2017&ndash;2020). No code was carried forward. What survived is the design: describe your schema, query your data, and let the observer rings handle everything in between.</p>
+        <h1>The same platform, <em>picked back up.</em></h1>
+        <p class="lede">Monk API is a multi-tenant, model-first platform in the Minted.IO lineage. Motivis Learning acquired Minted.IO, a PostgreSQL platform, in 2017 and built on it with a 10 to 20 person engineering team. Around 2020 the platform was rewritten as Monk API, then sat until 2025, when it was picked back up. What lasted is the design: describe your schema, query your data, and let the observer rings handle everything in between.</p>
       </div>
     </div>
 
     <div class="stats-strip">
-      <div class="stat-cell"><span class="stat-num">1,131</span><span class="stat-label">Commits</span></div>
-      <div class="stat-cell"><span class="stat-num">52K</span><span class="stat-label">Lines of TypeScript</span></div>
+      <div class="stat-cell"><span class="stat-num">2020</span><span class="stat-label">Rewrite</span></div>
+      <div class="stat-cell"><span class="stat-num">2025</span><span class="stat-label">Picked back up</span></div>
       <div class="stat-cell"><span class="stat-num">30</span><span class="stat-label">Query operators</span></div>
       <div class="stat-cell"><span class="stat-num">10</span><span class="stat-label">Observer rings</span></div>
-      <div class="stat-cell"><span class="stat-num">8</span><span class="stat-label">Months</span></div>
-      <div class="stat-cell"><span class="stat-num">3rd</span><span class="stat-label">Iteration</span></div>
+      <div class="stat-cell"><span class="stat-num">PG</span><span class="stat-label">From the start</span></div>
+      <div class="stat-cell"><span class="stat-num">10&ndash;20</span><span class="stat-label">Motivis engineers</span></div>
     </div>
 
     <!-- THE LINEAGE -->
     <section class="prose on-basalt">
       <span class="label section-label">The lineage</span>
-      <h2>One vision, four implementations, a decade.</h2>
+      <h2>One vision, carried across a decade.</h2>
       <p>The core idea has never changed: a platform where the schema is data, not code. You describe your models and fields through an API. The platform generates CRUD, querying, access control, audit trails, and lifecycle hooks automatically. Tenants are isolated at the database level. The observer ring pipeline processes every mutation through a fixed sequence of validation, security, business logic, persistence, and notification stages.</p>
-      <p>This idea was first built as Minted.IO in 2015 (Salesforce-native), rebuilt as the Motivis platform in 2017 (TypeScript/Node.js/PostgreSQL), rebuilt again as Monk API in 2025 (TypeScript/Hono/Bun), and now runs hardcoded in Rust in the Minted Geek Swarm platform. No code was ever carried between iterations. The architecture persisted because one person carried it in their head.</p>
+      <p>This idea was first built as Minted.IO in 2015 (PostgreSQL, solo). Motivis Learning acquired it in 2017 and built on that platform with a 10 to 20 person engineering team. Around 2020 it was rewritten as Monk API, then sat until 2025, when the current TypeScript/Hono/Bun work picked it back up. The same pipeline later appears, hardcoded, in the Minted Geek Swarm runtime in Rust.</p>
       <div class="lineage-strip">
         <div class="lineage-cell">
           <span class="l-year">2015</span>
           <span class="l-name">Minted.IO</span>
-          <span class="l-desc">Salesforce-native. Solo founder. Acquired by Motivis 2017.</span>
+          <span class="l-desc">PostgreSQL. Solo founder. Acquired by Motivis 2017.</span>
         </div>
         <div class="lineage-cell">
           <span class="l-year">2017&ndash;2020</span>
           <span class="l-name">Motivis</span>
-          <span class="l-desc">TS / Node / PostgreSQL. 10&ndash;20 engineers. VP Platform R&amp;D.</span>
+          <span class="l-desc">Built on Minted.IO. 10&ndash;20 engineers. VP Platform R&amp;D.</span>
         </div>
         <div class="lineage-cell current">
-          <span class="l-year">2025&ndash;2026</span>
+          <span class="l-year">2020, then 2025</span>
           <span class="l-name">Monk API</span>
-          <span class="l-desc">TS / Hono / Bun. Clean-room rebuild from memory. Solo.</span>
+          <span class="l-desc">Rewritten around 2020. Picked back up in 2025. Solo.</span>
         </div>
         <div class="lineage-cell">
           <span class="l-year">2026&ndash;now</span>
           <span class="l-name">Swarm</span>
-          <span class="l-desc">Rust. Rings hardcoded. Same pipeline, fourth language.</span>
+          <span class="l-desc">Rust. Same pipeline, hardcoded in the runtime.</span>
         </div>
       </div>
       <div class="callout lineage">
@@ -578,7 +578,7 @@
       <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">Aug 19 &ndash; 30, 2025</span>
-        <span class="era-detail">331 commits</span>
+        <span class="era-detail">Twelve days</span>
       </div>
       <div class="era-content">
         <h2>Genesis: full PaaS in twelve days</h2>
@@ -586,7 +586,7 @@
         <p>By August 30, Monk API was at v2.0.0-rc2 with JWT auth, schema-per-tenant isolation, the describe/data pattern, and the find DSL. Twelve days from first commit to release candidate.</p>
         <div class="callout insight">
           <div class="callout-label">Speed from prior knowledge</div>
-          <p>331 commits in 12 days isn't just fast iteration. This is the third time the platform was built. The architecture was already proven &mdash; the speed comes from <strong>not needing to discover the design.</strong> The ORM removal on day 3 is the tell: the builder already knew raw SQL was the right call, tried the ORM anyway, confirmed it was wrong, and moved on in 24 hours.</p>
+          <p>The 2025 revival reached a release candidate in twelve days because the architecture was already known. The speed comes from <strong>not needing to discover the design.</strong> The ORM removal on day 3 is the tell: the builder already knew raw SQL was the right call, tried the ORM anyway, confirmed it was wrong, and moved on in 24 hours.</p>
         </div>
       </div>
       </div>
@@ -596,7 +596,7 @@
       <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">Sep 1 &ndash; 10</span>
-        <span class="era-detail">64 commits &middot; then silence</span>
+        <span class="era-detail">Then silence</span>
       </div>
       <div class="era-content">
         <h2>RC hardening, then a two-month pause</h2>
@@ -609,14 +609,14 @@
       <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">Nov 9 &ndash; 29, 2025</span>
-        <span class="era-detail">624 commits &middot; v2.1 &rarr; v6.2</span>
+        <span class="era-detail">v2.1 &rarr; v6.2</span>
       </div>
       <div class="era-content">
         <h2>The November burst</h2>
-        <p>624 commits in three weeks, peaking at 62 commits in a single day (November 27). The version jumped from 2.1.0 to 6.2.0. This is where the platform matured.</p>
+        <p>Three weeks of concentrated work. The version jumped from 2.1.0 to 6.2.0. This is where the platform matured.</p>
         <p><strong>Runtime migration (Nov 26&ndash;27):</strong> Node.js removed entirely. Vitest replaced with Bun's test runner. The project went from a Node/Express-adjacent setup to pure Bun in 48 hours.</p>
         <p><strong>MCP server (Nov 22):</strong> A Model Context Protocol server was added for Claude Code integration, initially as 11 tools, then refactored to 4 with TOON format. Later extracted to its own package.</p>
-        <p><strong>Agent/TTY subsystem (Nov 28&ndash;29):</strong> 79 commits built an in-process terminal shell with STM/LTM memory, jq parser, xargs, base64, bc &mdash; essentially a self-hosted agent interface inside the platform. This entire subsystem would later be explicitly removed.</p>
+        <p><strong>Agent/TTY subsystem (Nov 28&ndash;29):</strong> An in-process terminal shell with STM/LTM memory, jq parser, xargs, base64, bc &mdash; essentially a self-hosted agent interface inside the platform. This entire subsystem would later be explicitly removed.</p>
       </div>
       </div>
     </article>
@@ -625,7 +625,7 @@
       <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">Apr 9 &ndash; 14, 2026</span>
-        <span class="era-detail">110 commits &middot; 5 days</span>
+        <span class="era-detail">5 days</span>
       </div>
       <div class="era-content">
         <h2>The closing arc: audit, cut, rewrite, pivot</h2>
@@ -634,7 +634,7 @@
         <p>The final commits pivoted the project's homepage to "agent-first" and "LLM handoff" positioning. The marketing caught up to the architecture in real time.</p>
         <div class="callout pivot">
           <div class="callout-label">Build then cut</div>
-          <p>The agent/TTY subsystem &mdash; 79 commits of work &mdash; was built in November and removed in April. This is the same pruning discipline visible in the Radix compiler retrospective: <strong>when something isn't earning its complexity, cut it.</strong> The willingness to delete working code is a process signal, not a waste signal.</p>
+          <p>The agent/TTY subsystem was built in November and removed in April. This is the same pruning discipline visible in the Radix compiler retrospective: <strong>when something isn't earning its complexity, cut it.</strong> The willingness to delete working code is a process signal, not a waste signal.</p>
         </div>
       </div>
       </div>
@@ -643,15 +643,15 @@
     <!-- PATTERNS -->
     <section class="prose on-basalt">
       <span class="label section-label">Patterns</span>
-      <h2>What the third iteration reveals.</h2>
+      <h2>What the lineage reveals.</h2>
       <div class="pattern-grid">
         <div class="pattern-cell">
-          <h3>The ring that never changed</h3>
-          <p>The Observer Ring survived four implementations across a decade and two languages. Everything around it &mdash; ORM, runtime, auth &mdash; was rewritten repeatedly. The rings were already right.</p>
+          <h3>The ring that lasted</h3>
+          <p>The Observer Ring is the part of the design that lasted from Minted.IO through Motivis and into Monk API. Everything around it &mdash; ORM, runtime, auth &mdash; was rewritten. The rings were already right.</p>
         </div>
         <div class="pattern-cell">
-          <h3>Faster each time</h3>
-          <p>Minted.IO took six months solo. Motivis took years with a team. Monk API reached release candidate in twelve days. Each iteration was faster because less design discovery was needed.</p>
+          <h3>Faster when the design is known</h3>
+          <p>Minted.IO took six months solo. Motivis took years with a team, building on that platform. The 2025 revival of Monk API reached release candidate in twelve days because less design discovery was needed.</p>
         </div>
         <div class="pattern-cell">
           <h3>Transaction as HTTP boundary</h3>
@@ -659,7 +659,7 @@
         </div>
         <div class="pattern-cell">
           <h3>Build then cut</h3>
-          <p>The agent/TTY subsystem was built (79 commits), used, evaluated, and removed. The auth system was rewritten three times in 36 hours. Fast iteration includes fast deletion.</p>
+          <p>The agent/TTY subsystem was built, used, evaluated, and removed. The auth system was rewritten three times in 36 hours. Fast iteration includes fast deletion.</p>
         </div>
         <div class="pattern-cell">
           <h3>Schema as conversation</h3>
@@ -674,12 +674,12 @@
 
     <!-- CLOSING -->
     <section class="prose on-deep">
-      <p><strong>Monk API is not the interesting project. The lineage is.</strong> What makes this a case study isn't a single codebase &mdash; it's watching the same architectural vision survive a decade, four implementations, two languages, a startup acquisition, a VP tenure, a company shutdown, and a clean-room rebuild. The Observer Ring pipeline, the describe/data pattern, the transaction-as-HTTP-boundary, the schema-as-conversation philosophy &mdash; none of these were invented for Monk API. They were carried forward in one engineer's head and rebuilt each time the context changed.</p>
-      <p>The third iteration is the fastest because it has the least to discover. The rings don't change because they were already right. And the code that gets deleted &mdash; the ORM on day 3, the agent subsystem in April, the auth system three times in 36 hours &mdash; gets deleted fast because the builder knows what right looks like and isn't afraid to cut what isn't it.</p>
+      <p><strong>Monk API is not the interesting project. The lineage is.</strong> What makes this a case study isn't a single codebase &mdash; it's watching the same architectural vision survive a decade: a solo PostgreSQL platform, an acquisition, a VP tenure with a 10 to 20 person team, a company shutdown, a rewrite around 2020, and a 2025 revival. The Observer Ring pipeline, the describe/data pattern, the transaction-as-HTTP-boundary, the schema-as-conversation philosophy &mdash; none of these were invented for the current repo.</p>
+      <p>The 2025 revival is the fastest because it has the least to discover. The rings don't change because they were already right. And the code that gets deleted &mdash; the ORM on day 3, the agent subsystem in April, the auth system three times in 36 hours &mdash; gets deleted fast because the builder knows what right looks like and isn't afraid to cut what isn't it.</p>
     </section>
 
     <div class="inscription">
-      <div class="txt">Monk API is the third clean-room build of the multi-tenant platform behind Minted.IO and Motivis.</div>
+      <div class="txt">Motivis built on Minted.IO. Monk API is the 2020 rewrite, picked back up in 2025.</div>
     </div>
   </main>
 
