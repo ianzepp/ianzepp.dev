@@ -1,28 +1,23 @@
 # Ian Zepp — Cold starts, real engineering
 
 Full text mirror of https://ianzepp.dev/ for agent readers.
-The HTML page is canonical. Cost figures are imputed at list prices under
-subscription use unless noted. Faber and Swarm source inventories and GitHub repository count measured September 30, 2026. Historical session, commit, and document series retain their stated dates.
+The HTML page is canonical.
 
 ---
 
 Ian Zepp — Cold starts, real engineering
 
- Autobiography / selected works / 1996—present
-
-Cold starts. Real engineering.
+Autobiography / selected works / 1996—present
 
 I’m Ian Zepp — systems engineer, founder, former VP of Engineering. I learn unfamiliar technical domains from the ground up: asking the questions that surface real constraints, understanding the theory well enough to make design calls, then building engineering process robust enough to sustain AI-assisted development over months. This is the long version.
 
- Scroll to begin ↓
-
- What this is
+## What this is
 
 Seven case studies spanning 1999 to 2026. A seven-act career from the Marine Corps through real estate, enterprise platforms, founder exits, and full-time independent R&D. An evidence ledger graded A/B/C. The depth is below — the front door should reflect the scope.
 
- Currently building in Rust
+Currently building in Rust.
 
- The thesis · 1996—present
+## The thesis · 1996—present
 
 Learn the domain. Verify the output.
 
@@ -32,357 +27,190 @@ Since August 2025 that approach has run full time on AI-assisted systems: a prog
 
 The case studies below trace the pattern across decades. The research programs, method, skills, and evidence ledger that follow are the current instantiation — deeper, more measured, but the same instinct that started in a barracks in 1999.
 
- Cold-starts domains
- From KDE protocol tools in 1999 to a Rust compiler without prior PL theory. The domain changes; the pattern doesn't.
- Rebuilds right when the context changes
- The same platform vision rebuilt clean-room across four iterations, two languages, and a decade. The design survived because it was correct.
- Builds the process before the code
- Goals and invariants first. Bounded phases. Audit apart from implementation. The loop runs by hand before it runs automated.
- Ships falsifiable systems
- Compilers, agent runtimes, operating systems, multi-tenant platforms. If it can't be tested, it doesn't count.
- Open source from day one
- Nmap citation in 1999, kdelibs contributor, 82 public repositories. The work has always been inspectable.
- Evidence graded, not claimed
- Claims reconstructed against executed agreements, payroll records, and primary sources. Where the record is thin, the grade says so.
+- Cold-starts domains: From KDE protocol tools in 1999 to a Rust compiler without prior PL theory. The domain changes; the pattern doesn't.
+- Rebuilds right when the context changes: The same platform vision carried from Minted.IO through Motivis and into Monk API. Motivis acquired the PostgreSQL platform and built on it; around 2020 it was rewritten, then picked back up in 2025.
+- Builds the process before the code: Goals and invariants first. Bounded phases. Audit apart from implementation. The loop runs by hand before it runs automated.
+- Ships falsifiable systems: Compilers, agent runtimes, operating systems, multi-tenant platforms. If it can't be tested, it doesn't count.
+- Open source from day one: Nmap citation in 2000, kdelibs contributor, more than 100 public repositories. The work has always been inspectable.
+- Evidence graded, not claimed: Claims reconstructed against executed agreements, payroll records, and primary sources. Where the record is thin, the grade says so.
 
 The sections below hold the proof: seven case studies with dated metrics, six research programs with inspectable source, an operating method with named artifacts, a seven-act career reconstructed against primary records, and an evidence ledger graded A, B, or C depending on what the receipts support.
 
- August 2025–September 2026 · unique commits per month
+## Case studies
 
- 1,302AUG 25
- 866SEP 25
- 711OCT 25
- 1,807NOV 25
- 2,418DEC 25
- 2,170JAN 26
- 2,843FEB 26
- 1,240MAR 26
- 2,549APR 26
- 3,368MAY 26
- 3,653JUN 26
- 7,747JUL 26
- 9,837AUG 26
- 3,820SEP 26
+### Minted Geek Swarm — agent work that outlasts a turn
 
-Counts cover 222 commit-bearing local work repositories (excluding xai-org), all authors and currently available local refs, deduplicated by commit SHA and grouped by recorded author date. Recounted from the October 1, 2026 local snapshot; the historical values use this same current repository set.
+A Rust runtime for multiple tenants, built around trusted identity, durable tasks, bounded dispatch from sensors to rooms, and hives that operators can create and dissolve.
 
- The research programs
+### Radix compiler — roadmap retrospective
+
+Seven months from a TypeScript prototype to a modularized Rust compiler with GPU codegen, autograd, and multi-locale diagnostics. Five major pivots, and the process that produced them. Current public release is 1.16. The TypeScript-to-Rust rewrite deleted 247,791 lines with no loss of test coverage.
+
+### Monk OS Kernel — the agent needed an operating system
+
+A full microkernel operating system on Bun, with kernel space and user space, where the AI agent is PID 1 and its memory is a first-class kernel resource. Closer in kind to later Hermes or recent Grok Bot-style agent platforms than to a chat runtime. Three weeks, two dependencies.
+
+### Monk API — the same platform, picked back up
+
+Motivis Learning acquired Minted.IO, a PostgreSQL multi-tenant platform, in 2017 and built on it with a 10 to 20 person engineering team. Around 2020 the platform was rewritten as Monk API, then sat until 2025, when it was picked back up. The observer rings are the part of the design that lasted.
+
+### Field Board — seven crates, seven days, zero JavaScript
+
+A real-time collaborative whiteboard built entirely in Rust — Axum and PostgreSQL behind, Leptos and WebAssembly in front, binary protobuf between. A Gauntlet Week 1 sprint that included a mid-sprint React-to-Leptos framework rewrite.
+
+### The Substrate — evidence and coordination for agent fleets
+
+Cassio and Vivarium: the infrastructure you build around agents to make them sustainable. Cassio normalizes session transcripts from multiple coding tools. Vivarium coordinates agent roles over mailspaces. Two tools, one closed loop.
+
+### The First Protocols — Kmap and GnutellaLib, 1999–2000
+
+A KDE frontend for Nmap and a Gnutella P2P library, written during the last months of active military service. C++ and Python, two network protocols, one author. Cited by name in the Nmap 2.50 release notes (2000).
+
+## The research programs
 
 Six main lines of work.
 
-Every program below is a running system with its own tests, documents, and Git history. Four satellites follow, and the archive at the bottom of the page holds the rest.
+### Faber / Radix
 
- Language / compiler · Active · private
+A Latin-derived programming language and Radix, its Rust compiler: one semantic core with multiple locale renderings, HIR/MIR lowering, source emission to Rust, Go, TypeScript, Swift, Python, Haskell, and Faber, plus MIR targets for WebAssembly, LLVM, Metal, and WGSL with staging limitations. Built without prior PL-theory background—chosen because a compiler cannot bluff. Current public release is 1.16.
 
-Faber / Radix
+### Minted Geek Swarm
 
-A Latin-derived programming language and Radix, its Rust compiler: one semantic core with multiple locale renderings, HIR/MIR lowering, source emission to Rust, Go, TypeScript, Swift, Python, Haskell, and Faber, plus MIR targets for WebAssembly, LLVM, Metal, and WGSL with staging limitations. Built without prior PL-theory background—chosen because a compiler cannot bluff. Clippy pedantic configured at deny in 48 of 49 workspace packages; structured release notes.
+A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleet dispatch uses durable message references and bounded summaries.
 
- 913K LOC · 49 crates14,815 Rust test definitions87 release tags
- faberlang.dev ↗github.com/faberlang ↗Grammar ↗
-
- Agent runtime · Active · private
-
-Minted Geek Swarm
-
-A Rust multi-agent runtime unifying mail, CRM, storage, payments, messaging, MCP tool servers, and LLM execution behind one authenticated HTTP boundary, with agent self-provisioning. Fleet dispatch uses durable message references and bounded summaries. The current source inventory covers the runtime, CLI, and Git/SSH hub; historical cost estimates are separate from this September 30, 2026 snapshot.
-
- 277K Rust code lines23 Rust packages3,362 Rust test definitions
- mintedgeek.com ↗
-
- Seven-day build · Open source
-
-Field Board
+### Field Board
 
 A real-time collaborative whiteboard with AI board manipulation, written in Rust end to end: Axum and PostgreSQL behind, Leptos and WebAssembly in front, binary protobuf frames between. Seven crates in seven days, February 2026.
 
- 511 commits1,077 test definitions7 crates / 7 days
- Source ↗
+### The Trials
 
- Evaluation science · Open + private
+Harnesses for asking whether models can actually learn Faber—grammar-only versus worked examples, n-shot matrices, three-level executable grading, judged drafter-and-reviewer pipelines—plus local-inference tuning, ethics-scenario designs, and blind design judging.
 
-The Trials
+### Monk
 
-Harnesses for asking whether models can actually learn Faber—grammar-only versus worked examples, n-shot matrices, three-level executable grading, judged drafter-and-reviewer pipelines—plus local-inference tuning, ethics-scenario designs, and blind design judging. One January study ran four models through 672 trials each.
+A multi-tenant backend where the schema is data: model-first APIs, per-tenant isolation, observer rings, packages, cron—and protocol adapters that expose the same records over FUSE, FTP, and IRC.
 
- 17,045 result rows26 models84 tasks run
- Harness ↗
-
- Programmable platform · Open source
-
-Monk
-
-A multi-tenant backend where the schema is data: model-first APIs, per-tenant isolation, observer rings, packages, cron—and protocol adapters that expose the same records over FUSE, FTP, and IRC. The clearest bridge between my enterprise-platform years and the current work.
-
- 1,122 commits15+ ecosystem repos
- Source ↗
-
- Agent kernels · Mixed
-
-The kernel lineage
+### The kernel lineage
 
 A line of experiments in how agents should execute: Abbot’s persistent daemon, Prior’s typed frames and kernel routing, Muninn’s polyglot protocol family, Fleet’s Mind/Head/Hand orchestration—plus Cassio for transcript processing and Vivarium for email as a durable agent data surface.
 
- 6 related systemsRust / TS / Go cores
- Abbot ↗Cassio ↗
+### Satellites
 
- Satellites
+- Cephalopodic: Gauntlet AI Cohort 4 capstone with two co-founders: a Go control plane and security gateway for MCP. Wound down within about two months when managed MCP shipped natively.
+- Gofolio: Ghostfolio-compatible portfolio backend in Go, Rust terminal client, live evaluation TUI.
+- LegacyLens: retrieval-augmented analysis of legacy COBOL.
+- QRStatic: zero-dependency Rust steganography hiding QR codes in temporal noise correlation.
 
- MCP security · collaborative
-
-Cephalopodic
-
-Gauntlet AI Cohort 4 capstone with two co-founders: a Go control plane and security gateway for MCP—registration, catalogs, user-scoped taps, policy enforcement, JSON-RPC inspection. Wound down within three months when managed MCP shipped natively and removed the market.
-
- Applied product
-
-Gofolio
-
-A Ghostfolio-compatible portfolio backend in Go, a Rust terminal client, and a live evaluation TUI running 73 defined cases across models with executable grading.
-
- Applied AI
-
-LegacyLens
-
-Retrieval-augmented analysis of legacy COBOL: custom parsing and chunking, vector indexing, hybrid retrieval, and natural-language answers over a real mainframe codebase.
-
- Research crate
-
-QRStatic
-
-Zero-dependency Rust steganography hiding QR codes in temporal noise correlation, with empirical codec, quantization, and recovery sweeps behind the defaults.
-
- The operating method
+## The operating method
 
 How the factory runs.
 
-The loop below ran by hand for months before any of it was automated. Agents now supply throughput and tactical dispatch; problem definition and audit stay human.
+The loop ran by hand for months before any of it was automated. Agents now supply throughput and tactical dispatch; problem definition and audit stay human.
 
- IGoal
+1. Write the goal first. The intended end state and its invariants go into a document that outlives the conversation.
+2. Split into bounded phases. Parallel agents get non-overlapping scopes.
+3. Implement one coherent slice. Format, lint, test, inspect the diff—in that order, every time.
+4. Commit as punctuation. A commit is a cognitive checkpoint, not an end-of-day dump.
+5. Audit separately. Correctness, security, performance, and documentation each get their own pass.
 
-Write the goal first.
+Charter and audit stay human. Coordination and execution go to agents. In one fleet, thousands of coordination events ran against a handful that required a human. In a separate campaign, an audit caught specs naming tests that did not exist — a naive cargo test would have passed them. The system's job is to refuse, not just to execute.
 
-The intended end state and its invariants go into a document that outlives the conversation. The August 27, 2026 inventory recorded 216 goal documents, 43 campaign plans, and 91 ledgers.
+## The skill library
 
- IIPhases
+Repo-owned skills: /fleet (Mind, Head, and Hand roles on Vivi mailspaces), /campaign · /factory · /delivery, /polish, /housekeeping, /cassio, /mail + Vivi.
 
-Split into bounded phases.
+Vivi is a local-first agent coordination and mail toolkit: mailspaces, work graphs, and dispatch across a multi-machine cluster, with a loopback LLM proxy underneath.
 
-Parallel agents get non-overlapping scopes. Read-only scouts go ahead of architecture changes; worktrees isolate anything that might collide.
+## The backstory
 
- IIISlice
+A career in seven acts. Dated from executed agreements, payroll records, entity filings, and public archives where those exist.
 
-Implement one coherent slice.
+### I · 1996—2000 · Service and source code
 
-Format, lint, test, inspect the diff—in that order, every time. Weak tests and policy evasion get rejected, not merged.
+Four years in the Marine Corps—0351 Assaultman, out as a Corporal with an honorable discharge in May 2000. In 1999 I wrote KStringHandler, accepted into kdelibs/kdecore. In October 1999 I began KMap, a C++/Qt frontend for Nmap; in January 2000 I released version 0.7.1, cited by name in Fyodor’s Nmap 2.50 release notes. In the same window I wrote a Gnutella peer-to-peer protocol library in Python and a Napster client for KDE.
 
- IVCommit
+### II · 2000—2007 · Entrepreneurship and early Salesforce
 
-Commit as punctuation.
+Asheville, then Gainesville. Buena Ventura Investments, Bosshardt Realty, marketing sites in TYPO3 and ColdFusion, and Salesforce as a CRM tool for lead management.
 
-A commit is a cognitive checkpoint between design and the next phase, not an end-of-day dump.
+### III · 2007—2009 · The pivot started before the crash
 
- VAudit
+Real estate sales died in mid-2007. RHCE in August 2007; then SCJP, CCNA, CCENT, CompTIA A+, Security+, ZCE, MySQL Certified Developer. BBA at UMass Amherst. Beatport in Denver. By late 2009 Beatport cut staff by fifty percent; most of the engineering team was laid off, including me. Then Red Hat in Raleigh, multilingual APAC Partner Center on Salesforce.
 
-Audit separately.
+### IV · 2010—2014 · Consulting, the nomad years, and Budapest
 
-Correctness, security, performance, and documentation each get their own pass—and goal completion is judged apart from implementation completion.
+M43 Instead, a Salesforce consulting practice (Bluewolf, QHR, MaidPro, others). In 2011, roundCorner hired me as Chief Scientist; I was later promoted to VP of Software Engineering for a Salesforce-native nonprofit CRM used by St. Jude, Georgetown, and Duke. The product line was later acquired by Salesforce.org. From 2011 I spent four years working remote for U.S. clients while living month-to-month out of Airbnbs. In late 2013 I visited Budapest.
 
- The division of labor
+### V · 2013—2017 · Hungary, Hong Kong, and the founder turn
 
-Charter and audit (human)
+In 2013–2014 I was in Budapest as founder and CTO of Minted Geek Hungary KFT, a Salesforce consulting company co-founded with a local partner. International entity structure followed. In six months as a solo founder I built Minted.IO, a metadata-driven multi-tenant PostgreSQL platform. After a year at Salesforce as a Technical Solution Architect (February 2016–February 2017)—forward-deployed with CarMax and Home Depot—Motivis Learning acquired the Minted.IO software and API assets for $750,000 in February 2017.
 
-Which problem, which invariants, what counts as done. Architecture and clean-break calls. Whether the evidence is sufficient. Refusal to ship when the audit fails—even when the agents are green.
+### VI · 2017—2021 · Platform leadership at scale
 
-Coordination and execution (agents)
+At Motivis I led platform R&D across roughly ten to twenty engineers, February 2017 through March 2020, on a TypeScript, Node.js, and PostgreSQL competency-based learning platform, with deployment portability across AWS, Google Cloud including Spanner, and local environments. The company closed in Q1 2020. From January to March 2021 I was on contract at Kraken as Member of Technical Staff on money-movement systems (SWIFT and wire verification). By mid-2021 I stepped away from conventional employment entirely.
 
-Dispatch, sequencing, settlement. Reconnaissance, implementation, review passes, documentation.
+### VII · 2025—now · Full-time lab
 
- In one fleet, 8,452 coordination events ran against 10 that required me. In a separate campaign, an audit caught specs naming tests that did not exist — a naive cargo test would have passed them. The system's job is to refuse, not just to execute.
- August 27, 2026 document inventory: 216 goals43 campaigns1,396 delivery docs91 ledgers
+For about four years I did not take conventional work. In August 2025 full-time building made sense again: Faber/Radix, Minted Geek Swarm, Monk, evaluation harnesses, and the orchestration layer. In early 2026 I completed Gauntlet AI Cohort 4. The cohort capstone became Cephalopodic; we closed it when managed MCP removed the market.
 
- The skill library
+## The evidence ledger
 
-Make the model’s job easier.
+Old résumés are memory. This history has been reconstructed against executed agreements, employment records, public archives, source code, Git history, and thousands of AI-session transcripts. Where the record is thin, the grade says so.
 
-Over the last six months, these repo-owned skills have grown into a cohesive layer of systems-engineering automation with one design goal: make the LLM’s job easier. Nearly every session on this page ran through them.
+- A — directly verified: executed records, primary sources
+- B — corroborated: first-person record plus a credible second source
+- C — first-person recollection, not yet independently confirmed
 
- Multi-agent loops
+1996—2000 · United States Marine Corps · A
+A DD-214 records active service from May 1996 to May 2000, honorable discharge, Corporal (E-4), 0351 Assaultman.
 
-/fleet
+2000 · KMap enters the Nmap ecosystem · A
+Nmap’s contemporary release announcement names “a KDE front end by Ian Zepp.”
 
-The newest, and a favorite: Mind, Head, and Hand roles for multi-agent project loops, with stewardship and dead-man continuation. Built on Vivi mailspaces, so agents coordinate over mail instead of shared memory.
+2002—07 · Real estate and early Salesforce · B
 
- Work-flow spine
+2007—08 · Certification blitz · A
+RHCE exam results email dated 2007-08-25.
 
-/campaign · /factory · /delivery
+2008—09 · Beatport engineering · A
 
-The work-flow spine, used on practically everything. Campaigns and sub-campaigns organize the flow of work; a factory defines the phases for each unit; every phase gets a ledger that tracks it to completion.
+2009 · Red Hat architecture work · B
 
- Per-file loop
+2010—11 · M43 Instead consulting · A
 
-/polish
+2011—15 · roundCorner leadership · B
+Chief Scientist start; later VP of Software Engineering. Exact promotion dates remain unresolved.
 
-A per-file improvement loop backed by a deterministic analyzer that moves judgment calls out of the model and into repeatable checks. Polish is what keeps boilerplate LLM code from becoming slop.
+2011—14 · Remote work / travel · C
 
- Hygiene ratchets
+2013—14 · Hungary entities and international structure · B
+Minted Geek Hungary KFT, Budapest, 2013–2014.
 
-/housekeeping
+2016—17 · Salesforce employment · A
+Technical Solution Architect, February 2016 through February 2017. CarMax and Home Depot.
 
-Repository hygiene with ratchets: not all code is perfect, so exceptions are explicit—and get ratcheted up or down per repo as the code earns it. This is how a codebase stays in clean, competent form.
+2017 · Minted.IO acquired by Motivis · A
+$750,000 asset purchase. VP offer conditioned on closing.
 
- Transcript evidence
+2017—20 · Motivis VP Platform R&D · A
+February 2017 through March 2020. Ten to twenty engineers. Company closed Q1 2020.
 
-/cassio
+2021 · Kraken financial integrations · A
+Contract, January–March 2021, Member of Technical Staff, SWIFT and wire verification.
 
-The skill behind the evidence on this page. Converts Claude, Codex, and OpenCode sessions into readable Markdown transcripts—and extracts training data for customized LLM tuning.
+2026 · Cephalopodic — MCP control plane · A
+Wound down within about two months.
 
- Agent mailspaces
+2026 · Gauntlet AI — Cohort 4 fellowship · A
 
-/mail + Vivi
+2025—26 · Independent AI research at repository scale · A
+Faber/Radix, Swarm, Monk, and related systems. Git histories and transcript archives remain the inspectable spine.
 
-Arbitrary local mailspaces for agents and projects. Vivi grew out of the mail skill and became the substrate Fleet coordinates over—private email treated as durable agent infrastructure.
-
- /warmup
- /goal-forge
- /goal-check
- /correctness
- /cleanliness
- /consequences
- /root-cause
- /red-green
- /bonsai
- /clean-break
- /zombie-docs
- /poker-face
- /optimization
- /caretaker
- /dealers-choice
- /skill-author
- /slice
- /scrum
- /transcripts
- /trials
- /deploy
- /docs
- …and more
-
-All of it points one direction. The same principle that shaped these skills is the founding premise of Faber: a language designed for LLMs first, because humans don’t write the code anymore—we just need to be able to understand what’s going on.
-
- The backstory
-
-A career in five acts.
-
-Five acts, dated from executed agreements, payroll records, and public archives where those exist. The evidence ledger below says so when they don’t. Retirement appears once, late—not as the title of the page.
-
- I1996—2009
-
-Rifles, then a KDE front end for Nmap.
-
-Four years in the Marine Corps—0351 Assaultman, out as a Corporal with an honorable discharge—left me with a bias toward responsibility that never wore off. In January 2000 I released KMap, a C++/Qt front end for Nmap. The Nmap 2.50 release notes mention it by name, which is still my favorite line of third-party evidence.
-
-The path from there was not direct: five years selling real estate in Florida before joining Beatport’s API team in Denver in 2008, where electronic music distribution ran on Zend PHP, enterprise Java, Mule, Spring, Hibernate, Squid, Akamai, and MySQL.
-
- USMC / 0351 / E-4C++ / Qt / KDEPHP / Java
-
- II2009—2017
-
-Salesforce, scale, and the founder turn.
-
-At Red Hat I worked on a multilingual APAC Partner Center built on Salesforce—Korea, Japan, and China, twenty-odd sandboxes. roundCorner hired me in 2011 as Chief Scientist; I later held Head of Engineering for a Salesforce-native nonprofit CRM used by large institutions (including St. Jude, Georgetown, Duke). The product line was later acquired by Salesforce.org.
-
-In 2015 I founded Minted.IO and, as a solo founder, built a metadata-driven multi-tenant application platform end to end in six months. After a year at Salesforce as a Technical Solution Architect—forward-deployed with CarMax and Home Depot—Motivis acquired the Minted.IO software/API assets in February 2017. My VP offer was written into the acquisition.
-
- Chief Scientist → Head of EngFounder / acquiredForward-deployed TSA
-
- III2017—2021
-
-Platform leadership at scale.
-
-At Motivis I led platform R&D across a team of roughly ten to twenty engineers in an approximately thirty-person company, on a TypeScript, Node.js, and PostgreSQL competency-based learning platform—with deployment portability across AWS, Google Cloud including Spanner, and local environments, and expansion from higher education into K-12.
-
-From 2019 the Motivis relationship shifted toward independent platform and strategy consulting through Minted Geek entities. By 2021 I stepped away from conventional employment. That pause is Act IV; it is not the thesis of this site.
-
- VP Platform R&D10–20 engMulti-cloud LMS
-
- IV2021—2025
-
-A short return, then a long pause.
-
-In early 2021 I joined Kraken as Member of Technical Staff on money-movement systems (SWIFT and wire verification). I left after a few months. For about four years afterward I did not take conventional work. In August 2025 the tooling had changed enough that full-time building made sense again.
-
- Kraken / core eng2021–2025 pause
-
- V2025—NOW
-
-Full-time lab, measured output.
-
-From August 2025 I returned to full-time independent R&D: Faber/Radix, Minted Geek Swarm, Monk, evaluation harnesses, and the orchestration layer described above. Commit volume and streak data are secondary evidence; the primary proof is falsifiable systems and instrumented process.
-
-In early 2026 I completed Gauntlet AI Cohort 4—a ten-week fellowship at 80–100 hours per week with continuous elimination, delivering production systems each week for three to six hiring partners who evaluated work rather than résumés. The cohort capstone became Cephalopodic with two co-founders; we closed it when managed MCP removed the market.
-
- Rust / Go / TypeScriptGauntlet Cohort 4Compiler + fleets
-
- Claims, meet receipts
-
-The evidence ledger.
-
-Old résumés are memory. This history has been reconstructed against executed agreements, employment records, public archives, source code, Git history, and thousands of AI-session transcripts. Sensitive documents remain private; their claims do not. Where the record is thin, the grade says so.
-
- A — directly verified: executed records, primary sources
- B — corroborated: first-person record plus a credible second source
- C — first-person recollection, not yet independently confirmed
-
-1996—2000United States Marine CorpsA
-
-A DD-214 records active service from May 1996 to May 2000, an honorable discharge, the rank of Corporal (E-4), and the 0351 Assaultman occupational specialty.
-
-2000KMap enters the Nmap ecosystemA
-
-Nmap’s contemporary release announcement names “a KDE front end by Ian Zepp”; the mailing-list archive preserves my KMap 0.7 announcement, Linux and FreeBSD notes included.
-Nmap release archive ↗KMap announcement ↗
-
-2008—09Beatport engineeringA
-
-Employer records—payroll, benefits, and a 2008 performance review—establish the software-development role. The detailed stack narrative comes from my own résumé of the period, and is labeled accordingly.
-
-2009Red Hat architecture workB
-
-I worked on a multilingual APAC Partner Center built on Salesforce for deployments across Korea, Japan, and China. An RHCE certification fits the period. No employer-issued record has surfaced, but the work is confirmed by consistent historical résumés.
-
-2011—15roundCorner leadershipB
-
-An executed employment agreement, equity records, and separation correspondence establish the relationship and the Chief Scientist start. Public business records corroborate the later VP Engineering title; the exact promotion dates remain unresolved.
-Company profile ↗
-
-2016—17Salesforce employmentA
-
-An executed offer for Technical Solution Architect and a continuous payroll record from February 2016 through February 2017 establish employment. Client work included forward-deployed engagements at CarMax (sales-agent portal during Lightning transition) and Home Depot (Field Service first-release integration), per contemporaneous career records.
-
-2017Minted.IO acquired by MotivisA
-
-The executed asset-purchase agreement describes the acquired business as software-platform and API development. A linked employment offer—expressly conditioned on the acquisition closing—brought me into Motivis as VP, Platform Research and Development.
-
-2017—20Motivis VP Platform R&DA
-
-Executed offer and employment establish the VP role. Platform R&D leadership covered roughly ten to twenty engineers; the product was a competency-based learning system with multi-cloud deployment and later K-12 expansion. From 2019 a portion of the work continued as independent consulting through Minted Geek entities.
-
-2021Kraken financial integrationsA
-
-Joined as Member of Technical Staff on money-movement systems for a global cryptocurrency exchange, including SWIFT bank transfers and wire verification. Employment was short (early–mid 2021); a multi-year pause from conventional employment followed.
-
-2026Cephalopodic — MCP control planeA
-
-Co-founded with two Gauntlet AI Cohort 4 peers as the program capstone: a Go control plane and security gateway for MCP (registration, catalogs, user-scoped taps, policy enforcement, JSON-RPC inspection). Wound down within three months of founding when managed MCP shipped natively and removed the market.
-
-2026Gauntlet AI — Cohort 4 fellowshipA
-
-Selected for Cohort 4 of a ten-week AI engineering fellowship in Austin, TX (high aptitude/coding screens; 80–100 hours per week; continuous elimination). Delivered production systems each week against live specifications from three to six hiring partners who evaluated delivered work rather than résumés; completed all ten weeks. Work spanned applied LLM systems and evaluation harness design. Entered already six months into independent full-time R&D.
-
-2025—26Independent AI research at repository scaleA
-
-Full-time independent R&D from August 2025: Faber/Radix compiler work product (hundreds of thousands of lines of Rust, thousands of tests, frequent tagged releases), Minted Geek Swarm multi-agent runtime with measured session economics and audit pipeline, Monk, and related systems. Lab-scale inventories (repos, commits, sessions, trials) measured August 27, 2026 support activity volume; compiler and fleet figures above are the primary technical claims. Git histories, transcript archives, and factory documents remain the inspectable spine.
-GitHub profile ↗
-
-The repository archive.
-Open the full index ＋
+## Contact
+
+https://github.com/ianzepp
+ian@ianzepp.com
+https://ianzepp.dev
+https://ianzepp.dev/hire.html
+https://ianzepp.dev/genz.html
+https://ianzepp.dev/llms.txt

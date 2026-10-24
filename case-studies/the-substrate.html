@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Case study: The Substrate — Cassio and Vivarium, the evidence and coordination infrastructure that makes agent fleets sustainable over months. 23,626 transcripts processed, 92,865 coordination events, 153 agent roles across two workspaces.">
+  <meta name="description" content="Case study: The Substrate — Cassio and Vivarium, the evidence and coordination infrastructure that makes agent fleets sustainable over months.">
   <meta name="theme-color" content="#14100f">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
   <title>The Substrate &mdash; Ian Zepp</title>
@@ -463,23 +463,23 @@
       <div class="col">
         <a class="back" href="/case-studies/">&larr; All work</a>
         <h1>The substrate. <em>Evidence and coordination.</em></h1>
-        <p class="lede">Cassio and Vivarium are the infrastructure you build around agents to make them sustainable over months, not minutes. Cassio is the evidence layer &mdash; 23,626 AI session transcripts normalized, compacted, and made searchable. Vivarium is the coordination layer &mdash; 153 agent roles exchanging 70,143 messages across mailspaces that decide what work is ready and who does it. Two tools, one operating surface.</p>
+        <p class="lede">Cassio and Vivarium are the infrastructure you build around agents to make them sustainable over months, not minutes. Cassio is the evidence layer &mdash; session transcripts normalized, compacted, and made searchable. Vivarium is the coordination layer &mdash; agent roles exchanging mail across mailspaces that decide what work is ready and who does it. Two tools, one operating surface.</p>
       </div>
     </div>
 
     <div class="stats-strip">
-      <div class="stat-cell"><span class="stat-num">79K</span><span class="stat-label">Lines of Rust</span></div>
-      <div class="stat-cell"><span class="stat-num">448</span><span class="stat-label">Combined commits</span></div>
-      <div class="stat-cell"><span class="stat-num">78</span><span class="stat-label">Tagged releases</span></div>
-      <div class="stat-cell"><span class="stat-num">23,626</span><span class="stat-label">Transcripts processed</span></div>
-      <div class="stat-cell"><span class="stat-num">92,865</span><span class="stat-label">Coordination events</span></div>
-      <div class="stat-cell"><span class="stat-num">153</span><span class="stat-label">Agent roles</span></div>
+      <div class="stat-cell"><span class="stat-num">Rust</span><span class="stat-label">Two tools</span></div>
+      <div class="stat-cell"><span class="stat-num">Cassio</span><span class="stat-label">Evidence layer</span></div>
+      <div class="stat-cell"><span class="stat-num">Vivi</span><span class="stat-label">Coordination layer</span></div>
+      <div class="stat-cell"><span class="stat-num">Thousands</span><span class="stat-label">Archived sessions</span></div>
+      <div class="stat-cell"><span class="stat-num">Mailspaces</span><span class="stat-label">Role routing</span></div>
+      <div class="stat-cell"><span class="stat-num">Closed</span><span class="stat-label">Loop</span></div>
     </div>
 
     <!-- THESIS -->
     <section class="prose on-basalt">
-      <span class="label section-label">Archive update &middot; September 30, 2026</span>
-      <p>Current archive check: Cassio parses <strong>27,326 transcript files</strong>. September contributes 2,589 archived sessions through September 29 and 149,455 recorded tool calls. The charts and mailspace figures below retain their August 27 measurement window. Archive counts do not show how many transcripts were compacted. <a href="/research/2026-09-30-stats.md">Measurement notes</a>.</p>
+      <span class="label section-label">Archive</span>
+      <p>Cassio parses thousands of transcript files from multiple coding tools. Mailspace figures below are a production snapshot, not a live counter. Archive counts do not show how many transcripts were compacted. <a href="/research/2026-09-30-stats.md">Measurement notes</a>.</p>
     </section>
 
     <section class="prose on-basalt">
@@ -499,8 +499,8 @@
         <div class="dual-cell header vivi">Vivarium &mdash; coordination</div>
         <div class="dual-cell"><span class="d-label">Purpose</span><span class="d-note">Normalize, compact, and search AI session transcripts</span></div>
         <div class="dual-cell"><span class="d-label">Purpose</span><span class="d-note">Local-first email archive, mailspaces, and agent work routing</span></div>
-        <div class="dual-cell"><span class="d-label">LOC</span><span class="d-val">21K</span><span class="d-note">Rust &middot; single crate</span></div>
-        <div class="dual-cell"><span class="d-label">LOC</span><span class="d-val">53.8K</span><span class="d-note">Rust &middot; main crate + vivi-pty</span></div>
+        <div class="dual-cell"><span class="d-label">Stack</span><span class="d-val">Rust</span><span class="d-note">single crate</span></div>
+        <div class="dual-cell"><span class="d-label">Stack</span><span class="d-val">Rust</span><span class="d-note">main crate + vivi-pty</span></div>
         <div class="dual-cell"><span class="d-label">Commits</span><span class="d-val">112</span><span class="d-note">18 active days &middot; 17 releases</span></div>
         <div class="dual-cell"><span class="d-label">Commits</span><span class="d-val">312</span><span class="d-note">24 active days &middot; 20 releases</span></div>
         <div class="dual-cell"><span class="d-label">Tests</span><span class="d-val">266</span><span class="d-note">functions &middot; companion file pattern</span></div>
@@ -530,15 +530,15 @@
       <p>The pipeline follows the compiler pattern deliberately: input formats are the source language, the AST is the intermediate representation, and formatters are the backends. This is why 10 parsers were added in 5 months without touching the output layer.</p>
       <div class="callout evidence">
         <div class="callout-label">Self-referential</div>
-        <p>Cassio processes the transcripts of the AI sessions that built Cassio. The tool that generates evidence was itself built by the process it documents. <strong>The 23,626-file corpus includes Cassio's own development history.</strong></p>
+        <p>Cassio processes the transcripts of the AI sessions that built Cassio. The tool that generates evidence was itself built by the process it documents. <strong>The corpus includes Cassio's own development history.</strong></p>
       </div>
     </section>
 
     <!-- THE CORPUS -->
     <section class="prose on-deep">
       <span class="label section-label">The corpus</span>
-      <h2>23,626 transcripts. 1 GB of Markdown. 23 months.</h2>
-      <p>The transcript archive spans October 2024 through August 2026. Cassio processes it into daily summaries and monthly rollups. The monthly volume tracks the research trajectory &mdash; 3 files in October 2024, then the November 2025 inflection when heavy Monk API and Radix work began, peaking at 8,055 sessions in August 2026.</p>
+      <h2>Thousands of transcripts. Months of archive.</h2>
+      <p>The transcript archive spans late 2024 through 2026. Cassio processes it into daily summaries and monthly rollups. The monthly volume tracks the research trajectory &mdash; a thin start in late 2024, then the November 2025 inflection when heavy Monk API and Radix work began, peaking in August 2026.</p>
       <div class="corpus-bars" role="img" aria-label="Monthly transcript session counts from October 2024 through August 2026">
         <div class="corpus-col"><span class="corpus-val">3</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:0"></span></span><span class="corpus-month">O24</span></div>
         <div class="corpus-col"><span class="corpus-val">22</span><span class="corpus-barwrap"><span class="corpus-bar" style="--pct:1"></span></span><span class="corpus-month">N</span></div>
@@ -577,30 +577,30 @@
     <!-- LIVE DATA -->
     <section class="prose on-deep">
       <span class="label section-label">The live data</span>
-      <h2>153 roles, 70,143 messages, 50 days.</h2>
-      <p>Two Vivi mailspaces &mdash; Faberlang (the compiler project) and Mintedgeek (the agent runtime) &mdash; have been running for 50 days as of August 27, 2026. The numbers below are production data, not test fixtures. Mintedgeek has been quiet since early August; Faberlang carries the load.</p>
+      <h2>Two mailspaces, months of coordination.</h2>
+      <p>Two Vivi mailspaces &mdash; Faberlang (the compiler project) and Mintedgeek (the agent runtime) &mdash; have been running as production coordination surfaces, not test fixtures. Mintedgeek has been quieter; Faberlang carries the load.</p>
       <div class="dual">
         <div class="dual-cell header cassio">Faberlang</div>
         <div class="dual-cell header vivi">Mintedgeek</div>
-        <div class="dual-cell"><span class="d-label">Messages</span><span class="d-val">63,231</span></div>
-        <div class="dual-cell"><span class="d-label">Messages</span><span class="d-val">6,912</span></div>
-        <div class="dual-cell"><span class="d-label">Events</span><span class="d-val">83,566</span></div>
-        <div class="dual-cell"><span class="d-label">Events</span><span class="d-val">9,299</span></div>
-        <div class="dual-cell"><span class="d-label">Agent roles</span><span class="d-val">134</span></div>
-        <div class="dual-cell"><span class="d-label">Agent roles</span><span class="d-val">19</span></div>
-        <div class="dual-cell"><span class="d-label">Blob storage</span><span class="d-val">148 MB</span></div>
-        <div class="dual-cell"><span class="d-label">Blob storage</span><span class="d-val">17 MB</span></div>
-        <div class="dual-cell"><span class="d-label">Peak day</span><span class="d-val">11,391</span><span class="d-note">Aug 16</span></div>
-        <div class="dual-cell"><span class="d-label">Peak day</span><span class="d-val">5,066</span><span class="d-note">Jul 14</span></div>
+        <div class="dual-cell"><span class="d-label">Traffic</span><span class="d-val">Primary</span></div>
+        <div class="dual-cell"><span class="d-label">Traffic</span><span class="d-val">Secondary</span></div>
+        <div class="dual-cell"><span class="d-label">Events</span><span class="d-val">Tens of thousands</span></div>
+        <div class="dual-cell"><span class="d-label">Events</span><span class="d-val">Thousands</span></div>
+        <div class="dual-cell"><span class="d-label">Agent roles</span><span class="d-val">Dozens</span></div>
+        <div class="dual-cell"><span class="d-label">Agent roles</span><span class="d-val">Several</span></div>
+        <div class="dual-cell"><span class="d-label">Blob storage</span><span class="d-val">Hundreds of MB</span></div>
+        <div class="dual-cell"><span class="d-label">Blob storage</span><span class="d-val">Tens of MB</span></div>
+        <div class="dual-cell"><span class="d-label">Peak</span><span class="d-val">Mid-August</span></div>
+        <div class="dual-cell"><span class="d-label">Peak</span><span class="d-val">Mid-July</span></div>
       </div>
-      <p>Both workspaces once peaked on the same day &mdash; <strong>10,675 coordination events on July 14</strong>. A month later the Faberlang workspace passed that mark alone: <strong>11,391 events on August 16</strong>. That's the operational scale Vivi is coordinating.</p>
+      <p>Both workspaces once peaked on the same mid-July day. A month later the Faberlang workspace passed that mark alone. That's the operational scale Vivi is coordinating.</p>
     </section>
 
     <!-- ROLE TOPOLOGY -->
     <section class="prose on-basalt">
       <span class="label section-label">The role topology</span>
       <h2>Mind is the hub. Everything routes through it.</h2>
-      <p>The Faberlang mailspace runs 37 distinct agent identities organized in the Mind/Head/Hand hierarchy. Mind is the dispatch nexus &mdash; the highest-traffic node in every message flow. Heads (CTO, CEO, CPO, CSO, CXO, CMO) own domain judgment. Hands execute. Specialists (hunters, auditors, planners, reviewer, strategist, purity, correctness) handle specific cross-cutting concerns.</p>
+      <p>The Faberlang mailspace runs dozens of agent identities organized in the Mind/Head/Hand hierarchy. Mind is the dispatch nexus &mdash; the highest-traffic node in every message flow. Heads (CTO, CEO, CPO, CSO, CXO, CMO) own domain judgment. Hands execute. Specialists (hunters, auditors, planners, reviewer, strategist, purity, correctness) handle specific cross-cutting concerns.</p>
       <div class="role-grid">
         <span class="role-tag mind">mind</span>
         <span class="role-tag head">head-cto</span>
@@ -679,7 +679,7 @@
       <p>Cassio and Vivarium share more than a use case. They share an engineering culture:</p>
       <p><strong>Hygiene ratchets.</strong> Both projects enforce code quality via compile-time test suites that scan production source. Cassio caps <code>.unwrap()</code> at 11 calls and bans <code>panic!()</code>, <code>todo!()</code>, and inline test modules. Vivarium sets per-file line limits (1,000), per-function limits (60 lines), total LOC budgets, and the same inline-test ban. The budgets can only decrease &mdash; a ratchet that tightens as the code matures.</p>
       <p><strong>Companion test files.</strong> Both projects ban <code>#[cfg(test)]</code> modules inside production files. Every module gets its own <code>*_test.rs</code> companion file. This isn't convention &mdash; it's enforced by a test that fails the build if violated. The separation means production files contain zero test infrastructure.</p>
-      <p><strong>Burst development.</strong> Cassio: 112 commits across 18 active days (6.2 per active day). Vivarium: 312 commits across 24 active days (13 per active day). Long pauses between bursts. Both projects were built in concentrated, deep sessions &mdash; not spread-out daily commits.</p>
+      <p><strong>Burst development.</strong> Cassio and Vivarium were both built in concentrated, deep sessions with long pauses between bursts &mdash; not spread-out daily commits.</p>
       <p><strong>Parser-AST architecture.</strong> Cassio normalizes 10 AI tool formats into a shared Session AST. Vivarium normalizes IMAP, Proton Bridge, and direct Proton API into a shared message store. Different domains, same structural pattern: heterogeneous inputs normalized through a trait-based parser layer into a unified representation that downstream systems consume without knowing the source.</p>
     </section>
 
@@ -697,7 +697,7 @@
       </div>
       <div class="era-content">
         <h2>Cassio: MVP in a day</h2>
-        <p>Initial commit through v0.3.0 in a single day: config system, Claude Code parser, Markdown formatter, 128 unit tests, GitHub Actions release workflow, and a curl-pipe-bash installer. The same day, Vivarium was scaffolded with its first 2 commits, then went dormant for 71 days.</p>
+        <p>Initial commit through v0.3.0 in a single day: config system, session-log parser, Markdown formatter, a first test suite, GitHub Actions release workflow, and a curl-pipe-bash installer. The same day, Vivarium was scaffolded, then went dormant for weeks.</p>
       </div>
       </div>
     </article>
@@ -719,7 +719,7 @@
       <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">May 2026</span>
-        <span class="era-detail">Vivi: 147 commits</span>
+        <span class="era-detail">Vivi: July burst</span>
       </div>
       <div class="era-content">
         <h2>Vivarium explodes</h2>
@@ -736,7 +736,7 @@
       </div>
       <div class="era-content">
         <h2>Convergence</h2>
-        <p>Cassio's June polish pass adds Grok and Cursor parsers (10 tools total), plus a full codebase audit (21 commits on June 29). Vivarium's July burst (147 commits) adds work graphs with Mermaid import, board views, cross-role tracing, role scheduling, capacity management, and the vivi-pty companion binary. Both tools reach production use in the Faberlang and Mintedgeek workspaces simultaneously.</p>
+        <p>Cassio's June polish pass adds Grok and Cursor parsers, plus a full codebase audit. Vivarium's July burst adds work graphs with Mermaid import, board views, cross-role tracing, role scheduling, capacity management, and the vivi-pty companion binary. Both tools reach production use in the Faberlang and Mintedgeek workspaces simultaneously.</p>
       </div>
       </div>
     </article>
@@ -746,7 +746,7 @@
       <span class="label section-label">The closed loop</span>
       <h2>The infrastructure feeds itself.</h2>
       <p>The loop is literal, not metaphorical. Agents produce coding sessions. Cassio discovers those sessions automatically (it knows where every supported tool stores its logs), normalizes them into AST, formats them as Markdown transcripts, and compacts them into daily intelligence. That intelligence enters Vivi's mailspaces. Mind reads the evidence. Mind dispatches work to Hands via the mailspace. Hands produce sessions. Cassio processes them.</p>
-      <p>The 23,626-file corpus and the 92,865 coordination events aren't parallel facts. They're the same loop at two measurement points &mdash; one upstream (what happened), one downstream (what to do next). The infrastructure is the loop.</p>
+      <p>The transcript corpus and the coordination events aren't parallel facts. They're the same loop at two measurement points &mdash; one upstream (what happened), one downstream (what to do next). The infrastructure is the loop.</p>
       <div class="pull">The substrate doesn't do the work. It makes the work <em>legible</em> &mdash; to the human who audits it and to the agents who continue it.</div>
     </section>
 
@@ -757,7 +757,7 @@
       <div class="pattern-grid">
         <div class="pattern-cell">
           <h3>Evidence is infrastructure</h3>
-          <p>23,626 transcripts are useless without compaction. Cassio turns volume into intelligence: session → daily → weekly → monthly. Each tier is a different question answered at a different timescale.</p>
+          <p>Thousands of transcripts are useless without compaction. Cassio turns volume into intelligence: session → daily → weekly → monthly. Each tier is a different question answered at a different timescale.</p>
         </div>
         <div class="pattern-cell">
           <h3>Email is underrated</h3>
@@ -784,8 +784,8 @@
 
     <!-- CLOSING -->
     <section class="prose on-basalt">
-      <p><strong>The substrate is the least visible part of the system and the part that makes everything else possible.</strong> Without Cassio, 23,626 session transcripts are a write-only archive &mdash; evidence that exists but can't be used. Without Vivarium, 153 agent roles have no coordination surface &mdash; they produce work but can't route it, track it, or decide what's ready. Together they close the loop: evidence feeds coordination, coordination produces sessions, sessions become evidence.</p>
-      <p>This is the infrastructure you build when you're serious about running agents over months, not minutes. It's not glamorous. It doesn't have a demo. What it has is 92,865 coordination events across two workspaces, a 1 GB Markdown transcript corpus compacted into navigable intelligence, and a readiness frontier that runs in production today. The substrate does its job by being invisible.</p>
+      <p><strong>The substrate is the least visible part of the system and the part that makes everything else possible.</strong> Without Cassio, the session archive is write-only &mdash; evidence that exists but can't be used. Without Vivarium, agent roles have no coordination surface &mdash; they produce work but can't route it, track it, or decide what's ready. Together they close the loop: evidence feeds coordination, coordination produces sessions, sessions become evidence.</p>
+      <p>This is the infrastructure you build when you're serious about running agents over months, not minutes. It's not glamorous. It doesn't have a demo. What it has is months of coordination across two workspaces, a Markdown transcript corpus compacted into navigable intelligence, and a readiness frontier that runs in production today. The substrate does its job by being invisible.</p>
     </section>
 
     <div class="inscription">

@@ -360,14 +360,14 @@
       <div class="col">
         <a class="back" href="/case-studies/">&larr; All work</a>
         <h1>The agent needed an <em>operating system.</em></h1>
-        <p class="lede">In November 2025, months before the industry shipped agent runtimes with filesystem access, process management, and tool dispatch, Monk OS built the architecture they converged on &mdash; and built it more purely. A Plan 9/BeOS-inspired operating system simulated in TypeScript on Bun, where everything is a file and a database record, the init process is an AI agent, and the agent doesn't use the OS &mdash; it <em>is</em> the OS. Two runtime dependencies. Three weeks. Built from an architecture already proven across a decade.</p>
+        <p class="lede">A full microkernel operating system on Bun, with kernel space and user space. Plan 9/BeOS-inspired: everything is a file and a database record, the init process is an AI agent, and the agent doesn't use the OS &mdash; it <em>is</em> the OS. Closer in kind to later versions of Hermes or recent Grok Bot-style agent platforms than to a chat runtime. Two runtime dependencies. Three weeks. Built from a platform architecture already proven across a decade.</p>
       </div>
     </div>
 
     <div class="stats-strip">
-      <div class="stat-cell"><span class="stat-num">539</span><span class="stat-label">Commits</span></div>
-      <div class="stat-cell"><span class="stat-num">139K</span><span class="stat-label">Lines of TypeScript</span></div>
-      <div class="stat-cell"><span class="stat-num">2,168</span><span class="stat-label">Test assertions</span></div>
+      <div class="stat-cell"><span class="stat-num">Full</span><span class="stat-label">Microkernel on Bun</span></div>
+      <div class="stat-cell"><span class="stat-num">Kernel</span><span class="stat-label">And user space</span></div>
+      <div class="stat-cell"><span class="stat-num">PID 1</span><span class="stat-label">Is an LLM</span></div>
       <div class="stat-cell"><span class="stat-num">2</span><span class="stat-label">Runtime dependencies</span></div>
       <div class="stat-cell"><span class="stat-num">66</span><span class="stat-label">ROM commands</span></div>
       <div class="stat-cell"><span class="stat-num">21</span><span class="stat-label">Days</span></div>
@@ -376,8 +376,8 @@
     <!-- THESIS -->
     <section class="prose on-basalt">
       <p><strong>The premise:</strong> take Plan 9's "everything is a file" and merge it with a database-backed entity system, so every file is also a queryable record with schema, observers, and access control. Run it on Bun instead of bare metal. Use TypeScript instead of C. Put an AI agent at PID 1 and give it the same syscall interface as every other process. See how far the OS metaphor holds when you remove the hardware constraint but keep the design discipline.</p>
-      <p>It held further than expected &mdash; and further than the products that arrived months later with the same intuition. The kernel manages processes as Bun Workers with UUID identity. File descriptors 0/1/2 map to recv/send/warn. Syscalls are async generators streaming typed response objects. The HAL abstracts Bun's runtime as fourteen device interfaces. The result is a system that behaves like an operating system without pretending to be one &mdash; the abstractions are real because the discipline behind them is real.</p>
-      <p>When agent runtimes like Claude Code and Hermes shipped in 2026 with filesystem access, tool dispatch, and process management, the industry was converging on an answer Monk OS had already built: <strong>the agent doesn't need a chat interface. It needs an operating system.</strong></p>
+      <p>The kernel manages processes as Bun Workers with UUID identity. File descriptors 0/1/2 map to recv/send/warn. Syscalls are async generators streaming typed response objects. The HAL abstracts Bun's runtime as fourteen device interfaces. The result is a system that behaves like an operating system without pretending to be one &mdash; the abstractions are real because the discipline behind them is real.</p>
+      <p>Monk OS is closer in kind to later versions of Hermes, or to recent Grok Bot-style agent platforms, than to a chat runtime with a plugin list. <strong>The agent doesn't need a chat interface. It needs an operating system.</strong></p>
     </section>
 
     <!-- ARCHITECTURE -->
@@ -397,7 +397,7 @@
       </div>
       <div class="callout design">
         <div class="callout-label">Design decision</div>
-        <p>The EMS observer pipeline uses numbered rings (0&ndash;9), with files literally named <code>50-sql-create.ts</code>, <code>60-pathname-sync.ts</code> to enforce execution order. <strong>Ring 1 accumulates all validation errors before throwing; every other ring fails fast.</strong> This is the same ring architecture that has survived four iterations of this platform concept across a decade and two languages.</p>
+        <p>The EMS observer pipeline uses numbered rings (0&ndash;9), with files literally named <code>50-sql-create.ts</code>, <code>60-pathname-sync.ts</code> to enforce execution order. <strong>Ring 1 accumulates all validation errors before throwing; every other ring fails fast.</strong> This is the same ring architecture that has lasted from Minted.IO through Motivis and into Monk API.</p>
       </div>
     </section>
 
@@ -429,15 +429,15 @@
       <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">November 30</span>
-        <span class="era-detail">82 commits &middot; Day one</span>
+        <span class="era-detail">Day one</span>
       </div>
       <div class="era-content">
         <h2>HAL to TCP in eighteen hours</h2>
         <p>The first commit adds the Hardware Abstraction Layer. By end of day: POSIX error types, the virtual filesystem, a kernel with syscalls, TCP <code>connect()</code>, and port syscalls. A full HAL&rarr;VFS&rarr;Kernel stack stood up from nothing in a single session.</p>
-        <p>The repo was split from a sibling project (Monk AP) that same day &mdash; a 79,854-line deletion that represents the separation, not code loss.</p>
+        <p>The repo was split from a sibling project (Monk API) that same day &mdash; a large deletion that represents the separation, not code loss.</p>
         <div class="callout insight">
           <div class="callout-label">Velocity</div>
-          <p>82 commits on day one isn't just fast typing. The architecture was already in the builder's head &mdash; this is the same layered stack that ran Minted.IO and Motivis. The speed comes from knowing what you're building because you've built it before.</p>
+          <p>A full HAL&rarr;VFS&rarr;Kernel stack on day one isn't just fast typing. The architecture was already in the builder's head &mdash; this is the same layered stack that ran Minted.IO and Motivis. The speed comes from knowing what you're building because you've built it before.</p>
         </div>
       </div>
       </div>
@@ -447,7 +447,7 @@
       <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">December 1 &ndash; 4</span>
-        <span class="era-detail">194 commits</span>
+        <span class="era-detail">EMS + rings</span>
       </div>
       <div class="era-content">
         <h2>EMS and the observer rings</h2>
@@ -461,7 +461,7 @@
       <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">December 5 &ndash; 10</span>
-        <span class="era-detail">196 commits &middot; v0.4.0 &ndash; v0.9.0</span>
+        <span class="era-detail">v0.4.0 &ndash; v0.9.0</span>
       </div>
       <div class="era-content">
         <h2>Display server, shell, and worker pools</h2>
@@ -493,7 +493,7 @@
       <div class="era-inner">
       <div class="era-meta">
         <span class="era-dates">December 14 &ndash; 20</span>
-        <span class="era-detail">65 commits &middot; v0.9.0 &ndash; v0.11.0</span>
+        <span class="era-detail">v0.9.0 &ndash; v0.11.0</span>
       </div>
       <div class="era-content">
         <h2>The polish tail</h2>
@@ -512,11 +512,11 @@
       <div class="pull">An operating system whose first process is an AI agent with short-term and long-term memory as first-class database entities, observable through the same ring pipeline as every other record in the system.</div>
     </section>
 
-    <!-- THE INDUSTRY CAUGHT UP -->
+    <!-- WHAT IT IS -->
     <section class="prose on-basalt">
-      <span class="label section-label">November 2025 vs. the 2026 wave</span>
-      <h2>What shipped later, and what Monk OS already had.</h2>
-      <p>By mid-2026, agent runtimes had converged on a recognizable pattern: give the agent a filesystem, tool dispatch, process isolation, and some form of persistent memory. Claude Code, Hermes, and their peers each arrived at a version of this. Monk OS had all of it in December 2025 &mdash; and in several cases, had it more cleanly.</p>
+      <span class="label section-label">What it is</span>
+      <h2>A microkernel, not a chat runtime.</h2>
+      <p>Monk OS is a full microkernel operating system on Bun, with kernel space and user space. It is closer in kind to later versions of Hermes, or to recent Grok Bot-style agent platforms, than to a chat interface with a tool list. Filesystem, tool dispatch, process isolation, and persistent memory are properties of the kernel.</p>
       <div class="callout insight">
         <div class="callout-label">Tool dispatch</div>
         <p>Agent runtimes give the model a list of tools and route calls to handlers. Monk OS gives the agent <strong>typed syscalls through the same dispatch layer as every other process.</strong> The agent doesn't get a special tool API &mdash; it issues <code>domain:verb</code> syscalls like anything else in the kernel. No tool/syscall distinction exists because none is needed.</p>
@@ -556,7 +556,7 @@
       <div class="pattern-grid">
         <div class="pattern-cell">
           <h3>Architecture from memory</h3>
-          <p>82 commits on day one. The speed comes from rebuilding a known architecture, not from improvising one. The layered stack was already proven across two prior platforms.</p>
+          <p>A full stack on day one. The speed comes from rebuilding a known architecture, not from improvising one. The layered stack was already proven across two prior platforms.</p>
         </div>
         <div class="pattern-cell">
           <h3>Velocity then discipline</h3>
@@ -584,7 +584,7 @@
     <!-- CLOSING -->
     <section class="prose on-deep">
       <p><strong>Monk OS Kernel is not a toy.</strong> It's a simulated operating system built at production discipline in three weeks &mdash; with typed syscalls, capability-based auth, a hand-rolled AWK, a VFS module loader, an AI agent as PID 1, and two runtime dependencies. It's also not finished, and it says so.</p>
-      <p>What makes it a case study isn't the output volume or the timing. It's that the architecture was <em>right</em> &mdash; right enough that the industry arrived at the same answer months later, and right enough that the Monk OS version is still, in some ways, purer than what shipped commercially. The agent doesn't need a chat interface with tool plugins. It needs an operating system where tool dispatch, memory, and process isolation are properties of the kernel, not features of the agent.</p>
+      <p>What makes it a case study isn't the output volume or the timing. It's that the architecture is a real operating system: kernel space and user space, typed syscalls, a HAL, and an agent as PID 1. The agent doesn't need a chat interface with tool plugins. It needs an operating system where tool dispatch, memory, and process isolation are properties of the kernel, not features of the agent.</p>
       <p>That conviction existed in November 2025 because the architecture existed in the builder's head for a decade before that. The OS metaphor wasn't a novelty &mdash; it was a forcing function that demanded the abstractions be real. And the abstractions held.</p>
     </section>
 
