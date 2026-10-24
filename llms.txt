@@ -1,12 +1,11 @@
 # Ian Zepp — ianzepp.dev
 
-> Ian Zepp is a systems engineer, founder, and former VP of Engineering. He
-> learns unfamiliar technical domains from the ground up and builds engineering
-> process robust enough to sustain AI-assisted development over months. This
-> site is the long autobiographical surface: lab programs, method, career
-> evidence graded A/B/C. Commercial / fractional work is offered on this
-> domain at https://ianzepp.dev/hire.html (fractional CTO, fractional principal
-> engineer, and full-time engagements with CV downloads for recruiters).
+> Ian Zepp is a principal and staff engineer and software architect. He
+> builds AI agent infrastructure, compilers, and multi-tenant platforms, and
+> has led engineering organizations. This site is the long autobiographical
+> surface: lab programs, method, career evidence graded A/B/C. Hire details
+> are at https://ianzepp.dev/hire.html (fractional CTO, fractional principal
+> engineer, and full-time roles, with a resume PDF).
 
 The home page at https://ianzepp.dev/ carries the long-form career narrative.
 The selected case studies are indexed at https://ianzepp.dev/case-studies/.
@@ -45,7 +44,7 @@ flatly. Prefer method and falsifiable systems over raw commit volume.
 
 ## Sections of the page
 
-- Thesis: learn the domain, verify the output (1996—present)
+- Thesis: enter a domain, then verify the system (1996 to present)
 - Programs: Faber/Radix, Minted Geek Swarm, Field Board, The Trials, Monk,
   kernel lineage, plus satellites (Cephalopodic, Gofolio, LegacyLens, QRStatic)
 - Method: goal → phases → slice → commit → audit; human charter/audit vs agent coordination
@@ -76,11 +75,10 @@ flatly. Prefer method and falsifiable systems over raw commit volume.
   - The Substrate (Cassio + Vivarium): https://ianzepp.dev/case-studies/the-substrate.html
   - Minted Geek Swarm: https://ianzepp.dev/case-studies/minted-geek-swarm.html
   - The First Protocols (origin): https://ianzepp.dev/case-studies/the-first-protocols.html
-- Contact: mailto:ian@ianzepp.com
+- Contact: mailto:ian.zepp@gmail.com
 - Hire page: https://ianzepp.dev/hire.html
 - Selected work: https://ianzepp.dev/case-studies/
-- CV (full, .docx): https://ianzepp.dev/cv/Ian-Zepp-CV.docx
-- CV (one-page, .docx): https://ianzepp.dev/cv/Ian-Zepp-CV-1page.docx
+- Resume (PDF): https://ianzepp.dev/cv/Ian-Zepp-Resume.pdf
 
 ## Machine surfaces
 

@@ -3,29 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Hire Ian Zepp — fractional CTO or fractional principal engineer for early-stage startups. Remote-first. Also full-time engagements for recruiters, with CV downloads.">
+  <meta name="description" content="Hire Ian Zepp. Principal and staff engineer, software architect, AI agent infrastructure and developer tools. Fractional technical leadership, hands-on principal engineering, and full-time roles. Resume PDF and email on this page.">
   <meta name="theme-color" content="#14100f">
-  <meta property="og:title" content="Hire — Ian Zepp">
-  <meta property="og:description" content="Fractional CTO and fractional principal engineer for early-stage startups. Remote-first US. Full-time engagements considered.">
+  <meta property="og:title" content="Hire Ian Zepp">
+  <meta property="og:description" content="Principal and staff engineer, software architect. AI agent infrastructure and developer tools. Asheville, NC. Open to Austin onsite or remote.">
   <meta property="og:url" content="https://ianzepp.dev/hire.html">
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100f'/%3E%3Crect width='64' height='3' fill='%23c9a24a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='monospace' font-size='26' font-weight='700' fill='%23ece6da'%3EIZ%3C/text%3E%3C/svg%3E">
-  <title>Hire &mdash; Ian Zepp</title>
+  <title>Hire Ian Zepp</title>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Ian Zepp — Fractional CTO & Principal Engineering",
+      "@type": "Person",
+      "name": "Ian Zepp",
       "url": "https://ianzepp.dev/hire.html",
-      "email": "mailto:ian@ianzepp.com",
-      "description": "Remote-first fractional CTO and fractional principal engineer for early-stage startups. Full-time engagements considered.",
-      "areaServed": "US",
-      "founder": {
-        "@type": "Person",
-        "name": "Ian Zepp",
-        "url": "https://ianzepp.dev/",
-        "sameAs": ["https://github.com/ianzepp"]
-      }
+      "email": "mailto:ian.zepp@gmail.com",
+      "jobTitle": "Principal / Staff Engineer, Software Architect",
+      "description": "Principal engineer and software architect who builds AI agent infrastructure, compilers, and multi-tenant platforms, and who has led engineering organizations.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Asheville",
+        "addressRegion": "NC",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://github.com/ianzepp",
+        "https://www.linkedin.com/in/ianzepp",
+        "https://faberlang.dev"
+      ]
     }
   </script>
   <style>
@@ -76,7 +81,6 @@
       letter-spacing: .18em; text-transform: uppercase; color: var(--gilt);
     }
 
-    /* architrave */
     .architrave { background: var(--basalt); border-bottom: 2px solid var(--gilt-deep); }
     .nav {
       min-height: 60px;
@@ -92,7 +96,6 @@
     .nav-links a:hover { color: var(--gilt); }
     .nav-links a.active { color: var(--gilt); }
 
-    /* page header */
     .page-header {
       background: var(--giallo);
       color: var(--basalt);
@@ -118,7 +121,6 @@
       color: #3a2810; font-size: 14.5px; line-height: 1.75;
     }
 
-    /* quick jump strip */
     .jump-strip {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -142,7 +144,6 @@
       color: #8d8574; margin-top: 4px; display: block;
     }
 
-    /* section blocks */
     .offer {
       padding: clamp(46px, 5vw, 76px) clamp(24px, 4vw, 56px);
       border-bottom: 2px solid var(--gilt-deep);
@@ -162,6 +163,23 @@
       font-size: 15px; letter-spacing: .04em;
       color: var(--gilt); text-transform: uppercase;
       margin-top: 22px; margin-bottom: 10px;
+    }
+    .offer h3.role {
+      text-transform: none;
+      font-size: 16px;
+      letter-spacing: .02em;
+      color: var(--marmor);
+      margin-top: 28px;
+      margin-bottom: 6px;
+    }
+    .offer .when {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--gilt);
+      margin-bottom: 10px;
     }
     .offer p {
       color: var(--marmor-dim); margin-bottom: 14px;
@@ -186,7 +204,6 @@
       font-weight: 700;
     }
 
-    /* rate table */
     .rate-grid {
       margin-block: 20px;
       margin-inline: auto;
@@ -207,45 +224,7 @@
       color: var(--marmor-dim);
     }
     .rate-cell.cadence { color: var(--marmor); font-weight: 600; }
-    .rate-row.default .rate-cell.cadence { color: var(--gilt-lit, var(--marmor)); }
 
-    /* evidence metrics */
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      margin-block: 22px;
-      max-width: var(--measure);
-      border-top: 1px solid #2a2320;
-      border-left: 1px solid #2a2320;
-    }
-    @media (max-width: 760px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 460px) { .metric-grid { grid-template-columns: 1fr; } }
-    .metric {
-      padding: 16px 18px;
-      border-bottom: 1px solid #2a2320;
-      border-right: 1px solid #2a2320;
-    }
-    .metric .num {
-      display: block;
-      font-family: var(--mono);
-      font-size: 21px; font-weight: 700;
-      color: var(--gilt);
-      font-variant-numeric: tabular-nums;
-      line-height: 1.15;
-    }
-    .metric .cap {
-      display: block;
-      margin-top: 6px;
-      font-size: 11px; line-height: 1.45;
-      color: var(--marmor-dim);
-    }
-    .metric .src {
-      display: block;
-      margin-top: 7px;
-      font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
-      color: #7d7565;
-    }
-    /* fit blocks side by side */
     .fit-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -274,7 +253,6 @@
     }
     .fit-cell ul li { margin-bottom: 4px; }
 
-    /* CTA row */
     .cta {
       display: flex;
       gap: 12px;
@@ -297,10 +275,9 @@
     .cta a.primary:hover { background: var(--giallo-lit); color: var(--basalt); }
     .cta a:hover { color: var(--marmor); border-color: var(--marmor); }
 
-    /* CV downloads */
     .cv-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: 1fr;
       gap: 0;
       margin-block: 20px;
       margin-inline: auto;
@@ -337,32 +314,30 @@
       background: rgba(168, 124, 52, 0.08);
     }
 
-    /* callout */
     .callout {
-      border-left: 3px solid var(--gilt-deep);
+      border-left: 3px solid var(--aegyptus);
       padding: 14px 18px;
       margin-block: 18px;
       margin-inline: auto;
       max-width: var(--measure);
       background: rgba(37, 64, 107, 0.15);
-      border-left-color: var(--aegyptus);
     }
     .callout p { color: var(--marmor-dim); font-size: 13.5px; margin-bottom: 0; }
     .callout p strong { color: var(--marmor); }
 
-    /* inscription */
     .inscription {
       background: var(--giallo); text-align: center;
       padding: clamp(52px, 6vw, 84px) clamp(24px, 4vw, 56px);
     }
     .inscription .txt {
       font-family: var(--inscr); font-weight: 900;
-      font-size: clamp(18px, 2.2vw, 30px); line-height: 1.35; letter-spacing: .1em;
+      font-size: clamp(18px, 2.2vw, 30px); line-height: 1.35; letter-spacing: .08em;
       color: var(--basalt);
       max-width: 800px; margin-inline: auto;
     }
+    .inscription .txt a { color: var(--porphyry-deep); }
+    .inscription .txt a:hover { color: var(--basalt); }
 
-    /* footer */
     .stylobate {
       background: var(--basalt); border-top: 2px solid var(--gilt-deep);
       padding: 22px clamp(20px, 4vw, 44px);
@@ -397,104 +372,116 @@
     <div class="page-header">
       <div class="col">
         <a class="back" href="/">&larr; ianzepp.dev</a>
-        <h1>Technical leadership <em>for hire.</em></h1>
-        <p class="lede">Fractional CTO and fractional principal engineering for early-stage companies &mdash; architecture, hiring, roadmap, engineering process &mdash; without a full-time exec seat. Remote-first US. Full-time engagements considered when the fit is right.</p>
+        <h1>Hire <em>Ian Zepp.</em></h1>
+        <p class="lede">Principal / Staff Engineer, software architect. Builds AI agent infrastructure, compilers, and multi-tenant platforms, and has led engineering organizations. Asheville, NC; open to Austin onsite or remote. U.S. citizen, no sponsorship required. U.S. Marine Corps veteran. Email <a href="mailto:ian.zepp@gmail.com">ian.zepp@gmail.com</a>.</p>
       </div>
     </div>
 
     <div class="jump-strip">
       <div class="jump-cell">
-        <a href="#the-record">The record</a>
-        <span class="jump-sub">Measured, not asserted</span>
+        <a href="#current-work">Current work</a>
+        <span class="jump-sub">Independent, 08/2025&ndash;present</span>
       </div>
       <div class="jump-cell">
-        <a href="#fractional-cto">Fractional CTO</a>
-        <span class="jump-sub">Priced by problem, not calendar</span>
+        <a href="#experience">Experience</a>
+        <span class="jump-sub">Titles, dates, employers</span>
       </div>
       <div class="jump-cell">
-        <a href="#fractional-principal">Fractional Principal Engineer</a>
-        <span class="jump-sub">Scoped or embedded</span>
+        <a href="#fractional-cto">How to hire</a>
+        <span class="jump-sub">Fractional or full-time</span>
       </div>
       <div class="jump-cell">
-        <a href="#full-time">Full-time &amp; recruiters</a>
-        <span class="jump-sub">CV downloads</span>
+        <a href="#resume">Resume</a>
+        <span class="jump-sub">PDF download</span>
       </div>
       <div class="jump-cell">
-        <a href="mailto:ian@ianzepp.com?subject=Engagement%20inquiry">ian@ianzepp.com</a>
-        <span class="jump-sub">Real reply, one business day</span>
+        <a href="mailto:ian.zepp@gmail.com?subject=Engagement%20inquiry">ian.zepp@gmail.com</a>
+        <span class="jump-sub">Reply within one business day</span>
       </div>
     </div>
 
-    <!-- THE RECORD -->
-    <section id="the-record" class="offer on-deep">
-      <span class="label section-label">The record</span>
-      <h2>What one operator produced.</h2>
+    <section id="current-work" class="offer on-deep">
+      <span class="label section-label">Current work</span>
+      <h2>Independent AI Systems Engineer.</h2>
+      <span class="when">Self-employed &middot; 08/2025 &ndash; Present &middot; Asheville, NC &middot; Remote</span>
+      <p>Since August 2025, building full time in Rust, Go, and TypeScript. Left the industry in 2021 and returned to full-time engineering in August 2025. Daily practice with coding agents (Claude Code, Codex, and self-built harnesses). Planning, implementation, and audit are separate roles; each audit is run independently by two models from different families plus a synthesizer.</p>
 
-      <p>Most engineering evidence is a logo &mdash; someone worked somewhere, and you infer the rest.
-      What follows is measured instead: taken from live repositories and session logs, with the command
-      that produced each figure written down. Public repositories are linked below; Faber and Swarm source repositories are private.</p>
+      <h3 class="role">Faber and Radix</h3>
+      <p>Designed Faber, a statically typed language for coding agents and human authors, and built Radix, its Rust compiler: parser, type system, HIR and MIR lowering, and code generation from Rust, TypeScript, Go, and Swift to LLVM IR, Cranelift, WebAssembly, and WGSL, with a public documentation site at <a href="https://faberlang.dev" rel="noopener">faberlang.dev</a>. GPU kernel generation: <code>@kernel</code> functions lower to Metal and CUDA (via LLVM) and launch on real GPUs, with fail-closed device execution. In progress, not released: multi-GPU and cluster kernel execution.</p>
 
-      <div class="metric-grid">
-        <div class="metric">
-          <span class="num">912,885</span>
-          <span class="cap">Lines of Rust in a compiler for a language I designed, entering the domain with no programming-language-theory background. Tracked source inventory: September 30, 2026.</span>
-          <span class="src">scripta/release-stats.sh &middot; tokei</span>
-        </div>
-        <div class="metric">
-          <span class="num">49</span>
-          <span class="cap">Workspace crates in the compiler. Source inventory measured September 30, 2026; the Rust test-definition count is 14,815.</span>
-          <span class="src">cargo metadata &middot; Rust #[test] inventory</span>
-        </div>
-        <div class="metric">
-          <span class="num">8,055</span>
-          <span class="cap">Sessions in August 2026 through the 25th &mdash; 6,551 of them agent-driven without me in the loop, up from 136 delegated sessions in January.</span>
-          <span class="src">Session corpus</span>
-        </div>
-        <div class="metric">
-          <span class="num">582,243</span>
-          <span class="cap">Tool calls in August 2026 through the 25th &mdash; an average of seventy-two machine actions per session.</span>
-          <span class="src">Session corpus</span>
-        </div>
-        <div class="metric">
-          <span class="num">13.3&times;</span>
-          <span class="cap">Historical throughput growth January–August 2026 while frontier-model usage fell from 76% of sessions to 0.3%. Volume up; the expensive tier gone.</span>
-          <span class="src">213.8B tokens, 21,287 sessions</span>
-        </div>
-        <div class="metric">
-          <span class="num">247,791</span>
-          <span class="cap">Lines deleted in one day replacing a TypeScript compiler with a Rust one &mdash; with no loss of test coverage, because the tests were never bound to the implementation.</span>
-          <span class="src">v0.24.0 &rarr; v0.25.0</span>
-        </div>
-      </div>
+      <h3 class="role">Vivi</h3>
+      <p>Built distributed dispatch for agentic engineering jobs across a multi-machine cluster. An unattended state-machine dispatcher routes planner, implementation, merge, gate, and audit jobs to role-based worker pools on local Git worktrees, Docker, SSH hosts, Fly.io, and RunPod GPU machines. A loopback LLM front door routes OpenAI- and Anthropic-style APIs to multiple providers and local llama.cpp servers, with credential pools, token refresh, and dead-credential detection. A local-first mailspace keeps tasks, memos, and work graphs durable across restarts, context compaction, and model hand-offs. Open source: <a href="https://github.com/ianzepp/vivi" rel="noopener">github.com/ianzepp/vivi</a>.</p>
 
-      <p>That last one is the one I would actually want a founder to read. Deleting 83% of a codebase
-      safely is not nerve; it is having built the thing so that it could be done. The full account of
-      how &mdash; six parallel compiler implementations, a language-agnostic test corpus, and what it
-      cost &mdash; is in the Radix retrospective.</p>
+      <h3 class="role">Evals</h3>
+      <p>Behavioral red-team evals of model responses to framing shifts, invented authority, and coercion on current models, with pre-registered predictions and a grading stack validated against hand-labeled gold. Faber learnability trials with n-shot matrices and executable grading. Local GGUF inference autotuning on llama.cpp.</p>
 
-      <div class="callout">
-        <p><strong>What this does not show.</strong> No defect-escape-rate measurement &mdash; I know
-        what the audit layer caught, not what it missed. No evidence the method transfers to a team;
-        no other team has run it. And it holds where output is verifiable. Where failure is silent and
-        delayed, or the real bottleneck is tacit institutional knowledge, the approach is weaker and I
-        would say so before taking the engagement.</p>
-      </div>
+      <h3 class="role">Cephalopodic (Cephi)</h3>
+      <p>Co-founded with two Gauntlet AI peers as the capstone: a Go control plane and security gateway for MCP (registration, catalogs, user-scoped taps, policy enforcement, JSON-RPC inspection), a defensive firewall between agents and tool servers. Wound down within about two months once managed MCP shipped natively from the model vendors.</p>
+
+      <h3 class="role">Monk platform and Monk OS</h3>
+      <p>monk-api is the third clean-room build of the schema-as-data, multi-tenant platform behind Minted.IO and Motivis: Hono, TypeScript, PostgreSQL, tenant isolation, observer rings, and generated REST APIs, plus a Rust CLI, Go FUSE filesystem, FTP and IRC bridges, an MCP server, and the monk-bot agent daemon. Monk OS is a Plan 9-inspired OS kernel in TypeScript on Bun where the AI agent is PID 1: a VFS where every file is a queryable database record, syscalls, Worker-isolated processes, a HAL, SQLite or PostgreSQL storage, and an SDK.</p>
+
+      <h3 class="role">Also</h3>
+      <p>Field Board, a real-time collaborative whiteboard in Rust end to end (Axum, PostgreSQL, Leptos/WebAssembly, protobuf), with chat and an AI agent that edits the board through tool calls. Minted Geek Swarm, a Rust multi-agent runtime where agent fleets provision their own mail, CRM, storage, payments, and MCP tool servers. LegacyLens, retrieval-augmented analysis of a COBOL codebase with hybrid vector retrieval.</p>
 
       <div class="cta">
-        <a class="primary" href="#fractional-cto">What this buys you &darr;</a>
-        <a href="/case-studies/radix-retrospective.html">Radix retrospective &rarr;</a>
-        <a href="https://github.com/ianzepp" rel="noopener">Go look &rarr;</a>
+        <a class="primary" href="#experience">Experience &darr;</a>
+        <a href="/case-studies/">Case studies &rarr;</a>
+        <a href="https://github.com/ianzepp" rel="noopener">GitHub &rarr;</a>
       </div>
     </section>
 
-    <!-- FRACTIONAL CTO -->
-    <section id="fractional-cto" class="offer on-basalt">
-      <span class="label section-label">Product A</span>
+    <section id="experience" class="offer on-basalt">
+      <span class="label section-label">Experience</span>
+      <h2>Titles, dates, and employers.</h2>
+      <p>Taken from the current resume. Earlier leadership and platform work is below; current independent work is in the section above.</p>
+
+      <h3 class="role">Member of Technical Staff, Kraken</h3>
+      <span class="when">01/2021 &ndash; 03/2021 &middot; Contract</span>
+      <p>Money-movement systems for a global crypto exchange: SWIFT bank transfers and wire-transfer verification.</p>
+
+      <h3 class="role">Vice President, Platform Research and Development, Motivis Learning</h3>
+      <span class="when">02/2017 &ndash; 03/2020 &middot; Salem, NH</span>
+      <p>Led platform R&amp;D across 10 to 20 engineers in a company backed by Southern New Hampshire University, built on the Minted.IO platform after its acquisition. Owned the technical roadmap and scaled the engineering organization. Extended the platform package model to cross-tenant namespace subscriptions so schools held private tenant data alongside read-only access to centrally managed curriculum and competency data. Delivered deployment portability across AWS, Google Cloud (Spanner), and local environments on TypeScript, Node.js, and PostgreSQL. The company closed in Q1 2020.</p>
+
+      <h3 class="role">Technical Solution Architect, Salesforce</h3>
+      <span class="when">02/2016 &ndash; 02/2017</span>
+      <p>Forward-deployed technical solution architect embedded on site with enterprise clients across two six-month assignments. CarMax: a portal for on-site sales agents to track customer purchases, integrating multiple Salesforce products. Home Depot: Field Service in its first release, integrated with nightly batch processing.</p>
+
+      <h3 class="role">Founder &amp; Principal Engineer, Minted.IO</h3>
+      <span class="when">07/2015 &ndash; 12/2015 &middot; Nashua, NH</span>
+      <p>Designed and built solo, in six months, a metadata-driven, multi-tenant application platform. Motivis Learning bought the software and API assets for $750,000 in February 2017 as the foundation of its learning management system. Schema stored as data, so changes propagated immediately across every data API route; single-database PostgreSQL multi-tenancy with self-service provisioning, record-level ACLs, and a recursive query DSL.</p>
+
+      <h3 class="role">Vice President of Software Engineering (promoted from Chief Scientist), roundCorner</h3>
+      <span class="when">2011 &ndash; 2015 &middot; New York, NY</span>
+      <p>Senior technical authority for a Salesforce-native enterprise CRM with no separate CTO. Led a direct team of engineers and project managers alongside an offshore delivery organization, shipping fundraising, grant-making, and alumni systems for St. Jude Children&rsquo;s Research Hospital, Georgetown, Duke, Villanova, and Girl Scouts of the USA. Owned architecture for a fundraising and constituent management product line adopted by more than 200 nonprofits, foundations, and universities, later acquired by Salesforce.org. Designed the migration data model off Blackbaud Raiser&rsquo;s Edge and Team Approach, and built versioned namespaced managed packages where released metadata can never be removed. Diagnosed a live production failure during a St. Jude Radiothon (concurrent donation entry triggered cascading child-record generation that saturated write throughput), traced it in platform debug logs during the event, and applied a reversible mitigation.</p>
+
+      <h3>Earlier experience</h3>
+      <ul>
+        <li><strong>Founder &amp; CTO</strong>, Minted Geek Hungary KFT, Budapest (2013 &ndash; 2014). Salesforce consulting company co-founded with a local partner.</li>
+        <li><strong>Founder &amp; Principal Consultant</strong>, M43 Instead LLC (2010 &ndash; 2011). Salesforce consulting (Bluewolf, MaidPro, roundCorner, others). For MaidPro, replaced spreadsheet estimating across its franchise offices with a pricing, scheduling, and dispatch portal.</li>
+        <li><strong>Technical Architect</strong>, Red Hat, Raleigh-Durham, NC (2009 &ndash; 2010). Multilingual APAC Partner Center (Korea, Japan, China).</li>
+        <li><strong>Software Engineer</strong>, Beatport, Denver, CO (2008 &ndash; 2009). PHP, enterprise Java, Mule, Spring, Hibernate, Squid, Akamai, and MySQL.</li>
+        <li><strong>Real Estate Sales</strong>, Bosshardt Realty Services, LLC, Gainesville, FL (2002 &ndash; 2007).</li>
+        <li><strong>Open-source contributor</strong>, KDE (1999 &ndash; 2000). Wrote KStringHandler, accepted into kdelibs/kdecore; KMap, a C++/Qt Nmap front end credited in the Nmap 2.50 release notes; a Python Gnutella P2P library.</li>
+        <li><strong>Infantry Team Leader (E-4)</strong>, United States Marine Corps (1996 &ndash; 2000). Honorable service; Corporal (E-4), 0351 Assaultman.</li>
+      </ul>
+
+      <h3>Education</h3>
+      <ul>
+        <li><strong>Bachelor of Business Administration</strong>, UMass Amherst. Languages: English; conversational French and Spanish.</li>
+        <li><strong>AI Engineering Fellowship, Cohort 4</strong>, Gauntlet AI, Austin, TX (2026): ten weeks, continuous elimination.</li>
+        <li><strong>Certifications (2007 to 2009):</strong> RHCE, SCJP, CCNA, CCENT, CompTIA Security+ and A+, Zend Certified Engineer, MySQL Certified Developer.</li>
+      </ul>
+    </section>
+
+    <section id="fractional-cto" class="offer on-deep">
+      <span class="label section-label">Fractional</span>
       <h2>Fractional CTO.</h2>
-      <p>Technical leadership for a smaller company &mdash; architecture, roadmap, hiring, and engineering process &mdash; delivered remote-first at a cadence that respects your runway and mine. Written charter. IP carve-out. Explicit exit path.</p>
+      <p>Technical leadership for a smaller company: architecture, roadmap, hiring, and engineering process, delivered remote-first. Written charter. IP carve-out. Explicit exit path. No published rate card; the number comes from a first call about the problem.</p>
 
       <h3>Who this is for</h3>
-      <p>Pre-seed through Series A. Zero to fifteen engineers. Remote-first US. The pain that brings people here is usually one or two of:</p>
+      <p>Pre-seed through Series A. Zero to fifteen engineers. Remote-first US. Common reasons people write:</p>
       <ul>
         <li>Technical decisions are gating revenue, fundraising, or a launch.</li>
         <li>Hiring without a senior bar, or unable to attract seniors without a leader in the loop.</li>
@@ -508,29 +495,15 @@
         <li>Weekly founder / CEO sync. Written 30 / 60 / 90 day outcomes.</li>
         <li>Owned: architecture, roadmap alignment, hiring screens and debriefs, engineering process, critical-path review.</li>
         <li>Not owned: ticket throughput, day-to-day project management, badge presence.</li>
-        <li>Onsite for launches, fundraises, board meetings, or a key week per quarter &mdash; scoped separately.</li>
+        <li>Onsite for launches, fundraises, board meetings, or a key week per quarter, scoped separately.</li>
         <li>Prior-inventions schedule and IP carve-out on every engagement.</li>
       </ul>
 
       <h3>On being in the room</h3>
-      <p>Remote-first is the default cadence, but the onsite week is not a concession &mdash; it
-      is often where the value lands. Most of two decades of this work was forward-deployed:
-      technical architect at Salesforce embedded with CarMax and Home Depot, Head of Engineering
-      at a company with no CTO above me, founder through an acquisition.</p>
+      <p>Remote-first is the default cadence. Onsite weeks are available when the work needs them. Most of two decades of this work was forward-deployed: technical solution architect at Salesforce embedded with CarMax and Home Depot, Vice President of Software Engineering at a company with no CTO above me, founder through an acquisition.</p>
+      <p>What made those work was having enough technical depth to understand the complexity, and enough vocabulary to explain it to a product owner or an executive team without flattening it into something false. Problems usually arrive as trade-offs, not binary choices. The useful contribution is making the trade legible.</p>
 
-      <p>What made those work was not presentation skill. It was having enough technical depth to
-      actually understand the complexity, and enough vocabulary to explain it to a product owner
-      or an executive team without flattening it into something false. I tend to put problems
-      forward as gradients and options rather than hard lines, which is usually what the
-      conversation needs at that altitude &mdash; on a board or a leadership team, almost nothing
-      is binary. It is trade-offs, and the useful contribution is making the trade legible.</p>
-
-      <h3>Rates</h3>
-      <p>Priced by the problem, not by the calendar &mdash; the same nominal engagement is a
-      different job at a seed-stage company than at one with a board deadline and eleven services
-      in production. No published ranges; the number comes out of a first conversation.
-      Let's talk.</p>
-
+      <h3>Engagement sizes</h3>
       <div class="rate-grid">
         <div class="rate-row">
           <div class="rate-cell cadence">Focused</div>
@@ -538,7 +511,7 @@
         </div>
         <div class="rate-row default">
           <div class="rate-cell cadence">Substantial &middot; typical</div>
-          <div class="rate-cell">A platform area taken from unclear to shipped. Several interacting decisions, hiring input, process that outlives me.</div>
+          <div class="rate-cell">A platform area taken from unclear to shipped. Several interacting decisions, hiring input, process that outlives the engagement.</div>
         </div>
         <div class="rate-row">
           <div class="rate-cell cadence">Sustained</div>
@@ -547,10 +520,7 @@
       </div>
 
       <div class="callout">
-        <p><strong>How the number is set.</strong> How tangled the problem is, how much
-        is already on fire, and what a wrong answer costs you &mdash; not how many hours it takes me.
-        I will tell you what I think it should cost on the first call, before either of us has spent
-        anything.</p>
+        <p><strong>How the number is set.</strong> How tangled the problem is, how much is already on fire, and what a wrong answer costs you, not how many hours it takes. You will hear a number on the first call, before either side has spent anything.</p>
       </div>
 
       <div class="fit-grid">
@@ -575,33 +545,30 @@
       </div>
 
       <div class="cta">
-        <a class="primary" href="mailto:ian@ianzepp.com?subject=Fractional%20CTO%20inquiry">ian@ianzepp.com</a>
-        <a href="#full-time">CV downloads &darr;</a>
+        <a class="primary" href="mailto:ian.zepp@gmail.com?subject=Fractional%20CTO%20inquiry">ian.zepp@gmail.com</a>
+        <a href="#resume">Resume PDF &darr;</a>
       </div>
     </section>
 
-    <!-- FRACTIONAL PRINCIPAL ENGINEER -->
-    <section id="fractional-principal" class="offer on-deep">
-      <span class="label section-label">Product B</span>
+    <section id="fractional-principal" class="offer on-basalt">
+      <span class="label section-label">Hands-on</span>
       <h2>Fractional Principal Engineer.</h2>
-      <p>Senior hands-on systems work when the ask is capacity and judgment, not the CTO seat. Architecture and implementation on your codebase; embedded principal engineering; evaluation and audit-style work on shipping systems.</p>
+      <p>Senior hands-on systems work when the ask is capacity and judgment, not the CTO seat. Architecture and implementation on your codebase; embedded principal engineering; evaluation and audit-style work on shipping systems. Priced by the piece and by the result, not by the clock.</p>
 
       <h3>Who this is for</h3>
-      <p>Engineering manager, founding engineer, or CTO who needs a specialist for a bounded stretch &mdash; usually one of:</p>
+      <p>Engineering manager, founding engineer, or CTO who needs a specialist for a bounded stretch, usually one of:</p>
       <ul>
-        <li>Platform, runtime, compiler, or agent-fleet work outside the team's depth.</li>
-        <li>Architecture design + first implementation, handed off to a permanent owner.</li>
+        <li>Platform, runtime, compiler, or agent-fleet work outside the team&rsquo;s depth.</li>
+        <li>Architecture design plus first implementation, handed off to a permanent owner.</li>
         <li>Audit and evaluation on AI-generated code or model-routing infrastructure.</li>
         <li>Short intense sprint on a critical path the team cannot free up for.</li>
       </ul>
 
-      <h3>Rates</h3>
-      <p>No rate card here either &mdash; priced by the piece and by the result, not by the
-      clock. Bring the problem and I will put a number on it. Let's talk.</p>
+      <h3>Engagement sizes</h3>
       <div class="rate-grid">
         <div class="rate-row">
           <div class="rate-cell cadence">Scoped piece</div>
-          <div class="rate-cell">A subsystem, a migration, a critical-path build with a definition of done we agree on up front.</div>
+          <div class="rate-cell">A subsystem, a migration, or a critical-path build with a definition of done agreed up front.</div>
         </div>
         <div class="rate-row default">
           <div class="rate-cell cadence">Embedded</div>
@@ -610,67 +577,58 @@
       </div>
 
       <div class="callout">
-        <p><strong>No hourly, and no day rate.</strong> Both meter attention rather than outcome, and
-        both quietly punish the thing that makes this worth buying. I run fleets of agents in parallel;
-        work that used to take a team a quarter can take days. If you are paying for my calendar you are
-        buying the wrong unit &mdash; and I would be pricing the work at a fraction of what it is worth
-        to you. So the number is attached to the result.</p>
+        <p><strong>No hourly rate, and no day rate.</strong> Both meter attention rather than outcome. Work that used to take a team a quarter can take days when agent fleets run in parallel. The number is attached to the result.</p>
       </div>
 
       <div class="cta">
-        <a class="primary" href="mailto:ian@ianzepp.com?subject=Principal%20engineer%20inquiry">ian@ianzepp.com</a>
+        <a class="primary" href="mailto:ian.zepp@gmail.com?subject=Principal%20engineer%20inquiry">ian.zepp@gmail.com</a>
       </div>
     </section>
 
-    <!-- FULL-TIME + RECRUITERS -->
-    <section id="full-time" class="offer on-basalt">
-      <span class="label section-label">For recruiters</span>
-      <h2>Full-time engagements.</h2>
-      <p>Full-time is a capstone, not the opening move. The current work is going well, so the bar for stopping it is high &mdash; but it is a bar, not a wall. Staff, principal, and architect IC seats fit naturally, as does a small-company VP-of-Engineering or CTO seat. Heavier people-management roles are a different trade, and one worth putting a number against rather than ruling out.</p>
+    <section id="full-time" class="offer on-deep">
+      <span class="label section-label">Full-time</span>
+      <h2>Full-time roles.</h2>
+      <p>Staff, principal, and architect IC seats fit, as does a small-company VP-of-Engineering or CTO seat. Heavier people-management roles are a different trade and worth putting a number against rather than ruling out. The current independent work is going well, so the bar for stopping it is high, but it is a bar, not a wall.</p>
 
-      <h3>What fits, and what is negotiable</h3>
+      <h3>What fits</h3>
       <ul>
-        <li><strong>Remote-first is the default.</strong> Austin is a live relocation option. Anywhere else &mdash; including the Bay Area &mdash; is a compensation question rather than a closed door. Name the package and you will get a straight answer.</li>
-        <li><strong>From Asheville, onsite works quarterly.</strong> One or two connections each way means a coast-to-coast trip runs most of a day in each direction &mdash; a key week per quarter is realistic, every other week is not. If the role needs presence more often than that, it is a relocation conversation rather than a travel one, and those are worth having.</li>
-        <li><strong>Small engineering org preferred.</strong> ~30 engineers or fewer, where technical judgment is the actual constraint. Larger works if the seat is genuinely technical.</li>
+        <li><strong>Remote-first is the default.</strong> Open to Austin onsite or remote. Anywhere else, including the Bay Area, is a compensation question rather than a closed door.</li>
+        <li><strong>From Asheville, onsite works quarterly.</strong> A coast-to-coast trip runs most of a day each way, so a key week per quarter is realistic and every other week is not. If the role needs presence more often than that, it is a relocation conversation rather than a travel one.</li>
+        <li><strong>Smaller engineering organizations preferred</strong>, where technical judgment is the actual constraint. Larger works if the seat is genuinely technical.</li>
         <li><strong>Staff / principal / architect IC</strong>, or <strong>small-company VP Eng / CTO</strong>. For layered director seats, lead with what the role actually decides.</li>
         <li><strong>Product with a verifiable correctness surface.</strong> Compilers, runtimes, platforms, agent systems, developer tools.</li>
-        <li><strong>Cash + equity in that order.</strong> Equity-heavy early roles by exception, not default.</li>
+        <li><strong>Cash plus equity, in that order.</strong> Equity-heavy early roles by exception, not default.</li>
       </ul>
+    </section>
 
-      <h3>Download the CV</h3>
+    <section id="resume" class="offer on-basalt">
+      <span class="label section-label">Resume</span>
+      <h2>Download the resume.</h2>
+      <p>One PDF. Same content as this page&rsquo;s experience section. Email <a href="mailto:ian.zepp@gmail.com">ian.zepp@gmail.com</a> if a different format is required.</p>
       <div class="cv-grid">
         <div class="cv-cell">
-          <h4>Full CV &middot; multi-page</h4>
-          <span class="cv-sub">ATS-oriented &middot; complete work history</span>
-          <a href="/cv/Ian-Zepp-CV.docx" download>Download .docx</a>
+          <h4>Ian Zepp resume &middot; PDF</h4>
+          <span class="cv-sub">Current resume &middot; titles, dates, and employers as written</span>
+          <a href="/cv/Ian-Zepp-Resume.pdf">Open PDF</a>
         </div>
-        <div class="cv-cell">
-          <h4>One-page CV</h4>
-          <span class="cv-sub">Length discipline &middot; recent + condensed leadership</span>
-          <a href="/cv/Ian-Zepp-CV-1page.docx" download>Download .docx</a>
-        </div>
-      </div>
-
-      <div class="callout">
-        <p><strong>ATS note.</strong> Both files are single-column .docx with standard section names, MM/YYYY dates, no tables or graphics. Upload as-is; do not convert to PDF first if the system will re-parse.</p>
       </div>
 
       <div class="cta">
-        <a class="primary" href="mailto:ian@ianzepp.com?subject=Full-time%20role%20-%20%5Bcompany%5D">ian@ianzepp.com</a>
-        <a href="https://linkedin.com/in/ianzepp" rel="noopener">LinkedIn &rarr;</a>
+        <a class="primary" href="mailto:ian.zepp@gmail.com?subject=Full-time%20role%20-%20%5Bcompany%5D">ian.zepp@gmail.com</a>
+        <a href="https://www.linkedin.com/in/ianzepp" rel="noopener">LinkedIn &rarr;</a>
+        <a href="https://github.com/ianzepp" rel="noopener">GitHub &rarr;</a>
       </div>
     </section>
 
     <div class="inscription">
-      <div class="txt">Lead with the work. State the offer plainly. The rest is conversation.</div>
+      <div class="txt">Email <a href="mailto:ian.zepp@gmail.com">ian.zepp@gmail.com</a>. The resume PDF is on this page.</div>
     </div>
 
   </main>
 
   <footer>
     <div class="stylobate">
-      <span>Ian Zepp &middot; ianzepp.dev &middot; <a href="mailto:ian@ianzepp.com">ian@ianzepp.com</a></span>
+      <span>Ian Zepp &middot; ianzepp.dev &middot; <a href="mailto:ian.zepp@gmail.com">ian.zepp@gmail.com</a></span>
       <span><a href="/">Back to main &uarr;</a></span>
     </div>
   </footer>
