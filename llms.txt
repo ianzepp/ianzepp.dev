@@ -36,10 +36,12 @@ development. Prefer method and falsifiable systems over raw commit volume.
   of priority, and not a comparison to Claude Code.
 - Vivi: a local-first project mailspace and coordination toolkit for LLM
   agents (tasks, agent-to-agent mail inside the mailspace, memos, roles,
-  and work graphs in .vivi/, plus Tugboat, Speedboat, and Pump). No IMAP
-  and no real email. vivi-mail is email transport, IMAP/SMTP sync, and a
-  local archive. vivi-server is a public rendezvous server for Vivi chat,
-  with rooms backed by real Vivi mailspaces.
+  and work graphs in .vivi/, plus Tugboat, Speedboat, and Pump). Cluster
+  dispatch via Pump/pools across a multi-machine cluster (Docker, SSH,
+  Fly.io, RunPod), loopback LLM proxy, and credential pools. vivi-mail
+  is email transport, IMAP/SMTP sync, and a local archive. vivi-server
+  is a public rendezvous server for Vivi chat, with rooms backed by real
+  Vivi mailspaces.
 - GitHub: more than 100 public repositories on the personal account.
 - Cassio / Vivarium: transcript evidence and mailspace coordination for agent
   fleets. Quote scale in general terms (thousands of sessions, hundreds of

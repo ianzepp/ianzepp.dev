@@ -486,7 +486,7 @@
       <span class="label section-label">The thesis</span>
       <h2>Agents need infrastructure, not just prompts.</h2>
       <p>The visible output of AI-assisted engineering is code. But code is the product of sessions, and sessions produce transcripts, and transcripts accumulate into a corpus that no human can read at scale. Meanwhile, agents that coordinate &mdash; dispatching work, reporting results, auditing output &mdash; need a communication surface that persists across sessions, supports role-based routing, and tracks what happened. Without infrastructure for evidence and coordination, agent fleets are just expensive typing.</p>
-      <p>Cassio and Vivarium solve the two halves of this problem. <strong>Cassio</strong> turns raw session logs from 9 different AI coding tools into a normalized AST, then compacts them through an LLM pipeline into daily, weekly, and monthly intelligence. <strong>Vivarium</strong> is a local-first project mailspace &mdash; tasks, agent-to-agent mail inside the mailspace, memos, roles, and work graphs &mdash; not an IMAP inbox.</p>
+      <p>Cassio and Vivarium solve the two halves of this problem. <strong>Cassio</strong> turns raw session logs from 9 different AI coding tools into a normalized AST, then compacts them through an LLM pipeline into daily, weekly, and monthly intelligence. <strong>Vivarium</strong> is a local-first project mailspace &mdash; tasks, agent-to-agent mail inside the mailspace, memos, roles, and work graphs &mdash; and Vivi dispatches agent jobs across a multi-machine cluster.</p>
       <p>Together they form the substrate the Mind/Head/Hand fleet architecture runs on. The loop is closed: agents produce sessions, Cassio compacts them into evidence, Vivi's mailspaces route the evidence to the right roles, and those roles dispatch the next round of work.</p>
     </section>
 
@@ -566,8 +566,8 @@
     <section class="prose on-basalt">
       <span class="label section-label">Vivarium &middot; the coordination layer</span>
       <h2>A local-first project mailspace.</h2>
-      <p>Vivarium &mdash; named after Cassiodorus's 6th-century monastery for preserving written works &mdash; is a local-first project mailspace and coordination toolkit for LLM agents. Each project gets tasks, agent-to-agent mail inside the mailspace, memos, roles, and work graphs in <code>.vivi/</code>, plus the Tugboat, Speedboat, and Pump coordination tools. That mail is not IMAP and not real email.</p>
-      <p>The family is three public repos. <a href="https://github.com/ianzepp/vivi">vivi</a> is the mailspace. <a href="https://github.com/ianzepp/vivi-mail">vivi-mail</a> is email transport, IMAP/SMTP sync, and a local archive. <a href="https://github.com/ianzepp/vivi-server">vivi-server</a> is a public rendezvous server for Vivi chat, with rooms backed by real Vivi mailspaces. A companion binary <code>vivi-pty</code> provides a project-scoped PTY runtime for Fleet agent processes via Unix sockets.</p>
+      <p>Vivarium &mdash; named after Cassiodorus's 6th-century monastery for preserving written works &mdash; is a local-first project mailspace and coordination toolkit for LLM agents. Each project gets tasks, agent-to-agent mail inside the mailspace, memos, roles, and work graphs in <code>.vivi/</code>, plus the Tugboat, Speedboat, and Pump coordination tools. Pump dispatches jobs across a multi-machine cluster to pools on Docker, SSH, Fly.io, and RunPod, with a loopback LLM proxy and credential pools.</p>
+      <p>The family is three public repos. <a href="https://github.com/ianzepp/vivi">vivi</a> is the mailspace and cluster dispatcher. <a href="https://github.com/ianzepp/vivi-mail">vivi-mail</a> is email transport, IMAP/SMTP sync, and a local archive. <a href="https://github.com/ianzepp/vivi-server">vivi-server</a> is a public rendezvous server for Vivi chat, with rooms backed by real Vivi mailspaces. A companion binary <code>vivi-pty</code> provides a project-scoped PTY runtime for Fleet agent processes via Unix sockets.</p>
       <div class="callout design">
         <div class="callout-label">Authority split</div>
         <p>Vivi decides <strong>what work is ready</strong> (topology, readiness frontier, role capacity). Mind decides <strong>who does it</strong> (dispatch). Fleet <strong>executes</strong> (process management). Three systems, three responsibilities. Vivi never spawns an agent. Mind never computes readiness. The boundaries are load-bearing.</p>
@@ -760,8 +760,8 @@
           <p>Thousands of transcripts are useless without compaction. Cassio turns volume into intelligence: session → daily → weekly → monthly. Each tier is a different question answered at a different timescale.</p>
         </div>
         <div class="pattern-cell">
-          <h3>Mailspace, not inbox</h3>
-          <p>Vivi's mail is agent-to-agent messages inside the project mailspace &mdash; tasks, memos, roles, work graphs. Real IMAP/SMTP is a different repo: vivi-mail.</p>
+          <h3>Mailspace plus email transport</h3>
+          <p>Vivi's mail is agent-to-agent messages inside the project mailspace &mdash; tasks, memos, roles, work graphs. vivi-mail is email transport, IMAP/SMTP sync, and a local archive.</p>
         </div>
         <div class="pattern-cell">
           <h3>Ratchets over rules</h3>
@@ -789,7 +789,7 @@
     </section>
 
     <div class="inscription">
-      <div class="txt">Cassio archives session transcripts. Vivi is a local-first project mailspace for LLM agents.</div>
+      <div class="txt">Cassio archives session transcripts. Vivi dispatches agent jobs across a multi-machine cluster.</div>
     </div>
   </main>
 
